@@ -15,6 +15,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: service.seoTitle,
     description: service.seoDescription,
+    alternates: {
+      canonical: `https://atherstonedigital.com/services/${service.slug}`,
+    },
   };
 }
 
@@ -29,11 +32,23 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     description: service.longDescription,
     provider: { '@type': 'ProfessionalService', name: 'Atherstone Digital', url: 'https://atherstonedigital.com' },
     areaServed: { '@type': 'Country', name: 'United Kingdom' },
+    url: `https://atherstonedigital.com/services/${service.slug}`,
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://atherstonedigital.com' },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://atherstonedigital.com/services' },
+      { '@type': 'ListItem', position: 3, name: service.title, item: `https://atherstonedigital.com/services/${service.slug}` },
+    ],
   };
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="pt-36 pb-20 bg-brand-dark min-h-screen">
         <div className="container mx-auto px-6 mb-8">
           <Link href="/services" className="text-brand-muted hover:text-brand-primary transition-colors inline-flex items-center gap-2 text-sm">

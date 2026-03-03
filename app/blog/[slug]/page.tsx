@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { BLOG_POSTS } from '@/lib/data';
-import { ArrowLeft, Calendar, Clock, User } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, User, Share2, Linkedin, Twitter } from 'lucide-react';
 import { Contact } from '@/components/Contact';
 
 export async function generateStaticParams() {
@@ -15,7 +15,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: post.title,
     description: post.excerpt,
-    openGraph: { title: post.title, description: post.excerpt, type: 'article', publishedTime: post.date },
+    openGraph: { title: post.title, description: post.excerpt, type: 'article', publishedTime: post.date, url: `https://atherstonedigital.com/blog/${post.slug}` },
+    alternates: {
+      canonical: `https://atherstonedigital.com/blog/${post.slug}`,
+    },
   };
 }
 
@@ -49,9 +52,20 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     mainEntityOfPage: { '@type': 'WebPage', '@id': `https://atherstonedigital.com/blog/${post.slug}` },
   };
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://atherstonedigital.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://atherstonedigital.com/blog' },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `https://atherstonedigital.com/blog/${post.slug}` },
+    ],
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div className="pt-36 pb-20 bg-brand-dark min-h-screen">
         <div className="container mx-auto px-6 mb-8 max-w-3xl">
           <Link href="/blog" className="text-brand-muted hover:text-brand-primary transition-colors inline-flex items-center gap-2 text-sm">
@@ -83,6 +97,31 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             className="prose-custom"
             dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }}
           />
+
+          {/* Share buttons */}
+          <div className="mt-12 pt-8 border-t border-brand-border">
+            <div className="flex items-center gap-4">
+              <span className="text-brand-muted text-sm flex items-center gap-2"><Share2 size={14} /> Share this article</span>
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://atherstonedigital.com/blog/${post.slug}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-white/5 border border-white/10 hover:border-brand-primary/30 hover:bg-brand-primary/10 transition-all text-brand-muted hover:text-brand-primary"
+                aria-label="Share on LinkedIn"
+              >
+                <Linkedin size={16} />
+              </a>
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://atherstonedigital.com/blog/${post.slug}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-white/5 border border-white/10 hover:border-brand-primary/30 hover:bg-brand-primary/10 transition-all text-brand-muted hover:text-brand-primary"
+                aria-label="Share on X (Twitter)"
+              >
+                <Twitter size={16} />
+              </a>
+            </div>
+          </div>
         </article>
 
         {related.length > 0 && (

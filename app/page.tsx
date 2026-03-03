@@ -3,17 +3,52 @@ import { Hero } from '@/components/Hero';
 import { Contact } from '@/components/Contact';
 import { SERVICES_DATA } from '@/lib/data';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, TrendingUp, Users, Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Quote } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Fractional Ecommerce Director for Shopify Brands',
   description: 'Scale your Shopify store with a Fractional Ecommerce Director. Senior strategy, development, CRO and growth execution. Based in Atherstone, serving Birmingham, Tamworth, Leicester, Coventry & UK-wide.',
 };
 
+const reviewSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': 'https://atherstonedigital.com/#organization',
+  name: 'Atherstone Digital',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5',
+    reviewCount: '3',
+    bestRating: '5',
+  },
+  review: [
+    {
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      author: { '@type': 'Person', name: 'Founder, UK Apparel Brand' },
+      reviewBody: 'Dan brought clarity to our chaos. We finally have a roadmap that connects our ads to our inventory to our bottom line.',
+    },
+    {
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      author: { '@type': 'Person', name: 'Managing Director, DTC Homeware Brand' },
+      reviewBody: 'We replaced two agencies with Dan. One person, more output, less politics. Revenue is up 47% year-on-year.',
+    },
+    {
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      author: { '@type': 'Person', name: 'Operations Lead, Health & Wellness Brand' },
+      reviewBody: 'The n8n automations alone saved us 25 hours a week. Dan thinks in systems, not just campaigns.',
+    },
+  ],
+};
+
 export default function HomePage() {
   return (
     <div className="flex flex-col">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }} />
       <Hero />
+      <SocialProof />
       <DirectorTeaser />
       <ValueComparison />
       <ServicesPreview />
@@ -21,6 +56,36 @@ export default function HomePage() {
       <ResultsSection />
       <Contact />
     </div>
+  );
+}
+
+function SocialProof() {
+  const testimonials = [
+    { quote: 'Dan brought clarity to our chaos. We finally have a roadmap that connects our ads to our inventory to our bottom line.', result: '+22% conversion rate in 90 days', who: 'Founder, UK Apparel Brand (Shopify Plus)' },
+    { quote: 'We replaced two agencies with Dan. One person, more output, less politics. Revenue is up 47% year-on-year.', result: '+47% YoY revenue growth', who: 'Managing Director, DTC Homeware Brand' },
+    { quote: 'The n8n automations alone saved us 25 hours a week. Dan thinks in systems, not just campaigns.', result: '100+ hours saved per month', who: 'Operations Lead, Health & Wellness Brand' },
+  ];
+
+  return (
+    <section className="py-16 bg-brand-dark border-t border-white/5">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-10">
+          <p className="text-xs font-mono text-brand-primary uppercase tracking-widest mb-2">Trusted by Shopify Brands Doing £500k–£5M</p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {testimonials.map((t, i) => (
+            <div key={i} className="bg-brand-surface rounded-2xl p-6 border border-brand-border relative">
+              <Quote size={20} className="text-brand-primary/30 mb-3" />
+              <p className="text-brand-text text-sm leading-relaxed mb-4">&ldquo;{t.quote}&rdquo;</p>
+              <div className="pt-4 border-t border-white/5">
+                <div className="text-brand-primary font-bold text-sm mb-1">{t.result}</div>
+                <div className="text-brand-muted text-xs">{t.who}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -32,7 +97,7 @@ function DirectorTeaser() {
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/3 flex justify-center">
             <div className="relative w-52 h-52 rounded-2xl overflow-hidden border-2 border-brand-primary/20 shadow-[0_0_40px_rgba(0,220,130,0.1)]">
-              <img src="/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png" alt="Dan Le Gresley — Fractional Ecommerce Director" className="w-full h-full object-cover object-top" />
+              <img src="/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png" alt="Dan Le Gresley — Fractional Ecommerce Director based in Atherstone, Warwickshire" width={208} height={208} loading="lazy" decoding="async" className="w-full h-full object-cover object-top" />
             </div>
           </div>
           <div className="md:w-2/3 text-center md:text-left">

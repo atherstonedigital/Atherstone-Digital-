@@ -43,6 +43,15 @@ export default function FractionalDirectorPage() {
         url: 'https://atherstonedigital.com/fractional-ecommerce-director',
         offers: { '@type': 'Offer', price: '3000', priceCurrency: 'GBP', description: 'Monthly retainers starting from £3,000/month depending on complexity.' },
       }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqs.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      }) }} />
 
       {/* Hero */}
       <section className="relative px-6 mb-24">

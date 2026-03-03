@@ -28,9 +28,17 @@ export default function BlogPage() {
           <div className="max-w-3xl">
             <div className="inline-block px-3 py-1 mb-4 border border-brand-primary/30 rounded-full bg-brand-primary/5 text-brand-primary text-xs font-mono uppercase tracking-widest">Insights</div>
             <h1 className="font-display text-5xl font-bold text-white mb-4 tracking-tight">Ecommerce Growth Blog.</h1>
-            <p className="text-xl text-brand-muted leading-relaxed">
+            <p className="text-xl text-brand-muted leading-relaxed mb-6">
               Practical guides, case studies, and frameworks from the frontline of Shopify growth. No fluff — just what actually works.
             </p>
+            <div className="flex flex-wrap gap-2">
+              {Array.from(new Set(posts.map((p) => p.category))).map((cat) => (
+                <Link key={cat} href={`/blog/category/${cat.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-brand-muted hover:text-brand-primary hover:border-brand-primary/30 transition-all">
+                  {cat}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 

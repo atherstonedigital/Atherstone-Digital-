@@ -128,12 +128,12 @@ export function Hero() {
           <h1 className="relative font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter leading-tight drop-shadow-2xl">
             Fractional <br className="hidden md:block" />
             <span className="text-white">Ecommerce Director</span>
-            <div className="mt-2 text-3xl md:text-5xl lg:text-6xl text-brand-primary">for Shopify Brands.</div>
+            <div className="mt-2 text-3xl md:text-5xl lg:text-6xl text-brand-primary">AI-Augmented. Shopify-Native.</div>
           </h1>
         </div>
 
         <p className="text-xl md:text-2xl text-brand-muted mb-10 leading-relaxed max-w-3xl mx-auto text-center font-light opacity-0 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-          I replace your fragmented agency roster with <span className="text-white font-medium border-b border-brand-primary/30 pb-0.5">one senior partner</span> and a fleet of <span className="text-white font-medium border-b border-brand-primary/30 pb-0.5">autonomous AI agents</span>. Strategy, Development, and Growth—executed at machine speed.
+          I replace your fragmented agency roster with <span className="text-white font-medium border-b border-brand-primary/30 pb-0.5">one senior partner</span> and a fleet of <span className="text-white font-medium border-b border-brand-primary/30 pb-0.5">autonomous AI agents</span>. Strategy, development, and growth for Shopify brands doing £500k–£5M — executed at machine speed.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 opacity-0 animate-fade-in w-full sm:w-auto" style={{ animationDelay: '0.5s' }}>

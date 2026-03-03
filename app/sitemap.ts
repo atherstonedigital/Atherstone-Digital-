@@ -37,5 +37,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
-  return [...staticPages, ...servicePages, ...locationPages, ...blogPages];
+  const categories = Array.from(new Set(BLOG_POSTS.map((p) => p.category)));
+  const categoryPages = categories.map((cat) => ({
+    url: `${base}/blog/category/${cat.toLowerCase().replace(/\s+/g, '-')}`,
+    lastModified: now,
+    changeFrequency: 'weekly' as const,
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...servicePages, ...locationPages, ...blogPages, ...categoryPages];
 }

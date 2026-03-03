@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ArrowRight, CheckCircle, Loader2, Lock } from 'lucide-react';
+import { CURRENT_PARTNERS, MAX_PARTNERS } from '@/lib/config';
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -22,8 +23,6 @@ export function Contact() {
       .then(() => { setSubmitted(true); setIsSubmitting(false); })
       .catch(() => { setIsSubmitting(false); setError(true); });
   };
-
-  const isLowRevenue = revenue === '0-10k';
 
   if (submitted) {
     return (
@@ -64,11 +63,26 @@ export function Contact() {
               </ul>
             </div>
             <div className="mt-12 relative z-10">
-              <p className="text-xs text-brand-muted font-mono">Current Capacity: <span className="text-brand-primary">2/3</span></p>
+              <p className="text-xs text-brand-muted font-mono">Current Capacity: <span className="text-brand-primary">{CURRENT_PARTNERS}/{MAX_PARTNERS}</span></p>
             </div>
           </div>
 
           <div className="p-10 md:w-3/5">
+            <div className="mb-8 text-center">
+              <a
+                href="https://calendly.com/dan-atherstonedigital/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 w-full py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors shadow-[0_0_20px_rgba(0,220,130,0.2)]"
+              >
+                Book a Free 30-min Teardown <ArrowRight size={18} />
+              </a>
+              <div className="flex items-center gap-4 mt-6">
+                <div className="flex-1 h-px bg-brand-border"></div>
+                <span className="text-xs text-brand-muted uppercase tracking-wider">or complete the partner application below</span>
+                <div className="flex-1 h-px bg-brand-border"></div>
+              </div>
+            </div>
             <form name="application" method="POST" data-netlify="true" onSubmit={handleSubmit} className="space-y-5">
               <input type="hidden" name="form-name" value="application" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -89,13 +103,13 @@ export function Contact() {
                 <label htmlFor="app-revenue" className="block text-xs font-medium text-brand-muted mb-2 uppercase tracking-wider">Annual Revenue (approx)</label>
                 <select id="app-revenue" name="revenue" value={revenue} onChange={(e) => setRevenue(e.target.value)} required className="w-full bg-brand-surface border border-brand-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-primary/50 transition-colors text-sm appearance-none">
                   <option value="">Select range...</option>
-                  <option value="0-10k">Under £10k</option>
-                  <option value="10k-100k">£10k – £100k</option>
-                  <option value="100k-500k">£100k – £500k</option>
-                  <option value="500k-2m">£500k – £2M</option>
-                  <option value="2m+">£2M+</option>
+                  <option value="under-500k">Under £500k</option>
+                  <option value="500k-1m">£500k – £1M</option>
+                  <option value="1m-2m">£1M – £2M</option>
+                  <option value="2m-5m">£2M – £5M</option>
+                  <option value="5m+">£5M+</option>
                 </select>
-                {isLowRevenue && <p className="mt-2 text-xs text-amber-400">This engagement may not be cost-effective at this stage. I&apos;d recommend getting organic traffic and product-market fit first.</p>}
+                {revenue === 'under-500k' && <p className="mt-2 text-xs text-amber-400">This engagement may not be cost-effective at this stage. I&apos;d recommend getting organic traffic and product-market fit first.</p>}
               </div>
               <div>
                 <label htmlFor="app-stack" className="block text-xs font-medium text-brand-muted mb-2 uppercase tracking-wider">Current Tech Stack</label>

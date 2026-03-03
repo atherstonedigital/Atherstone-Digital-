@@ -75,10 +75,10 @@ export function Header() {
             className={`text-sm font-medium transition-colors tracking-wide ${isActive('/blog') ? 'text-brand-primary' : 'text-brand-muted hover:text-brand-primary'}`}>
             Blog
           </Link>
-          <Link href="/#contact"
+          <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer"
             className="px-5 py-2.5 bg-brand-primary text-brand-dark font-bold text-sm rounded-lg hover:bg-brand-accent transition-colors pointer-events-auto shadow-[0_0_20px_rgba(0,220,130,0.2)] hover:shadow-[0_0_30px_rgba(0,220,130,0.4)]">
             Book a Call
-          </Link>
+          </a>
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -110,7 +110,7 @@ export function Header() {
             <Link href="/why-fractional" onClick={closeMobile} className="text-white font-medium py-2 border-b border-brand-border">Why Fractional?</Link>
             <Link href="/results" onClick={closeMobile} className="text-white font-medium py-2 border-b border-brand-border">Results</Link>
             <Link href="/blog" onClick={closeMobile} className="text-white font-medium py-2 border-b border-brand-border">Blog</Link>
-            <Link href="/#contact" onClick={closeMobile} className="w-full text-center px-6 py-3 bg-brand-primary text-brand-dark font-bold rounded-lg mt-2">Book a Strategy Call</Link>
+            <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer" onClick={closeMobile} className="w-full text-center px-6 py-3 bg-brand-primary text-brand-dark font-bold rounded-lg mt-2">Book a Call</a>
           </div>
         </div>
       )}

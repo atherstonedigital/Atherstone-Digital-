@@ -18,6 +18,11 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    setMobileServicesOpen(false);
+  }, [pathname]);
+
   const isActive = (href: string) => pathname === href;
   const closeMobile = () => { setMobileMenuOpen(false); setMobileServicesOpen(false); };
 
@@ -81,6 +86,7 @@ export function Header() {
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="lg:hidden p-2 text-brand-muted hover:text-white transition-colors pointer-events-auto"
           aria-label="Toggle menu"
+          aria-expanded={mobileMenuOpen}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>

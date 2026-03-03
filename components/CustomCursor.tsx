@@ -12,6 +12,7 @@ export function CustomCursor() {
 
     let mouseX = 0, mouseY = 0;
     let cursorX = 0, cursorY = 0;
+    let animId: number;
 
     const moveCursor = (e: MouseEvent) => {
       mouseX = e.clientX;
@@ -29,20 +30,28 @@ export function CustomCursor() {
         cursorRef.current.style.left = `${cursorX}px`;
         cursorRef.current.style.top = `${cursorY}px`;
       }
-      requestAnimationFrame(animateCursor);
+      animId = requestAnimationFrame(animateCursor);
     };
 
     window.addEventListener('mousemove', moveCursor);
-    animateCursor();
+    animId = requestAnimationFrame(animateCursor);
 
     const handleHover = () => cursorRef.current?.classList.add('scale-150');
     const handleLeave = () => cursorRef.current?.classList.remove('scale-150');
-    document.querySelectorAll('a, button').forEach((el) => {
+    const interactiveElements = document.querySelectorAll('a, button');
+    interactiveElements.forEach((el) => {
       el.addEventListener('mouseenter', handleHover);
       el.addEventListener('mouseleave', handleLeave);
     });
 
-    return () => window.removeEventListener('mousemove', moveCursor);
+    return () => {
+      window.removeEventListener('mousemove', moveCursor);
+      cancelAnimationFrame(animId);
+      interactiveElements.forEach((el) => {
+        el.removeEventListener('mouseenter', handleHover);
+        el.removeEventListener('mouseleave', handleLeave);
+      });
+    };
   }, []);
 
   return (

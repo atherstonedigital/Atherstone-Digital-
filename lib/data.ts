@@ -312,7 +312,7 @@ Track:
 - Average position for target keywords
 - Core Web Vitals pass rate
 
-We run monthly SEO reviews for all our fractional partners. [Get in touch](/contact) if you'd like us to audit your Shopify store.
+We run monthly SEO reviews for all our fractional partners. [Get in touch](/#contact) if you'd like us to audit your Shopify store.
     `,
   },
   {

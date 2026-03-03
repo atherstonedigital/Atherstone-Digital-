@@ -32,6 +32,9 @@ export const metadata: Metadata = {
   description: 'Scale your Shopify store with a Fractional Ecommerce Director. Senior strategy, development, CRO and growth execution. Based in Atherstone, serving Birmingham, Tamworth, Leicester, Coventry & UK-wide.',
   keywords: ['Fractional Ecommerce Director', 'Shopify Expert Birmingham', 'Ecommerce Consultant Midlands', 'Shopify Developer Warwickshire', 'Shopify Plus Consultant', 'Ecommerce Agency Atherstone'],
   authors: [{ name: 'Dan Le Gresley' }],
+  icons: {
+    icon: '/favicon-c-bef0ns.svg',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_GB',
@@ -116,6 +119,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="alternate" type="text/markdown" href="/llms.txt" title="AI Context" />
       </head>
       <body className="antialiased font-sans bg-brand-dark text-brand-text">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-brand-primary focus:text-brand-dark focus:font-bold focus:rounded-lg focus:outline-none">
+          Skip to main content
+        </a>
         {/* Netlify Forms Detection - must exist as static HTML */}
         <form name="application" data-netlify="true" hidden>
           <input type="text" name="name" />
@@ -134,7 +140,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <CustomCursor />
         <Header />
-        <main className="flex-grow min-h-screen">
+        <main id="main-content" className="flex-grow min-h-screen">
           {children}
         </main>
         <Footer />

@@ -6,11 +6,13 @@ import { ArrowRight, CheckCircle, Loader2, Lock } from 'lucide-react';
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(false);
   const [revenue, setRevenue] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(false);
     const formData = new FormData(e.currentTarget);
     fetch('/', {
       method: 'POST',
@@ -18,7 +20,7 @@ export function Contact() {
       body: new URLSearchParams(formData as any).toString(),
     })
       .then(() => { setSubmitted(true); setIsSubmitting(false); })
-      .catch(() => setIsSubmitting(false));
+      .catch(() => { setIsSubmitting(false); setError(true); });
   };
 
   const isLowRevenue = revenue === '0-10k';
@@ -71,21 +73,21 @@ export function Contact() {
               <input type="hidden" name="form-name" value="application" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-xs font-medium text-brand-muted mb-2 uppercase tracking-wider">Your Name</label>
-                  <input type="text" name="name" required placeholder="Dan Smith" className="w-full bg-white/5 border border-brand-border rounded-lg px-4 py-3 text-white placeholder-brand-muted/50 focus:outline-none focus:border-brand-primary/50 transition-colors text-sm" />
+                  <label htmlFor="app-name" className="block text-xs font-medium text-brand-muted mb-2 uppercase tracking-wider">Your Name</label>
+                  <input id="app-name" type="text" name="name" required placeholder="Dan Smith" className="w-full bg-white/5 border border-brand-border rounded-lg px-4 py-3 text-white placeholder-brand-muted/50 focus:outline-none focus:border-brand-primary/50 transition-colors text-sm" />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-brand-muted mb-2 uppercase tracking-wider">Email</label>
-                  <input type="email" name="email" required placeholder="dan@yourstore.com" className="w-full bg-white/5 border border-brand-border rounded-lg px-4 py-3 text-white placeholder-brand-muted/50 focus:outline-none focus:border-brand-primary/50 transition-colors text-sm" />
+                  <label htmlFor="app-email" className="block text-xs font-medium text-brand-muted mb-2 uppercase tracking-wider">Email</label>
+                  <input id="app-email" type="email" name="email" required placeholder="dan@yourstore.com" className="w-full bg-white/5 border border-brand-border rounded-lg px-4 py-3 text-white placeholder-brand-muted/50 focus:outline-none focus:border-brand-primary/50 transition-colors text-sm" />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-medium text-brand-muted mb-2 uppercase tracking-wider">Store URL</label>
-                <input type="url" name="website" placeholder="https://yourstore.com" className="w-full bg-white/5 border border-brand-border rounded-lg px-4 py-3 text-white placeholder-brand-muted/50 focus:outline-none focus:border-brand-primary/50 transition-colors text-sm" />
+                <label htmlFor="app-website" className="block text-xs font-medium text-brand-muted mb-2 uppercase tracking-wider">Store URL</label>
+                <input id="app-website" type="url" name="website" placeholder="https://yourstore.com" className="w-full bg-white/5 border border-brand-border rounded-lg px-4 py-3 text-white placeholder-brand-muted/50 focus:outline-none focus:border-brand-primary/50 transition-colors text-sm" />
               </div>
               <div>
-                <label className="block text-xs font-medium text-brand-muted mb-2 uppercase tracking-wider">Annual Revenue (approx)</label>
-                <select name="revenue" value={revenue} onChange={(e) => setRevenue(e.target.value)} required className="w-full bg-brand-surface border border-brand-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-primary/50 transition-colors text-sm appearance-none">
+                <label htmlFor="app-revenue" className="block text-xs font-medium text-brand-muted mb-2 uppercase tracking-wider">Annual Revenue (approx)</label>
+                <select id="app-revenue" name="revenue" value={revenue} onChange={(e) => setRevenue(e.target.value)} required className="w-full bg-brand-surface border border-brand-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-primary/50 transition-colors text-sm appearance-none">
                   <option value="">Select range...</option>
                   <option value="0-10k">Under £10k</option>
                   <option value="10k-100k">£10k – £100k</option>
@@ -96,13 +98,18 @@ export function Contact() {
                 {isLowRevenue && <p className="mt-2 text-xs text-amber-400">This engagement may not be cost-effective at this stage. I&apos;d recommend getting organic traffic and product-market fit first.</p>}
               </div>
               <div>
-                <label className="block text-xs font-medium text-brand-muted mb-2 uppercase tracking-wider">Current Tech Stack</label>
-                <input type="text" name="stack" placeholder="e.g. Shopify Plus, Klaviyo, Recharge" className="w-full bg-white/5 border border-brand-border rounded-lg px-4 py-3 text-white placeholder-brand-muted/50 focus:outline-none focus:border-brand-primary/50 transition-colors text-sm" />
+                <label htmlFor="app-stack" className="block text-xs font-medium text-brand-muted mb-2 uppercase tracking-wider">Current Tech Stack</label>
+                <input id="app-stack" type="text" name="stack" placeholder="e.g. Shopify Plus, Klaviyo, Recharge" className="w-full bg-white/5 border border-brand-border rounded-lg px-4 py-3 text-white placeholder-brand-muted/50 focus:outline-none focus:border-brand-primary/50 transition-colors text-sm" />
               </div>
               <div>
-                <label className="block text-xs font-medium text-brand-muted mb-2 uppercase tracking-wider">Biggest Challenge Right Now</label>
-                <textarea name="why_switch" required rows={3} placeholder="What's holding your growth back?" className="w-full bg-white/5 border border-brand-border rounded-lg px-4 py-3 text-white placeholder-brand-muted/50 focus:outline-none focus:border-brand-primary/50 transition-colors text-sm resize-none" />
+                <label htmlFor="app-challenge" className="block text-xs font-medium text-brand-muted mb-2 uppercase tracking-wider">Biggest Challenge Right Now</label>
+                <textarea id="app-challenge" name="why_switch" required rows={3} placeholder="What's holding your growth back?" className="w-full bg-white/5 border border-brand-border rounded-lg px-4 py-3 text-white placeholder-brand-muted/50 focus:outline-none focus:border-brand-primary/50 transition-colors text-sm resize-none" />
               </div>
+              {error && (
+                <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-3">
+                  Something went wrong. Please try again or email <a href="mailto:info@atherstonedigital.com" className="underline">info@atherstonedigital.com</a> directly.
+                </p>
+              )}
               <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(0,220,130,0.2)]">
                 {isSubmitting ? <><Loader2 size={20} className="animate-spin" /> Submitting...</> : <>Submit Application <ArrowRight size={18} /></>}
               </button>

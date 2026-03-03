@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Fractional Ecommerce Director for Shopify Brands | Pricing & Details',
-    description: 'Senior operational leadership for Shopify brands doing £50k–£500k/mo. Strategy, development, CRO and growth execution from £3,000/month.',
+    description: 'Hire a Fractional Ecommerce Director from £3,000/month. Senior Shopify strategy, CRO, paid media, Klaviyo, and n8n automation. Replace your agency with one senior partner.',
     url: 'https://atherstonedigital.com/fractional-ecommerce-director',
     type: 'website',
   },

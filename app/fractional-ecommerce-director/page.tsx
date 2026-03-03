@@ -69,7 +69,7 @@ export default function FractionalDirectorPage() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">(Shopify)</span>
           </h1>
           <p className="text-xl text-brand-muted max-w-2xl mx-auto leading-relaxed mb-8">
-            Senior operational leadership for brands doing £50k–£500k/mo. <br />Stop guessing. Start executing.
+            Senior operational leadership for brands doing £500k–£5M/year revenue. <br />Stop guessing. Start executing.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm text-brand-text mb-10">
             {['Hands-on Execution', 'Weekly Strategy', 'No Long Contracts'].map((tag) => (
@@ -79,11 +79,11 @@ export default function FractionalDirectorPage() {
             ))}
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-            <Link href="/#contact" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
-              Book a 20-min Fit Call
-            </Link>
+            <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
+              Book a 30-min Fit Call
+            </a>
             <Link href="/#contact" className="px-8 py-4 bg-transparent border border-brand-border text-white font-medium rounded-lg hover:bg-white/5 transition-all min-w-[200px] text-center">
-              Request a Quick Teardown
+              Complete the Application
             </Link>
           </div>
           <p className="text-sm font-mono text-brand-muted uppercase tracking-wider">
@@ -232,7 +232,7 @@ export default function FractionalDirectorPage() {
           <div>
             <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><CheckCircle className="text-brand-primary" size={20} /> Who This Is For</h3>
             <ul className="space-y-3 text-brand-muted text-sm">
-              {['Founders doing £50k–£500k/mo revenue.', 'Brands on Shopify or Shopify Plus.', 'Teams frustrated with "hands-off" agencies.', 'Owners who want to focus on product/brand, not tech.'].map((item) => (
+              {['Founders doing £500k–£5M/year revenue.', 'Brands on Shopify or Shopify Plus.', 'Teams frustrated with "hands-off" agencies.', 'Owners who want to focus on product/brand, not tech.'].map((item) => (
                 <li key={item}>• {item}</li>
               ))}
             </ul>
@@ -269,11 +269,11 @@ export default function FractionalDirectorPage() {
             <p className="text-brand-muted text-lg mb-4">One senior partner. Weekly execution. Clear pricing.</p>
             <p className="text-brand-primary font-bold text-xl mb-8">Retainers from £3,000 / month</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/#contact" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
-                Book a 20-min Fit Call
-              </Link>
+              <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
+                Book a 30-min Fit Call
+              </a>
               <Link href="/#contact" className="px-8 py-4 bg-brand-surface border border-brand-border text-white font-medium rounded-lg hover:bg-white/5 transition-all min-w-[200px] text-center">
-                Request a Quick Teardown
+                Complete the Application
               </Link>
             </div>
           </div>

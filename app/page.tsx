@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
 import { Contact } from '@/components/Contact';
+import { LeadMagnet } from '@/components/LeadMagnet';
 import { SERVICES_DATA } from '@/lib/data';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Quote } from 'lucide-react';
@@ -54,6 +55,7 @@ export default function HomePage() {
       <ServicesPreview />
       <ProcessSection />
       <ResultsSection />
+      <LeadMagnet />
       <Contact />
     </div>
   );

@@ -138,6 +138,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <input type="text" name="stack" />
           <textarea name="why_switch" />
         </form>
+        <form name="lead-magnet" data-netlify="true" hidden>
+          <input type="email" name="email" />
+        </form>
         <form name="contact" data-netlify="true" hidden>
           <input type="text" name="name" />
           <input type="email" name="email" />

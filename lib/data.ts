@@ -44,8 +44,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Speed Performance Optimisation (90+ Core Vitals)',
     ],
     slug: 'shopify-plus-architecture',
-    seoTitle: 'Shopify Plus Consultant & Developer | Fractional Ecommerce Director',
-    seoDescription: 'Expert Shopify Plus architecture and development. I replace agencies with a senior fractional partner model to build high-converting stores.',
+    seoTitle: 'Shopify Plus Store Builds | Custom Theme Architecture',
+    seoDescription: 'Custom Shopify Plus theme builds and migrations. High-converting, fast, and architected for scale. Based in the UK, serving globally.',
   },
   {
     id: 'cro',
@@ -60,8 +60,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Funnel Drop-off Analysis & Fixes',
     ],
     slug: 'conversion-rate-optimisation',
-    seoTitle: 'Ecommerce CRO Consultant | Increase Revenue Per Visitor',
-    seoDescription: 'Data-driven Conversion Rate Optimisation services. As a fractional director, I implement A/B tests that directly improve your bottom line.',
+    seoTitle: 'Shopify CRO Consultant UK | +20-30% Revenue Per Visitor',
+    seoDescription: 'Data-driven CRO for Shopify stores. Average +22% CVR improvement across our partner brands. We test, validate and implement.',
   },
   {
     id: 'ppc',
@@ -76,8 +76,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Attribution Modelling & Server-Side Tracking',
     ],
     slug: 'paid-media-growth',
-    seoTitle: 'Fractional Paid Media Director | Google & Meta Ads Expert',
-    seoDescription: 'Senior-level PPC management without the agency fees. I engineer Google and Meta campaigns for profitability and ROAS.',
+    seoTitle: 'Shopify Paid Media & PPC | Google & Meta Ads',
+    seoDescription: 'Performance Google & Meta campaigns for Shopify brands. Lower CAC, higher ROAS — managed by a certified Shopify growth director.',
   },
   {
     id: 'automation',
@@ -92,8 +92,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Review & UGC Management Workflows',
     ],
     slug: 'ecommerce-automation',
-    seoTitle: 'Ecommerce Automation Consultant | n8n & Shopify Flow',
-    seoDescription: 'Automate your ecommerce operations. I build custom n8n workflows to sync data, manage inventory, and report on profit automatically.',
+    seoTitle: 'Shopify n8n Automation | Save 100+ Hours/Month',
+    seoDescription: 'n8n automation workflows for Shopify brands. Connect your stack, eliminate manual tasks, save 100+ hours/month.',
   },
   {
     id: 'feeds',
@@ -108,7 +108,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Multi-Currency & Multi-Language Feeds',
     ],
     slug: 'google-feed-management',
-    seoTitle: 'Google Shopping Feed Consultant | Merchant Center Expert',
+    seoTitle: 'Google Feed Management | Merchant Centre Optimisation',
     seoDescription: 'Fix disapprovals and optimise titles for Google Shopping. Expert feed management to lower CPC and increase visibility.',
   },
   {
@@ -124,7 +124,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Win-back & VIP Retention Campaigns',
     ],
     slug: 'retention-marketing',
-    seoTitle: 'Fractional Retention Director | Klaviyo & Email Strategy',
+    seoTitle: 'Klaviyo Lifecycle Marketing | Email & SMS for Shopify',
     seoDescription: 'Increase LTV with expert lifecycle marketing. I build automated Klaviyo flows that turn one-time buyers into loyal customers.',
   },
   {
@@ -140,7 +140,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Knowledge Graph Authority Building',
     ],
     slug: 'ai-search-optimization',
-    seoTitle: 'LLM & AI Search Optimization Consultant | GEO Strategy',
+    seoTitle: 'LLM Search Readiness | AI SEO for Shopify Brands',
     seoDescription: 'Prepare your Shopify store for Google Gemini and ChatGPT search. I implement advanced schema and entity strategies for AI visibility.',
   },
   {
@@ -156,7 +156,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Complex Bundle & Discount Logic',
     ],
     slug: 'technical-development',
-    seoTitle: 'Senior Shopify Developer & Technical Consultant',
+    seoTitle: 'Shopify Technical Development | Custom Apps & Checkout',
     seoDescription: 'Complex Shopify development without the agency bloat. Custom apps, checkout functions, and API integrations handled by a senior expert.',
   },
 ];

@@ -4,8 +4,17 @@ import { ArrowLeft, ArrowRight, PoundSterling, ShieldAlert, Briefcase, CheckCirc
 import { Contact } from '@/components/Contact';
 
 export const metadata: Metadata = {
-  title: 'Why Fractional? Save £98k/Year vs Agency or Full-Time',
-  description: 'Compare the real cost of Fractional Director vs Agency vs Full-Time hire. Save ~£98k/year with senior-level strategy and execution from a partner based in Warwickshire.',
+  title: 'Why Hire a Fractional Ecommerce Director? | Cost vs Agency vs Full-Time',
+  description: 'See exactly why a fractional ecommerce director beats an agency and costs 70% less than a full-time hire. Real numbers, no spin.',
+  alternates: {
+    canonical: 'https://atherstonedigital.com/why-fractional',
+  },
+  openGraph: {
+    title: 'Why Hire a Fractional Ecommerce Director? | Cost vs Agency vs Full-Time',
+    description: 'See exactly why a fractional ecommerce director beats an agency and costs 70% less than a full-time hire. Real numbers, no spin.',
+    url: 'https://atherstonedigital.com/why-fractional',
+    type: 'website',
+  },
 };
 
 const faqSchema = {

@@ -7,39 +7,89 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Quote } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Fractional Ecommerce Director for Shopify Brands',
-  description: 'Scale your Shopify store with a Fractional Ecommerce Director. Senior strategy, development, CRO and growth execution. Based in Atherstone, serving Birmingham, Tamworth, Leicester, Coventry & UK-wide.',
+  title: 'Fractional Ecommerce Director for Shopify Brands | UK',
+  description: 'Senior Shopify ecommerce leadership, fractionally. CRO, paid media, automation & development for brands doing £500k–£5M. 3 partners max. Book a teardown.',
+  alternates: {
+    canonical: 'https://atherstonedigital.com/',
+  },
+  openGraph: {
+    title: 'Fractional Ecommerce Director for Shopify Brands | UK',
+    description: 'Senior Shopify ecommerce leadership, fractionally. CRO, paid media, automation & development for brands doing £500k–£5M. 3 partners max. Book a teardown.',
+    url: 'https://atherstonedigital.com/',
+    type: 'website',
+  },
 };
 
-const reviewSchema = {
+const homepageSchema = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  '@id': 'https://atherstonedigital.com/#organization',
-  name: 'Atherstone Digital',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '5',
-    reviewCount: '3',
-    bestRating: '5',
-  },
-  review: [
+  '@graph': [
     {
-      '@type': 'Review',
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      author: { '@type': 'Person', name: 'Founder, UK Apparel Brand' },
-      reviewBody: 'Dan brought clarity to our chaos. We finally have a roadmap that connects our ads to our inventory to our bottom line.',
+      '@type': 'Organization',
+      '@id': 'https://atherstonedigital.com/#organization',
+      name: 'Atherstone Digital',
+      url: 'https://atherstonedigital.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://atherstonedigital.com/favicon-c-bef0ns.svg',
+      },
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Atherstone',
+        addressRegion: 'Warwickshire',
+        postalCode: 'CV9',
+        addressCountry: 'GB',
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: '+447810838129',
+        email: 'info@atherstonedigital.com',
+        contactType: 'customer service',
+      },
+      sameAs: ['https://www.linkedin.com/in/danlegresley/'],
+      description: 'Fractional Ecommerce Director for Shopify brands doing £500k–£5M. Senior strategy, development, CRO and growth execution. Based in Atherstone, Warwickshire.',
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5',
+        reviewCount: '3',
+        bestRating: '5',
+      },
+      review: [
+        {
+          '@type': 'Review',
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+          author: { '@type': 'Person', name: 'Founder, UK Apparel Brand' },
+          reviewBody: 'Dan brought clarity to our chaos. We finally have a roadmap that connects our ads to our inventory to our bottom line.',
+        },
+        {
+          '@type': 'Review',
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+          author: { '@type': 'Person', name: 'Managing Director, DTC Homeware Brand' },
+          reviewBody: 'We replaced two agencies with Dan. One person, more output, less politics. Revenue is up 47% year-on-year.',
+        },
+        {
+          '@type': 'Review',
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+          author: { '@type': 'Person', name: 'Operations Lead, Health & Wellness Brand' },
+          reviewBody: 'The n8n automations alone saved us 25 hours a week. Dan thinks in systems, not just campaigns.',
+        },
+      ],
     },
     {
-      '@type': 'Review',
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      author: { '@type': 'Person', name: 'Managing Director, DTC Homeware Brand' },
-      reviewBody: 'We replaced two agencies with Dan. One person, more output, less politics. Revenue is up 47% year-on-year.',
+      '@type': 'Person',
+      '@id': 'https://atherstonedigital.com/#dan',
+      name: 'Dan Le Gresley',
+      jobTitle: 'Fractional Ecommerce Director',
+      worksFor: { '@id': 'https://atherstonedigital.com/#organization' },
+      url: 'https://atherstonedigital.com/about',
+      sameAs: ['https://www.linkedin.com/in/danlegresley/'],
+      description: '15+ years scaling ecommerce brands. Former Head of Ecommerce at a UK £50M retailer. Shopify Plus Partner, Google Ads Certified, Klaviyo Expert.',
     },
     {
-      '@type': 'Review',
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      author: { '@type': 'Person', name: 'Operations Lead, Health & Wellness Brand' },
-      reviewBody: 'The n8n automations alone saved us 25 hours a week. Dan thinks in systems, not just campaigns.',
+      '@type': 'WebSite',
+      '@id': 'https://atherstonedigital.com/#website',
+      url: 'https://atherstonedigital.com',
+      name: 'Atherstone Digital',
+      publisher: { '@id': 'https://atherstonedigital.com/#organization' },
     },
   ],
 };
@@ -47,7 +97,7 @@ const reviewSchema = {
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageSchema) }} />
       <Hero />
       <SocialProof />
       <DirectorTeaser />

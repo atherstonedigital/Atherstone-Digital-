@@ -1,14 +1,14 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Fractional Ecommerce Director for Shopify Brands | Pricing & Details',
-  description: 'Hire a Fractional Ecommerce Director from £3,000/month. Senior Shopify strategy, CRO, paid media, Klaviyo, and n8n automation. Replace your agency with one senior partner.',
+  title: 'Hire a Fractional Ecommerce Director | Shopify Brands £500k–£5M',
+  description: 'Replace your agency roster with one senior Shopify director. Strategy, dev & growth from £3,000/mo. Max 3 partners. Based in the UK.',
   alternates: {
     canonical: 'https://atherstonedigital.com/fractional-ecommerce-director',
   },
   openGraph: {
-    title: 'Fractional Ecommerce Director for Shopify Brands | Pricing & Details',
-    description: 'Hire a Fractional Ecommerce Director from £3,000/month. Senior Shopify strategy, CRO, paid media, Klaviyo, and n8n automation. Replace your agency with one senior partner.',
+    title: 'Hire a Fractional Ecommerce Director | Shopify Brands £500k–£5M',
+    description: 'Replace your agency roster with one senior Shopify director. Strategy, dev & growth from £3,000/mo. Max 3 partners. Based in the UK.',
     url: 'https://atherstonedigital.com/fractional-ecommerce-director',
     type: 'website',
   },

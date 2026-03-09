@@ -18,6 +18,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     alternates: {
       canonical: `https://atherstonedigital.com/services/${service.slug}`,
     },
+    openGraph: {
+      title: `${service.seoTitle} | Atherstone Digital`,
+      description: service.seoDescription,
+      url: `https://atherstonedigital.com/services/${service.slug}`,
+      type: 'website',
+    },
   };
 }
 
@@ -30,9 +36,19 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     '@type': 'Service',
     name: service.title,
     description: service.longDescription,
-    provider: { '@type': 'ProfessionalService', name: 'Atherstone Digital', url: 'https://atherstonedigital.com' },
-    areaServed: { '@type': 'Country', name: 'United Kingdom' },
+    provider: {
+      '@type': 'Organization',
+      '@id': 'https://atherstonedigital.com/#organization',
+    },
     url: `https://atherstonedigital.com/services/${service.slug}`,
+    areaServed: {
+      '@type': 'Country',
+      name: 'United Kingdom',
+    },
+    audience: {
+      '@type': 'Audience',
+      audienceType: 'Shopify brands doing £500k–£5M annual revenue',
+    },
   };
 
   const breadcrumbSchema = {

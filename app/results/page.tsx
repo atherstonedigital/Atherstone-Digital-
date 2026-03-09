@@ -4,8 +4,17 @@ import { ArrowLeft, ArrowRight, TrendingUp, BarChart3, PieChart, LineChart } fro
 import { Contact } from '@/components/Contact';
 
 export const metadata: Metadata = {
-  title: 'Ecommerce Growth Results & Case Studies | Atherstone Digital',
-  description: 'Real commercial results: +47% YoY revenue, +22% conversion rate, +115% email revenue. See how the Fractional Director model delivers measurable impact for Shopify brands.',
+  title: 'Shopify Ecommerce Results & Case Studies',
+  description: 'Real results from real Shopify partnerships. +47% YoY revenue, +22% CVR, 100+ hours saved. See case studies.',
+  alternates: {
+    canonical: 'https://atherstonedigital.com/results',
+  },
+  openGraph: {
+    title: 'Shopify Ecommerce Results & Case Studies | Atherstone Digital',
+    description: 'Real results from real Shopify partnerships. +47% YoY revenue, +22% CVR, 100+ hours saved. See case studies.',
+    url: 'https://atherstonedigital.com/results',
+    type: 'website',
+  },
 };
 
 const schema = {

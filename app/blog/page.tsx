@@ -4,8 +4,17 @@ import { BLOG_POSTS } from '@/lib/data';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Ecommerce Growth Blog | Shopify Strategy, CRO & Automation',
+  title: 'Shopify Ecommerce Blog | Fractional Director Insights',
   description: 'Practical ecommerce growth content from Dan Le Gresley — Fractional Ecommerce Director. Shopify strategy, CRO, n8n automation, and paid media insights.',
+  alternates: {
+    canonical: 'https://atherstonedigital.com/blog',
+  },
+  openGraph: {
+    title: 'Shopify Ecommerce Blog | Fractional Director Insights | Atherstone Digital',
+    description: 'Practical ecommerce growth content from Dan Le Gresley — Fractional Ecommerce Director. Shopify strategy, CRO, n8n automation, and paid media insights.',
+    url: 'https://atherstonedigital.com/blog',
+    type: 'website',
+  },
 };
 
 export default function BlogPage() {

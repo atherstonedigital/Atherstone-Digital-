@@ -43,11 +43,11 @@ export const metadata: Metadata = {
     locale: 'en_GB',
     url: 'https://atherstonedigital.com',
     siteName: 'Atherstone Digital',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+    images: [{ url: '/og-image.svg', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.svg'],
   },
   other: {
     'geo.region': 'GB-WAR',

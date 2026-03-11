@@ -6,6 +6,9 @@ import { Contact } from '@/components/Contact';
 export const metadata: Metadata = {
   title: 'The Force Multiplier Model: Human Strategy + AI Execution',
   description: 'How Atherstone Digital combines Human Commercial Strategy with Autonomous AI Agents and n8n workflows to deliver 10x output for UK ecommerce brands.',
+  alternates: {
+    canonical: 'https://atherstonedigital.com/the-model',
+  },
 };
 
 const articleSchema = {

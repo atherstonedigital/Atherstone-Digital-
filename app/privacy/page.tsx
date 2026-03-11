@@ -4,6 +4,9 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Privacy Policy | Atherstone Digital',
   description: 'Privacy Policy for Atherstone Digital. Learn how we collect, use, and protect your data under UK GDPR.',
+  alternates: {
+    canonical: 'https://atherstonedigital.com/privacy',
+  },
 };
 
 export default function PrivacyPage() {

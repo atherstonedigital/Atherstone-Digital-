@@ -6,6 +6,9 @@ import { Contact } from '@/components/Contact';
 export const metadata: Metadata = {
   title: 'About Dan Le Gresley | Fractional Ecommerce Director, Warwickshire',
   description: 'Shopify Plus Architect & Growth Strategist based in Atherstone, Warwickshire. Founder of Atherstone Digital. AI-augmented fractional leadership for UK ecommerce brands.',
+  alternates: {
+    canonical: 'https://atherstonedigital.com/about',
+  },
 };
 
 const schema = {

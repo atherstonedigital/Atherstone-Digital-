@@ -117,7 +117,7 @@ const globalSchema = {
       name: 'Dan Le Gresley',
       jobTitle: 'Fractional Ecommerce Director',
       worksFor: { '@id': 'https://atherstonedigital.com/#organization' },
-      url: 'https://atherstonedigital.com/about',
+      url: 'https://atherstonedigital.com/about/',
       sameAs: ['https://www.linkedin.com/in/danlegresley/'],
       description: '15+ years scaling ecommerce brands. Former Head of Ecommerce at a UK £50M retailer. Shopify Plus Partner, Google Ads Certified, Klaviyo Expert.',
     },

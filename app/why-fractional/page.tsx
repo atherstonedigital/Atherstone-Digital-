@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'Why Hire a Fractional Ecommerce Director? | Cost vs Agency vs Full-Time',
   description: 'See exactly why a fractional ecommerce director beats an agency and costs 70% less than a full-time hire. Real numbers, no spin.',
   alternates: {
-    canonical: 'https://atherstonedigital.com/why-fractional',
+    canonical: 'https://atherstonedigital.com/why-fractional/',
   },
   openGraph: {
     title: 'Why Hire a Fractional Ecommerce Director? | Cost vs Agency vs Full-Time',
     description: 'See exactly why a fractional ecommerce director beats an agency and costs 70% less than a full-time hire. Real numbers, no spin.',
-    url: 'https://atherstonedigital.com/why-fractional',
+    url: 'https://atherstonedigital.com/why-fractional/',
     type: 'website',
   },
 };
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  url: 'https://atherstonedigital.com/why-fractional',
+  url: 'https://atherstonedigital.com/why-fractional/',
   mainEntity: [
     {
       '@type': 'Question',

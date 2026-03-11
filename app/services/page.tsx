@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Shopify Ecommerce Services | Growth, CRO & Automation',
   description: 'Full-stack ecommerce services for Shopify brands. Shopify builds, CRO, paid media, n8n automation, Klaviyo and more — delivered by a single senior operator.',
   alternates: {
-    canonical: 'https://atherstonedigital.com/services',
+    canonical: 'https://atherstonedigital.com/services/',
   },
   openGraph: {
     title: 'Shopify Ecommerce Services | Growth, CRO & Automation | Atherstone Digital',
     description: 'Full-stack ecommerce services for Shopify brands. Shopify builds, CRO, paid media, n8n automation, Klaviyo and more — delivered by a single senior operator.',
-    url: 'https://atherstonedigital.com/services',
+    url: 'https://atherstonedigital.com/services/',
     type: 'website',
   },
 };
@@ -23,13 +23,13 @@ const schema = {
   '@type': 'CollectionPage',
   name: 'Ecommerce Services | Atherstone Digital',
   description: 'Full-stack ecommerce execution: Shopify Plus development, CRO, Google & Meta Ads, Klaviyo lifecycle marketing, n8n automation, and AI search optimisation.',
-  url: 'https://atherstonedigital.com/services',
+  url: 'https://atherstonedigital.com/services/',
   mainEntity: {
     '@type': 'ItemList',
     itemListElement: SERVICES_DATA.map((s, i) => ({
       '@type': 'ListItem',
       position: i + 1,
-      url: `https://atherstonedigital.com/services/${s.slug}`,
+      url: `https://atherstonedigital.com/services/${s.slug}/`,
       name: s.title,
       description: s.description,
     })),

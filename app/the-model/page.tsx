@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'The Force Multiplier Model: Human Strategy + AI Execution',
   description: 'How Atherstone Digital combines Human Commercial Strategy with Autonomous AI Agents and n8n workflows to deliver 10x output for UK ecommerce brands.',
   alternates: {
-    canonical: 'https://atherstonedigital.com/the-model',
+    canonical: 'https://atherstonedigital.com/the-model/',
   },
 };
 
@@ -16,7 +16,7 @@ const articleSchema = {
   '@type': 'Article',
   headline: 'The Force Multiplier Operating System: Human Strategy + AI Execution',
   description: 'How to achieve 10x output with 1x headcount by combining a Fractional Director with autonomous AI agents.',
-  url: 'https://atherstonedigital.com/the-model',
+  url: 'https://atherstonedigital.com/the-model/',
   author: { '@type': 'Person', name: 'Dan Le Gresley' },
   publisher: { '@type': 'Organization', name: 'Atherstone Digital' },
 };

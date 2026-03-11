@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Terms of Service | Atherstone Digital',
   description: "Terms of Service for Atherstone Digital's fractional ecommerce consultancy and development services.",
   alternates: {
-    canonical: 'https://atherstonedigital.com/terms',
+    canonical: 'https://atherstonedigital.com/terms/',
   },
 };
 

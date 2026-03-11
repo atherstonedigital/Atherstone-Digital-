@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'Shopify Ecommerce Blog | Fractional Director Insights',
   description: 'Practical ecommerce growth content from Dan Le Gresley — Fractional Ecommerce Director. Shopify strategy, CRO, n8n automation, and paid media insights.',
   alternates: {
-    canonical: 'https://atherstonedigital.com/blog',
+    canonical: 'https://atherstonedigital.com/blog/',
   },
   openGraph: {
     title: 'Shopify Ecommerce Blog | Fractional Director Insights | Atherstone Digital',
     description: 'Practical ecommerce growth content from Dan Le Gresley — Fractional Ecommerce Director. Shopify strategy, CRO, n8n automation, and paid media insights.',
-    url: 'https://atherstonedigital.com/blog',
+    url: 'https://atherstonedigital.com/blog/',
     type: 'website',
   },
 };
@@ -24,7 +24,7 @@ export default function BlogPage() {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     name: 'Atherstone Digital Blog',
-    url: 'https://atherstonedigital.com/blog',
+    url: 'https://atherstonedigital.com/blog/',
     description: 'Ecommerce growth insights from a Fractional Ecommerce Director',
     author: { '@type': 'Person', name: 'Dan Le Gresley' },
   };

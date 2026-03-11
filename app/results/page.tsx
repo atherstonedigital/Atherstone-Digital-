@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'Shopify Ecommerce Results & Case Studies',
   description: 'Real results from real Shopify partnerships. +47% YoY revenue, +22% CVR, 100+ hours saved. See case studies.',
   alternates: {
-    canonical: 'https://atherstonedigital.com/results',
+    canonical: 'https://atherstonedigital.com/results/',
   },
   openGraph: {
     title: 'Shopify Ecommerce Results & Case Studies | Atherstone Digital',
     description: 'Real results from real Shopify partnerships. +47% YoY revenue, +22% CVR, 100+ hours saved. See case studies.',
-    url: 'https://atherstonedigital.com/results',
+    url: 'https://atherstonedigital.com/results/',
     type: 'website',
   },
 };
@@ -22,7 +22,7 @@ const schema = {
   '@type': 'WebPage',
   name: 'Ecommerce Growth Results & Case Studies',
   description: 'Real commercial results from real partners. See how the fractional model drives +47% YoY revenue growth, +22% conversion rate, and +115% email revenue for Shopify brands.',
-  url: 'https://atherstonedigital.com/results',
+  url: 'https://atherstonedigital.com/results/',
 };
 
 const stats = [

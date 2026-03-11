@@ -12,27 +12,6 @@
   status = 301
   force = true
 
-# Trailing slash removal — prevents duplicate URLs in Google index
-# trailingSlash: false in next.config.mjs means canonical URLs have no trailing slash
-# Without these redirects, Netlify serves both /about and /about/ with 200
-[[redirects]]
-  from = "/:p1/"
-  to = "/:p1"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/:p1/:p2/"
-  to = "/:p1/:p2"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/:p1/:p2/:p3/"
-  to = "/:p1/:p2/:p3"
-  status = 301
-  force = true
-
 # Redirect old /locations/ pages to homepage
 [[redirects]]
   from = "/locations/*"

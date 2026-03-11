@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowRight, CheckCircle, Loader2 } from 'lucide-react';
+import { ArrowRight, CheckCircle, Download, Loader2 } from 'lucide-react';
 
 export function LeadMagnet() {
   const [submitted, setSubmitted] = useState(false);
@@ -18,7 +18,17 @@ export function LeadMagnet() {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams(formData as any).toString(),
     })
-      .then(() => { setSubmitted(true); setIsSubmitting(false); })
+      .then(() => {
+        setSubmitted(true);
+        setIsSubmitting(false);
+        // Auto-download the PDF
+        const link = document.createElement('a');
+        link.href = '/atherstone-5-metrics.pdf';
+        link.download = 'atherstone-5-metrics.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      })
       .catch(() => { setIsSubmitting(false); setError(true); });
   };
 
@@ -35,9 +45,18 @@ export function LeadMagnet() {
           </p>
 
           {submitted ? (
-            <div className="flex items-center gap-3 p-4 bg-brand-primary/10 border border-brand-primary/20 rounded-xl">
-              <CheckCircle size={20} className="text-brand-primary shrink-0" />
-              <p className="text-brand-text font-medium">Check your inbox — it&apos;s on its way.</p>
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 p-4 bg-brand-primary/10 border border-brand-primary/20 rounded-xl">
+                <CheckCircle size={20} className="text-brand-primary shrink-0" />
+                <p className="text-brand-text font-medium">Your guide is ready — download it now.</p>
+              </div>
+              <a
+                href="/atherstone-5-metrics.pdf"
+                download
+                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-primary text-brand-dark font-bold rounded-lg hover:bg-brand-accent transition-colors"
+              >
+                <Download size={18} /> Download the Guide (PDF)
+              </a>
             </div>
           ) : (
             <>

@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();
 
   const staticPages = [
-    { url: base, lastModified: now, changeFrequency: 'daily' as const, priority: 1.0 },
+    { url: `${base}/`, lastModified: now, changeFrequency: 'daily' as const, priority: 1.0 },
     { url: `${base}/fractional-ecommerce-director`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.95 },
     { url: `${base}/services`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.9 },
     { url: `${base}/why-fractional`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.8 },

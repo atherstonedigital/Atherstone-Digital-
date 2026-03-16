@@ -16,12 +16,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: service.seoTitle,
     description: service.seoDescription,
     alternates: {
-      canonical: `https://atherstonedigital.com/services/${service.slug}/`,
+      canonical: `https://www.atherstonedigital.com/services/${service.slug}`,
     },
     openGraph: {
       title: `${service.seoTitle} | Atherstone Digital`,
       description: service.seoDescription,
-      url: `https://atherstonedigital.com/services/${service.slug}/`,
+      url: `https://www.atherstonedigital.com/services/${service.slug}`,
       type: 'website',
     },
   };
@@ -38,9 +38,9 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     description: service.longDescription,
     provider: {
       '@type': 'Organization',
-      '@id': 'https://atherstonedigital.com/#organization',
+      '@id': 'https://www.atherstonedigital.com/#organization',
     },
-    url: `https://atherstonedigital.com/services/${service.slug}/`,
+    url: `https://www.atherstonedigital.com/services/${service.slug}`,
     areaServed: {
       '@type': 'Country',
       name: 'United Kingdom',
@@ -55,9 +55,9 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://atherstonedigital.com' },
-      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://atherstonedigital.com/services/' },
-      { '@type': 'ListItem', position: 3, name: service.title, item: `https://atherstonedigital.com/services/${service.slug}/` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.atherstonedigital.com' },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.atherstonedigital.com/services' },
+      { '@type': 'ListItem', position: 3, name: service.title, item: `https://www.atherstonedigital.com/services/${service.slug}` },
     ],
   };
 

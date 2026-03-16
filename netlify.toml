@@ -5,10 +5,10 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# TASK 1: www to non-www 301 redirect
+# Canonical domain: non-www → www 301 redirect
 [[redirects]]
-  from = "https://www.atherstonedigital.com/*"
-  to = "https://atherstonedigital.com/:splat"
+  from = "https://atherstonedigital.com/*"
+  to = "https://www.atherstonedigital.com/:splat"
   status = 301
   force = true
 

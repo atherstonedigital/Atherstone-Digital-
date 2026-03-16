@@ -7,22 +7,28 @@ export const metadata: Metadata = {
   title: 'About Dan Le Gresley | Fractional Ecommerce Director, Warwickshire',
   description: 'Shopify Plus Architect & Growth Strategist based in Atherstone, Warwickshire. Founder of Atherstone Digital. AI-augmented fractional leadership for UK ecommerce brands.',
   alternates: {
-    canonical: 'https://atherstonedigital.com/about/',
+    canonical: 'https://www.atherstonedigital.com/about',
+  },
+  openGraph: {
+    title: 'About Dan Le Gresley | Fractional Ecommerce Director, Warwickshire',
+    description: 'Shopify Plus Architect & Growth Strategist based in Atherstone, Warwickshire. Founder of Atherstone Digital. AI-augmented fractional leadership for UK ecommerce brands.',
+    url: 'https://www.atherstonedigital.com/about',
+    type: 'website',
   },
 };
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
-  url: 'https://atherstonedigital.com/about/',
+  url: 'https://www.atherstonedigital.com/about',
   mainEntity: {
     '@type': 'Person',
     name: 'Dan Le Gresley',
     jobTitle: 'Fractional Ecommerce Director',
     description: 'Shopify Plus Architect & Growth Strategist helping brands scale revenue via fractional leadership. Founder of Atherstone Digital, based in Warwickshire.',
-    image: 'https://atherstonedigital.com/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png',
-    sameAs: ['https://www.linkedin.com/in/danlegresley/', 'https://atherstonedigital.com'],
-    worksFor: { '@type': 'Organization', name: 'Atherstone Digital', url: 'https://atherstonedigital.com' },
+    image: 'https://www.atherstonedigital.com/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png',
+    sameAs: ['https://www.linkedin.com/in/danlegresley/', 'https://www.atherstonedigital.com'],
+    worksFor: { '@type': 'Organization', name: 'Atherstone Digital', url: 'https://www.atherstonedigital.com' },
     knowsAbout: ['Shopify Plus', 'Ecommerce Strategy', 'n8n Automation', 'Google Ads', 'CRO', 'AI Search Optimization'],
   },
 };

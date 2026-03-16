@@ -38,9 +38,9 @@ export default function FractionalDirectorPage() {
         '@context': 'https://schema.org',
         '@type': 'Service',
         serviceType: 'Fractional Ecommerce Director',
-        provider: { '@type': 'Organization', name: 'Atherstone Digital', url: 'https://atherstonedigital.com' },
+        provider: { '@type': 'Organization', name: 'Atherstone Digital', url: 'https://www.atherstonedigital.com' },
         description: 'Senior operational leadership for Shopify brands. We replace the need for a full-time Head of Ecommerce.',
-        url: 'https://atherstonedigital.com/fractional-ecommerce-director/',
+        url: 'https://www.atherstonedigital.com/fractional-ecommerce-director',
         offers: { '@type': 'Offer', price: '3000', priceCurrency: 'GBP', description: 'Monthly retainers starting from £3,000/month depending on complexity.' },
       }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({

@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: { category: string 
     title: `${category} Articles | Ecommerce Growth Blog`,
     description: `${category} insights and guides from Dan Le Gresley — Fractional Ecommerce Director. Practical ${category.toLowerCase()} content for Shopify brands.`,
     alternates: {
-      canonical: `https://atherstonedigital.com/blog/category/${params.category}/`,
+      canonical: `https://www.atherstonedigital.com/blog/category/${params.category}`,
     },
   };
 }
@@ -36,14 +36,14 @@ export default function CategoryPage({ params }: { params: { category: string } 
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: `${category} Articles — Atherstone Digital Blog`,
-    url: `https://atherstonedigital.com/blog/category/${params.category}/`,
+    url: `https://www.atherstonedigital.com/blog/category/${params.category}`,
     description: `${category} insights and guides for Shopify brands.`,
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: posts.map((p, i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        url: `https://atherstonedigital.com/blog/${p.slug}/`,
+        url: `https://www.atherstonedigital.com/blog/${p.slug}`,
         name: p.title,
       })),
     },
@@ -53,9 +53,9 @@ export default function CategoryPage({ params }: { params: { category: string } 
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://atherstonedigital.com' },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://atherstonedigital.com/blog/' },
-      { '@type': 'ListItem', position: 3, name: category, item: `https://atherstonedigital.com/blog/category/${params.category}/` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.atherstonedigital.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.atherstonedigital.com/blog' },
+      { '@type': 'ListItem', position: 3, name: category, item: `https://www.atherstonedigital.com/blog/category/${params.category}` },
     ],
   };
 

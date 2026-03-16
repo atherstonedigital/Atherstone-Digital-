@@ -4,15 +4,15 @@ import { ArrowLeft, ArrowRight, PoundSterling, ShieldAlert, Briefcase, CheckCirc
 import { Contact } from '@/components/Contact';
 
 export const metadata: Metadata = {
-  title: 'Why Hire a Fractional Ecommerce Director? | Cost vs Agency vs Full-Time',
-  description: 'See exactly why a fractional ecommerce director beats an agency and costs 70% less than a full-time hire. Real numbers, no spin.',
+  title: 'Why Go Fractional? Director vs Agency vs Full-Time',
+  description: 'See exactly why a fractional ecommerce director beats an agency and costs 70% less than a full-time hire. Real numbers, real savings.',
   alternates: {
-    canonical: 'https://atherstonedigital.com/why-fractional/',
+    canonical: 'https://www.atherstonedigital.com/why-fractional',
   },
   openGraph: {
-    title: 'Why Hire a Fractional Ecommerce Director? | Cost vs Agency vs Full-Time',
-    description: 'See exactly why a fractional ecommerce director beats an agency and costs 70% less than a full-time hire. Real numbers, no spin.',
-    url: 'https://atherstonedigital.com/why-fractional/',
+    title: 'Why Go Fractional? Director vs Agency vs Full-Time',
+    description: 'See exactly why a fractional ecommerce director beats an agency and costs 70% less than a full-time hire. Real numbers, real savings.',
+    url: 'https://www.atherstonedigital.com/why-fractional',
     type: 'website',
   },
 };
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  url: 'https://atherstonedigital.com/why-fractional/',
+  url: 'https://www.atherstonedigital.com/why-fractional',
   mainEntity: [
     {
       '@type': 'Question',

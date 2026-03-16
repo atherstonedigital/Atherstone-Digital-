@@ -7,15 +7,15 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Quote } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Fractional Ecommerce Director for Shopify Brands | UK',
-  description: 'Senior Shopify ecommerce leadership, fractionally. CRO, paid media, automation & development for brands doing £500k–£5M. 3 partners max. Book a teardown.',
+  title: 'Fractional Ecommerce Director for Shopify Brands | Warwickshire UK',
+  description: 'Fractional Ecommerce Director for Shopify brands doing £500k–£5M. Senior CRO, paid media, Klaviyo & development from Atherstone, Warwickshire. 3 partners max.',
   alternates: {
-    canonical: 'https://atherstonedigital.com/',
+    canonical: 'https://www.atherstonedigital.com',
   },
   openGraph: {
-    title: 'Fractional Ecommerce Director for Shopify Brands | UK',
-    description: 'Senior Shopify ecommerce leadership, fractionally. CRO, paid media, automation & development for brands doing £500k–£5M. 3 partners max. Book a teardown.',
-    url: 'https://atherstonedigital.com/',
+    title: 'Fractional Ecommerce Director for Shopify Brands | Warwickshire UK',
+    description: 'Fractional Ecommerce Director for Shopify brands doing £500k–£5M. Senior CRO, paid media, Klaviyo & development from Atherstone, Warwickshire. 3 partners max.',
+    url: 'https://www.atherstonedigital.com',
     type: 'website',
   },
 };
@@ -25,12 +25,12 @@ const homepageSchema = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://atherstonedigital.com/#organization',
+      '@id': 'https://www.atherstonedigital.com/#organization',
       name: 'Atherstone Digital',
-      url: 'https://atherstonedigital.com',
+      url: 'https://www.atherstonedigital.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://atherstonedigital.com/favicon-c-bef0ns.svg',
+        url: 'https://www.atherstonedigital.com/favicon-c-bef0ns.svg',
       },
       address: {
         '@type': 'PostalAddress',
@@ -76,20 +76,20 @@ const homepageSchema = {
     },
     {
       '@type': 'Person',
-      '@id': 'https://atherstonedigital.com/#dan',
+      '@id': 'https://www.atherstonedigital.com/#dan',
       name: 'Dan Le Gresley',
       jobTitle: 'Fractional Ecommerce Director',
-      worksFor: { '@id': 'https://atherstonedigital.com/#organization' },
-      url: 'https://atherstonedigital.com/about/',
+      worksFor: { '@id': 'https://www.atherstonedigital.com/#organization' },
+      url: 'https://www.atherstonedigital.com/about',
       sameAs: ['https://www.linkedin.com/in/danlegresley/'],
       description: '15+ years scaling ecommerce brands. Former Head of Ecommerce at a UK £50M retailer. Shopify Plus Partner, Google Ads Certified, Klaviyo Expert.',
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://atherstonedigital.com/#website',
-      url: 'https://atherstonedigital.com',
+      '@id': 'https://www.atherstonedigital.com/#website',
+      url: 'https://www.atherstonedigital.com',
       name: 'Atherstone Digital',
-      publisher: { '@id': 'https://atherstonedigital.com/#organization' },
+      publisher: { '@id': 'https://www.atherstonedigital.com/#organization' },
     },
   ],
 };

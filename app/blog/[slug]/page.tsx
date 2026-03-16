@@ -15,9 +15,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: post.title,
     description: post.excerpt,
-    openGraph: { title: post.title, description: post.excerpt, type: 'article', publishedTime: post.date, url: `https://atherstonedigital.com/blog/${post.slug}/` },
+    openGraph: { title: post.title, description: post.excerpt, type: 'article', publishedTime: post.date, url: `https://www.atherstonedigital.com/blog/${post.slug}` },
     alternates: {
-      canonical: `https://atherstonedigital.com/blog/${post.slug}/`,
+      canonical: `https://www.atherstonedigital.com/blog/${post.slug}`,
     },
   };
 }
@@ -47,18 +47,18 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    author: { '@type': 'Person', name: 'Dan Le Gresley', url: 'https://atherstonedigital.com/about/' },
-    publisher: { '@type': 'Organization', name: 'Atherstone Digital', url: 'https://atherstonedigital.com' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://atherstonedigital.com/blog/${post.slug}/` },
+    author: { '@type': 'Person', name: 'Dan Le Gresley', url: 'https://www.atherstonedigital.com/about' },
+    publisher: { '@type': 'Organization', name: 'Atherstone Digital', url: 'https://www.atherstonedigital.com' },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://www.atherstonedigital.com/blog/${post.slug}` },
   };
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://atherstonedigital.com' },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://atherstonedigital.com/blog/' },
-      { '@type': 'ListItem', position: 3, name: post.title, item: `https://atherstonedigital.com/blog/${post.slug}/` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.atherstonedigital.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.atherstonedigital.com/blog' },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `https://www.atherstonedigital.com/blog/${post.slug}` },
     ],
   };
 
@@ -103,7 +103,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             <div className="flex items-center gap-4">
               <span className="text-brand-muted text-sm flex items-center gap-2"><Share2 size={14} /> Share this article</span>
               <a
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://atherstonedigital.com/blog/${post.slug}/`)}`}
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://www.atherstonedigital.com/blog/${post.slug}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-white/5 border border-white/10 hover:border-brand-primary/30 hover:bg-brand-primary/10 transition-all text-brand-muted hover:text-brand-primary"
@@ -112,7 +112,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 <Linkedin size={16} />
               </a>
               <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://atherstonedigital.com/blog/${post.slug}/`)}`}
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://www.atherstonedigital.com/blog/${post.slug}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-white/5 border border-white/10 hover:border-brand-primary/30 hover:bg-brand-primary/10 transition-all text-brand-muted hover:text-brand-primary"

@@ -27,7 +27,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://atherstonedigital.com'),
+  metadataBase: new URL('https://www.atherstonedigital.com'),
   title: {
     default: 'Fractional Ecommerce Director for Shopify Brands | Atherstone Digital',
     template: '%s | Atherstone Digital',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_GB',
-    url: 'https://atherstonedigital.com',
+    url: 'https://www.atherstonedigital.com',
     siteName: 'Atherstone Digital',
     images: [{ url: '/og-image.svg', width: 1200, height: 630 }],
   },
@@ -62,12 +62,12 @@ const globalSchema = {
   '@graph': [
     {
       '@type': ['Organization', 'ProfessionalService'],
-      '@id': 'https://atherstonedigital.com/#organization',
+      '@id': 'https://www.atherstonedigital.com/#organization',
       name: 'Atherstone Digital',
-      url: 'https://atherstonedigital.com',
+      url: 'https://www.atherstonedigital.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://atherstonedigital.com/favicon-c-bef0ns.svg',
+        url: 'https://www.atherstonedigital.com/favicon-c-bef0ns.svg',
       },
       description: 'Fractional Ecommerce Director for Shopify brands doing £500k–£5M. Senior strategy, development, CRO and growth execution. Based in Atherstone, Warwickshire.',
       email: 'info@atherstonedigital.com',
@@ -113,20 +113,20 @@ const globalSchema = {
     },
     {
       '@type': 'Person',
-      '@id': 'https://atherstonedigital.com/#dan',
+      '@id': 'https://www.atherstonedigital.com/#dan',
       name: 'Dan Le Gresley',
       jobTitle: 'Fractional Ecommerce Director',
-      worksFor: { '@id': 'https://atherstonedigital.com/#organization' },
-      url: 'https://atherstonedigital.com/about/',
+      worksFor: { '@id': 'https://www.atherstonedigital.com/#organization' },
+      url: 'https://www.atherstonedigital.com/about',
       sameAs: ['https://www.linkedin.com/in/danlegresley/'],
       description: '15+ years scaling ecommerce brands. Former Head of Ecommerce at a UK £50M retailer. Shopify Plus Partner, Google Ads Certified, Klaviyo Expert.',
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://atherstonedigital.com/#website',
-      url: 'https://atherstonedigital.com',
+      '@id': 'https://www.atherstonedigital.com/#website',
+      url: 'https://www.atherstonedigital.com',
       name: 'Atherstone Digital',
-      publisher: { '@id': 'https://atherstonedigital.com/#organization' },
+      publisher: { '@id': 'https://www.atherstonedigital.com/#organization' },
     },
   ],
 };

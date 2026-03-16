@@ -15,10 +15,14 @@ export async function generateMetadata({ params }: { params: { locationSlug: str
   return {
     title: loc.seoTitle,
     description: loc.seoDescription,
-    alternates: {
-      canonical: `https://atherstonedigital.com/${loc.slug}/`,
+    robots: {
+      index: false,
+      follow: true,
     },
-    openGraph: { title: loc.seoTitle, description: loc.seoDescription, url: `https://atherstonedigital.com/${loc.slug}/` },
+    alternates: {
+      canonical: `https://www.atherstonedigital.com/${loc.slug}`,
+    },
+    openGraph: { title: loc.seoTitle, description: loc.seoDescription, url: `https://www.atherstonedigital.com/${loc.slug}` },
   };
 }
 
@@ -31,7 +35,7 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
     '@type': 'ProfessionalService',
     name: `Atherstone Digital — Fractional Ecommerce Director serving ${location.city}`,
     description: location.seoDescription,
-    url: `https://atherstonedigital.com/${location.slug}/`,
+    url: `https://www.atherstonedigital.com/${location.slug}`,
     telephone: '+447810838129',
     email: 'info@atherstonedigital.com',
     address: { '@type': 'PostalAddress', addressLocality: 'Atherstone', addressRegion: 'Warwickshire', addressCountry: 'GB', postalCode: 'CV9' },
@@ -66,8 +70,8 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://atherstonedigital.com' },
-      { '@type': 'ListItem', position: 2, name: `Fractional Ecommerce Director ${location.city}`, item: `https://atherstonedigital.com/${location.slug}/` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.atherstonedigital.com' },
+      { '@type': 'ListItem', position: 2, name: `Fractional Ecommerce Director ${location.city}`, item: `https://www.atherstonedigital.com/${location.slug}` },
     ],
   };
 

@@ -11,11 +11,11 @@ We embed directly into Shopify brands to drive revenue, strategy, and technical 
 - **Global Reach:** Serving remote partners in the UK, US, and Europe.
 
 ## Site Structure (Navigation Map)
-- **Home:** https://atherstonedigital.com/ - Overview of the fractional model.
-- **Services:** https://atherstonedigital.com/services - Detailed tech stack and capabilities.
-- **Why Fractional:** https://atherstonedigital.com/why-fractional - Financial comparison (ROI).
-- **The Model:** https://atherstonedigital.com/the-model - How Human Strategy meets AI Execution.
-- **Results:** https://atherstonedigital.com/results - Metrics and case studies.
+- **Home:** https://www.atherstonedigital.com/ - Overview of the fractional model.
+- **Services:** https://www.atherstonedigital.com/services - Detailed tech stack and capabilities.
+- **Why Fractional:** https://www.atherstonedigital.com/why-fractional - Financial comparison (ROI).
+- **The Model:** https://www.atherstonedigital.com/the-model - How Human Strategy meets AI Execution.
+- **Results:** https://www.atherstonedigital.com/results - Metrics and case studies.
 
 ## Ideal Client Profile
 - **Revenue:** £1M - £10M GMV.
@@ -41,5 +41,5 @@ We embed directly into Shopify brands to drive revenue, strategy, and technical 
 
 ## Contact Information
 - **Email:** info@atherstonedigital.com
-- **Website:** https://atherstonedigital.com
+- **Website:** https://www.atherstonedigital.com
 - **Founder:** Dan Le Gresley

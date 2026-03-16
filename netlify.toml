@@ -5,12 +5,9 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# TASK 1: www to non-www 301 redirect
-[[redirects]]
-  from = "https://www.atherstonedigital.com/*"
-  to = "https://atherstonedigital.com/:splat"
-  status = 301
-  force = true
+# Domain redirect (non-www → www) is handled by Netlify Domain Management.
+# Set www.atherstonedigital.com as the PRIMARY domain in:
+# Netlify Dashboard → Domain management → Set as primary domain
 
 # Redirect old /locations/ pages to homepage
 [[redirects]]

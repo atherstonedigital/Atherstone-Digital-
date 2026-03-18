@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { SERVICES_DATA, BLOG_POSTS } from '@/lib/data';
+import { SERVICES_DATA, BLOG_POSTS, LOCATIONS_DATA } from '@/lib/data';
 
 const BASE_URL = 'https://www.atherstonedigital.com';
 
@@ -39,5 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...servicePages, ...blogPages, ...categoryPages];
+  const locationPages = LOCATIONS_DATA.map((loc) => ({
+    url: `${BASE_URL}/${loc.slug}`,
+    lastModified: now,
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...locationPages, ...servicePages, ...blogPages, ...categoryPages];
 }

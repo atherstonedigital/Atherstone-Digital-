@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: { locationSlug: str
     title: loc.seoTitle,
     description: loc.seoDescription,
     robots: {
-      index: false,
+      index: true,
       follow: true,
     },
     alternates: {

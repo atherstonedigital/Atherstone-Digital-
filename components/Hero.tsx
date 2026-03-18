@@ -131,17 +131,21 @@ export function Hero() {
           </div>
         </div>
 
+        <div className="mb-4 opacity-0 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+          <span className="inline-block px-4 py-1.5 text-[10px] md:text-xs font-mono text-brand-muted uppercase tracking-[0.2em] border border-white/10 rounded-full bg-white/[0.03] backdrop-blur-sm">
+            Fractional Ecommerce Director · Shopify-Native · AI-Augmented
+          </span>
+        </div>
+
         <div className="max-w-6xl mx-auto text-center mb-6 relative">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-32 bg-brand-primary/20 blur-[100px] rounded-full pointer-events-none"></div>
-          <h1 className="relative font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter leading-tight drop-shadow-2xl">
-            Fractional <br className="hidden md:block" />
-            <span className="text-white">Ecommerce Director</span>
-            <div className="mt-2 text-3xl md:text-5xl lg:text-6xl text-brand-primary">AI-Augmented. Shopify-Native.</div>
+          <h1 className="relative font-display text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tighter leading-tight drop-shadow-2xl">
+            I replace your fragmented agency roster with <span className="text-brand-primary">one senior partner</span> and a fleet of <span className="text-brand-primary">autonomous AI agents.</span>
           </h1>
         </div>
 
-        <p className="text-xl md:text-2xl text-brand-muted mb-10 leading-relaxed max-w-3xl mx-auto text-center font-light opacity-0 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-          I replace your fragmented agency roster with <span className="text-white font-medium border-b border-brand-primary/30 pb-0.5">one senior partner</span> and a fleet of <span className="text-white font-medium border-b border-brand-primary/30 pb-0.5">autonomous AI agents</span>. Strategy, development, and growth for Shopify brands doing £500k–£5M — executed at machine speed.
+        <p className="text-lg md:text-xl text-brand-muted mb-10 leading-relaxed max-w-3xl mx-auto text-center font-light opacity-0 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          Strategy, development, and growth for Shopify brands doing £500k–£5M — executed at machine speed.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 opacity-0 animate-fade-in w-full sm:w-auto" style={{ animationDelay: '0.5s' }}>

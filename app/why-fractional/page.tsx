@@ -25,17 +25,22 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'Why choose a Fractional Ecommerce Director over an Agency?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Agencies often charge high retainers to cover overheads like office rent and account managers. A Fractional Director provides senior-level strategy and execution directly, eliminating bloat and saving ~£98k/year.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Agencies charge high retainers to cover office rent, account managers, and junior staff learning curves. A Fractional Director provides senior-level strategy and execution directly — eliminating the overhead and saving an estimated £98,000 per year versus a comparable agency roster.' },
     },
     {
       '@type': 'Question',
-      name: 'Is a Fractional Director cheaper than a full-time hire?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes. A full-time Head of Ecommerce and Senior Developer typically costs over £140k/year including benefits. Atherstone Digital\'s fractional model starts from £42k/year for the same output.' },
+      name: 'Is a Fractional Director cheaper than hiring full-time?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. A full-time Head of Ecommerce plus a Senior Developer typically costs over £140,000 per year including salary, National Insurance, pension, and benefits. A fractional retainer from Atherstone Digital starts from £36,000 per year for equivalent output.' },
     },
     {
       '@type': 'Question',
-      name: 'What is the commitment level?',
-      acceptedAnswer: { '@type': 'Answer', text: 'We operate on a flexible monthly retainer. You can scale up for Q4 or scale down during quiet periods, unlike full-time employees.' },
+      name: 'What is the minimum commitment?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Atherstone Digital operates on a rolling monthly retainer. There is no minimum term. You can scale up during Q4 peak periods or pause during quiet months — unlike a full-time employee.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use a Fractional Director alongside my existing agency?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. A fractional director can manage your existing agency relationships, brief creative suppliers, and audit their output. Many partners find they can replace one or more agencies entirely once the fractional model is in place.' },
     },
   ],
 };

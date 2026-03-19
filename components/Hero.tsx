@@ -151,7 +151,7 @@ export function Hero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 opacity-0 animate-fade-in w-full sm:w-auto" style={{ animationDelay: '0.5s' }}>
           <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer" className="group relative w-full sm:w-auto px-10 py-5 bg-brand-primary text-brand-dark font-bold text-lg rounded-xl overflow-hidden transition-all hover:scale-[1.02] shadow-[0_0_40px_rgba(0,220,130,0.3)] hover:shadow-[0_0_60px_rgba(0,220,130,0.5)] flex items-center justify-center gap-3">
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out skew-x-12"></div>
-            <span className="relative z-10 flex items-center gap-2">Book a Free 30-min Teardown <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" /></span>
+            <span className="relative z-10 flex items-center gap-2">Book a Free 20-min Teardown <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" /></span>
           </a>
           <Link href="/services" className="w-full sm:w-auto px-10 py-5 bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-brand-primary/30 font-medium text-lg rounded-xl transition-all flex items-center justify-center gap-2 backdrop-blur-md group/btn">
             View My 'Force Multiplier' Stack

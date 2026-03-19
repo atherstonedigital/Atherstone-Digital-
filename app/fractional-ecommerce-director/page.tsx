@@ -107,7 +107,7 @@ export default function FractionalDirectorPage() {
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
-              Book a 30-min Fit Call
+              Book a 20-min Fit Call
             </a>
             <Link href="/#contact" className="px-8 py-4 bg-transparent border border-brand-border text-white font-medium rounded-lg hover:bg-white/5 transition-all min-w-[200px] text-center">
               Complete the Application
@@ -324,7 +324,7 @@ export default function FractionalDirectorPage() {
             <p className="text-brand-primary font-bold text-xl mb-8">Retainers from £3,000 / month</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
-                Book a 30-min Fit Call
+                Book a 20-min Fit Call
               </a>
               <Link href="/#contact" className="px-8 py-4 bg-brand-surface border border-brand-border text-white font-medium rounded-lg hover:bg-white/5 transition-all min-w-[200px] text-center">
                 Complete the Application

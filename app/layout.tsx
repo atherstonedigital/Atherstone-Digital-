@@ -5,6 +5,7 @@ import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { CustomCursor } from '@/components/CustomCursor';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 const GA_ID = 'G-65K1KRBWQJ';
 
@@ -146,34 +147,36 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="alternate" type="text/markdown" href="/llms.txt" title="AI Context" />
       </head>
       <body className="antialiased font-sans bg-brand-dark text-brand-text">
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-brand-primary focus:text-brand-dark focus:font-bold focus:rounded-lg focus:outline-none">
-          Skip to main content
-        </a>
-        {/* Netlify Forms Detection - must exist as static HTML */}
-        <form name="application" data-netlify="true" hidden>
-          <input type="text" name="name" />
-          <input type="email" name="email" />
-          <input type="url" name="website" />
-          <select name="revenue" />
-          <input type="text" name="stack" />
-          <textarea name="why_switch" />
-        </form>
-        <form name="lead-magnet" data-netlify="true" hidden>
-          <input type="email" name="email" />
-        </form>
-        <form name="contact" data-netlify="true" hidden>
-          <input type="text" name="name" />
-          <input type="email" name="email" />
-          <input type="url" name="website" />
-          <textarea name="challenge" />
-        </form>
+        <ThemeProvider>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-brand-primary focus:text-brand-dark focus:font-bold focus:rounded-lg focus:outline-none">
+            Skip to main content
+          </a>
+          {/* Netlify Forms Detection - must exist as static HTML */}
+          <form name="application" data-netlify="true" hidden>
+            <input type="text" name="name" />
+            <input type="email" name="email" />
+            <input type="url" name="website" />
+            <select name="revenue" />
+            <input type="text" name="stack" />
+            <textarea name="why_switch" />
+          </form>
+          <form name="lead-magnet" data-netlify="true" hidden>
+            <input type="email" name="email" />
+          </form>
+          <form name="contact" data-netlify="true" hidden>
+            <input type="text" name="name" />
+            <input type="email" name="email" />
+            <input type="url" name="website" />
+            <textarea name="challenge" />
+          </form>
 
-        <CustomCursor />
-        <Header />
-        <main id="main-content" className="flex-grow min-h-screen">
-          {children}
-        </main>
-        <Footer />
+          <CustomCursor />
+          <Header />
+          <main id="main-content" className="flex-grow min-h-screen">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

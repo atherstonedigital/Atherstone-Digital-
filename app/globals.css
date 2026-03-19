@@ -16,6 +16,7 @@ body {
   background-color: #020604;
   color: #f1f5f9;
   position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Global noise texture */
@@ -29,6 +30,77 @@ body::before {
   z-index: 50;
 }
 
+/* ============ LIGHT MODE ============ */
+html.light body {
+  background-color: #f8fafb;
+  color: #1e293b;
+}
+
+html.light body::before {
+  opacity: 0.02;
+}
+
+html.light ::-webkit-scrollbar-track { background: #f1f5f9; }
+html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+
+/* Brand color overrides for light mode */
+html.light .bg-brand-dark { background-color: #f8fafb; }
+html.light .bg-brand-surface { background-color: #ffffff; }
+html.light .bg-brand-surfaceHighlight { background-color: #f0fdf4; }
+html.light .bg-\[#020604\] { background-color: #f8fafb; }
+html.light .bg-\[#05110d\] { background-color: #ffffff; }
+
+/* Text */
+html.light .text-white { color: #0f172a; }
+html.light .text-brand-text { color: #334155; }
+html.light .text-brand-muted { color: #64748b; }
+
+/* Borders */
+html.light .border-brand-border { border-color: rgba(0, 0, 0, 0.08); }
+html.light .border-white\/5 { border-color: rgba(0, 0, 0, 0.06); }
+html.light .border-white\/10 { border-color: rgba(0, 0, 0, 0.08); }
+
+/* Backgrounds with white alpha */
+html.light .bg-white\/5 { background-color: rgba(0, 0, 0, 0.03); }
+html.light .bg-white\/\[0\.02\] { background-color: rgba(0, 0, 0, 0.02); }
+html.light .bg-white\/\[0\.03\] { background-color: rgba(0, 0, 0, 0.02); }
+html.light .bg-white\/\[0\.05\] { background-color: rgba(0, 0, 0, 0.04); }
+html.light .bg-black\/40 { background-color: rgba(241, 245, 249, 0.9); }
+html.light .bg-black\/20 { background-color: rgba(241, 245, 249, 0.6); }
+
+/* Header */
+html.light .bg-brand-dark\/80 { background-color: rgba(248, 250, 251, 0.85); }
+html.light .bg-brand-dark\/95 { background-color: rgba(248, 250, 251, 0.97); }
+
+/* Gradient text — keep brand-primary in light mode */
+html.light .text-brand-primary { color: #059669; }
+html.light .bg-brand-primary { background-color: #059669; }
+html.light .border-brand-primary\/20 { border-color: rgba(5, 150, 105, 0.2); }
+html.light .border-brand-primary\/30 { border-color: rgba(5, 150, 105, 0.3); }
+html.light .border-brand-primary\/40 { border-color: rgba(5, 150, 105, 0.4); }
+html.light .bg-brand-primary\/5 { background-color: rgba(5, 150, 105, 0.05); }
+html.light .bg-brand-primary\/10 { background-color: rgba(5, 150, 105, 0.1); }
+html.light .shadow-\[0_0_20px_rgba\(0\2c 220\2c 130\2c 0\.2\)\] { box-shadow: 0 0 20px rgba(5,150,105,0.15); }
+html.light .shadow-\[0_0_40px_rgba\(0\2c 220\2c 130\2c 0\.3\)\] { box-shadow: 0 0 40px rgba(5,150,105,0.15); }
+
+/* Card surfaces */
+html.light .bg-brand-surface\/30 { background-color: rgba(255, 255, 255, 0.7); }
+html.light .bg-brand-surface\/40 { background-color: rgba(255, 255, 255, 0.8); }
+
+/* Form inputs */
+html.light .bg-brand-surface input,
+html.light .bg-brand-surface select,
+html.light .bg-brand-surface textarea { color: #0f172a; }
+
+/* Dropdown */
+html.light .bg-\[#020604\]\/95 { background-color: rgba(255, 255, 255, 0.97); }
+
+/* Selection */
+html.light ::selection {
+  background-color: #059669;
+  color: #ffffff;
+}
+
 /* Glass utilities */
 .glass {
   background: rgba(4, 24, 18, 0.7);
@@ -37,11 +109,21 @@ body::before {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+html.light .glass {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
 .glass-light {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+html.light .glass-light {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .perspective-1000 {

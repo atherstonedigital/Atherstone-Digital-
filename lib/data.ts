@@ -795,7 +795,7 @@ For our client, fixing 16,193 rows took two days of scripting and one Matrixify 
 
 ---
 
-If you'd like us to run a data audit on your Shopify store, [book a free 30-minute teardown](https://calendly.com/dan-atherstonedigital/30min).
+If you'd like us to run a data audit on your Shopify store, [book a free 20-minute teardown](https://calendly.com/dan-atherstonedigital/30min).
     `,
   },
   {
@@ -895,7 +895,7 @@ The retainer-for-strategy model is being rejected. Founders who've been through 
 
 ---
 
-[Book a 30-minute fit call](https://calendly.com/dan-atherstonedigital/30min) to see if the Atherstone Digital model is right for your Shopify brand.
+[Book a 20-minute fit call](https://calendly.com/dan-atherstonedigital/30min) to see if the Atherstone Digital model is right for your Shopify brand.
     `,
   },
   {

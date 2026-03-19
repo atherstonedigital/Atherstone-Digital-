@@ -51,9 +51,12 @@ html.light .bg-\[#020604\] { background-color: #f8fafb; }
 html.light .bg-\[#05110d\] { background-color: #ffffff; }
 
 /* Text */
-html.light .text-white { color: #0f172a; }
+html.light .text-white:not(.text-transparent):not(.hero-section .text-white) { color: #0f172a; }
 html.light .text-brand-text { color: #334155; }
 html.light .text-brand-muted { color: #64748b; }
+
+/* Gradient text needs to stay transparent */
+html.light .text-transparent { color: transparent; }
 
 /* Borders */
 html.light .border-brand-border { border-color: rgba(0, 0, 0, 0.08); }
@@ -88,9 +91,21 @@ html.light .bg-brand-surface\/30 { background-color: rgba(255, 255, 255, 0.7); }
 html.light .bg-brand-surface\/40 { background-color: rgba(255, 255, 255, 0.8); }
 
 /* Form inputs */
-html.light .bg-brand-surface input,
-html.light .bg-brand-surface select,
-html.light .bg-brand-surface textarea { color: #0f172a; }
+html.light input,
+html.light select,
+html.light textarea { color: #0f172a; }
+html.light input::placeholder,
+html.light textarea::placeholder { color: #94a3b8; }
+
+/* Gradient from/to overrides */
+html.light .from-brand-surfaceHighlight { --tw-gradient-from: #f0fdf4; }
+html.light .to-brand-dark { --tw-gradient-to: #f8fafb; }
+html.light .from-brand-surface { --tw-gradient-from: #ffffff; }
+html.light .to-\[#05110d\] { --tw-gradient-to: #ffffff; }
+html.light .from-brand-dark { --tw-gradient-from: #f8fafb; }
+
+/* Footer */
+html.light footer { background-color: #f8fafb; border-color: rgba(0,0,0,0.06); }
 
 /* Dropdown */
 html.light .bg-\[#020604\]\/95 { background-color: rgba(255, 255, 255, 0.97); }

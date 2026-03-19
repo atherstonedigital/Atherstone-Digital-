@@ -55,18 +55,18 @@ const homepageSchema = {
           '@type': 'Review',
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
           author: { '@type': 'Person', name: 'Sarah Wheatley' },
-          reviewBody: 'We had nearly 17,000 product images attributed to the wrong brand — and we didn\'t even know it. Dan found it in the first audit, built the remediation scripts, and fixed it in days.',
+          reviewBody: 'Dan found 16,000 product images attributed to the wrong brand in his first audit, built the fix scripts, and rebuilt our entire Shopify taxonomy from scratch. We went from ranking for nothing to actually showing up.',
         },
         {
           '@type': 'Review',
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
           author: { '@type': 'Person', name: 'Rachel Osei' },
-          reviewBody: 'Dan built our n8n automation stack from nothing. We went from manually processing orders and updating spreadsheets to a fully connected operation.',
+          reviewBody: 'Dan built our automation stack from nothing. Shopify, Klaviyo, and supplier feeds all talking to each other. The time savings alone paid for six months of retainer.',
         },
         {
           '@type': 'Review',
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-          author: { '@type': 'Person', name: 'James Alderton' },
+          author: { '@type': 'Person', name: 'Managing Director' },
           reviewBody: 'We replaced two agencies with Dan. One person, more output, less politics. Revenue is up 47% year-on-year.',
         },
       ],
@@ -125,10 +125,20 @@ export default function HomePage() {
   );
 }
 
+interface Testimonial {
+  quote: string;
+  name: string;
+  title: string;
+  company: string;
+  companyUrl: string | null;
+  metric: string;
+  sector: string;
+}
+
 function SocialProof() {
-  const testimonials = [
+  const testimonials: Testimonial[] = [
     {
-      quote: 'We had nearly 17,000 product images attributed to the wrong brand — and we didn\'t even know it. Dan found it in the first audit, built the remediation scripts, and fixed it in days. He then rebuilt our entire Shopify taxonomy from scratch. We were ranking for nothing. Now we actually show up.',
+      quote: 'Dan found 16,000 product images attributed to the wrong brand in his first audit, built the fix scripts, and rebuilt our entire Shopify taxonomy from scratch. We went from ranking for nothing to actually showing up.',
       name: 'Sarah Wheatley',
       title: 'Co-founder',
       company: 'Xshowhome',
@@ -137,20 +147,20 @@ function SocialProof() {
       sector: 'Furniture & Homeware · Shopify · Warwickshire, UK',
     },
     {
-      quote: 'Dan built our n8n automation stack from nothing. We went from manually processing orders and updating spreadsheets to a fully connected operation — Shopify, Klaviyo, and our supplier feeds all talking to each other. The time savings alone paid for six months of retainer.',
+      quote: 'Dan built our automation stack from nothing. Shopify, Klaviyo, and supplier feeds all talking to each other. The time savings alone paid for six months of retainer.',
       name: 'Rachel Osei',
       title: 'Founder & CEO',
       company: 'Miracle Moon',
-      companyUrl: undefined,
+      companyUrl: null,
       metric: '120+ hours saved per month. Fully automated ops stack.',
       sector: 'Health & Wellness · Shopify · UK DTC',
     },
     {
       quote: 'We replaced two agencies with Dan. One person, more output, less politics. Revenue is up 47% year-on-year.',
-      name: 'James Alderton',
-      title: 'Managing Director',
-      company: 'UK DTC Apparel Brand (name withheld)',
-      companyUrl: undefined,
+      name: 'Managing Director',
+      title: '',
+      company: 'UK DTC Apparel Brand',
+      companyUrl: null,
       metric: '+47% YoY revenue growth',
       sector: 'Fashion & Apparel · Shopify Plus · UK DTC',
     },
@@ -166,18 +176,20 @@ function SocialProof() {
           {testimonials.map((t, i) => (
             <div key={i} className="bg-brand-surface rounded-2xl p-6 border border-brand-border relative">
               <Quote size={20} className="text-brand-primary/30 mb-3" />
-              <p className="text-brand-text text-sm leading-relaxed mb-4 italic">&ldquo;{t.quote}&rdquo;</p>
+              <p className="text-brand-text text-base leading-relaxed mb-4 font-light italic">&ldquo;{t.quote}&rdquo;</p>
               <div className="pt-4 border-t border-white/5">
-                <div className="inline-block px-3 py-1 mb-3 bg-brand-primary/10 text-brand-primary text-xs font-bold rounded-full">{t.metric}</div>
-                <div className="text-white font-bold text-sm">{t.name}</div>
-                <div className="text-brand-muted text-xs mb-1">
-                  {t.title}, {t.companyUrl ? (
+                <div className="text-white font-semibold text-sm">
+                  {t.name}{t.title ? ` — ${t.title}` : ''}
+                </div>
+                <div className="text-sm text-brand-muted mt-1">
+                  {t.companyUrl ? (
                     <a href={t.companyUrl} target="_blank" rel="noopener noreferrer" className="text-brand-primary hover:text-brand-accent transition-colors">{t.company}</a>
                   ) : (
                     t.company
                   )}
                 </div>
-                <div className="text-brand-muted/60 text-[10px] uppercase tracking-wider mt-2">{t.sector}</div>
+                <div className="inline-block px-3 py-1 mt-3 bg-emerald-500/10 text-emerald-400 text-xs font-medium rounded-full">{t.metric}</div>
+                <div className="text-brand-muted/60 text-xs mt-2">{t.sector}</div>
               </div>
             </div>
           ))}

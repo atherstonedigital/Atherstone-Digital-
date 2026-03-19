@@ -30,7 +30,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'Is a Fractional Director cheaper than hiring full-time?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes. A full-time Head of Ecommerce plus a Senior Developer typically costs over £140,000 per year including salary, National Insurance, pension, and benefits. A fractional retainer from Atherstone Digital starts from £36,000 per year for equivalent output.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. A full-time Head of Ecommerce plus a Senior Developer typically costs over £140,000 per year including salary, National Insurance, pension, and benefits. Atherstone Digital\u2019s fractional model starts from £36,000/year (£3,000/month) for equivalent output \u2014 versus £140,000+ all-in for a comparable full-time team.' },
     },
     {
       '@type': 'Question',

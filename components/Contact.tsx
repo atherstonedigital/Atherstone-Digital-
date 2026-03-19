@@ -75,7 +75,7 @@ export function Contact() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 w-full py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors shadow-[0_0_20px_rgba(0,220,130,0.2)]"
               >
-                Book a Free 30-min Teardown <ArrowRight size={18} />
+                Book a Free 20-min Teardown <ArrowRight size={18} />
               </a>
               <div className="flex items-center gap-4 mt-6">
                 <div className="flex-1 h-px bg-brand-border"></div>

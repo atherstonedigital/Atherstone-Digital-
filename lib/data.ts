@@ -250,7 +250,7 @@ The fractional model works best for brands doing £500k–£5M in annual ecommer
 - Can't justify a full-time director hire yet
 - Are frustrated with agency account management
 
-If that's you, [book a strategy call](/fractional-ecommerce-director).
+If that's you, [book a strategy call](/fractional-ecommerce-director). You can also [see why fractional beats agencies on cost](/why-fractional).
     `,
   },
   {
@@ -278,7 +278,7 @@ Shopify generates duplicate URLs for products accessed through different collect
 Filter and sort URLs (e.g. ?sort_by=price-ascending) should be noindexed. These create thousands of near-duplicate URLs that dilute your crawl budget.
 
 **3. Schema markup**
-Every product page should have Product schema. Every collection should have ItemList. Your homepage and about page should carry Organization and LocalBusiness schema.
+Every product page should have Product schema. Every collection should have ItemList. Your homepage and about page should carry Organization and LocalBusiness schema. This is also the foundation of [AI search readiness](/services/ai-search-optimization).
 
 **4. Core Web Vitals**
 Shopify themes have gotten heavier over the years. A bloated app stack — loyalty programmes, review widgets, bundle builders — can destroy your LCP score. Audit your apps quarterly.
@@ -312,7 +312,7 @@ Track:
 - Average position for target keywords
 - Core Web Vitals pass rate
 
-We run monthly SEO reviews for all our fractional partners. [Get in touch](/#contact) if you'd like us to audit your Shopify store.
+We run monthly SEO reviews for all our [fractional partners](/fractional-ecommerce-director). [Get in touch](/#contact) if you'd like us to audit your Shopify store's [conversion rate](/services/conversion-rate-optimisation) and organic visibility.
     `,
   },
   {
@@ -368,7 +368,7 @@ For brands with subscription products, n8n monitors upcoming renewals and, 7 day
 
 n8n has a cloud version if you don't want to self-host. The learning curve is real but manageable — the drag-and-drop interface is intuitive once you understand the node model.
 
-We build and manage all automation infrastructure for our fractional partners. If you want these workflows running in your stack, [let's talk](/fractional-ecommerce-director).
+We build and manage all [automation infrastructure](/services/ecommerce-automation) for our fractional partners. Pair these workflows with a solid [Klaviyo retention strategy](/services/retention-marketing) for maximum impact. If you want these workflows running in your stack, [let's talk](/fractional-ecommerce-director).
     `,
   },
   {
@@ -437,7 +437,7 @@ The fractional model is typically cheaper *and* delivers more tangible output be
 
 If you need someone to **tell you what to do**, hire a consultant. If you need someone to **do it with you** (or for you), hire a fractional director.
 
-For Shopify brands doing £500k–£5M in revenue, the fractional model almost always delivers better ROI. [See how the retainer works](/fractional-ecommerce-director).
+For Shopify brands doing £500k–£5M in revenue, the fractional model almost always delivers better ROI. [See how the retainer works](/fractional-ecommerce-director) or [compare costs against agencies and full-time hires](/why-fractional).
     `,
   },
   {
@@ -591,7 +591,7 @@ For everyone else — particularly Shopify brands in the £500k–£5M range —
 
 ## Make the Switch
 
-If you're weighing up these options, [see the full breakdown of what the retainer includes](/fractional-ecommerce-director) or [read why fractional beats agencies too](/why-fractional).
+If you're weighing up these options, [see the full breakdown of what the retainer includes](/fractional-ecommerce-director) or [read why fractional beats agencies too](/why-fractional). Consider how [n8n automation](/services/ecommerce-automation) multiplies fractional output even further.
     `,
   },
   {
@@ -620,7 +620,7 @@ A fractional ecommerce director replaces the agency with a **single senior opera
 
 ### 1. One Brain, Not Five Departments
 
-When strategy, development, paid media, CRO, and automation are managed by one person, there are no handoff delays, no "that's not my department" moments, and no coordination overhead. The person who spots a conversion problem on your product page can fix it the same day — because they write the code too.
+When strategy, development, [paid media](/services/paid-media-growth), [CRO](/services/conversion-rate-optimisation), and automation are managed by one person, there are no handoff delays, no "that's not my department" moments, and no coordination overhead. The person who spots a conversion problem on your product page can fix it the same day — because they write the code too.
 
 ### 2. Senior Execution, Every Task
 
@@ -748,7 +748,204 @@ The investment to set up a core automation stack is typically **£2,000–£5,00
 
 Given the numbers above (£22k in time savings + £60k in error reduction + revenue uplift), most brands see **positive ROI within 30 days**.
 
-We build and manage all automation infrastructure for our fractional partners. [Let's talk about automating your operations](/fractional-ecommerce-director).
+We build and manage all [automation infrastructure](/services/ecommerce-automation) for our fractional partners. [Let's talk about automating your operations](/fractional-ecommerce-director).
+    `,
+  },
+  {
+    slug: 'shopify-product-data-audit-guide',
+    title: 'The Shopify Product Data Audit: Why 97% of Your Alt Text Might Be Wrong',
+    date: '2025-10-14',
+    excerpt: 'We audited a Shopify furniture store with 16,000+ product images. 97% had the wrong brand in the alt text. Here\'s how to find and fix the same problem in your store.',
+    category: 'SEO',
+    readTime: '11 min read',
+    content: `
+## Why This Happens
+
+Alt text rarely gets audited. It's invisible to customers, so it doesn't trigger support tickets. It's set once during product upload and forgotten. If you use Matrixify, a third-party feed, or a manual import process, whatever value was in the supplier's data becomes your alt text — and stays there indefinitely.
+
+When we ran a full data audit on a UK furniture retailer's Shopify store earlier this year, we expected to find some issues. What we found was worse.
+
+Out of 16,193 product image rows, 15,668 — just under 97% — had the wrong brand name embedded in the alt text. The legal entity name of the holding company had been baked into every image's alt attribute when the product catalogue was originally set up, and no one had ever checked.
+
+## How to Audit Your Store
+
+**Step 1 — Export via Matrixify**
+
+Export your Products sheet from Matrixify. The column you need is "Image Alt Text". Filter it and check for values that shouldn't be there: supplier names, legal entity names, placeholder text, or blank values.
+
+**Step 2 — Check the scale of the problem**
+
+In Excel or Python, count how many rows contain unexpected values. Our client's 97% figure sounds extreme — but we've seen 40–60% error rates in stores that have been running for 3+ years without an audit.
+
+**Step 3 — Build a remediation script**
+
+Python + openpyxl works well here. The logic is straightforward: if the alt text contains [wrong value], replace with [Product Title] + [Vendor] + [Brand]. Export the corrected file and import back via Matrixify with Command: MERGE.
+
+**Step 4 — Fix the Liquid template**
+
+Even after a bulk fix, your [Shopify theme's image rendering](/services/shopify-plus-architecture) Liquid may be pulling alt text from a field that gets overwritten on the next product sync. Check your product image Liquid and ensure it references image.alt with a sensible fallback.
+
+## What This Is Worth
+
+Image alt text is a genuine ranking signal for Google Image Search — especially for product photography. If your images are currently attributed to the wrong brand, you're invisible for brand + product searches that should be driving traffic.
+
+This kind of data remediation sits at the foundation of any [LLM search readiness](/services/ai-search-optimization) strategy — AI models rely heavily on structured product data to surface recommendations.
+
+For our client, fixing 16,193 rows took two days of scripting and one Matrixify import. That's a small investment against the visibility recovery.
+
+---
+
+If you'd like us to run a data audit on your Shopify store, [book a free 20-minute teardown](https://calendly.com/dan-atherstonedigital/30min).
+    `,
+  },
+  {
+    slug: 'shopify-taxonomy-guide-2025',
+    title: 'Shopify Standard Taxonomy: How to Fix a Broken Product Catalogue',
+    date: '2025-11-20',
+    excerpt: 'We found 1,373 products assigned to \'Address Signs\' and 889 to \'Finials\' on a UK furniture store. Here\'s how to audit and rebuild your Shopify taxonomy correctly.',
+    category: 'SEO',
+    readTime: '9 min read',
+    content: `
+## Why Taxonomy Matters
+
+Shopify introduced a standardised product taxonomy in 2023, with the goal of mapping your products to Google's product category system. For brands running Google Shopping, this taxonomy mapping feeds directly into your [feed quality score](/services/google-feed-management), your eligibility for free listings, and your product type match rates in Performance Max campaigns.
+
+The problem: most stores have never audited their taxonomy mapping. And when it goes wrong, it goes spectacularly wrong.
+
+## What We Found
+
+On a recent client audit, we exported the full product catalogue and grouped products by their assigned Category Name. Here's a sample of what we found in a 6,337-product furniture and homeware store:
+
+- **Address Signs:** 1,373 products (should be sofas, beds, tables)
+- **Finials:** 889 products (should be curtain poles, accessories)
+- **Earthquake Alarms:** 721 products (should be miscellaneous homeware)
+- **Backrest Pillows:** Various (should be benches)
+- **Bird Feeders:** Various (should be photo frames, outdoor furniture)
+
+This isn't a minor error. These products are being fed to Google Shopping under completely incorrect categories, suppressing impression share and causing policy violations.
+
+## Why It Happens
+
+The taxonomy mapping happens at product import. If you're using a supplier feed or a migration tool, whatever category ID exists in the source data gets written as-is. Shopify's taxonomy uses a hierarchical ID system — and if a wrong ID gets applied to every row in a bulk import, you end up with 1,373 products in the wrong category overnight.
+
+## How to Fix It
+
+**Step 1 — Export via Matrixify**
+
+Export the Products sheet. You need three columns: Handle, Category: ID, Category: Name.
+
+**Step 2 — Identify the damage**
+
+Group by Category Name, count products per category. Any furniture store with products in "Address Signs" or "Earthquake Alarms" has a problem.
+
+**Step 3 — Build a mapping table**
+
+Create a lookup: your product type → correct Shopify taxonomy path and ID. Critical rule: **only use taxonomy IDs verified from your own store's export**, not constructed IDs.
+
+**Step 4 — Apply and import**
+
+Write the corrected Category: ID and Category: Name columns using Python or Excel VLOOKUP. Import via Matrixify with Command: MERGE.
+
+## Verification
+
+After import, spot-check 10–15 products across different types in Shopify admin. In Google Merchant Center, check your product feed for category mismatch disapprovals — these should clear within 2–3 feed refresh cycles.
+
+Getting your taxonomy right is a prerequisite for effective [paid media campaigns](/services/paid-media-growth) — broken categories mean broken Shopping ads.
+
+---
+
+Need a taxonomy audit? [Book a free session](https://calendly.com/dan-atherstonedigital/30min).
+    `,
+  },
+  {
+    slug: 'fractional-ecommerce-director-2026',
+    title: 'The Fractional Ecommerce Director in 2026: What\'s Changed and What to Look For',
+    date: '2026-01-15',
+    excerpt: 'The fractional model is maturing. In 2026, the gap between a good fractional director and a bad one is wider than ever — here\'s what to look for.',
+    category: 'Strategy',
+    readTime: '8 min read',
+    content: `
+## What's Changed
+
+Three years ago, "fractional ecommerce director" was a niche term that founders had to explain to their investors. Now it's a recognised model — and with recognition comes dilution.
+
+The market has filled with consultants repositioning as [fractional directors](/fractional-ecommerce-director), agencies offering "fractional" services through junior staff, and solo operators who are great at one discipline (usually paid media) calling themselves full-stack ecommerce leaders.
+
+### AI has raised the floor — and widened the gap
+
+A fractional director who hasn't integrated AI into their delivery is working at a structural disadvantage. The operators who have integrated AI agents into their data workflows, content production, and reporting are delivering at a throughput that wasn't achievable two years ago.
+
+### The data layer matters more
+
+LLM-powered search (ChatGPT, Gemini, Perplexity) is changing how products get discovered. Structured data quality, taxonomy accuracy, and content richness are no longer just [SEO concerns](/services/ai-search-optimization) — they're feed quality concerns, AI citability concerns, and increasingly, [conversion concerns](/services/conversion-rate-optimisation).
+
+### Founders want embedded operators, not advisors
+
+The retainer-for-strategy model is being rejected. Founders who've been through agencies know what an advisor's slide deck looks like. They want someone who logs in, fixes the thing, and reports back.
+
+## What to Look For in 2026
+
+**Hands-on technical depth.** Can they write Liquid? Can they build an [n8n workflow](/services/ecommerce-automation)? Can they run a Matrixify import safely?
+
+**AI integration in the workflow.** Not AI as a buzzword — AI as a delivery mechanism. Ask specifically: what agents do you run, what do they handle, and how does it change your output capacity?
+
+**Commercial accountability.** Do they track contribution margin, not just revenue? A fractional director who only reports on top-line GMV doesn't understand your business.
+
+**A tight ICP.** The best fractional directors work with a specific type of brand on a specific platform. Generalists are rarely as effective as specialists at this engagement model.
+
+---
+
+[Book a 20-minute fit call](https://calendly.com/dan-atherstonedigital/30min) to see if the Atherstone Digital model is right for your Shopify brand.
+    `,
+  },
+  {
+    slug: 'ai-search-shopify-2026',
+    title: 'Is Your Shopify Store Ready for AI Search in 2026?',
+    date: '2026-02-28',
+    excerpt: 'ChatGPT, Gemini, and Perplexity are now product discovery channels. Here\'s what Shopify brands need to do to appear in AI-generated recommendations.',
+    category: 'SEO',
+    readTime: '10 min read',
+    content: `
+## How AI Search Works for Products
+
+In 2024, "AI search" was a prediction. In 2026, it's a distribution channel.
+
+ChatGPT's shopping integration, Gemini's product recommendations, and Perplexity's commerce answers are now returning product results to real buyers. Early data from brands in our partner network suggests that AI-referred traffic is converting at rates comparable to Google Shopping — possibly higher, because the buyer has usually been pre-qualified by the AI's response.
+
+AI search engines don't crawl your store the same way Google does. They rely on:
+
+- **Structured data** — JSON-LD Product schema with accurate pricing, availability, brand, and description
+- **Content richness** — Product descriptions that answer real questions
+- **Brand signal consistency** — Your brand name, product names, and category terms must be consistent across your store, your feed, and your structured data
+- **Third-party citations** — Press mentions, review platforms, and comparison sites that reference your brand
+
+## What to Check on Your Shopify Store
+
+**Product schema**
+
+Is your Product JSON-LD present on every PDP? Does it include brand, offers (with priceCurrency, price, availability), description, and image? Run a sample PDP through Google's Rich Results Test. This is a core part of our [LLM search readiness](/services/ai-search-optimization) service.
+
+**Brand consistency**
+
+Is your brand name consistent between: your Shopify store name, your product vendor field, your image alt text, your meta titles, and your [Google Merchant Center feed](/services/google-feed-management)? Inconsistency creates ambiguity for AI models.
+
+**Description depth**
+
+Thin product descriptions (under 100 words, or templated) are a liability. AI models prefer to cite sources with rich, specific, accurate information. This ties directly into [CRO](/services/conversion-rate-optimisation) — richer descriptions convert better too.
+
+**Q&A and FAQ content**
+
+Product page FAQs, collection page guides, and blog content that answers real pre-purchase questions are the highest-value content for AI citability. If your blog doesn't exist or hasn't been updated since 2024, you're invisible to AI models learning about your category.
+
+## The First-Mover Advantage
+
+Most Shopify brands are not optimising for AI search yet. The brands that get their structured data right, their content rich, and their brand signal consistent in the next 6–12 months will have a durable advantage.
+
+Pair this with a solid [Klaviyo retention strategy](/services/retention-marketing) and you're building a compounding growth engine.
+
+---
+
+[Book a free teardown](https://calendly.com/dan-atherstonedigital/30min) to see where your Shopify store stands.
     `,
   },
   {
@@ -862,7 +1059,7 @@ This isn't a revenue flow — it's a deliverability flow. A bloated, unengaged l
 
 If your Klaviyo account has fewer than 5 active flows, or your email revenue is under 20% of total, there's significant upside to capture.
 
-We audit and rebuild Klaviyo accounts as part of every fractional engagement. [Book a call to discuss your email strategy](/#contact).
+We audit and rebuild [Klaviyo accounts](/services/retention-marketing) as part of every [fractional engagement](/fractional-ecommerce-director). [Book a call to discuss your email strategy](/#contact).
     `,
   },
 ];

@@ -46,11 +46,38 @@ export default function FractionalDirectorPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
-        mainEntity: faqs.map((f) => ({
-          '@type': 'Question',
-          name: f.q,
-          acceptedAnswer: { '@type': 'Answer', text: f.a },
-        })),
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'What does a Fractional Ecommerce Director do?',
+            acceptedAnswer: { '@type': 'Answer', text: 'A Fractional Ecommerce Director provides senior-level ecommerce leadership — strategy, execution, and technical oversight — on a part-time or retainer basis. Unlike an agency, they own the P&L and work directly on your business. Unlike a consultant, they actually execute the work.' },
+          },
+          {
+            '@type': 'Question',
+            name: 'How much does a Fractional Ecommerce Director cost in the UK?',
+            acceptedAnswer: { '@type': 'Answer', text: 'Fractional Ecommerce Director retainers typically start from £3,000 per month in the UK. This compares to £85,000–£120,000 per year for a full-time hire, or £5,000–£10,000 per month for a traditional agency. Atherstone Digital retainers start from £3,000/month on a rolling monthly contract.' },
+          },
+          {
+            '@type': 'Question',
+            name: 'How quickly will we see results?',
+            acceptedAnswer: { '@type': 'Answer', text: 'Technical quick wins — fixing tracking, site speed, and UX bugs — typically surface within the first 10 days. Revenue impact from CRO and paid media optimisation usually trends upward from Month 2–3 as changes compound.' },
+          },
+          {
+            '@type': 'Question',
+            name: 'Do you work with brands outside Shopify?',
+            acceptedAnswer: { '@type': 'Answer', text: 'No. Atherstone Digital specialises exclusively in Shopify and Shopify Plus to maintain deep platform expertise. We do not work with Magento, WooCommerce, or BigCommerce.' },
+          },
+          {
+            '@type': 'Question',
+            name: 'What size brand is the fractional model right for?',
+            acceptedAnswer: { '@type': 'Answer', text: 'The model works best for Shopify brands doing £500,000 to £5,000,000 in annual revenue. Brands in this range are typically too large to manage growth alone, but not yet large enough to justify a full-time senior hire at £100,000+ per year.' },
+          },
+          {
+            '@type': 'Question',
+            name: 'Is the retainer a fixed contract?',
+            acceptedAnswer: { '@type': 'Answer', text: 'Retainers are fixed monthly based on agreed scope with no surprise hourly billing. Contracts are rolling monthly — pause or cancel with 30 days notice. There are no long-term lock-ins.' },
+          },
+        ],
       }) }} />
 
       {/* Hero */}
@@ -80,7 +107,7 @@ export default function FractionalDirectorPage() {
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
-              Book a 30-min Fit Call
+              Book a 20-min Fit Call
             </a>
             <Link href="/#contact" className="px-8 py-4 bg-transparent border border-brand-border text-white font-medium rounded-lg hover:bg-white/5 transition-all min-w-[200px] text-center">
               Complete the Application
@@ -248,6 +275,33 @@ export default function FractionalDirectorPage() {
         </div>
       </section>
 
+      {/* Revenue segmentation */}
+      <section className="container mx-auto px-6 mb-24">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-display font-bold text-white mb-10 text-center">Where You Are Shapes How We Start</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-brand-surface p-8 rounded-2xl border border-brand-border">
+              <div className="text-brand-primary font-bold text-lg mb-1">£500k – £1.5M Revenue</div>
+              <div className="text-brand-muted text-sm mb-6">Founder-led, wearing 10 hats</div>
+              <ul className="space-y-4 text-sm text-brand-muted">
+                <li className="flex gap-2"><span className="text-brand-primary mt-0.5 shrink-0">▸</span>The first priority is usually fixing the data foundation — tracking, feed quality, and product data that&apos;s been neglected while you focused on growth.</li>
+                <li className="flex gap-2"><span className="text-brand-primary mt-0.5 shrink-0">▸</span>We move fast on quick wins to prove the model: site speed, checkout friction, a first email flow.</li>
+                <li className="flex gap-2"><span className="text-brand-primary mt-0.5 shrink-0">▸</span>Month 3 goal: a machine that works while you sleep.</li>
+              </ul>
+            </div>
+            <div className="bg-brand-surface p-8 rounded-2xl border border-brand-border">
+              <div className="text-brand-primary font-bold text-lg mb-1">£1.5M – £5M Revenue</div>
+              <div className="text-brand-muted text-sm mb-6">Team in place, agencies frustrating you</div>
+              <ul className="space-y-4 text-sm text-brand-muted">
+                <li className="flex gap-2"><span className="text-brand-primary mt-0.5 shrink-0">▸</span>The first priority is usually replacing or auditing your existing agency setup — understanding what&apos;s actually working and what&apos;s burning budget.</li>
+                <li className="flex gap-2"><span className="text-brand-primary mt-0.5 shrink-0">▸</span>We bring a single point of accountability to a fragmented supplier roster.</li>
+                <li className="flex gap-2"><span className="text-brand-primary mt-0.5 shrink-0">▸</span>Month 3 goal: margin improvement, not just revenue growth.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="container mx-auto px-6 mb-24">
         <div className="max-w-3xl mx-auto">
@@ -270,7 +324,7 @@ export default function FractionalDirectorPage() {
             <p className="text-brand-primary font-bold text-xl mb-8">Retainers from £3,000 / month</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
-                Book a 30-min Fit Call
+                Book a 20-min Fit Call
               </a>
               <Link href="/#contact" className="px-8 py-4 bg-brand-surface border border-brand-border text-white font-medium rounded-lg hover:bg-white/5 transition-all min-w-[200px] text-center">
                 Complete the Application

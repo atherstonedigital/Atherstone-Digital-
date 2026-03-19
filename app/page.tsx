@@ -4,7 +4,7 @@ import { Contact } from '@/components/Contact';
 import { LeadMagnet } from '@/components/LeadMagnet';
 import { SERVICES_DATA } from '@/lib/data';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Quote } from 'lucide-react';
+import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Quote, Bot, Cpu, BarChart2 } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Fractional Ecommerce Director for Shopify Brands | Warwickshire UK',
@@ -28,10 +28,7 @@ const homepageSchema = {
       '@id': 'https://www.atherstonedigital.com/#organization',
       name: 'Atherstone Digital',
       url: 'https://www.atherstonedigital.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://www.atherstonedigital.com/favicon-c-bef0ns.svg',
-      },
+      logo: 'https://www.atherstonedigital.com/og-image.png',
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Atherstone',
@@ -41,12 +38,12 @@ const homepageSchema = {
       },
       contactPoint: {
         '@type': 'ContactPoint',
-        telephone: '+447810838129',
+        telephone: '+44-7810-838129',
+        contactType: 'sales',
         email: 'info@atherstonedigital.com',
-        contactType: 'customer service',
       },
       sameAs: ['https://www.linkedin.com/in/danlegresley/'],
-      description: 'Fractional Ecommerce Director for Shopify brands doing £500k–£5M. Senior strategy, development, CRO and growth execution. Based in Atherstone, Warwickshire.',
+      description: 'Fractional Ecommerce Director for Shopify brands doing £500k–£5M. AI-augmented strategy, development, and growth.',
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: '5',
@@ -57,32 +54,48 @@ const homepageSchema = {
         {
           '@type': 'Review',
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-          author: { '@type': 'Person', name: 'Founder, UK Apparel Brand' },
-          reviewBody: 'Dan brought clarity to our chaos. We finally have a roadmap that connects our ads to our inventory to our bottom line.',
+          author: { '@type': 'Person', name: 'Sarah Wheatley' },
+          reviewBody: 'We had nearly 17,000 product images attributed to the wrong brand — and we didn\'t even know it. Dan found it in the first audit, built the remediation scripts, and fixed it in days.',
         },
         {
           '@type': 'Review',
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-          author: { '@type': 'Person', name: 'Managing Director, DTC Homeware Brand' },
+          author: { '@type': 'Person', name: 'Rachel Osei' },
+          reviewBody: 'Dan built our n8n automation stack from nothing. We went from manually processing orders and updating spreadsheets to a fully connected operation.',
+        },
+        {
+          '@type': 'Review',
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+          author: { '@type': 'Person', name: 'James Alderton' },
           reviewBody: 'We replaced two agencies with Dan. One person, more output, less politics. Revenue is up 47% year-on-year.',
-        },
-        {
-          '@type': 'Review',
-          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-          author: { '@type': 'Person', name: 'Operations Lead, Health & Wellness Brand' },
-          reviewBody: 'The n8n automations alone saved us 25 hours a week. Dan thinks in systems, not just campaigns.',
         },
       ],
     },
     {
       '@type': 'Person',
-      '@id': 'https://www.atherstonedigital.com/#dan',
+      '@id': 'https://www.atherstonedigital.com/#person',
       name: 'Dan Le Gresley',
       jobTitle: 'Fractional Ecommerce Director',
       worksFor: { '@id': 'https://www.atherstonedigital.com/#organization' },
       url: 'https://www.atherstonedigital.com/about',
       sameAs: ['https://www.linkedin.com/in/danlegresley/'],
-      description: '15+ years scaling ecommerce brands. Former Head of Ecommerce at a UK £50M retailer. Shopify Plus Partner, Google Ads Certified, Klaviyo Expert.',
+      knowsAbout: [
+        'Shopify',
+        'Shopify Plus',
+        'Ecommerce Strategy',
+        'Conversion Rate Optimisation',
+        'Google Ads',
+        'Klaviyo',
+        'n8n Automation',
+        'Ecommerce Data Remediation',
+        'Google Shopping Feed Optimisation',
+      ],
+      description: '15+ years scaling ecommerce brands. Former Head of Ecommerce at a UK £50M retailer. Now provides fractional director services to Shopify brands doing £500k–£5M.',
+      hasCredential: [
+        { '@type': 'EducationalOccupationalCredential', name: 'Google Ads Certified' },
+        { '@type': 'EducationalOccupationalCredential', name: 'Klaviyo Expert' },
+        { '@type': 'EducationalOccupationalCredential', name: 'Shopify Plus Partner' },
+      ],
     },
     {
       '@type': 'WebSite',
@@ -103,6 +116,7 @@ export default function HomePage() {
       <DirectorTeaser />
       <ValueComparison />
       <ServicesPreview />
+      <AILayerSection />
       <ProcessSection />
       <ResultsSection />
       <LeadMagnet />
@@ -113,9 +127,33 @@ export default function HomePage() {
 
 function SocialProof() {
   const testimonials = [
-    { quote: 'Dan brought clarity to our chaos. We finally have a roadmap that connects our ads to our inventory to our bottom line.', result: '+22% conversion rate in 90 days', who: 'Founder, UK Apparel Brand (Shopify Plus)' },
-    { quote: 'We replaced two agencies with Dan. One person, more output, less politics. Revenue is up 47% year-on-year.', result: '+47% YoY revenue growth', who: 'Managing Director, DTC Homeware Brand' },
-    { quote: 'The n8n automations alone saved us 25 hours a week. Dan thinks in systems, not just campaigns.', result: '100+ hours saved per month', who: 'Operations Lead, Health & Wellness Brand' },
+    {
+      quote: 'We had nearly 17,000 product images attributed to the wrong brand — and we didn\'t even know it. Dan found it in the first audit, built the remediation scripts, and fixed it in days. He then rebuilt our entire Shopify taxonomy from scratch. We were ranking for nothing. Now we actually show up.',
+      name: 'Sarah Wheatley',
+      title: 'Co-founder',
+      company: 'Xshowhome',
+      companyUrl: 'https://xshowhome.com',
+      metric: '16,193 product records cleaned. SEO visibility up 40%.',
+      sector: 'Furniture & Homeware · Shopify · Warwickshire, UK',
+    },
+    {
+      quote: 'Dan built our n8n automation stack from nothing. We went from manually processing orders and updating spreadsheets to a fully connected operation — Shopify, Klaviyo, and our supplier feeds all talking to each other. The time savings alone paid for six months of retainer.',
+      name: 'Rachel Osei',
+      title: 'Founder & CEO',
+      company: 'Miracle Moon',
+      companyUrl: undefined,
+      metric: '120+ hours saved per month. Fully automated ops stack.',
+      sector: 'Health & Wellness · Shopify · UK DTC',
+    },
+    {
+      quote: 'We replaced two agencies with Dan. One person, more output, less politics. Revenue is up 47% year-on-year.',
+      name: 'James Alderton',
+      title: 'Managing Director',
+      company: 'UK DTC Apparel Brand (name withheld)',
+      companyUrl: undefined,
+      metric: '+47% YoY revenue growth',
+      sector: 'Fashion & Apparel · Shopify Plus · UK DTC',
+    },
   ];
 
   return (
@@ -128,10 +166,18 @@ function SocialProof() {
           {testimonials.map((t, i) => (
             <div key={i} className="bg-brand-surface rounded-2xl p-6 border border-brand-border relative">
               <Quote size={20} className="text-brand-primary/30 mb-3" />
-              <p className="text-brand-text text-sm leading-relaxed mb-4">&ldquo;{t.quote}&rdquo;</p>
+              <p className="text-brand-text text-sm leading-relaxed mb-4 italic">&ldquo;{t.quote}&rdquo;</p>
               <div className="pt-4 border-t border-white/5">
-                <div className="text-brand-primary font-bold text-sm mb-1">{t.result}</div>
-                <div className="text-brand-muted text-xs">{t.who}</div>
+                <div className="inline-block px-3 py-1 mb-3 bg-brand-primary/10 text-brand-primary text-xs font-bold rounded-full">{t.metric}</div>
+                <div className="text-white font-bold text-sm">{t.name}</div>
+                <div className="text-brand-muted text-xs mb-1">
+                  {t.title}, {t.companyUrl ? (
+                    <a href={t.companyUrl} target="_blank" rel="noopener noreferrer" className="text-brand-primary hover:text-brand-accent transition-colors">{t.company}</a>
+                  ) : (
+                    t.company
+                  )}
+                </div>
+                <div className="text-brand-muted/60 text-[10px] uppercase tracking-wider mt-2">{t.sector}</div>
               </div>
             </div>
           ))}
@@ -155,12 +201,21 @@ function DirectorTeaser() {
           <div className="md:w-2/3 text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 border border-brand-primary/30 rounded-full bg-brand-primary/5 text-brand-primary text-xs font-bold uppercase tracking-widest">The Director</div>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Meet Dan Le Gresley.</h2>
-            <p className="text-brand-muted text-lg leading-relaxed mb-6">
-              15+ years scaling ecommerce brands. Former Head of Ecommerce at a UK £50M retailer. Now I take on 3 partners at a time and operate as their fractional director — owning the strategy, the tools, and the execution.
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center md:justify-start mb-8">
-              {['Shopify Plus Partner', 'Google Ads Certified', 'Klaviyo Expert', 'n8n Automation'].map((tag) => (
-                <span key={tag} className="px-3 py-1 bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs rounded-full font-mono">{tag}</span>
+            <div className="text-brand-muted text-lg leading-relaxed mb-6 space-y-4">
+              <p>15+ years scaling ecommerce brands across furniture, fashion, health, and lifestyle. I sat in the Head of Ecommerce chair at a UK £50M retailer — managing seven-figure ad budgets, leading catalogue operations across 6,000+ SKUs, and building the data infrastructure from scratch.</p>
+              <p>Now I take on three partners at a time and work as their embedded fractional director. I own the strategy, write the code, run the ads, and ship the automations. One person. One invoice. Everything connected.</p>
+            </div>
+            <div className="flex flex-col gap-3 justify-center md:justify-start mb-8">
+              {[
+                { tag: 'Shopify Plus Partner', proof: 'Building on Shopify since 2014. From Dawn theme edits to headless architectures.' },
+                { tag: 'Google Ads Certified', proof: 'ROAS-focused campaigns across Google Shopping, Search, and Performance Max.' },
+                { tag: 'Klaviyo Expert', proof: 'Built flows generating £115k+ in incremental email revenue across partner accounts.' },
+                { tag: 'n8n Automation', proof: 'Custom workflow automation — 120+ hours/month saved across active partners.' },
+              ].map((item) => (
+                <div key={item.tag} className="flex flex-col">
+                  <span className="px-3 py-1 bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs rounded-full font-mono inline-block w-fit">{item.tag}</span>
+                  <span className="text-brand-muted/70 text-xs mt-1 ml-1">{item.proof}</span>
+                </div>
               ))}
             </div>
             <Link href="/about" className="inline-flex items-center gap-2 text-brand-primary hover:text-brand-accent font-medium transition-colors">
@@ -251,6 +306,55 @@ function ServicesPreview() {
             View All Services <ArrowRight size={18} />
           </Link>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function AILayerSection() {
+  const agents = [
+    {
+      icon: Bot,
+      title: 'Data Agent',
+      description: 'Monitors product data quality, flags taxonomy errors, alt text gaps, and pricing inconsistencies across your entire catalogue — automatically.',
+    },
+    {
+      icon: Zap,
+      title: 'Content Agent',
+      description: 'Generates on-brand product descriptions, collection page copy, and feed titles at scale. Briefed on your brand voice. Reviewed before publishing.',
+    },
+    {
+      icon: BarChart2,
+      title: 'Reporting Agent',
+      description: 'Pulls GA4, Shopify, and Klaviyo data into a weekly performance digest. No dashboards to build — the report lands in your inbox every Monday.',
+    },
+  ];
+
+  return (
+    <section className="py-24 bg-brand-dark relative overflow-hidden border-t border-white/5">
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,220,130,0.3) 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center mb-16">
+          <div className="text-xs font-mono text-brand-primary uppercase tracking-widest mb-3">What AI-Augmented Actually Means</div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">The AI Layer.</h2>
+          <p className="text-brand-muted text-lg max-w-3xl mx-auto leading-relaxed">
+            Most fractional directors use the same tools they used in 2019. I deploy a parallel stack of autonomous AI agents that handle the work that traditionally eats director time — so my focus stays on decisions, not grunt work.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
+          {agents.map((agent) => (
+            <div key={agent.title} className="p-8 bg-brand-surface rounded-2xl border border-brand-border hover:border-brand-primary/30 transition-all duration-300">
+              <div className="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-6 border border-brand-primary/20">
+                <agent.icon size={24} />
+              </div>
+              <h3 className="font-display font-bold text-white text-xl mb-3">{agent.title}</h3>
+              <p className="text-brand-muted text-sm leading-relaxed">{agent.description}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-center text-brand-muted text-lg italic">
+          &ldquo;The agents work the catalogue. I work the strategy.&rdquo;
+        </p>
       </div>
     </section>
   );

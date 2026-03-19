@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react';
 import { SERVICES_DATA } from '@/lib/data';
+import { useTheme } from '@/components/ThemeProvider';
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -23,6 +24,7 @@ export function Header() {
     setMobileServicesOpen(false);
   }, [pathname]);
 
+  const { theme, toggleTheme } = useTheme();
   const isActive = (href: string) => pathname === href;
   const closeMobile = () => { setMobileMenuOpen(false); setMobileServicesOpen(false); };
 
@@ -75,6 +77,13 @@ export function Header() {
             className={`text-sm font-medium transition-colors tracking-wide ${isActive('/blog') ? 'text-brand-primary' : 'text-brand-muted hover:text-brand-primary'}`}>
             Blog
           </Link>
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-lg bg-white/5 border border-white/10 hover:border-brand-primary/30 hover:bg-brand-primary/10 transition-all text-brand-muted hover:text-brand-primary"
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
           <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer"
             className="px-5 py-2.5 bg-brand-primary text-brand-dark font-bold text-sm rounded-lg hover:bg-brand-accent transition-colors pointer-events-auto shadow-[0_0_20px_rgba(0,220,130,0.2)] hover:shadow-[0_0_30px_rgba(0,220,130,0.4)]">
             Book a Call
@@ -110,6 +119,16 @@ export function Header() {
             <Link href="/why-fractional" onClick={closeMobile} className="text-white font-medium py-2 border-b border-brand-border">Why Fractional?</Link>
             <Link href="/results" onClick={closeMobile} className="text-white font-medium py-2 border-b border-brand-border">Results</Link>
             <Link href="/blog" onClick={closeMobile} className="text-white font-medium py-2 border-b border-brand-border">Blog</Link>
+            <div className="flex items-center justify-between py-2 border-b border-brand-border">
+              <span className="text-white font-medium">Theme</span>
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-lg bg-white/5 border border-white/10 hover:border-brand-primary/30 text-brand-muted hover:text-brand-primary transition-all"
+                aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              >
+                {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+            </div>
             <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer" onClick={closeMobile} className="w-full text-center px-6 py-3 bg-brand-primary text-brand-dark font-bold rounded-lg mt-2">Book a Call</a>
           </div>
         </div>

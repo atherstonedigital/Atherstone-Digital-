@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Target, ShieldCheck, Zap, Layers, MapPin } from 'lucide-react';
 import { Contact } from '@/components/Contact';
@@ -67,9 +68,11 @@ export default function AboutPage() {
             <div className="relative group order-2 lg:order-1">
               <div className="absolute inset-0 bg-brand-primary/20 rounded-3xl rotate-6 group-hover:rotate-3 transition-transform duration-500 blur-2xl opacity-60"></div>
               <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl aspect-[4/5] group-hover:scale-[1.02] transition-transform duration-500 bg-brand-surface">
-                <img
+                <Image
                   src="/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png"
                   alt="Dan Le Gresley - Speaker, Shopify Expert & Fractional Ecommerce Director"
+                  width={800}
+                  height={1000}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-60"></div>

@@ -97,7 +97,7 @@ export default function ResultsPage() {
 
         {/* Case study terminal */}
         <section className="container mx-auto px-6 mb-24">
-          <div className="relative bg-[#05110d] border border-white/10 rounded-3xl overflow-hidden max-w-5xl mx-auto shadow-2xl">
+          <div className="relative bg-brand-terminal border border-white/10 rounded-3xl overflow-hidden max-w-5xl mx-auto shadow-2xl">
             <div className="bg-white/5 border-b border-white/5 px-6 py-3 flex items-center gap-4">
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
@@ -152,7 +152,7 @@ export default function ResultsPage() {
 
         {/* Case study 2 — Xshowhome */}
         <section className="container mx-auto px-6 mb-24">
-          <div className="relative bg-[#05110d] border border-white/10 rounded-3xl overflow-hidden max-w-5xl mx-auto shadow-2xl">
+          <div className="relative bg-brand-terminal border border-white/10 rounded-3xl overflow-hidden max-w-5xl mx-auto shadow-2xl">
             <div className="bg-white/5 border-b border-white/5 px-6 py-3 flex items-center gap-4">
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500/50"></div>

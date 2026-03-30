@@ -67,7 +67,7 @@ export function LeadMagnet() {
                   name="email"
                   required
                   placeholder="Your work email"
-                  className="flex-1 bg-white/5 border border-brand-border rounded-lg px-4 py-3 text-white placeholder-brand-muted/50 focus:outline-none focus:border-brand-primary/50 transition-colors text-sm"
+                  className="flex-1 bg-white/5 border border-brand-border rounded-lg px-4 py-3 text-white placeholder-brand-muted/50 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:ring-offset-1 focus:ring-offset-brand-dark focus:border-brand-primary/50 transition-colors text-sm"
                 />
                 <button
                   type="submit"

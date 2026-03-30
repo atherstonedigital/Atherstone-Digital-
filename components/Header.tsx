@@ -52,7 +52,7 @@ export function Header() {
               className={`text-sm font-medium transition-colors tracking-wide flex items-center gap-1 py-4 cursor-pointer ${isActive('/services') ? 'text-brand-primary' : 'text-brand-muted hover:text-brand-primary'}`}>
               Services <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
             </Link>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-[320px] bg-[#020604]/95 backdrop-blur-xl border border-brand-border rounded-xl p-2 shadow-[0_10px_40px_rgba(0,0,0,0.5)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-50">
+            <div className="absolute top-full left-1/2 -translate-x-1/2 w-[320px] bg-brand-dark/95 backdrop-blur-xl border border-brand-border rounded-xl p-2 shadow-[0_10px_40px_rgba(0,0,0,0.5)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-50">
               <div className="grid gap-1">
                 {SERVICES_DATA.map((service) => (
                   <Link key={service.id} href={`/services/${service.slug}`} onClick={closeMobile}
@@ -106,7 +106,7 @@ export function Header() {
         <div className="lg:hidden bg-brand-dark/95 backdrop-blur-xl border-t border-brand-border pointer-events-auto">
           <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
             <Link href="/fractional-ecommerce-director" onClick={closeMobile} className="text-white font-medium py-2 border-b border-brand-border">Fractional Director</Link>
-            <button onClick={() => setMobileServicesOpen(!mobileServicesOpen)} className="text-white font-medium py-2 border-b border-brand-border flex justify-between items-center w-full">
+            <button onClick={() => setMobileServicesOpen(!mobileServicesOpen)} aria-expanded={mobileServicesOpen} className="text-white font-medium py-2 border-b border-brand-border flex justify-between items-center w-full">
               Services <ChevronDown size={16} className={`transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`} />
             </button>
             {mobileServicesOpen && (

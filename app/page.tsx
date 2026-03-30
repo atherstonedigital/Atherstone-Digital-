@@ -3,6 +3,7 @@ import { Hero } from '@/components/Hero';
 import { Contact } from '@/components/Contact';
 import { LeadMagnet } from '@/components/LeadMagnet';
 import { SERVICES_DATA } from '@/lib/data';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Quote, Bot, Cpu, BarChart2 } from 'lucide-react';
 
@@ -207,7 +208,7 @@ function DirectorTeaser() {
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/3 flex justify-center">
             <div className="relative w-52 h-52 rounded-2xl overflow-hidden border-2 border-brand-primary/20 shadow-[0_0_40px_rgba(0,220,130,0.1)]">
-              <img src="/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png" alt="Dan Le Gresley — Fractional Ecommerce Director based in Atherstone, Warwickshire" width={208} height={208} loading="lazy" decoding="async" className="w-full h-full object-cover object-top" />
+              <Image src="/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png" alt="Dan Le Gresley — Fractional Ecommerce Director based in Atherstone, Warwickshire" width={208} height={208} className="w-full h-full object-cover object-top" />
             </div>
           </div>
           <div className="md:w-2/3 text-center md:text-left">

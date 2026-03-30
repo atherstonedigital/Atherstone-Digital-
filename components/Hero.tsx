@@ -119,7 +119,7 @@ export function Hero() {
 
   return (
     <section id="home" className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden pt-36 pb-32" style={{ backgroundColor: bgColor }}>
-      <canvas ref={canvasRef} className="absolute inset-0 z-0 w-full h-full pointer-events-auto" style={{ width: '100%', height: '100%' }} />
+      <canvas ref={canvasRef} className="absolute inset-0 z-0 w-full h-full pointer-events-auto" />
       <div className="absolute inset-0 z-0 pointer-events-none opacity-80" style={{ background: `linear-gradient(to bottom, ${bgColor}, transparent, ${bgColor})` }}></div>
       <div className="absolute inset-0 z-0 pointer-events-none opacity-90" style={{ background: `radial-gradient(circle at center, transparent 0%, ${bgColor} 100%)` }}></div>
       {!isLight && (

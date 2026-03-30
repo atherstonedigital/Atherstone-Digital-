@@ -164,7 +164,7 @@ export default function WhyFractionalPage() {
               </div>
             </div>
 
-            <div className="relative bg-gradient-to-b from-brand-surfaceHighlight to-[#05110d] border border-brand-primary/40 p-8 rounded-3xl shadow-[0_0_50px_rgba(0,220,130,0.1)] transform md:-translate-y-6">
+            <div className="relative bg-gradient-to-b from-brand-surfaceHighlight to-brand-terminal border border-brand-primary/40 p-8 rounded-3xl shadow-[0_0_50px_rgba(0,220,130,0.1)] transform md:-translate-y-6">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-primary text-brand-dark text-[10px] font-bold px-4 py-1.5 rounded-full tracking-widest uppercase shadow-[0_4px_20px_rgba(0,220,130,0.4)]">
                 Recommended Model
               </div>

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { LOCATIONS_DATA } from '@/lib/data';
+import { LOCATIONS_DATA, SERVICES_DATA } from '@/lib/data';
 
 export function Footer() {
   return (
@@ -20,6 +20,19 @@ export function Footer() {
             </p>
             <p className="text-xs opacity-60 mb-1">Company Number: 14742215</p>
             <p className="text-xs opacity-60">&copy; {new Date().getFullYear()} Atherstone Digital.</p>
+          </div>
+
+          <div className="text-center md:text-left">
+            <h4 className="font-bold text-white text-sm mb-3">Services</h4>
+            <ul className="text-xs text-brand-muted space-y-1.5">
+              {SERVICES_DATA.map((service) => (
+                <li key={service.id}>
+                  <Link href={`/services/${service.slug}`} className="hover:text-brand-primary transition-colors">
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="text-center md:text-left">

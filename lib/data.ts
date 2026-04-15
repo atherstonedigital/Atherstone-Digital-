@@ -144,6 +144,23 @@ export const SERVICES_DATA: ServiceItem[] = [
     seoDescription: 'Prepare your Shopify store for Google Gemini and ChatGPT search. I implement advanced schema and entity strategies for AI visibility.',
   },
   {
+    id: 'catalogue-health',
+    title: 'Catalogue Health',
+    description: 'Fixed-price Shopify product data audit and remediation. We find and fix the alt text errors, taxonomy misclassifications, and metadata gaps that silently hurt your rankings.',
+    outcome: 'Clean catalogue data',
+    longDescription: 'Fixed-price Shopify product data audit and remediation. We find and fix the alt text errors, taxonomy misclassifications, product type inconsistencies, and metadata gaps that are silently hurting your search rankings, Google Shopping performance, and accessibility compliance.',
+    features: [
+      'Full catalogue data audit across all products and variants',
+      'Detailed audit report with before and after metrics',
+      'Production-ready Matrixify import file with all fixes',
+      'Safe implementation guidance and rollback plan',
+      'Post-import verification pass',
+    ],
+    slug: 'shopify-catalogue-health',
+    seoTitle: 'Shopify Catalogue Health Audit & Fix | Atherstone Digital',
+    seoDescription: 'Fixed-price Shopify product data audit and remediation. We find and fix alt text errors, taxonomy misclassifications, and metadata gaps that hurt your search rankings and Google Shopping performance.',
+  },
+  {
     id: 'dev',
     title: 'Technical Execution',
     description: 'Custom app development, script editor logic, and checkout extensibility for complex business requirements.',
@@ -160,6 +177,40 @@ export const SERVICES_DATA: ServiceItem[] = [
     seoDescription: 'Complex Shopify development without the agency bloat. Custom apps, checkout functions, and API integrations handled by a senior expert.',
   },
 ];
+
+export interface PricingTier {
+  name: string;
+  skuRange: string;
+  price: number;
+  currency: string;
+  detail: string;
+}
+
+export interface CatalogueHealthData {
+  slug: string;
+  title: string;
+  shortTitle: string;
+  description: string;
+  category: string;
+  pricing: {
+    tiers: PricingTier[];
+  };
+}
+
+export const CATALOGUE_HEALTH_DATA: CatalogueHealthData = {
+  slug: 'shopify-catalogue-health',
+  title: 'Shopify Catalogue Health Audit & Fix',
+  shortTitle: 'Catalogue Health',
+  description: 'Fixed-price Shopify product data audit and remediation. We find and fix the alt text errors, taxonomy misclassifications, product type inconsistencies, and metadata gaps that are silently hurting your search rankings, Google Shopping performance, and accessibility compliance.',
+  category: 'productised-service',
+  pricing: {
+    tiers: [
+      { name: 'Starter', skuRange: 'Up to 500 SKUs', price: 1500, currency: 'GBP', detail: 'Ideal for newer Shopify brands or curated ranges with a focused product catalogue.' },
+      { name: 'Growth', skuRange: '500 to 2,000 SKUs', price: 3000, currency: 'GBP', detail: 'The most common tier. Covers established brands with expanded ranges and multiple collections.' },
+      { name: 'Scale', skuRange: '2,000+ SKUs', price: 5000, currency: 'GBP', detail: 'For larger catalogues, multi-brand retailers, and stores with complex variant structures. Priced on scope after an initial review.' },
+    ],
+  },
+};
 
 export const LOCATIONS_DATA: LocationItem[] = [
   {
@@ -795,7 +846,7 @@ For our client, fixing 16,193 rows took two days of scripting and one Matrixify 
 
 ---
 
-If you'd like us to run a data audit on your Shopify store, [book a free 20-minute teardown](https://calendly.com/dan-atherstonedigital/30min).
+If you'd like us to run a data audit on your Shopify store, [book a free 20-minute teardown](https://calendly.com/dan-atherstonedigital/30min). Or learn more about our [fixed-price Shopify Catalogue Health Audit & Fix](/services/shopify-catalogue-health) service.
     `,
   },
   {
@@ -854,7 +905,7 @@ Getting your taxonomy right is a prerequisite for effective [paid media campaign
 
 ---
 
-Need a taxonomy audit? [Book a free session](https://calendly.com/dan-atherstonedigital/30min).
+Need a taxonomy audit? [Book a free session](https://calendly.com/dan-atherstonedigital/30min). We also offer a [fixed-price Shopify Catalogue Health Audit & Fix](/services/shopify-catalogue-health) that covers taxonomy, alt text, product types, and metadata in one engagement.
     `,
   },
   {
@@ -945,7 +996,7 @@ Pair this with a solid [Klaviyo retention strategy](/services/retention-marketin
 
 ---
 
-[Book a free teardown](https://calendly.com/dan-atherstonedigital/30min) to see where your Shopify store stands.
+[Book a free teardown](https://calendly.com/dan-atherstonedigital/30min) to see where your Shopify store stands. If your product data needs immediate attention, check out our [Shopify Catalogue Health Audit & Fix](/services/shopify-catalogue-health).
     `,
   },
   {

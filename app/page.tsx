@@ -3,6 +3,7 @@ import { Hero } from '@/components/Hero';
 import { Contact } from '@/components/Contact';
 import { LeadMagnet } from '@/components/LeadMagnet';
 import { SERVICES_DATA } from '@/lib/data';
+import { siteConfig } from '@/lib/siteConfig';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Quote, Bot, Cpu, BarChart2 } from 'lucide-react';
@@ -251,7 +252,7 @@ function ValueComparison() {
     {
       label: 'Atherstone Digital',
       highlight: true,
-      items: ['Direct access to Dan (Founder)', 'One senior expert, every task', 'Max 3 partners at a time', 'From £3,000/mo. Full stack.', 'Full P&L accountability', 'Week 1 execution, weekly sprints'],
+      items: [`Direct access to Dan (Founder)`, 'One senior expert, every task', `Max ${siteConfig.capacity.total} partners at a time`, `From ${siteConfig.pricing.retainerFrom}/mo. Full stack.`, 'Full P&L accountability', 'Week 1 execution, weekly sprints'],
     },
     {
       label: 'Full-Time Director',

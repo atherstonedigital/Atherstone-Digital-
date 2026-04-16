@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight, ChevronDown, Terminal, Cpu, TrendingUp } from 'lucide-react';
-import { CURRENT_PARTNERS, MAX_PARTNERS, SPACES_LEFT, NEXT_INTAKE } from '@/lib/config';
+import { siteConfig } from '@/lib/siteConfig';
 import { useTheme } from '@/components/ThemeProvider';
 
 export function Hero() {
@@ -135,16 +135,16 @@ export function Hero() {
               <span className={`relative inline-flex rounded-full h-2 w-2 bg-brand-primary ${isLight ? '' : 'shadow-[0_0_8px_#00DC82]'}`}></span>
             </div>
             <span className="text-brand-primary font-mono text-xs md:text-sm tracking-wider">
-              CURRENT PARTNERS: <span className={`font-bold ${isLight ? 'text-gray-900' : 'text-white'}`}>{CURRENT_PARTNERS}/{MAX_PARTNERS} SLOTS FILLED</span>
+              CURRENT CAPACITY: <span className={`font-bold ${isLight ? 'text-gray-900' : 'text-white'}`}>{siteConfig.capacity.filled}/{siteConfig.capacity.total} PARTNERS</span>
             </span>
             <div className="flex items-center gap-1 ml-1">
-              {Array.from({ length: MAX_PARTNERS }).map((_, i) => (
-                <div key={i} className={`w-2.5 h-2.5 rounded-sm ${i < CURRENT_PARTNERS ? `bg-brand-primary ${isLight ? '' : 'shadow-[0_0_6px_#00DC82]'}` : isLight ? 'bg-gray-200 border border-gray-300' : 'bg-white/10 border border-white/20'}`} />
+              {Array.from({ length: siteConfig.capacity.total }).map((_, i) => (
+                <div key={i} className={`w-2.5 h-2.5 rounded-sm ${i < siteConfig.capacity.filled ? `bg-brand-primary ${isLight ? '' : 'shadow-[0_0_6px_#4ADE80]'}` : isLight ? 'bg-gray-200 border border-gray-300' : 'bg-white/10 border border-white/20'}`} />
               ))}
             </div>
           </div>
           <div className={`text-[10px] md:text-xs font-mono tracking-widest uppercase ${isLight ? 'text-gray-500' : 'text-brand-muted/70'}`}>
-            &gt;&gt; {SPACES_LEFT} SPACE{SPACES_LEFT !== 1 ? 'S' : ''} REMAINING — NEXT INTAKE: {NEXT_INTAKE.toUpperCase()}
+            &gt;&gt; {siteConfig.capacity.remaining} SPACE{siteConfig.capacity.remaining !== 1 ? 'S' : ''} REMAINING. NEXT INTAKE: {siteConfig.capacity.nextIntake.toUpperCase()}
           </div>
         </div>
 
@@ -170,9 +170,9 @@ export function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 opacity-0 animate-fade-in w-full sm:w-auto" style={{ animationDelay: '0.5s' }}>
-          <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer" className={`group relative w-full sm:w-auto px-10 py-5 bg-brand-primary font-bold text-lg rounded-xl overflow-hidden transition-all hover:scale-[1.02] flex items-center justify-center gap-3 ${isLight ? 'text-white shadow-lg' : 'text-brand-dark shadow-[0_0_40px_rgba(0,220,130,0.3)] hover:shadow-[0_0_60px_rgba(0,220,130,0.5)]'}`}>
+          <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className={`group relative w-full sm:w-auto px-10 py-5 bg-brand-primary font-bold text-lg rounded-xl overflow-hidden transition-all hover:scale-[1.02] flex items-center justify-center gap-3 ${isLight ? 'text-white shadow-lg' : 'text-brand-dark shadow-[0_0_40px_rgba(74,222,128,0.3)] hover:shadow-[0_0_60px_rgba(74,222,128,0.5)]'}`}>
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out skew-x-12"></div>
-            <span className="relative z-10 flex items-center gap-2">Book a Free 20-min Teardown <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" /></span>
+            <span className="relative z-10 flex items-center gap-2">{siteConfig.cta.label} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" /></span>
           </a>
           <Link href="/services" className={`w-full sm:w-auto px-10 py-5 font-medium text-lg rounded-xl transition-all flex items-center justify-center gap-2 backdrop-blur-md group/btn ${isLight ? 'bg-gray-900/5 hover:bg-gray-900/10 text-gray-900 border border-gray-300 hover:border-brand-primary/30' : 'bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-brand-primary/30'}`}>
             View My &apos;Force Multiplier&apos; Stack

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle, AlertTriangle, Clock, Target, BarChart3, HelpCircle } from 'lucide-react';
 import { Contact } from '@/components/Contact';
 import { FAQAccordion } from '@/components/FAQAccordion';
+import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: 'Fractional Ecommerce Director for Shopify | Atherstone Digital',
@@ -76,14 +77,14 @@ export default function FractionalDirectorPage() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-primary"></span>
             </span>
-            <span className="text-brand-primary text-xs font-mono uppercase tracking-widest font-bold">Limited Capacity: 2 Slots Available</span>
+            <span className="text-brand-primary text-xs font-mono uppercase tracking-widest font-bold">Current Capacity: {siteConfig.capacity.filled}/{siteConfig.capacity.total} Partners. {siteConfig.capacity.remaining} space remaining.</span>
           </div>
           <h1 className="font-display text-5xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
             Fractional Ecommerce Director <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">(Shopify)</span>
           </h1>
           <p className="text-xl text-brand-muted max-w-2xl mx-auto leading-relaxed mb-8">
-            Senior operational leadership for brands doing £500k–£5M/year revenue. <br />Stop guessing. Start executing.
+            Senior operational leadership for Shopify brands doing {siteConfig.revenueBand}. One operator, an AI agent stack, and full P&amp;L accountability. From {siteConfig.pricing.retainerFrom}/month.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm text-brand-text mb-10">
             {['Hands-on Execution', 'Weekly Strategy', 'No Long Contracts'].map((tag) => (
@@ -93,15 +94,15 @@ export default function FractionalDirectorPage() {
             ))}
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-            <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
-              Book a 20-min Fit Call
+            <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
+              {siteConfig.cta.label}
             </a>
             <Link href="/#contact" className="px-8 py-4 bg-transparent border border-brand-border text-white font-medium rounded-lg hover:bg-white/5 transition-all min-w-[200px] text-center">
               Complete the Application
             </Link>
           </div>
           <p className="text-sm font-mono text-brand-muted uppercase tracking-wider">
-            Retainers from <span className="text-brand-primary font-bold">£3,000/month</span>
+            Retainers from <span className="text-brand-primary font-bold">{siteConfig.pricing.retainerFrom}/month</span>
           </p>
         </div>
       </section>
@@ -301,8 +302,8 @@ export default function FractionalDirectorPage() {
             <p className="text-brand-muted text-lg mb-4">One senior partner. Weekly execution. Clear pricing.</p>
             <p className="text-brand-primary font-bold text-xl mb-8">Retainers from £3,000 / month</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
-                Book a 20-min Fit Call
+              <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
+                {siteConfig.cta.label}
               </a>
               <Link href="/#contact" className="px-8 py-4 bg-brand-surface border border-brand-border text-white font-medium rounded-lg hover:bg-white/5 transition-all min-w-[200px] text-center">
                 Complete the Application

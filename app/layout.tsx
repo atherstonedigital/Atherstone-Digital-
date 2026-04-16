@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
+import { DM_Sans, Syne, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import { Header } from '@/components/Header';
@@ -9,15 +9,15 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 
 const GA_ID = 'G-65K1KRBWQJ';
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-dm-sans',
   display: 'swap',
 });
 
-const spaceGrotesk = Space_Grotesk({
+const syne = Syne({
   subsets: ['latin'],
-  variable: '--font-space-grotesk',
+  variable: '--font-syne',
   display: 'swap',
 });
 
@@ -70,7 +70,7 @@ const globalSchema = {
         '@type': 'ImageObject',
         url: 'https://www.atherstonedigital.com/favicon-c-bef0ns.svg',
       },
-      description: 'Fractional Ecommerce Director for Shopify brands doing £500k–£5M. Senior strategy, development, CRO and growth execution. Based in Atherstone, Warwickshire.',
+      description: 'A fractional ecommerce director service for Shopify brands doing £500k\u2013£5M in annual revenue. AI-augmented operator replacing fragmented agency rosters with one senior partner. Based in Atherstone, Warwickshire.',
       email: 'info@atherstonedigital.com',
       telephone: '+447810838129',
       founder: {
@@ -134,7 +134,7 @@ const globalSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-GB" className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en-GB" className={`${dmSans.variable} ${syne.variable} ${jetbrainsMono.variable}`}>
       <head>
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
         <Script id="ga4-init" strategy="afterInteractive">

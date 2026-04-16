@@ -116,7 +116,8 @@ const breadcrumbSchema = {
   ],
 };
 
-const CALENDLY_URL = 'https://calendly.com/dan-atherstonedigital/30min';
+import { siteConfig } from '@/lib/siteConfig';
+const CALENDLY_URL = siteConfig.cta.url;
 
 const whatsIncluded = [
   {
@@ -197,9 +198,9 @@ export default function ShopifyCatalogueHealthPage() {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors shadow-[0_0_20px_rgba(0,220,130,0.2)] hover:shadow-[0_0_30px_rgba(0,220,130,0.4)]"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors shadow-[0_0_20px_rgba(74,222,128,0.2)] hover:shadow-[0_0_30px_rgba(74,222,128,0.4)]"
             >
-              Book a Free Catalogue Review Call <ArrowRight size={18} />
+              {siteConfig.cta.label} <ArrowRight size={18} />
             </a>
           </div>
         </section>
@@ -374,15 +375,15 @@ export default function ShopifyCatalogueHealthPage() {
               Let&apos;s see what&apos;s hiding in your product data
             </h2>
             <p className="text-brand-muted text-lg mb-8 max-w-2xl mx-auto">
-              Book a free 20-minute catalogue review call. We&apos;ll pull a quick sample from your store and show you what we find. No obligation, no hard sell.
+              Book a call and I&apos;ll pull a quick sample from your store to show you what I find. No obligation, no hard sell.
             </p>
             <a
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors shadow-[0_0_20px_rgba(0,220,130,0.2)] hover:shadow-[0_0_30px_rgba(0,220,130,0.4)]"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors shadow-[0_0_20px_rgba(74,222,128,0.2)] hover:shadow-[0_0_30px_rgba(74,222,128,0.4)]"
             >
-              Book Your Free Review Call <ArrowRight size={18} />
+              {siteConfig.cta.label} <ArrowRight size={18} />
             </a>
           </div>
         </section>

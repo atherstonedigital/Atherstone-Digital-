@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, Briefcase } from 'lucide-react';
 import { SERVICES_DATA } from '@/lib/data';
 import { Contact } from '@/components/Contact';
+import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: 'Shopify Ecommerce Services | Growth, CRO & Automation',
@@ -120,10 +121,10 @@ export default function ServicesPage() {
         <section className="container mx-auto px-6 mb-16">
           <div className="bg-brand-surfaceHighlight rounded-3xl p-12 text-center border border-brand-border max-w-4xl mx-auto">
             <h2 className="text-3xl font-display font-bold text-white mb-6">Not sure where to start?</h2>
-            <p className="text-brand-muted text-lg mb-8">Book a 20-minute call. I&apos;ll tell you exactly what I&apos;d prioritise for your store.</p>
-            <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
-              Book a Free Teardown <ArrowRight size={20} />
-            </Link>
+            <p className="text-brand-muted text-lg mb-8">Book a call. I&apos;ll tell you exactly what I&apos;d prioritise for your store.</p>
+            <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
+              {siteConfig.cta.label} <ArrowRight size={20} />
+            </a>
           </div>
         </section>
 

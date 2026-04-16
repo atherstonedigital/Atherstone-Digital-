@@ -9,17 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
-        display: ['var(--font-space-grotesk)', 'sans-serif'],
+        sans: ['var(--font-dm-sans)', 'sans-serif'],
+        display: ['var(--font-syne)', 'sans-serif'],
         mono: ['var(--font-jetbrains-mono)', 'monospace'],
       },
       colors: {
         brand: {
-          dark: '#020604',
+          dark: '#060D08',
           surface: '#041812',
           surfaceHighlight: '#08261e',
-          primary: '#00DC82',
-          accent: '#CCF078',
+          primary: '#4ADE80',
+          accent: '#26cf64',
           text: '#f1f5f9',
           muted: '#94a3b8',
           border: 'rgba(255, 255, 255, 0.08)',

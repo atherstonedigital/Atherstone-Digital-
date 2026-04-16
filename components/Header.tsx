@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react';
 import { SERVICES_DATA } from '@/lib/data';
+import { siteConfig } from '@/lib/siteConfig';
 import { useTheme } from '@/components/ThemeProvider';
 
 export function Header() {
@@ -84,9 +85,9 @@ export function Header() {
           >
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
-          <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer"
-            className="px-5 py-2.5 bg-brand-primary text-brand-dark font-bold text-sm rounded-lg hover:bg-brand-accent transition-colors pointer-events-auto shadow-[0_0_20px_rgba(0,220,130,0.2)] hover:shadow-[0_0_30px_rgba(0,220,130,0.4)]">
-            Book a Call
+          <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer"
+            className="px-5 py-2.5 bg-brand-primary text-brand-dark font-bold text-sm rounded-lg hover:bg-brand-accent transition-colors pointer-events-auto shadow-[0_0_20px_rgba(74,222,128,0.2)] hover:shadow-[0_0_30px_rgba(74,222,128,0.4)]">
+            {siteConfig.cta.label}
           </a>
         </nav>
 
@@ -129,7 +130,7 @@ export function Header() {
                 {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
               </button>
             </div>
-            <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer" onClick={closeMobile} className="w-full text-center px-6 py-3 bg-brand-primary text-brand-dark font-bold rounded-lg mt-2">Book a Call</a>
+            <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" onClick={closeMobile} className="w-full text-center px-6 py-3 bg-brand-primary text-brand-dark font-bold rounded-lg mt-2">{siteConfig.cta.label}</a>
           </div>
         </div>
       )}

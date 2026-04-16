@@ -1,8 +1,11 @@
+import { Suspense } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Briefcase } from 'lucide-react';
 import { SERVICES_DATA } from '@/lib/data';
 import { Contact } from '@/components/Contact';
+import { siteConfig } from '@/lib/siteConfig';
+import { ServicesPillarGrid } from '@/components/ServicesPillarGrid';
 
 export const metadata: Metadata = {
   title: 'Shopify Ecommerce Services | Growth, CRO & Automation',
@@ -59,7 +62,7 @@ export default function ServicesPage() {
 
         {/* Core product card */}
         <section className="container mx-auto px-6 mb-24">
-          <div className="bg-gradient-to-b from-brand-surfaceHighlight to-brand-dark border border-brand-primary/30 rounded-3xl p-1 relative overflow-hidden shadow-[0_0_50px_rgba(0,220,130,0.05)] max-w-5xl mx-auto">
+          <div className="bg-gradient-to-b from-brand-surfaceHighlight to-brand-dark border border-brand-primary/30 rounded-3xl p-1 relative overflow-hidden shadow-[0_0_50px_rgba(74,222,128,0.05)] max-w-5xl mx-auto">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1 bg-brand-primary/50 blur-[2px]"></div>
             <div className="bg-brand-dark rounded-[22px] p-8 md:p-12 lg:flex gap-12 items-center relative z-10">
               <div className="lg:w-1/2 mb-8 lg:mb-0">
@@ -85,45 +88,25 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Services grid */}
+        {/* Services grouped by pillar */}
         <section className="container mx-auto px-6 mb-24">
           <h2 className="font-display text-3xl font-bold text-white mb-4 text-center">The Tool Stack</h2>
           <p className="text-brand-muted text-center mb-12 max-w-xl mx-auto">
-            Each service below is a capability I use within a retainer engagement. They are not sold in isolation — they are the levers I pull to move your numbers.
+            Each service below is a capability I use within a retainer engagement. They are not sold in isolation. They are the levers I pull to move your numbers.
           </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {SERVICES_DATA.map((service) => (
-              <Link
-                key={service.id}
-                href={`/services/${service.slug}`}
-                className="relative p-6 rounded-2xl bg-brand-surface border border-white/5 overflow-hidden group hover:-translate-y-1 transition-transform duration-300"
-              >
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-brand-dark transition-colors">
-                      <ArrowRight size={16} />
-                    </div>
-                    <ArrowRight size={16} className="text-brand-muted -rotate-45 group-hover:rotate-0 group-hover:text-brand-primary transition-all duration-300" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2 font-display group-hover:text-brand-primary transition-colors">{service.title}</h3>
-                  <p className="text-brand-muted text-sm mb-4 leading-relaxed flex-grow">{service.description}</p>
-                  <div className="pt-4 border-t border-white/5 mt-auto">
-                    <p className="text-[10px] font-bold text-brand-accent uppercase tracking-widest">Outcome: {service.outcome}</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <Suspense>
+            <ServicesPillarGrid />
+          </Suspense>
         </section>
 
         {/* CTA */}
         <section className="container mx-auto px-6 mb-16">
           <div className="bg-brand-surfaceHighlight rounded-3xl p-12 text-center border border-brand-border max-w-4xl mx-auto">
             <h2 className="text-3xl font-display font-bold text-white mb-6">Not sure where to start?</h2>
-            <p className="text-brand-muted text-lg mb-8">Book a 20-minute call. I&apos;ll tell you exactly what I&apos;d prioritise for your store.</p>
-            <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
-              Book a Free Teardown <ArrowRight size={20} />
-            </Link>
+            <p className="text-brand-muted text-lg mb-8">Book a call. I&apos;ll tell you exactly what I&apos;d prioritise for your store.</p>
+            <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
+              {siteConfig.cta.label} <ArrowRight size={20} />
+            </a>
           </div>
         </section>
 

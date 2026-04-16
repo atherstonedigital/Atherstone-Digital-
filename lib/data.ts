@@ -1,3 +1,5 @@
+export type ServicePillar = 'grow' | 'run' | 'build';
+
 export interface ServiceItem {
   id: string;
   title: string;
@@ -8,6 +10,7 @@ export interface ServiceItem {
   slug: string;
   seoTitle: string;
   seoDescription: string;
+  pillar: ServicePillar;
 }
 
 export interface LocationItem {
@@ -46,6 +49,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     slug: 'shopify-plus-architecture',
     seoTitle: 'Shopify Plus Store Builds | Custom Theme Architecture',
     seoDescription: 'Custom Shopify Plus theme builds and migrations. High-converting, fast, and architected for scale. Based in the UK, serving globally.',
+    pillar: 'build',
   },
   {
     id: 'cro',
@@ -62,6 +66,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     slug: 'conversion-rate-optimisation',
     seoTitle: 'Shopify CRO Consultant UK | +20-30% Revenue Per Visitor',
     seoDescription: 'Data-driven CRO for Shopify stores. Average +22% CVR improvement across our partner brands. We test, validate and implement.',
+    pillar: 'grow',
   },
   {
     id: 'ppc',
@@ -78,6 +83,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     slug: 'paid-media-growth',
     seoTitle: 'Shopify Paid Media & PPC | Google & Meta Ads',
     seoDescription: 'Performance Google & Meta campaigns for Shopify brands. Lower CAC, higher ROAS — managed by a certified Shopify growth director.',
+    pillar: 'grow',
   },
   {
     id: 'automation',
@@ -94,6 +100,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     slug: 'ecommerce-automation',
     seoTitle: 'Shopify n8n Automation | Save 100+ Hours/Month',
     seoDescription: 'n8n automation workflows for Shopify brands. Connect your stack, eliminate manual tasks, save 100+ hours/month.',
+    pillar: 'run',
   },
   {
     id: 'feeds',
@@ -110,6 +117,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     slug: 'google-feed-management',
     seoTitle: 'Google Feed Management | Merchant Centre Optimisation',
     seoDescription: 'Fix disapprovals and optimise titles for Google Shopping. Expert feed management to lower CPC and increase visibility.',
+    pillar: 'run',
   },
   {
     id: 'retention',
@@ -126,6 +134,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     slug: 'retention-marketing',
     seoTitle: 'Klaviyo Lifecycle Marketing | Email & SMS for Shopify',
     seoDescription: 'Increase LTV with expert lifecycle marketing. I build automated Klaviyo flows that turn one-time buyers into loyal customers.',
+    pillar: 'grow',
   },
   {
     id: 'llm',
@@ -142,6 +151,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     slug: 'ai-search-optimization',
     seoTitle: 'LLM Search Readiness | AI SEO for Shopify Brands',
     seoDescription: 'Prepare your Shopify store for Google Gemini and ChatGPT search. I implement advanced schema and entity strategies for AI visibility.',
+    pillar: 'build',
   },
   {
     id: 'catalogue-health',
@@ -159,6 +169,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     slug: 'shopify-catalogue-health',
     seoTitle: 'Shopify Catalogue Health Audit & Fix | Atherstone Digital',
     seoDescription: 'Fixed-price Shopify product data audit and remediation. We find and fix alt text errors, taxonomy misclassifications, and metadata gaps that hurt your search rankings and Google Shopping performance.',
+    pillar: 'run',
   },
   {
     id: 'dev',
@@ -175,6 +186,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     slug: 'technical-development',
     seoTitle: 'Shopify Technical Development | Custom Apps & Checkout',
     seoDescription: 'Complex Shopify development without the agency bloat. Custom apps, checkout functions, and API integrations handled by a senior expert.',
+    pillar: 'build',
   },
 ];
 

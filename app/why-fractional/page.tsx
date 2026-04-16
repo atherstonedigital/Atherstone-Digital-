@@ -128,7 +128,7 @@ export default function WhyFractionalPage() {
                 <p className="text-red-400/80 text-sm font-medium mb-6 uppercase tracking-wider">High Overhead • Slow</p>
                 <ul className="space-y-4 text-brand-muted text-sm leading-relaxed">
                   {[
-                    ['Bloated Retainers', "You pay for their posh office and snacks, not just the work."],
+                    ['Bloated Retainers', "You pay for their infrastructure, not the work."],
                     ['Gatekeepers', 'Account managers block you from talking to the talent.'],
                     ['Junior Execution', 'Senior partners pitch you; interns do the work.'],
                   ].map(([title, desc]) => (
@@ -212,9 +212,9 @@ export default function WhyFractionalPage() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none group-hover:bg-brand-primary/10 transition-colors duration-700"></div>
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Stop paying for overhead.</h2>
-              <p className="text-brand-muted text-lg mb-8">Allocate your budget to execution and growth, not office snacks and account management layers.</p>
+              <p className="text-brand-muted text-lg mb-8">Allocate your budget to execution and growth, not account management layers.</p>
               <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
-                Apply for the Waitlist <ArrowRight size={20} />
+                Book a Free Commercial Review <ArrowRight size={20} />
               </Link>
             </div>
           </div>

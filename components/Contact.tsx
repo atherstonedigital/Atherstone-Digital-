@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ArrowRight, CheckCircle, Loader2, Lock } from 'lucide-react';
-import { CURRENT_PARTNERS, MAX_PARTNERS } from '@/lib/config';
+import { siteConfig } from '@/lib/siteConfig';
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -50,7 +50,7 @@ export function Contact() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/10 rounded-full blur-2xl"></div>
             <div className="relative z-10">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs font-bold mb-6">
-                <Lock size={14} /><span>Waitlist Application</span>
+                <Lock size={14} /><span>Partner Application</span>
               </div>
               <h2 className="font-display text-3xl font-bold mb-4">Partner Application.</h2>
               <p className="text-brand-muted mb-8 leading-relaxed">
@@ -63,19 +63,19 @@ export function Contact() {
               </ul>
             </div>
             <div className="mt-12 relative z-10">
-              <p className="text-xs text-brand-muted font-mono">Current Capacity: <span className="text-brand-primary">{CURRENT_PARTNERS}/{MAX_PARTNERS}</span></p>
+              <p className="text-xs text-brand-muted font-mono">Current Capacity: <span className="text-brand-primary">{siteConfig.capacity.filled}/{siteConfig.capacity.total}</span></p>
             </div>
           </div>
 
           <div className="p-10 md:w-3/5">
             <div className="mb-8 text-center">
               <a
-                href="https://calendly.com/dan-atherstonedigital/30min"
+                href={siteConfig.cta.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 w-full py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors shadow-[0_0_20px_rgba(0,220,130,0.2)]"
+                className="inline-flex items-center justify-center gap-2 w-full py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors shadow-[0_0_20px_rgba(74,222,128,0.2)]"
               >
-                Book a Free 20-min Teardown <ArrowRight size={18} />
+                {siteConfig.cta.label} <ArrowRight size={18} />
               </a>
               <div className="flex items-center gap-4 mt-6">
                 <div className="flex-1 h-px bg-brand-border"></div>
@@ -124,7 +124,7 @@ export function Contact() {
                   Something went wrong. Please try again or email <a href="mailto:info@atherstonedigital.com" className="underline">info@atherstonedigital.com</a> directly.
                 </p>
               )}
-              <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(0,220,130,0.2)]">
+              <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(74,222,128,0.2)]">
                 {isSubmitting ? <><Loader2 size={20} className="animate-spin" /> Submitting...</> : <>Submit Application <ArrowRight size={18} /></>}
               </button>
             </form>

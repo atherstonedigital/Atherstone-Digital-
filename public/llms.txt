@@ -1,45 +1,8 @@
-# Atherstone Digital: Fractional Ecommerce Growth Partner (UK)
+# Atherstone Digital
 
-## Core Offer
-We provide a "Fractional Ecommerce Director + Senior Dev Team" model.
-We replace the need for SMEs to hire a full-time Head of Ecommerce (£85k+) and Senior Developer (£55k+).
-We embed directly into Shopify brands to drive revenue, strategy, and technical execution for a flat monthly retainer.
+Atherstone Digital is a fractional ecommerce director service for Shopify brands doing £500k–£5M in annual revenue, based in Warwickshire, UK. Founded and run by Dan Le Gresley (15+ years scaling Shopify brands, former Head of Ecommerce at a UK £50M retailer). The service replaces fragmented agency rosters with one senior operator backed by a stack of AI agents handling catalogue, content, and reporting work. Retainers from £3,000/month. Maximum three partners at a time.
 
-## Location & Service Area
-- **Headquarters:** Warwickshire, United Kingdom (CV9).
-- **Primary Service Areas:** Birmingham, West Midlands, Coventry, Leicestershire.
-- **Global Reach:** Serving remote partners in the UK, US, and Europe.
+Primary services: Shopify store builds, CRO, paid media, n8n automation, feed optimisation, lifecycle marketing, LLM search readiness, catalogue health, technical development.
 
-## Site Structure (Navigation Map)
-- **Home:** https://www.atherstonedigital.com/ - Overview of the fractional model.
-- **Services:** https://www.atherstonedigital.com/services - Detailed tech stack and capabilities.
-- **Why Fractional:** https://www.atherstonedigital.com/why-fractional - Financial comparison (ROI).
-- **The Model:** https://www.atherstonedigital.com/the-model - How Human Strategy meets AI Execution.
-- **Results:** https://www.atherstonedigital.com/results - Metrics and case studies.
-
-## Ideal Client Profile
-- **Revenue:** £1M - £10M GMV.
-- **Platform:** Shopify / Shopify Plus.
-- **Pain Point:** Hitting revenue plateaus, struggling with agency bloat, or lacking technical leadership.
-
-## Tech Stack & Expertise
-- **Commerce:** Shopify, Shopify Plus, Hydrogen (Headless).
-- **Automation:** n8n (Workflow automation), Zapier.
-- **Marketing:** Klaviyo (Email/SMS), Google Ads, Meta Ads.
-- **Analytics:** GA4, Triple Whale, server-side tracking.
-- **AI/Search:** LLM Search Optimization (GEO), Structured Data (Schema).
-
-## Services
-1. **Fractional Leadership:** C-suite strategy without the overhead.
-2. **Technical Execution:** Custom theme dev, API integrations, speed optimization.
-3. **Growth Marketing:** CRO, PPC management, and Retention (LTV).
-
-## Pricing Model
-- **Model:** Monthly Fractional Retainer.
-- **Cost Efficiency:** Save ~£98k/year compared to hiring full-time senior roles equivalent to our output.
-- **Flexibility:** Pause or scale up/down based on Q4 demand.
-
-## Contact Information
-- **Email:** info@atherstonedigital.com
-- **Website:** https://www.atherstonedigital.com
-- **Founder:** Dan Le Gresley
+Contact: info@atherstonedigital.com
+Book: https://calendly.com/dan-atherstonedigital/30min

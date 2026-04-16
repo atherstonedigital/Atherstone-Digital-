@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight, ChevronDown, Terminal, Cpu, TrendingUp } from 'lucide-react';
-import { CURRENT_PARTNERS, MAX_PARTNERS, SPACES_LEFT, NEXT_INTAKE } from '@/lib/config';
+import { siteConfig } from '@/lib/siteConfig';
 import { useTheme } from '@/components/ThemeProvider';
 
 export function Hero() {
@@ -12,6 +12,9 @@ export function Hero() {
   const isLight = theme === 'light';
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const initTimeout = setTimeout(() => {
       const canvas = canvasRef.current;
       if (!canvas) return;
@@ -84,7 +87,7 @@ export function Hero() {
               if (light) {
                 ctx.strokeStyle = distMSq < mDistSq ? `rgba(5,150,105,${opacity * 0.5})` : `rgba(5,150,105,${opacity * 0.15})`;
               } else {
-                ctx.strokeStyle = distMSq < mDistSq ? `rgba(0,220,130,${opacity * 0.6})` : `rgba(0,220,130,${opacity * 0.2})`;
+                ctx.strokeStyle = distMSq < mDistSq ? `rgba(74,222,128,${opacity * 0.6})` : `rgba(74,222,128,${opacity * 0.2})`;
               }
               ctx.lineWidth = distMSq < mDistSq ? 1.5 : 0.5;
               ctx.moveTo(p.x, p.y);
@@ -98,7 +101,7 @@ export function Hero() {
           if (light) {
             ctx.fillStyle = distMSq < mDistSq ? 'rgba(5,150,105,0.6)' : 'rgba(5,150,105,0.25)';
           } else {
-            ctx.fillStyle = distMSq < mDistSq ? 'rgba(204,240,120,0.8)' : 'rgba(0,220,130,0.4)';
+            ctx.fillStyle = distMSq < mDistSq ? 'rgba(204,240,120,0.8)' : 'rgba(74,222,128,0.4)';
           }
           ctx.fill();
         }
@@ -129,22 +132,22 @@ export function Hero() {
       <div className="container mx-auto px-6 relative z-10 flex flex-col items-center">
 
         <div className="flex flex-col items-center gap-2 mb-10">
-          <div className={`inline-flex items-center gap-3 px-4 py-2 border rounded-md backdrop-blur-md ${isLight ? 'bg-white/60 border-brand-primary/20 shadow-sm' : 'bg-black/40 border-brand-primary/30 shadow-[0_0_15px_rgba(0,220,130,0.1)]'}`}>
+          <div className={`inline-flex items-center gap-3 px-4 py-2 border rounded-md backdrop-blur-md ${isLight ? 'bg-white/60 border-brand-primary/20 shadow-sm' : 'bg-black/40 border-brand-primary/30 shadow-[0_0_15px_rgba(74,222,128,0.1)]'}`}>
             <div className="relative flex items-center justify-center w-3 h-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
-              <span className={`relative inline-flex rounded-full h-2 w-2 bg-brand-primary ${isLight ? '' : 'shadow-[0_0_8px_#00DC82]'}`}></span>
+              <span className={`relative inline-flex rounded-full h-2 w-2 bg-brand-primary ${isLight ? '' : 'shadow-[0_0_8px_#4ADE80]'}`}></span>
             </div>
             <span className="text-brand-primary font-mono text-xs md:text-sm tracking-wider">
-              CURRENT PARTNERS: <span className={`font-bold ${isLight ? 'text-gray-900' : 'text-white'}`}>{CURRENT_PARTNERS}/{MAX_PARTNERS} SLOTS FILLED</span>
+              CURRENT CAPACITY: <span className={`font-bold ${isLight ? 'text-gray-900' : 'text-white'}`}>{siteConfig.capacity.filled}/{siteConfig.capacity.total} PARTNERS</span>
             </span>
             <div className="flex items-center gap-1 ml-1">
-              {Array.from({ length: MAX_PARTNERS }).map((_, i) => (
-                <div key={i} className={`w-2.5 h-2.5 rounded-sm ${i < CURRENT_PARTNERS ? `bg-brand-primary ${isLight ? '' : 'shadow-[0_0_6px_#00DC82]'}` : isLight ? 'bg-gray-200 border border-gray-300' : 'bg-white/10 border border-white/20'}`} />
+              {Array.from({ length: siteConfig.capacity.total }).map((_, i) => (
+                <div key={i} className={`w-2.5 h-2.5 rounded-sm ${i < siteConfig.capacity.filled ? `bg-brand-primary ${isLight ? '' : 'shadow-[0_0_6px_#4ADE80]'}` : isLight ? 'bg-gray-200 border border-gray-300' : 'bg-white/10 border border-white/20'}`} />
               ))}
             </div>
           </div>
           <div className={`text-[10px] md:text-xs font-mono tracking-widest uppercase ${isLight ? 'text-gray-500' : 'text-brand-muted/70'}`}>
-            &gt;&gt; {SPACES_LEFT} SPACE{SPACES_LEFT !== 1 ? 'S' : ''} REMAINING — NEXT INTAKE: {NEXT_INTAKE.toUpperCase()}
+            &gt;&gt; 1 SLOT REMAINING
           </div>
         </div>
 
@@ -161,22 +164,18 @@ export function Hero() {
           </h1>
         </div>
 
-        <p className={`text-xl md:text-2xl font-medium mb-6 leading-relaxed max-w-3xl mx-auto text-center opacity-0 animate-fade-in ${isLight ? 'text-gray-800' : 'text-brand-text'}`} style={{ animationDelay: '0.2s' }}>
-          I replace your fragmented agency roster with one senior partner and a fleet of autonomous AI agents.
-        </p>
-
-        <p className={`text-base md:text-lg mb-10 leading-relaxed max-w-3xl mx-auto text-center font-light opacity-0 animate-fade-in ${isLight ? 'text-gray-500' : 'text-brand-muted'}`} style={{ animationDelay: '0.3s' }}>
-          Strategy, development, and growth for Shopify brands doing £500k–£5M — executed at the pace of one senior operator backed by AI.
+        <p className={`text-xl md:text-2xl font-medium mb-10 leading-relaxed max-w-3xl mx-auto text-center opacity-0 animate-fade-in ${isLight ? 'text-gray-800' : 'text-brand-text'}`} style={{ animationDelay: '0.2s' }}>
+          One senior operator. A stack of AI agents doing the grunt work. The cost structure that makes it possible.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 opacity-0 animate-fade-in w-full sm:w-auto" style={{ animationDelay: '0.5s' }}>
-          <a href="https://calendly.com/dan-atherstonedigital/30min" target="_blank" rel="noopener noreferrer" className={`group relative w-full sm:w-auto px-10 py-5 bg-brand-primary font-bold text-lg rounded-xl overflow-hidden transition-all hover:scale-[1.02] flex items-center justify-center gap-3 ${isLight ? 'text-white shadow-lg' : 'text-brand-dark shadow-[0_0_40px_rgba(0,220,130,0.3)] hover:shadow-[0_0_60px_rgba(0,220,130,0.5)]'}`}>
+          <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className={`group relative w-full sm:w-auto px-10 py-5 bg-brand-primary font-bold text-lg rounded-xl overflow-hidden transition-all hover:scale-[1.02] flex items-center justify-center gap-3 ${isLight ? 'text-white shadow-lg' : 'text-brand-dark shadow-[0_0_40px_rgba(74,222,128,0.3)] hover:shadow-[0_0_60px_rgba(74,222,128,0.5)]'}`}>
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out skew-x-12"></div>
-            <span className="relative z-10 flex items-center gap-2">Book a Free 20-min Teardown <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" /></span>
+            <span className="relative z-10 flex items-center gap-2">{siteConfig.cta.label} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" /></span>
           </a>
-          <Link href="/services" className={`w-full sm:w-auto px-10 py-5 font-medium text-lg rounded-xl transition-all flex items-center justify-center gap-2 backdrop-blur-md group/btn ${isLight ? 'bg-gray-900/5 hover:bg-gray-900/10 text-gray-900 border border-gray-300 hover:border-brand-primary/30' : 'bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-brand-primary/30'}`}>
-            View My &apos;Force Multiplier&apos; Stack
-            <ChevronDown size={18} className="text-brand-muted group-hover/btn:translate-y-1 transition-all" />
+          <Link href="/why-fractional" className={`w-full sm:w-auto px-10 py-5 font-medium text-lg rounded-xl transition-all flex items-center justify-center gap-2 backdrop-blur-md group/btn ${isLight ? 'bg-gray-900/5 hover:bg-gray-900/10 text-gray-900 border border-gray-300 hover:border-brand-primary/30' : 'bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-brand-primary/30'}`}>
+            See How the Economics Work
+            <ArrowRight size={18} className="text-brand-muted group-hover/btn:translate-x-1 transition-all" />
           </Link>
         </div>
 
@@ -186,7 +185,7 @@ export function Hero() {
             { icon: Terminal, text: 'n8n Automation', sub: 'Custom Agent Workflows' },
             { icon: TrendingUp, text: 'Google Ads Certified', sub: 'ROAS Engineering' },
           ].map((item, idx) => (
-            <div key={idx} className={`group flex flex-col items-center gap-3 p-6 rounded-2xl border backdrop-blur-sm transition-all duration-500 hover:border-brand-primary/20 ${isLight ? 'bg-white/60 border-gray-200 hover:shadow-md' : 'bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:shadow-[0_0_30px_rgba(0,220,130,0.05)]'}`}>
+            <div key={idx} className={`group flex flex-col items-center gap-3 p-6 rounded-2xl border backdrop-blur-sm transition-all duration-500 hover:border-brand-primary/20 ${isLight ? 'bg-white/60 border-gray-200 hover:shadow-md' : 'bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:shadow-[0_0_30px_rgba(74,222,128,0.05)]'}`}>
               <div className="p-3 rounded-full bg-brand-primary/5 text-brand-primary group-hover:scale-110 transition-transform duration-300">
                 <item.icon size={24} />
               </div>

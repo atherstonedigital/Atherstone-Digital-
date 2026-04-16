@@ -208,7 +208,7 @@ export default function FractionalDirectorPage() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none"></div>
           <div className="relative z-10 text-center">
             <h2 className="text-4xl font-display font-bold text-white mb-4">Investment</h2>
-            <p className="text-2xl text-brand-primary font-bold mb-8">Retainers from £3,000 / month</p>
+            <p className="text-2xl text-brand-primary font-bold mb-8">Retainers from {siteConfig.pricing.retainerFrom} / month</p>
             <div className="text-left bg-black/20 p-6 rounded-xl border border-white/10 mb-8">
               <h4 className="text-white font-bold mb-4 flex items-center gap-2"><HelpCircle size={16} /> What affects the retainer level?</h4>
               <ul className="space-y-2 text-sm text-brand-muted">
@@ -219,7 +219,7 @@ export default function FractionalDirectorPage() {
               </ul>
             </div>
             <p className="text-sm text-brand-muted mb-8">
-              *Most brands fit between £3,000–£5,000/month depending on complexity. <br />
+              *Most brands fit between {siteConfig.pricing.retainerRange}/month depending on complexity. <br />
               Rolling monthly contract. Pause or cancel with 30 days notice.
             </p>
             <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:bg-brand-accent transition-all w-full md:w-auto justify-center">
@@ -288,7 +288,7 @@ export default function FractionalDirectorPage() {
           <div className="relative z-10 max-w-2xl mx-auto">
             <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Take control of your growth.</h2>
             <p className="text-brand-muted text-lg mb-4">One senior partner. Weekly execution. Clear pricing.</p>
-            <p className="text-brand-primary font-bold text-xl mb-8">Retainers from £3,000 / month</p>
+            <p className="text-brand-primary font-bold text-xl mb-8">Retainers from {siteConfig.pricing.retainerFrom} / month</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
                 {siteConfig.cta.label}

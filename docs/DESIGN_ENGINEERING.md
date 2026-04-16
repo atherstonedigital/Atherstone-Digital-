@@ -8,11 +8,11 @@ Atherstone Digital uses a dark-mode-first aesthetic with vivid green accents. Th
 
 | Role        | Token                  | Hex / Value                 | Notes                                    |
 |-------------|------------------------|-----------------------------|------------------------------------------|
-| Background  | `brand-dark`           | `#020604`                   | Near-black with a green undertone        |
+| Background  | `brand-dark`           | `#060D08`                   | Near-black with a green undertone        |
 | Surface     | `brand-surface`        | `#041812`                   | Cards, sections, elevated containers     |
 | Surface HL  | `brand-surfaceHighlight` | `#08261e`                 | Hover states, active elements            |
-| Primary     | `brand-primary`        | `#00DC82`                   | CTAs, links, key UI accents              |
-| Accent      | `brand-accent`         | `#CCF078`                   | Secondary highlights, badges, tags       |
+| Primary     | `brand-primary`        | `#4ADE80`                   | CTAs, links, key UI accents              |
+| Accent      | `brand-accent`         | `#26cf64`                   | Accent green highlights                  |
 | Text        | `brand-text`           | `#f1f5f9`                   | Primary body text (Slate 100)            |
 | Muted       | `brand-muted`          | `#94a3b8`                   | Secondary text, captions (Slate 400)     |
 | Border      | `brand-border`         | `rgba(255, 255, 255, 0.08)` | Subtle dividers and card edges           |
@@ -21,8 +21,8 @@ Atherstone Digital uses a dark-mode-first aesthetic with vivid green accents. Th
 
 | Role      | Font Family     | Tailwind Class   | Usage                          |
 |-----------|-----------------|------------------|--------------------------------|
-| Body      | Inter           | `font-sans`      | Paragraphs, UI text            |
-| Display   | Space Grotesk   | `font-display`   | Headings, hero titles          |
+| Body      | DM Sans         | `font-sans`      | Paragraphs, UI text            |
+| Display   | Syne            | `font-display`   | Headings, hero titles          |
 | Code      | JetBrains Mono  | `font-mono`      | Code snippets, technical text  |
 
 ### Animations

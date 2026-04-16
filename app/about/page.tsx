@@ -180,7 +180,7 @@ export default function AboutPage() {
               <Zap size={48} className="text-brand-primary mx-auto mb-6" />
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Ready to upgrade your team?</h2>
               <p className="text-brand-muted text-lg mb-8">Stop paying for agency overhead. Start investing in senior talent that moves the needle.</p>
-              <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all transform hover:-translate-y-1">
+              <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1">
                 Book a Free Commercial Review <ArrowRight size={20} />
               </Link>
             </div>

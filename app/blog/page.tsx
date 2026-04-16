@@ -55,7 +55,7 @@ export default function BlogPage() {
           <div className="max-w-4xl mx-auto space-y-6">
             {posts.map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`}
-                className="group block bg-brand-surface rounded-2xl p-8 border border-brand-border hover:border-brand-primary/30 hover:shadow-[0_0_20px_rgba(0,220,130,0.05)] transition-all duration-300">
+                className="group block bg-brand-surface rounded-2xl p-8 border border-brand-border hover:border-brand-primary/30 hover:shadow-[0_0_20px_rgba(74,222,128,0.05)] transition-all duration-300">
                 <div className="flex flex-wrap items-center gap-4 mb-4">
                   <span className="px-3 py-1 bg-brand-primary/10 text-brand-primary text-xs font-bold rounded-full">{post.category}</span>
                   <span className="flex items-center gap-1 text-xs text-brand-muted"><Calendar size={12} /> {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>

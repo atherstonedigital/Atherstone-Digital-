@@ -164,12 +164,12 @@ export default function WhyFractionalPage() {
               </div>
             </div>
 
-            <div className="relative bg-gradient-to-b from-brand-surfaceHighlight to-brand-terminal border border-brand-primary/40 p-8 rounded-3xl shadow-[0_0_50px_rgba(0,220,130,0.1)] transform md:-translate-y-6">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-primary text-brand-dark text-[10px] font-bold px-4 py-1.5 rounded-full tracking-widest uppercase shadow-[0_4px_20px_rgba(0,220,130,0.4)]">
+            <div className="relative bg-gradient-to-b from-brand-surfaceHighlight to-brand-terminal border border-brand-primary/40 p-8 rounded-3xl shadow-[0_0_50px_rgba(74,222,128,0.1)] transform md:-translate-y-6">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-primary text-brand-dark text-[10px] font-bold px-4 py-1.5 rounded-full tracking-widest uppercase shadow-[0_4px_20px_rgba(74,222,128,0.4)]">
                 Recommended Model
               </div>
               <div className="relative z-10">
-                <div className="w-14 h-14 bg-brand-primary text-brand-dark rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(0,220,130,0.4)]">
+                <div className="w-14 h-14 bg-brand-primary text-brand-dark rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(74,222,128,0.4)]">
                   <PoundSterling size={32} />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2 font-display">The Fractional Edge</h3>
@@ -213,7 +213,7 @@ export default function WhyFractionalPage() {
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Stop paying for overhead.</h2>
               <p className="text-brand-muted text-lg mb-8">Allocate your budget to execution and growth, not account management layers.</p>
-              <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
+              <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
                 Book a Free Commercial Review <ArrowRight size={20} />
               </Link>
             </div>

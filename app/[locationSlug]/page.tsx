@@ -106,8 +106,8 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
               You don&apos;t need a London agency charging London rates. You need a senior partner based in the Midlands who understands your P&amp;L and can meet you in <strong>{location.city}</strong> for real strategy sessions.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/#contact" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all hover:bg-brand-accent min-w-[200px] flex items-center justify-center gap-2">
-                Book a Strategy Coffee <Coffee size={18} />
+              <Link href="/#contact" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all hover:bg-brand-accent min-w-[200px] flex items-center justify-center gap-2">
+                Book a Free Commercial Review <Coffee size={18} />
               </Link>
             </div>
           </div>
@@ -217,8 +217,8 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Let&apos;s meet in {location.city}.</h2>
               <p className="text-brand-muted text-lg mb-8">Stop relying on Zoom calls with junior account managers. Get a senior partner on your team.</p>
-              <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
-                Book a Coffee <ArrowRight size={20} />
+              <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
+                Book a Free Commercial Review <ArrowRight size={20} />
               </Link>
             </div>
           </div>

@@ -45,31 +45,43 @@ const homepageSchema = {
         email: 'info@atherstonedigital.com',
       },
       sameAs: ['https://www.linkedin.com/in/danlegresley/'],
-      description: 'Fractional Ecommerce Director for Shopify brands doing £500k–£5M. AI-augmented strategy, development, and growth.',
+      description: 'A fractional ecommerce director service for Shopify brands doing \u00a3500k\u2013\u00a35M in annual revenue. AI-augmented operator replacing fragmented agency rosters with one senior partner.',
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: '5',
-        reviewCount: '3',
+        reviewCount: '5',
         bestRating: '5',
       },
       review: [
         {
           '@type': 'Review',
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-          author: { '@type': 'Person', name: 'Sarah Wheatley' },
-          reviewBody: 'Dan found 16,000 product images attributed to the wrong brand in his first audit, built the fix scripts, and rebuilt our entire Shopify taxonomy from scratch. We went from ranking for nothing to actually showing up.',
+          author: { '@type': 'Person', name: 'Gemma Pountney' },
+          reviewBody: 'The scale of what Dan uncovered in our product catalogue was genuinely shocking. Thousands of product records with the wrong information, taxonomy misclassifications we\u2019d never have found ourselves. He fixed all of it systematically and quickly.',
         },
         {
           '@type': 'Review',
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-          author: { '@type': 'Person', name: 'Rachel Osei' },
-          reviewBody: 'Dan built our automation stack from nothing. Shopify, Klaviyo, and supplier feeds all talking to each other. The time savings alone paid for six months of retainer.',
+          author: { '@type': 'Person', name: 'Dr Frankie Harrison' },
+          reviewBody: 'He built out a complete automation system that connected our Shopify store, our email platform, our supplier feeds, everything, and it just works. We saved over 120 hours a month almost immediately.',
         },
         {
           '@type': 'Review',
           reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-          author: { '@type': 'Person', name: 'Managing Director' },
-          reviewBody: 'We replaced two agencies with Dan. One person, more output, less politics. Revenue is up 47% year-on-year.',
+          author: { '@type': 'Person', name: 'Gary Postlethwaite' },
+          reviewBody: 'Dan understands premium brands. Having someone who can hold the strategic picture while also getting into the detail of how the site and our Google presence actually perform is exactly what we needed.',
+        },
+        {
+          '@type': 'Review',
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+          author: { '@type': 'Person', name: 'Luke Aling' },
+          reviewBody: 'Dan is the person we bring in when a client needs serious ecommerce thinking and we need to know it\u2019ll be delivered properly. He works seamlessly as an extension of the Ranch team.',
+        },
+        {
+          '@type': 'Review',
+          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+          author: { '@type': 'Person', name: 'Kim Waller' },
+          reviewBody: 'Dan came in, got into the analytics properly, and gave us a clear picture of where we were losing people and why. The recommendations were practical and prioritised, not a wishlist.',
         },
       ],
     },
@@ -114,6 +126,7 @@ export default function HomePage() {
     <div className="flex flex-col">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageSchema) }} />
       <Hero />
+      <EntityDefinition />
       <SocialProof />
       <DirectorTeaser />
       <ValueComparison />
@@ -124,6 +137,18 @@ export default function HomePage() {
       <LeadMagnet />
       <Contact />
     </div>
+  );
+}
+
+function EntityDefinition() {
+  return (
+    <section className="py-12 bg-brand-dark">
+      <div className="container mx-auto px-6">
+        <p className="text-brand-muted text-base md:text-lg leading-relaxed max-w-3xl mx-auto text-center">
+          {siteConfig.entity} One senior operator embedded in your business, backed by a stack of AI agents that do the catalogue, content, and reporting work a junior team used to. Three partners at a time. Pause or cancel with 30 days notice.
+        </p>
+      </div>
+    </section>
   );
 }
 
@@ -138,33 +163,57 @@ interface Testimonial {
 }
 
 function SocialProof() {
+  // VERIFIED: All testimonials provided directly by Dan, April 2026
   const testimonials: Testimonial[] = [
     {
-      quote: 'Dan found 16,000 product images attributed to the wrong brand in his first audit, built the fix scripts, and rebuilt our entire Shopify taxonomy from scratch. We went from ranking for nothing to actually showing up.',
-      name: 'Sarah Wheatley',
-      title: 'Co-founder',
+      // VERIFIED: Gemma Pountney / Xshowhome — in portfolio, catalogue health project
+      quote: 'The scale of what Dan uncovered in our product catalogue was genuinely shocking. Thousands of product records with the wrong information, taxonomy misclassifications we\u2019d never have found ourselves, alt text that had been wrong since day one. He fixed all of it systematically and quickly, and the difference in how our catalogue looks and performs has been significant. He\u2019s meticulous in a way that\u2019s hard to find.',
+      name: 'Gemma Pountney',
+      title: '',
       company: 'Xshowhome',
       companyUrl: 'https://xshowhome.com',
-      metric: '16,193 product records cleaned. SEO visibility up 40%.',
-      sector: 'Furniture & Homeware · Shopify · Warwickshire, UK',
+      metric: '16,193 product records remediated',
+      sector: 'Furniture & Homeware \u00b7 Shopify \u00b7 Warwickshire, UK',
     },
     {
-      quote: 'Dan built our automation stack from nothing. Shopify, Klaviyo, and supplier feeds all talking to each other. The time savings alone paid for six months of retainer.',
-      name: 'Rachel Osei',
-      title: 'Founder & CEO',
+      // VERIFIED: Dr Frankie Harrison / Miracle Moon — automation project
+      quote: 'Before working with Dan, our team was spending hours every week doing things manually that should never have been manual. He built out a complete automation system that connected our Shopify store, our email platform, our supplier feeds, everything, and it just works. We saved over 120 hours a month almost immediately. That\u2019s time we\u2019ve reinvested into actually growing the business.',
+      name: 'Dr Frankie Harrison',
+      title: '',
       company: 'Miracle Moon',
       companyUrl: null,
-      metric: '120+ hours saved per month. Fully automated ops stack.',
-      sector: 'Health & Wellness · Shopify · UK DTC',
+      metric: '120+ hours per month automated',
+      sector: 'Health & Wellness \u00b7 Shopify \u00b7 UK DTC',
     },
     {
-      quote: 'We replaced two agencies with Dan. One person, more output, less politics. Revenue is up 47% year-on-year.',
-      name: 'Managing Director',
+      // VERIFIED: Gary Postlethwaite / Saverys of Broadway — fractional director engagement
+      quote: 'Dan understands premium brands. He doesn\u2019t push for quick wins that compromise the positioning, he thinks carefully about how digital should work for a business like ours, where trust and relationship are everything. Having someone who can hold the strategic picture while also getting into the detail of how the site and our Google presence actually perform is exactly what we needed.',
+      name: 'Gary Postlethwaite',
       title: '',
-      company: 'UK DTC Apparel Brand',
+      company: 'Saverys of Broadway',
       companyUrl: null,
-      metric: '+47% YoY revenue growth',
-      sector: 'Fashion & Apparel · Shopify Plus · UK DTC',
+      metric: 'Fractional director across 3 showrooms',
+      sector: 'Premium Retail \u00b7 Multi-Location \u00b7 UK',
+    },
+    {
+      // VERIFIED: Luke Aling / Ranch Creative — white-label partner
+      quote: 'Dan is the person we bring in when a client needs serious ecommerce thinking and we need to know it\u2019ll be delivered properly. He works seamlessly as an extension of the Ranch team, the client never feels like they\u2019re dealing with a third party. The quality of the strategy and the execution is consistently high, and he operates with real commercial intelligence, not just technical output.',
+      name: 'Luke Aling',
+      title: '',
+      company: 'Ranch Creative',
+      companyUrl: null,
+      metric: '\u00a3250k monthly revenue within 6 months',
+      sector: 'Agency Partner \u00b7 Home & Interiors \u00b7 UK',
+    },
+    {
+      // VERIFIED: Kim Waller / Licklibrary — Ranch Creative client (white label)
+      quote: 'We\u2019d been sitting on a wealth of data and had no idea what it was telling us. Dan came in, got into the analytics properly, and gave us a clear picture of where we were losing people and why. The recommendations were practical and prioritised, not a wishlist. We finally understood our users, and the improvements we made off the back of his work had a real impact on how the site performed.',
+      name: 'Kim Waller',
+      title: '',
+      company: 'Licklibrary',
+      companyUrl: null,
+      metric: 'Analytics-driven site improvements',
+      sector: 'Music Education \u00b7 Digital \u00b7 UK',
     },
   ];
 
@@ -174,14 +223,14 @@ function SocialProof() {
         <div className="text-center mb-10">
           <p className="text-xs font-mono text-brand-primary uppercase tracking-widest mb-2">Trusted by Shopify Brands Doing £500k–£5M</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {testimonials.map((t, i) => (
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {testimonials.slice(0, 3).map((t, i) => (
             <div key={i} className="bg-brand-surface rounded-2xl p-6 border border-brand-border relative">
               <Quote size={20} className="text-brand-primary/30 mb-3" />
-              <p className="text-brand-text text-base leading-relaxed mb-4 font-light italic">&ldquo;{t.quote}&rdquo;</p>
+              <p className="text-brand-text text-sm leading-relaxed mb-4 font-light italic">&ldquo;{t.quote}&rdquo;</p>
               <div className="pt-4 border-t border-white/5">
                 <div className="text-white font-semibold text-sm">
-                  {t.name}{t.title ? ` — ${t.title}` : ''}
+                  {t.name}{t.title ? ` \u2014 ${t.title}` : ''}
                 </div>
                 <div className="text-sm text-brand-muted mt-1">
                   {t.companyUrl ? (
@@ -190,7 +239,23 @@ function SocialProof() {
                     t.company
                   )}
                 </div>
-                <div className="inline-block px-3 py-1 mt-3 bg-emerald-500/10 text-emerald-400 text-xs font-medium rounded-full">{t.metric}</div>
+                <div className="inline-block px-3 py-1 mt-3 bg-brand-primary/10 text-brand-primary text-xs font-medium rounded-full">{t.metric}</div>
+                <div className="text-brand-muted/60 text-xs mt-2">{t.sector}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-6">
+          {testimonials.slice(3).map((t, i) => (
+            <div key={i + 3} className="bg-brand-surface rounded-2xl p-6 border border-brand-border relative">
+              <Quote size={20} className="text-brand-primary/30 mb-3" />
+              <p className="text-brand-text text-sm leading-relaxed mb-4 font-light italic">&ldquo;{t.quote}&rdquo;</p>
+              <div className="pt-4 border-t border-white/5">
+                <div className="text-white font-semibold text-sm">
+                  {t.name}{t.title ? ` \u2014 ${t.title}` : ''}
+                </div>
+                <div className="text-sm text-brand-muted mt-1">{t.company}</div>
+                <div className="inline-block px-3 py-1 mt-3 bg-brand-primary/10 text-brand-primary text-xs font-medium rounded-full">{t.metric}</div>
                 <div className="text-brand-muted/60 text-xs mt-2">{t.sector}</div>
               </div>
             </div>
@@ -405,9 +470,10 @@ function ProcessSection() {
 
 function ResultsSection() {
   const stats = [
-    { icon: TrendingUp, value: '+47%', label: 'Average YoY Revenue Growth', sub: 'Across active partners, last 12 months' },
-    { icon: Users, value: '+22%', label: 'Average CVR Improvement', sub: 'From CRO programme, first 90 days' },
-    { icon: Zap, value: '100+', label: 'Hours Saved Per Month', sub: 'Via n8n automation workflows' },
+    { icon: TrendingUp, value: '£250k', label: 'Monthly Revenue in 6 Months', sub: 'Ranch Creative partnership, home and interiors brand' },
+    { icon: Users, value: '16,193', label: 'Product Records Remediated', sub: 'Xshowhome, full catalogue health audit and taxonomy rebuild' },
+    { icon: Zap, value: '120+', label: 'Hours Per Month Automated', sub: 'Miracle Moon, 14 n8n workflows across 4 connected systems' },
+    { icon: BarChart2, value: '2.9%', label: 'Store Conversion Rate', sub: 'Site rebuild and CRO programme, Ranch Creative client' },
   ];
 
   return (
@@ -417,7 +483,7 @@ function ResultsSection() {
           <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">The Numbers.</h2>
           <p className="text-brand-muted text-xl max-w-2xl mx-auto">Real commercial outcomes from real partnerships.</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
           {stats.map((stat, i) => (
             <div key={i} className="text-center p-8 bg-brand-dark rounded-2xl border border-brand-border">
               <div className="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center mx-auto mb-4">

@@ -12,6 +12,9 @@ export function Hero() {
   const isLight = theme === 'light';
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const initTimeout = setTimeout(() => {
       const canvas = canvasRef.current;
       if (!canvas) return;
@@ -161,12 +164,12 @@ export function Hero() {
           </h1>
         </div>
 
-        <p className={`text-xl md:text-2xl font-medium mb-6 leading-relaxed max-w-3xl mx-auto text-center opacity-0 animate-fade-in ${isLight ? 'text-gray-800' : 'text-brand-text'}`} style={{ animationDelay: '0.2s' }}>
-          I replace your fragmented agency roster with one senior partner and a fleet of autonomous AI agents.
+        <p className={`text-xl md:text-2xl font-medium mb-4 leading-relaxed max-w-3xl mx-auto text-center opacity-0 animate-fade-in ${isLight ? 'text-gray-800' : 'text-brand-text'}`} style={{ animationDelay: '0.2s' }}>
+          One senior operator. A stack of AI agents. The cost structure that makes it possible.
         </p>
 
         <p className={`text-base md:text-lg mb-10 leading-relaxed max-w-3xl mx-auto text-center font-light opacity-0 animate-fade-in ${isLight ? 'text-gray-500' : 'text-brand-muted'}`} style={{ animationDelay: '0.3s' }}>
-          Strategy, development, and growth for Shopify brands doing £500k–£5M — executed at the pace of one senior operator backed by AI.
+          Replace your agency roster from {siteConfig.pricing.retainerFrom}/month. Built for Shopify brands doing {siteConfig.revenueBand}.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 opacity-0 animate-fade-in w-full sm:w-auto" style={{ animationDelay: '0.5s' }}>
@@ -174,9 +177,9 @@ export function Hero() {
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out skew-x-12"></div>
             <span className="relative z-10 flex items-center gap-2">{siteConfig.cta.label} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" /></span>
           </a>
-          <Link href="/services" className={`w-full sm:w-auto px-10 py-5 font-medium text-lg rounded-xl transition-all flex items-center justify-center gap-2 backdrop-blur-md group/btn ${isLight ? 'bg-gray-900/5 hover:bg-gray-900/10 text-gray-900 border border-gray-300 hover:border-brand-primary/30' : 'bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-brand-primary/30'}`}>
-            View My &apos;Force Multiplier&apos; Stack
-            <ChevronDown size={18} className="text-brand-muted group-hover/btn:translate-y-1 transition-all" />
+          <Link href="/why-fractional" className={`w-full sm:w-auto px-10 py-5 font-medium text-lg rounded-xl transition-all flex items-center justify-center gap-2 backdrop-blur-md group/btn ${isLight ? 'bg-gray-900/5 hover:bg-gray-900/10 text-gray-900 border border-gray-300 hover:border-brand-primary/30' : 'bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-brand-primary/30'}`}>
+            See how the economics work
+            <ArrowRight size={18} className="text-brand-muted group-hover/btn:translate-x-1 transition-all" />
           </Link>
         </div>
 

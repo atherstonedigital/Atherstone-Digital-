@@ -1,9 +1,11 @@
+import { Suspense } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Briefcase } from 'lucide-react';
 import { SERVICES_DATA } from '@/lib/data';
 import { Contact } from '@/components/Contact';
 import { siteConfig } from '@/lib/siteConfig';
+import { ServicesPillarGrid } from '@/components/ServicesPillarGrid';
 
 export const metadata: Metadata = {
   title: 'Shopify Ecommerce Services | Growth, CRO & Automation',
@@ -86,35 +88,15 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Services grid */}
+        {/* Services grouped by pillar */}
         <section className="container mx-auto px-6 mb-24">
           <h2 className="font-display text-3xl font-bold text-white mb-4 text-center">The Tool Stack</h2>
           <p className="text-brand-muted text-center mb-12 max-w-xl mx-auto">
-            Each service below is a capability I use within a retainer engagement. They are not sold in isolation — they are the levers I pull to move your numbers.
+            Each service below is a capability I use within a retainer engagement. They are not sold in isolation. They are the levers I pull to move your numbers.
           </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {SERVICES_DATA.map((service) => (
-              <Link
-                key={service.id}
-                href={`/services/${service.slug}`}
-                className="relative p-6 rounded-2xl bg-brand-surface border border-white/5 overflow-hidden group hover:-translate-y-1 transition-transform duration-300"
-              >
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-brand-dark transition-colors">
-                      <ArrowRight size={16} />
-                    </div>
-                    <ArrowRight size={16} className="text-brand-muted -rotate-45 group-hover:rotate-0 group-hover:text-brand-primary transition-all duration-300" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2 font-display group-hover:text-brand-primary transition-colors">{service.title}</h3>
-                  <p className="text-brand-muted text-sm mb-4 leading-relaxed flex-grow">{service.description}</p>
-                  <div className="pt-4 border-t border-white/5 mt-auto">
-                    <p className="text-[10px] font-bold text-brand-accent uppercase tracking-widest">Outcome: {service.outcome}</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <Suspense>
+            <ServicesPillarGrid />
+          </Suspense>
         </section>
 
         {/* CTA */}

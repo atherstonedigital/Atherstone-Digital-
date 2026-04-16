@@ -361,6 +361,27 @@ function ValueComparison() {
 }
 
 function ServicesPreview() {
+  const pillars = [
+    {
+      title: 'Grow the revenue',
+      sub: 'CRO, Paid Media, Lifecycle',
+      body: 'The work that turns traffic into revenue and customers into repeat buyers.',
+      pillar: 'grow' as const,
+    },
+    {
+      title: 'Run the operation',
+      sub: 'Automation, Feed, Catalogue',
+      body: 'The unglamorous ops work that silently costs you revenue when it goes wrong.',
+      pillar: 'run' as const,
+    },
+    {
+      title: 'Build the tech',
+      sub: 'Store, Custom, AI-Ready',
+      body: 'The technical foundation your growth sits on top of.',
+      pillar: 'build' as const,
+    },
+  ];
+
   return (
     <section className="py-24 bg-brand-surface">
       <div className="container mx-auto px-6">
@@ -368,21 +389,35 @@ function ServicesPreview() {
           <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">The Force Multiplier Stack.</h2>
           <p className="text-brand-muted text-xl max-w-2xl mx-auto">Everything a £100k/year ecommerce director would own. Delivered fractionally.</p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
-          {SERVICES_DATA.map((service) => (
-            <Link key={service.id} href={`/services/${service.slug}`}
-              className="group p-6 bg-brand-dark rounded-2xl border border-brand-border hover:border-brand-primary/30 hover:shadow-[0_0_20px_rgba(0,220,130,0.05)] transition-all duration-300">
-              <div className="text-xs font-mono text-brand-primary uppercase tracking-wider mb-3">{service.outcome}</div>
-              <h3 className="font-display font-bold text-white mb-2 group-hover:text-brand-primary transition-colors">{service.title}</h3>
-              <p className="text-sm text-brand-muted leading-relaxed">{service.description}</p>
-              <div className="mt-4 flex items-center gap-1 text-brand-primary text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                Learn more <ArrowRight size={12} />
-              </div>
-            </Link>
-          ))}
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {pillars.map((p) => {
+            const services = SERVICES_DATA.filter((s) => s.pillar === p.pillar);
+            return (
+              <Link
+                key={p.pillar}
+                href={`/services?pillar=${p.pillar}`}
+                className="group p-8 bg-brand-dark rounded-2xl border border-brand-border hover:border-brand-primary/30 hover:shadow-[0_0_20px_rgba(74,222,128,0.05)] transition-all duration-300"
+              >
+                <div className="text-xs font-mono text-brand-primary uppercase tracking-wider mb-3">{p.sub}</div>
+                <h3 className="font-display text-2xl font-bold text-white mb-3 group-hover:text-brand-primary transition-colors">{p.title}</h3>
+                <p className="text-brand-muted text-sm leading-relaxed mb-6">{p.body}</p>
+                <ul className="space-y-2 text-sm text-brand-muted/70">
+                  {services.map((s) => (
+                    <li key={s.id} className="flex items-center gap-2">
+                      <div className="w-1 h-1 rounded-full bg-brand-primary shrink-0" />
+                      {s.title}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 flex items-center gap-1 text-brand-primary text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  View services <ArrowRight size={12} />
+                </div>
+              </Link>
+            );
+          })}
         </div>
         <div className="text-center mt-10">
-          <Link href="/services" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors shadow-[0_0_20px_rgba(0,220,130,0.2)]">
+          <Link href="/services" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors shadow-[0_0_20px_rgba(74,222,128,0.2)]">
             View All Services <ArrowRight size={18} />
           </Link>
         </div>

@@ -144,8 +144,8 @@ const whatsIncluded = [
 
 const howItWorks = [
   {
-    title: 'Book a free review call',
-    description: 'A 20-minute call to understand your store, catalogue size, and any known issues. No obligation, no pitch deck.',
+    title: 'Book a call',
+    description: 'A short call to understand your store, catalogue size, and any known issues. No obligation, no pitch deck.',
   },
   {
     title: 'We export and audit your data',

@@ -25,9 +25,10 @@ export default function FractionalDirectorPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Service',
+        name: 'Fractional Ecommerce Director',
         serviceType: 'Fractional Ecommerce Director',
         provider: { '@type': 'Organization', name: 'Atherstone Digital', url: 'https://www.atherstonedigital.com' },
-        description: 'Senior operational leadership for Shopify brands. We replace the need for a full-time Head of Ecommerce.',
+        description: 'A fractional ecommerce director service for Shopify brands doing \u00a3500k\u2013\u00a35M in annual revenue. One senior operator replacing fragmented agency rosters with AI-augmented execution.',
         url: 'https://www.atherstonedigital.com/fractional-ecommerce-director',
         offers: { '@type': 'Offer', price: '3000', priceCurrency: 'GBP', description: 'Monthly retainers starting from £3,000/month depending on complexity.' },
       }) }} />

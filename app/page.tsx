@@ -488,7 +488,7 @@ function ResultsSection() {
     { icon: TrendingUp, value: '£250k', label: 'Monthly Revenue in 6 Months', sub: 'Ranch Creative partnership, home and interiors brand' },
     { icon: Users, value: '16,193', label: 'Product Records Remediated', sub: 'Xshowhome, full catalogue health audit and taxonomy rebuild' },
     { icon: Zap, value: '120+', label: 'Hours Per Month Automated', sub: 'Miracle Moon, 14 n8n workflows across 4 connected systems' },
-    { icon: BarChart2, value: '2.9%', label: 'Store Conversion Rate', sub: 'Site rebuild and CRO programme, Ranch Creative client' },
+    { icon: BarChart2, value: '2.9%', label: 'Store Conversion Rate', sub: 'vs. industry average of 1.4% — site rebuild and CRO programme, Ranch Creative client' },
   ];
 
   return (

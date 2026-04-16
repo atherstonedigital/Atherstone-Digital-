@@ -51,11 +51,11 @@ export default function AboutPage() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] bg-brand-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
           <div className="container mx-auto max-w-4xl text-center relative z-10">
             <h1 className="font-display text-5xl lg:text-7xl font-bold text-white mb-8 tracking-tight">
-              The Era of the <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">AI-Augmented Expert.</span>
+              About <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Dan Le Gresley.</span>
             </h1>
             <p className="text-xl text-brand-muted max-w-2xl mx-auto leading-relaxed">
-              I founded Atherstone Digital to prove a hypothesis: A single senior expert, augmented by custom AI agents, can outperform a traditional 10-person agency team.
+              20 years in ecommerce and digital, working across both ends of the market. Blue chip clients including GSK, Amazon, Ecolab, Eli Lilly, and The Economist. DTC brands like Onbord, My Expert Midwife, and Electrocore. Now I take on three Shopify partners at a time and work as their embedded fractional director — owning the strategy, writing the code, running the ads, and shipping the automations. One person. One invoice. Everything connected.
             </p>
           </div>
         </section>
@@ -81,7 +81,7 @@ export default function AboutPage() {
                     Founder & Director
                   </div>
                   <h3 className="font-display text-2xl font-bold text-white">Dan Le Gresley</h3>
-                  <p className="text-brand-muted text-sm mt-1">Shopify Plus Architect & Growth Strategist</p>
+                  <p className="text-brand-muted text-sm mt-1">Fractional Ecommerce Director</p>
                 </div>
               </div>
             </div>
@@ -105,7 +105,7 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-red-400 font-bold mb-2 text-lg">Traditional Agency</h3>
                   <ul className="space-y-2 text-sm text-brand-muted">
-                    <li className="flex gap-2"><span className="text-red-500">×</span> High retainers paying for posh offices</li>
+                    <li className="flex gap-2"><span className="text-red-500">×</span> High retainers paying for infrastructure, not execution</li>
                     <li className="flex gap-2"><span className="text-red-500">×</span> Account managers blocking access to talent</li>
                     <li className="flex gap-2"><span className="text-red-500">×</span> Junior staff learning on your dime</li>
                   </ul>
@@ -116,7 +116,7 @@ export default function AboutPage() {
                   </div>
                   <h3 className="text-brand-primary font-bold mb-2 text-lg">My Fractional Model</h3>
                   <ul className="space-y-2 text-sm text-brand-muted">
-                    <li className="flex gap-2"><span className="text-brand-primary">✓</span> Direct access to C-suite Strategy</li>
+                    <li className="flex gap-2"><span className="text-brand-primary">✓</span> Direct access to director-level thinking</li>
                     <li className="flex gap-2"><span className="text-brand-primary">✓</span> Full Stack Execution (Dev + Growth)</li>
                     <li className="flex gap-2"><span className="text-brand-primary">✓</span> AI Agents handling the busy work</li>
                   </ul>
@@ -181,7 +181,7 @@ export default function AboutPage() {
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Ready to upgrade your team?</h2>
               <p className="text-brand-muted text-lg mb-8">Stop paying for agency overhead. Start investing in senior talent that moves the needle.</p>
               <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all transform hover:-translate-y-1">
-                Apply for the Waitlist <ArrowRight size={20} />
+                Book a Free Commercial Review <ArrowRight size={20} />
               </Link>
             </div>
           </div>

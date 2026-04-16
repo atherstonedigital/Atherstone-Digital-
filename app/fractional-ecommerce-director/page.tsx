@@ -108,19 +108,6 @@ export default function FractionalDirectorPage() {
         </div>
       </section>
 
-      {/* Social proof */}
-      <section className="container mx-auto px-6 mb-24">
-        <div className="bg-brand-surface/30 border border-white/5 rounded-2xl p-8 max-w-4xl mx-auto text-center">
-          <Target size={32} className="text-brand-primary mx-auto mb-4" />
-          <p className="text-lg text-white font-medium mb-2">
-            &ldquo;Dan brought clarity to our chaos. We finally have a roadmap that connects our ads to our inventory.&rdquo;
-          </p>
-          <p className="text-sm text-brand-muted">
-            Example Outcome: Improved store conversion by 22% through better merchandising and speed optimisation (Apparel Brand, UK).
-          </p>
-        </div>
-      </section>
-
       {/* Pain points */}
       <section className="container mx-auto px-6 mb-24">
         <div className="max-w-4xl mx-auto">
@@ -236,7 +223,7 @@ export default function FractionalDirectorPage() {
               Rolling monthly contract. Pause or cancel with 30 days notice.
             </p>
             <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:bg-brand-accent transition-all w-full md:w-auto justify-center">
-              Get a Quote for Your Brand
+              Book a Free Commercial Review
             </Link>
           </div>
         </div>
@@ -256,7 +243,7 @@ export default function FractionalDirectorPage() {
           <div>
             <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><AlertTriangle className="text-red-500" size={20} /> Who This Is NOT For</h3>
             <ul className="space-y-3 text-brand-muted text-sm">
-              {['Dropshippers or pre-revenue startups.', 'Brands not on Shopify (e.g. Magento/Woo).', 'Anyone looking for "guaranteed" hacks.', "Micromanagers who don't trust the process."].map((item) => (
+              {['Dropshippers or pre-revenue startups.', 'Brands not on Shopify (e.g. Magento/Woo).', 'Anyone looking for "guaranteed" hacks.', "Brands not ready to give a senior operator room to work."].map((item) => (
                 <li key={item}>• {item}</li>
               ))}
             </ul>

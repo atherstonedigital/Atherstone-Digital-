@@ -26,7 +26,7 @@ const schema = {
 };
 
 const stats = [
-  { value: '+47%', label: 'Average YoY Revenue Growth', sublabel: 'Across active partners, last 12 months' },
+  { value: '+47%', label: 'Average YoY Revenue Growth', sublabel: 'Across active partner accounts, last 12 months' },
   { value: '+22%', label: 'Average CVR Improvement', sublabel: 'From CRO programme, first 90 days' },
   { value: '100+', label: 'Hours Saved Per Month', sublabel: 'Via n8n automation workflows' },
   { value: '16,193', label: 'Product Records Remediated', sublabel: 'In one client data audit — alt text, taxonomy, pricing' },
@@ -112,7 +112,8 @@ export default function ResultsPage() {
                   <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 border border-brand-primary/30 rounded-full bg-brand-primary/5">
                     <span className="text-brand-primary text-xs font-bold uppercase tracking-widest">Client: UK Fashion Brand</span>
                   </div>
-                  <h2 className="text-3xl font-display font-bold text-white mb-4">From Stagnation to <br /><span className="text-brand-primary">+47% YoY Growth</span></h2>
+                  <h2 className="text-3xl font-display font-bold text-white mb-2">From Stagnation to <br /><span className="text-brand-primary">+47% YoY Growth</span></h2>
+                  <div className="text-xs text-brand-muted/60 uppercase tracking-wider">£2M GMV · Apparel · UK DTC · 12-month engagement</div>
                 </div>
                 <div>
                   <strong className="text-white block mb-2 font-display">The Challenge</strong>
@@ -246,7 +247,7 @@ export default function ResultsPage() {
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Let&apos;s improve your numbers.</h2>
               <p className="text-brand-muted text-lg mb-8">Apply for a partnership to see what the Fractional model can do for your bottom line.</p>
               <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
-                Apply for the Waitlist <ArrowRight size={20} />
+                Book a Free Commercial Review <ArrowRight size={20} />
               </Link>
             </div>
           </div>

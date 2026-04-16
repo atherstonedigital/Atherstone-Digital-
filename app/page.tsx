@@ -6,7 +6,8 @@ import { SERVICES_DATA } from '@/lib/data';
 import { siteConfig } from '@/lib/siteConfig';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Quote, Bot, Cpu, BarChart2 } from 'lucide-react';
+import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Quote, BarChart2 } from 'lucide-react';
+import { MondayDigestPreview } from '@/components/MondayDigestPreview';
 
 export const metadata: Metadata = {
   title: 'Fractional Ecommerce Director for Shopify Brands | Warwickshire UK',
@@ -391,49 +392,38 @@ function ServicesPreview() {
 }
 
 function AILayerSection() {
-  const agents = [
-    {
-      icon: Bot,
-      title: 'Data Agent',
-      description: 'Monitors product data quality, flags taxonomy errors, alt text gaps, and pricing inconsistencies across your entire catalogue — automatically.',
-    },
-    {
-      icon: Zap,
-      title: 'Content Agent',
-      description: 'Generates on-brand product descriptions, collection page copy, and feed titles at scale. Briefed on your brand voice. Reviewed before publishing.',
-    },
-    {
-      icon: BarChart2,
-      title: 'Reporting Agent',
-      description: 'Pulls GA4, Shopify, and Klaviyo data into a weekly performance digest. No dashboards to build — the report lands in your inbox every Monday.',
-    },
-  ];
-
   return (
     <section className="py-24 bg-brand-dark relative overflow-hidden border-t border-white/5">
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,220,130,0.3) 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(74,222,128,0.3) 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <div className="text-xs font-mono text-brand-primary uppercase tracking-widest mb-3">What AI-Augmented Actually Means</div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">The AI Layer.</h2>
-          <p className="text-brand-muted text-lg max-w-3xl mx-auto leading-relaxed">
-            Most fractional directors use the same tools they used in 2019. I deploy a parallel stack of autonomous AI agents that handle the work that traditionally eats director time — so my focus stays on decisions, not grunt work.
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">The AI agents do the grunt work.</h2>
+        </div>
+
+        <div className="max-w-3xl mx-auto mb-12 space-y-4 text-brand-muted text-lg leading-relaxed">
+          <p>
+            Most fractional directors bill you for time spent pulling data, writing product descriptions, and chasing catalogue errors. I don&apos;t. A stack of agents running on n8n handles the work that used to justify a junior team.
+          </p>
+          <p>
+            That&apos;s what makes the economics work. You get senior strategy and execution at a fraction of director cost because the AI layer absorbs the grunt work.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
-          {agents.map((agent) => (
-            <div key={agent.title} className="p-8 bg-brand-surface rounded-2xl border border-brand-border hover:border-brand-primary/30 transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-6 border border-brand-primary/20">
-                <agent.icon size={24} />
-              </div>
-              <h3 className="font-display font-bold text-white text-xl mb-3">{agent.title}</h3>
-              <p className="text-brand-muted text-sm leading-relaxed">{agent.description}</p>
+
+        <MondayDigestPreview />
+
+        <div className="max-w-3xl mx-auto mt-12 space-y-4">
+          {[
+            { label: 'Data', desc: 'Catalogue errors, alt text gaps, and pricing inconsistencies flagged automatically across your entire Shopify.' },
+            { label: 'Content', desc: 'On-brand product descriptions and feed titles generated at scale, reviewed before publishing.' },
+            { label: 'Reporting', desc: 'Weekly digest in your inbox every Monday. No dashboards to maintain.' },
+          ].map((item) => (
+            <div key={item.label} className="flex items-start gap-3">
+              <span className="text-brand-primary font-mono text-xs font-bold mt-1 shrink-0 w-20">{item.label}</span>
+              <p className="text-brand-muted text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
-        <p className="text-center text-brand-muted text-lg italic">
-          &ldquo;The agents work the catalogue. I work the strategy.&rdquo;
-        </p>
       </div>
     </section>
   );

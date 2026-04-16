@@ -147,7 +147,7 @@ export function Hero() {
             </div>
           </div>
           <div className={`text-[10px] md:text-xs font-mono tracking-widest uppercase ${isLight ? 'text-gray-500' : 'text-brand-muted/70'}`}>
-            &gt;&gt; {siteConfig.capacity.remaining} SPACE{siteConfig.capacity.remaining !== 1 ? 'S' : ''} REMAINING. NEXT INTAKE: {siteConfig.capacity.nextIntake.toUpperCase()}
+            &gt;&gt; 1 SLOT REMAINING
           </div>
         </div>
 
@@ -164,12 +164,8 @@ export function Hero() {
           </h1>
         </div>
 
-        <p className={`text-xl md:text-2xl font-medium mb-4 leading-relaxed max-w-3xl mx-auto text-center opacity-0 animate-fade-in ${isLight ? 'text-gray-800' : 'text-brand-text'}`} style={{ animationDelay: '0.2s' }}>
-          One senior operator. A stack of AI agents. The cost structure that makes it possible.
-        </p>
-
-        <p className={`text-base md:text-lg mb-10 leading-relaxed max-w-3xl mx-auto text-center font-light opacity-0 animate-fade-in ${isLight ? 'text-gray-500' : 'text-brand-muted'}`} style={{ animationDelay: '0.3s' }}>
-          Replace your agency roster from {siteConfig.pricing.retainerFrom}/month. Built for Shopify brands doing {siteConfig.revenueBand}.
+        <p className={`text-xl md:text-2xl font-medium mb-10 leading-relaxed max-w-3xl mx-auto text-center opacity-0 animate-fade-in ${isLight ? 'text-gray-800' : 'text-brand-text'}`} style={{ animationDelay: '0.2s' }}>
+          One senior operator. A stack of AI agents doing the grunt work. The cost structure that makes it possible.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 opacity-0 animate-fade-in w-full sm:w-auto" style={{ animationDelay: '0.5s' }}>
@@ -178,7 +174,7 @@ export function Hero() {
             <span className="relative z-10 flex items-center gap-2">{siteConfig.cta.label} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" /></span>
           </a>
           <Link href="/why-fractional" className={`w-full sm:w-auto px-10 py-5 font-medium text-lg rounded-xl transition-all flex items-center justify-center gap-2 backdrop-blur-md group/btn ${isLight ? 'bg-gray-900/5 hover:bg-gray-900/10 text-gray-900 border border-gray-300 hover:border-brand-primary/30' : 'bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-brand-primary/30'}`}>
-            See how the economics work
+            See How the Economics Work
             <ArrowRight size={18} className="text-brand-muted group-hover/btn:translate-x-1 transition-all" />
           </Link>
         </div>

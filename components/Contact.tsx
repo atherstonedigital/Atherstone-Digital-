@@ -50,7 +50,7 @@ export function Contact() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/10 rounded-full blur-2xl"></div>
             <div className="relative z-10">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs font-bold mb-6">
-                <Lock size={14} /><span>Waitlist Application</span>
+                <Lock size={14} /><span>Partner Application</span>
               </div>
               <h2 className="font-display text-3xl font-bold mb-4">Partner Application.</h2>
               <p className="text-brand-muted mb-8 leading-relaxed">

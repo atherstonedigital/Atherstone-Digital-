@@ -105,7 +105,7 @@ const homepageSchema = {
         'Ecommerce Data Remediation',
         'Google Shopping Feed Optimisation',
       ],
-      description: '15+ years scaling ecommerce brands. Former Head of Ecommerce at a UK £50M retailer. Now provides fractional director services to Shopify brands doing £500k–£5M.',
+      description: '20 years in ecommerce and digital. Blue chip and DTC clients. Now provides fractional director services to Shopify brands doing £500k–£5M.',
       hasCredential: [
         { '@type': 'EducationalOccupationalCredential', name: 'Google Ads Certified' },
         { '@type': 'EducationalOccupationalCredential', name: 'Klaviyo Expert' },
@@ -142,15 +142,7 @@ export default function HomePage() {
 }
 
 function EntityDefinition() {
-  return (
-    <section className="py-12 bg-brand-dark">
-      <div className="container mx-auto px-6">
-        <p className="text-brand-muted text-base md:text-lg leading-relaxed max-w-3xl mx-auto text-center">
-          {siteConfig.entity} One senior operator embedded in your business, backed by a stack of AI agents that do the catalogue, content, and reporting work a junior team used to. Three partners at a time. Pause or cancel with 30 days notice.
-        </p>
-      </div>
-    </section>
-  );
+  return null;
 }
 
 interface Testimonial {
@@ -222,7 +214,7 @@ function SocialProof() {
     <section className="py-16 bg-brand-dark border-t border-white/5">
       <div className="container mx-auto px-6">
         <div className="text-center mb-10">
-          <p className="text-xs font-mono text-brand-primary uppercase tracking-widest mb-2">Trusted by Shopify Brands Doing £500k–£5M</p>
+          <p className="text-xs font-mono text-brand-primary uppercase tracking-widest mb-2">What Partners Say</p>
         </div>
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {testimonials.slice(0, 3).map((t, i) => (
@@ -282,7 +274,7 @@ function DirectorTeaser() {
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 border border-brand-primary/30 rounded-full bg-brand-primary/5 text-brand-primary text-xs font-bold uppercase tracking-widest">The Director</div>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Meet Dan Le Gresley.</h2>
             <div className="text-brand-muted text-lg leading-relaxed mb-6 space-y-4">
-              <p>15+ years scaling ecommerce brands across furniture, fashion, health, and lifestyle. I sat in the Head of Ecommerce chair at a UK £50M retailer — managing seven-figure ad budgets, leading catalogue operations across 6,000+ SKUs, and building the data infrastructure from scratch.</p>
+              <p>20 years in ecommerce and digital, working across both ends of the market. Blue chip clients including GSK, Amazon, Ecolab, Eli Lilly, and The Economist. DTC brands like Onbord, My Expert Midwife, and Electrocore. The through-line is always the same: make the commercial side of digital actually work.</p>
               <p>Now I take on three partners at a time and work as their embedded fractional director. I own the strategy, write the code, run the ads, and ship the automations. One person. One invoice. Everything connected.</p>
             </div>
             <div className="flex flex-col gap-3 justify-center md:justify-start mb-8">
@@ -332,12 +324,11 @@ function ValueComparison() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">Why Fractional Wins.</h2>
-          <p className="text-brand-muted text-xl max-w-2xl mx-auto">Compare the real cost of your options. The maths is uncomfortable for agencies.</p>
+          <p className="text-brand-muted text-xl max-w-2xl mx-auto">Compare the real cost of your options.</p>
         </div>
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {cols.map((col) => (
             <div key={col.label} className={`rounded-2xl p-8 border relative ${col.highlight ? 'bg-brand-surfaceHighlight border-brand-primary/40 shadow-[0_0_40px_rgba(74,222,128,0.1)]' : 'bg-brand-surface border-white/5'}`}>
-              {col.highlight && <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand-primary text-brand-dark text-xs font-bold rounded-full">BEST VALUE</div>}
               <h3 className={`font-display text-lg font-bold mb-6 ${col.highlight ? 'text-brand-primary' : 'text-white'}`}>{col.label}</h3>
               <ul className="space-y-3">
                 {col.items.map((item, i) => (
@@ -387,7 +378,6 @@ function ServicesPreview() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">The Force Multiplier Stack.</h2>
-          <p className="text-brand-muted text-xl max-w-2xl mx-auto">Everything a £100k/year ecommerce director would own. Delivered fractionally.</p>
         </div>
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {pillars.map((p) => {

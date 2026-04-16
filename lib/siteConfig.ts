@@ -9,7 +9,7 @@ export const siteConfig = {
     nextIntake: 'April 2026',
   },
   cta: {
-    label: 'Book a Call',
+    label: 'Book a Free Commercial Review',
     url: 'https://calendly.com/dan-atherstonedigital/30min',
   },
   pricing: {

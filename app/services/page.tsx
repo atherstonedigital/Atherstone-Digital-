@@ -62,7 +62,7 @@ export default function ServicesPage() {
 
         {/* Core product card */}
         <section className="container mx-auto px-6 mb-24">
-          <div className="bg-gradient-to-b from-brand-surfaceHighlight to-brand-dark border border-brand-primary/30 rounded-3xl p-1 relative overflow-hidden shadow-[0_0_50px_rgba(0,220,130,0.05)] max-w-5xl mx-auto">
+          <div className="bg-gradient-to-b from-brand-surfaceHighlight to-brand-dark border border-brand-primary/30 rounded-3xl p-1 relative overflow-hidden shadow-[0_0_50px_rgba(74,222,128,0.05)] max-w-5xl mx-auto">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1 bg-brand-primary/50 blur-[2px]"></div>
             <div className="bg-brand-dark rounded-[22px] p-8 md:p-12 lg:flex gap-12 items-center relative z-10">
               <div className="lg:w-1/2 mb-8 lg:mb-0">

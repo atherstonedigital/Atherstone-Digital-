@@ -124,7 +124,7 @@ export function Contact() {
                   Something went wrong. Please try again or email <a href="mailto:info@atherstonedigital.com" className="underline">info@atherstonedigital.com</a> directly.
                 </p>
               )}
-              <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(0,220,130,0.2)]">
+              <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(74,222,128,0.2)]">
                 {isSubmitting ? <><Loader2 size={20} className="animate-spin" /> Submitting...</> : <>Submit Application <ArrowRight size={18} /></>}
               </button>
             </form>

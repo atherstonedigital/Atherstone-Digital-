@@ -274,7 +274,7 @@ function DirectorTeaser() {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/3 flex justify-center">
-            <div className="relative w-52 h-52 rounded-2xl overflow-hidden border-2 border-brand-primary/20 shadow-[0_0_40px_rgba(0,220,130,0.1)]">
+            <div className="relative w-52 h-52 rounded-2xl overflow-hidden border-2 border-brand-primary/20 shadow-[0_0_40px_rgba(74,222,128,0.1)]">
               <Image src="/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png" alt="Dan Le Gresley — Fractional Ecommerce Director based in Atherstone, Warwickshire" width={208} height={208} className="w-full h-full object-cover object-top" />
             </div>
           </div>
@@ -336,7 +336,7 @@ function ValueComparison() {
         </div>
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {cols.map((col) => (
-            <div key={col.label} className={`rounded-2xl p-8 border relative ${col.highlight ? 'bg-brand-surfaceHighlight border-brand-primary/40 shadow-[0_0_40px_rgba(0,220,130,0.1)]' : 'bg-brand-surface border-white/5'}`}>
+            <div key={col.label} className={`rounded-2xl p-8 border relative ${col.highlight ? 'bg-brand-surfaceHighlight border-brand-primary/40 shadow-[0_0_40px_rgba(74,222,128,0.1)]' : 'bg-brand-surface border-white/5'}`}>
               {col.highlight && <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand-primary text-brand-dark text-xs font-bold rounded-full">BEST VALUE</div>}
               <h3 className={`font-display text-lg font-bold mb-6 ${col.highlight ? 'text-brand-primary' : 'text-white'}`}>{col.label}</h3>
               <ul className="space-y-3">

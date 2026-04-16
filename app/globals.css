@@ -8,12 +8,12 @@ html {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #020604; }
+::-webkit-scrollbar-track { background: #060D08; }
 ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #00DC82; }
+::-webkit-scrollbar-thumb:hover { background: #4ADE80; }
 
 body {
-  background-color: #020604;
+  background-color: #060D08;
   color: #f1f5f9;
   position: relative;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -47,7 +47,7 @@ html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
 html.light .bg-brand-dark { background-color: #f8fafb; }
 html.light .bg-brand-surface { background-color: #ffffff; }
 html.light .bg-brand-surfaceHighlight { background-color: #f0fdf4; }
-html.light .bg-\[\#020604\] { background-color: #f8fafb; }
+html.light .bg-\[\#060D08\] { background-color: #f8fafb; }
 html.light .bg-\[\#05110d\] { background-color: #ffffff; }
 
 /* Text */
@@ -84,8 +84,8 @@ html.light .border-brand-primary\/30 { border-color: rgba(5, 150, 105, 0.3); }
 html.light .border-brand-primary\/40 { border-color: rgba(5, 150, 105, 0.4); }
 html.light .bg-brand-primary\/5 { background-color: rgba(5, 150, 105, 0.05); }
 html.light .bg-brand-primary\/10 { background-color: rgba(5, 150, 105, 0.1); }
-html.light .shadow-\[0_0_20px_rgba\(0\2c 220\2c 130\2c 0\.2\)\] { box-shadow: 0 0 20px rgba(5,150,105,0.15); }
-html.light .shadow-\[0_0_40px_rgba\(0\2c 220\2c 130\2c 0\.3\)\] { box-shadow: 0 0 40px rgba(5,150,105,0.15); }
+html.light .shadow-\[0_0_20px_rgba\(74\2c 222\2c 128\2c 0\.2\)\] { box-shadow: 0 0 20px rgba(5,150,105,0.15); }
+html.light .shadow-\[0_0_40px_rgba\(74\2c 222\2c 128\2c 0\.3\)\] { box-shadow: 0 0 40px rgba(5,150,105,0.15); }
 
 /* Card surfaces */
 html.light .bg-brand-surface\/30 { background-color: rgba(255, 255, 255, 0.7); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
@@ -111,14 +111,14 @@ html.light .from-brand-dark { --tw-gradient-from: #f8fafb; }
 html.light footer { background-color: #f8fafb; border-color: rgba(0,0,0,0.06); }
 
 /* Dropdown */
-html.light .bg-\[\#020604\]\/95 { background-color: rgba(255, 255, 255, 0.97); box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+html.light .bg-\[\#060D08\]\/95 { background-color: rgba(255, 255, 255, 0.97); box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
 
 /* Dark panel overrides for results page etc */
 html.light .bg-\[\#05110d\] { background-color: #ffffff; }
 
 /* Dropdown shadow override */
 html.light .shadow-\[0_10px_40px_rgba\(0\2c 0\2c 0\2c 0\.5\)\] { box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-html.light .shadow-\[0_0_50px_rgba\(0\2c 220\2c 130\2c 0\.1\)\] { box-shadow: 0 0 50px rgba(5,150,105,0.08); }
+html.light .shadow-\[0_0_50px_rgba\(74\2c 222\2c 128\2c 0\.1\)\] { box-shadow: 0 0 50px rgba(5,150,105,0.08); }
 html.light .shadow-2xl { box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
 
 /* Selection */
@@ -157,6 +157,6 @@ html.light .glass-light {
 }
 
 ::selection {
-  background-color: #00DC82;
-  color: #020604;
+  background-color: #4ADE80;
+  color: #060D08;
 }

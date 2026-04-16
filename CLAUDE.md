@@ -52,7 +52,7 @@ components/                   # Shared React components
 
 lib/
 ├── data.ts                   # Blog posts, locations, services data
-└── config.ts                 # Site configuration
+└── siteConfig.ts             # Site configuration (single source of truth for CTA, capacity, pricing)
 
 public/                       # Static assets (images, fonts)
 ```
@@ -63,16 +63,16 @@ Defined in `tailwind.config.ts` under `theme.extend.colors.brand`:
 
 | Token              | Value                      | Usage                  |
 |--------------------|-----------------------------|------------------------|
-| `brand-dark`       | `#020604`                  | Page backgrounds       |
+| `brand-dark`       | `#060D08`                  | Page backgrounds       |
 | `brand-surface`    | `#041812`                  | Card/section backgrounds |
 | `brand-surfaceHighlight` | `#08261e`            | Hover/active surfaces  |
-| `brand-primary`    | `#00DC82`                  | Primary green CTA/links |
-| `brand-accent`     | `#CCF078`                  | Accent lime highlights |
+| `brand-primary`    | `#4ADE80`                  | Primary green CTA/links |
+| `brand-accent`     | `#26cf64`                  | Accent green highlights |
 | `brand-text`       | `#f1f5f9`                  | Body text (light)      |
 | `brand-muted`      | `#94a3b8`                  | Secondary/muted text   |
 | `brand-border`     | `rgba(255, 255, 255, 0.08)` | Subtle borders        |
 
-Fonts: Inter (body), Space Grotesk (display headings), JetBrains Mono (code).
+Fonts: DM Sans (body), Syne (display headings), JetBrains Mono (code).
 
 ## Content Management
 

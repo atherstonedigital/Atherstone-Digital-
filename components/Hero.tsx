@@ -118,7 +118,7 @@ export function Hero() {
     return () => clearTimeout(initTimeout);
   }, [theme]);
 
-  const bgColor = isLight ? '#f0fdf4' : '#020604';
+  const bgColor = isLight ? '#f0fdf4' : '#060D08';
 
   return (
     <section id="home" className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden pt-36 pb-32" style={{ backgroundColor: bgColor }}>

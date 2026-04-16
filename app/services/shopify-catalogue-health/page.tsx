@@ -298,7 +298,7 @@ export default function ShopifyCatalogueHealthPage() {
                     key={tier.name}
                     className={`rounded-2xl p-8 border relative ${
                       isPopular
-                        ? 'bg-brand-surfaceHighlight border-brand-primary/40 shadow-[0_0_40px_rgba(0,220,130,0.1)]'
+                        ? 'bg-brand-surfaceHighlight border-brand-primary/40 shadow-[0_0_40px_rgba(74,222,128,0.1)]'
                         : 'bg-brand-surface border-brand-border'
                     }`}
                   >

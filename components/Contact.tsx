@@ -54,7 +54,7 @@ export function Contact() {
               </div>
               <h2 className="font-display text-3xl font-bold mb-4">Partner Application.</h2>
               <p className="text-brand-muted mb-8 leading-relaxed">
-                I only work with 3 partners at a time to ensure maximum focus. Complete this application to see if we&apos;re a fit.
+                I only work with {siteConfig.capacity.total} partners at a time to ensure maximum focus. Complete this application to see if we&apos;re a fit.
               </p>
               <ul className="space-y-4 text-sm text-brand-text">
                 <li className="flex items-center gap-3"><CheckCircle size={18} className="text-brand-primary" /> Direct access to Dan (Founder)</li>

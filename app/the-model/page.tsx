@@ -85,7 +85,7 @@ export default function TheModelPage() {
             <div className="relative group bg-brand-surface/40 border border-white/5 rounded-3xl p-8 lg:p-10 hover:bg-brand-surface/60 transition-colors">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-primary/50 to-transparent rounded-t-3xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
               <div className="flex items-center gap-6 mb-8">
-                <div className="w-16 h-16 bg-brand-primary/10 rounded-2xl flex items-center justify-center text-brand-primary border border-brand-primary/20 shadow-[0_0_20px_rgba(0,220,130,0.15)]">
+                <div className="w-16 h-16 bg-brand-primary/10 rounded-2xl flex items-center justify-center text-brand-primary border border-brand-primary/20 shadow-[0_0_20px_rgba(74,222,128,0.15)]">
                   <Brain size={32} />
                 </div>
                 <div>
@@ -165,7 +165,7 @@ export default function TheModelPage() {
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Ready to deploy this system?</h2>
               <p className="text-brand-muted text-lg mb-8">I can audit your current stack and show you exactly where AI agents can replace manual drudgery.</p>
-              <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,220,130,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
+              <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
                 Book a Free Commercial Review <ArrowRight size={20} />
               </Link>
             </div>

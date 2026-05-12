@@ -274,6 +274,15 @@ export const LOCATIONS_DATA: LocationItem[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: 'ai-writing-tells',
+    title: 'AI writing has a fingerprint. Most ecommerce brands are publishing it.',
+    date: '2026-05-12',
+    excerpt: 'A free Claude skill that strips the patterns marking text as machine-generated. Built for ecommerce brands publishing at scale.',
+    category: 'AI',
+    readTime: '6 min read',
+    content: '',
+  },
+  {
     slug: 'why-fractional-ecommerce-director-beats-agency',
     title: 'Why a Fractional Ecommerce Director Beats a Retainer Agency in 2025',
     date: '2025-03-15',

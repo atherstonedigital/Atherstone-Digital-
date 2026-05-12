@@ -5,13 +5,15 @@ import { BLOG_POSTS } from '@/lib/data';
 import { ArrowLeft, Calendar, Clock, User, Share2, Linkedin, Twitter } from 'lucide-react';
 import { Contact } from '@/components/Contact';
 
+const CUSTOM_BLOG_SLUGS = new Set(['ai-writing-tells']);
+
 export async function generateStaticParams() {
-  return BLOG_POSTS.map((p) => ({ slug: p.slug }));
+  return BLOG_POSTS.filter((p) => !CUSTOM_BLOG_SLUGS.has(p.slug)).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = BLOG_POSTS.find((p) => p.slug === params.slug);
-  if (!post) return {};
+  if (!post || CUSTOM_BLOG_SLUGS.has(params.slug)) return {};
   return {
     title: post.title,
     description: post.excerpt,
@@ -36,6 +38,7 @@ function renderMarkdown(content: string): string {
 }
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
+  if (CUSTOM_BLOG_SLUGS.has(params.slug)) notFound();
   const post = BLOG_POSTS.find((p) => p.slug === params.slug);
   if (!post) notFound();
 

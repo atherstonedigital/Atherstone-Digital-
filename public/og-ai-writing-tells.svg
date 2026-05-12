@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#060D08;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#041812;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:transparent" />
+      <stop offset="50%" style="stop-color:#4ADE80;stop-opacity:0.35" />
+      <stop offset="100%" style="stop-color:transparent" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="120" width="1200" height="1" fill="url(#glow)"/>
+  <circle cx="80" cy="80" r="8" fill="#4ADE80"/>
+  <text x="80" y="86" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="600" letter-spacing="4" fill="#94a3b8">BLOG &#183; ATHERSTONE DIGITAL</text>
+  <text x="80" y="280" font-family="Syne, system-ui, -apple-system, sans-serif" font-size="68" font-weight="700" fill="#4ADE80">AI writing has a fingerprint.</text>
+  <text x="80" y="370" font-family="Syne, system-ui, -apple-system, sans-serif" font-size="60" font-weight="700" fill="#f1f5f9">Most ecommerce brands</text>
+  <text x="80" y="440" font-family="Syne, system-ui, -apple-system, sans-serif" font-size="60" font-weight="700" fill="#f1f5f9">are publishing it.</text>
+  <text x="80" y="540" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#94a3b8">A free Claude skill. No email gate.</text>
+  <rect x="80" y="565" width="120" height="3" rx="1.5" fill="#4ADE80"/>
+</svg>

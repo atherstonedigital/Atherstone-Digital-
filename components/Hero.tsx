@@ -147,7 +147,7 @@ export function Hero() {
             </div>
           </div>
           <div className={`text-[10px] md:text-xs font-mono tracking-widest uppercase ${isLight ? 'text-gray-500' : 'text-brand-muted/70'}`}>
-            &gt;&gt; 1 SLOT REMAINING
+            &gt;&gt; {siteConfig.capacity.remaining} SLOT{siteConfig.capacity.remaining === 1 ? '' : 'S'} REMAINING
           </div>
         </div>
 

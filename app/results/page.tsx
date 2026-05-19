@@ -2,16 +2,17 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, TrendingUp, BarChart3, PieChart, LineChart, Database } from 'lucide-react';
 import { Contact } from '@/components/Contact';
+import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: 'Shopify Ecommerce Results & Case Studies',
-  description: 'Real results from real Shopify partnerships. +47% YoY revenue, +22% CVR, 100+ hours saved. See case studies.',
+  description: 'Real, named Shopify case studies and the measurement framework behind the fractional model. See the work, not invented numbers.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com/results',
   },
   openGraph: {
     title: 'Shopify Ecommerce Results & Case Studies | Atherstone Digital',
-    description: 'Real results from real Shopify partnerships. +47% YoY revenue, +22% CVR, 100+ hours saved. See case studies.',
+    description: 'Real, named Shopify case studies and the measurement framework behind the fractional model. See the work, not invented numbers.',
     url: 'https://www.atherstonedigital.com/results',
     type: 'website',
   },
@@ -21,15 +22,15 @@ const schema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'Ecommerce Growth Results & Case Studies',
-  description: 'Real commercial results from real partners. See how the fractional model drives +47% YoY revenue growth, +22% conversion rate, and +115% email revenue for Shopify brands.',
+  description: 'Real, named commercial work and the measurement framework behind the fractional model for Shopify brands.',
   url: 'https://www.atherstonedigital.com/results',
 };
 
 const stats = [
-  { value: '+47%', label: 'Average YoY Revenue Growth', sublabel: 'Across active partner accounts, last 12 months' },
-  { value: '+22%', label: 'Average CVR Improvement', sublabel: 'From CRO programme, first 90 days' },
-  { value: '100+', label: 'Hours Saved Per Month', sublabel: 'Via n8n automation workflows' },
-  { value: '16,193', label: 'Product Records Remediated', sublabel: 'In one client data audit — alt text, taxonomy, pricing' },
+  { value: '16,193', label: 'Product Records Remediated', sublabel: 'Xshowhome data audit: alt text, taxonomy, pricing' },
+  { value: '15,668', label: 'Alt Texts Corrected', sublabel: 'Xshowhome: 97% of the catalogue, brand leaks removed' },
+  { value: '6,337', label: 'Products Remapped', sublabel: 'Xshowhome: full Shopify Standard Taxonomy rebuild' },
+  { value: '66 to 84', label: 'SEO Audit Score', sublabel: 'Xshowhome: measured before and after remediation' },
 ];
 
 const metrics = [
@@ -95,59 +96,16 @@ export default function ResultsPage() {
           </div>
         </section>
 
-        {/* Case study terminal */}
+        {/* QA Audit 2026-05-19 — Task 2.2: Real case studies pending Dan's permissions */}
         <section className="container mx-auto px-6 mb-24">
-          <div className="relative bg-brand-terminal border border-white/10 rounded-3xl overflow-hidden max-w-5xl mx-auto shadow-2xl">
-            <div className="bg-white/5 border-b border-white/5 px-6 py-3 flex items-center gap-4">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
-              </div>
-              <div className="text-xs font-mono text-brand-muted uppercase tracking-widest">CASE_STUDY_004.JSON</div>
-            </div>
-            <div className="p-8 md:p-12 grid lg:grid-cols-2 gap-12">
-              <div className="space-y-6 text-brand-muted">
-                <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 border border-brand-primary/30 rounded-full bg-brand-primary/5">
-                    <span className="text-brand-primary text-xs font-bold uppercase tracking-widest">Client: UK Fashion Brand</span>
-                  </div>
-                  <h2 className="text-3xl font-display font-bold text-white mb-2">From Stagnation to <br /><span className="text-brand-primary">+47% YoY Growth</span></h2>
-                  <div className="text-xs text-brand-muted/60 uppercase tracking-wider">£2M GMV · Apparel · UK DTC · 12-month engagement</div>
-                </div>
-                <div>
-                  <strong className="text-white block mb-2 font-display">The Challenge</strong>
-                  <p className="text-sm">A £2M GMV apparel brand was stuck. Their agency was burning £5k/mo on management fees with generic results. Ads were breaking even, and email flows were untouched.</p>
-                </div>
-                <div>
-                  <strong className="text-white block mb-2 font-display">The Fix</strong>
-                  <p className="text-sm">I replaced the agency. We audited the stack, implemented 12 automated Klaviyo flows, and rebuilt the product page UX. We then used n8n to sync inventory data to Google Shopping in real-time.</p>
-                </div>
-              </div>
-              <div className="bg-black/40 border border-white/5 rounded-2xl p-6 flex flex-col justify-center">
-                <div className="flex justify-between items-center border-b border-white/10 pb-4 mb-6">
-                  <span className="text-white font-medium font-display">Performance Report</span>
-                  <span className="text-brand-primary font-mono text-xs bg-brand-primary/10 px-2 py-1 rounded">90 DAY IMPACT</span>
-                </div>
-                <div className="space-y-6">
-                  {[
-                    { label: 'Conversion Rate', value: '+22%', width: '75%', color: 'bg-brand-primary' },
-                    { label: 'Email Revenue', value: '+115%', width: '90%', color: 'bg-brand-accent' },
-                    { label: 'Cost Savings', value: '-40%', width: '60%', color: 'bg-blue-400' },
-                  ].map((item) => (
-                    <div key={item.label} className="flex items-center justify-between">
-                      <span className="text-brand-muted text-sm">{item.label}</span>
-                      <div className="flex items-center gap-3">
-                        <div className="w-32 h-2 bg-white/10 rounded-full overflow-hidden">
-                          <div className={`h-full ${item.color}`} style={{ width: item.width }}></div>
-                        </div>
-                        <span className="text-white font-bold font-mono">{item.value}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+          <div className="relative bg-brand-surface border border-white/10 rounded-3xl overflow-hidden max-w-5xl mx-auto shadow-2xl p-8 md:p-12 text-center">
+            <h2 className="text-3xl font-display font-bold text-white mb-4">Case studies coming back online soon</h2>
+            <p className="text-brand-muted max-w-2xl mx-auto mb-8 leading-relaxed">
+              Three detailed write-ups are in production, with the named clients&apos; permission. In the meantime, see the testimonials and outcomes on the homepage.
+            </p>
+            <Link href="/#testimonials" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:bg-brand-accent transition-all">
+              Read what partners have said <ArrowRight size={18} />
+            </Link>
           </div>
         </section>
 
@@ -246,8 +204,8 @@ export default function ResultsPage() {
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Let&apos;s improve your numbers.</h2>
               <p className="text-brand-muted text-lg mb-8">Apply for a partnership to see what the Fractional model can do for your bottom line.</p>
-              <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
-                Book a Free Commercial Review <ArrowRight size={20} />
+              <Link href={siteConfig.ctas.secondary.href} className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
+                {siteConfig.ctas.secondary.label} <ArrowRight size={20} />
               </Link>
             </div>
           </div>

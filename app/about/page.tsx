@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Target, ShieldCheck, Zap, Layers, MapPin } from 'lucide-react';
 import { Contact } from '@/components/Contact';
+import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: 'About Dan Le Gresley | Fractional Ecommerce Director, Warwickshire',
@@ -180,8 +181,8 @@ export default function AboutPage() {
               <Zap size={48} className="text-brand-primary mx-auto mb-6" />
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Ready to upgrade your team?</h2>
               <p className="text-brand-muted text-lg mb-8">Stop paying for agency overhead. Start investing in senior talent that moves the needle.</p>
-              <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1">
-                Book a Free Commercial Review <ArrowRight size={20} />
+              <Link href={siteConfig.ctas.secondary.href} className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1">
+                {siteConfig.ctas.secondary.label} <ArrowRight size={20} />
               </Link>
             </div>
           </div>

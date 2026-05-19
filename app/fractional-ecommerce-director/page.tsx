@@ -98,8 +98,8 @@ export default function FractionalDirectorPage() {
             <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
               {siteConfig.cta.label}
             </a>
-            <Link href="/#contact" className="px-8 py-4 bg-transparent border border-brand-border text-white font-medium rounded-lg hover:bg-white/5 transition-all min-w-[200px] text-center">
-              Complete the Application
+            <Link href={siteConfig.ctas.secondary.href} className="px-8 py-4 bg-transparent border border-brand-border text-white font-medium rounded-lg hover:bg-white/5 transition-all min-w-[200px] text-center">
+              {siteConfig.ctas.secondary.label}
             </Link>
           </div>
           <p className="text-sm font-mono text-brand-muted uppercase tracking-wider">
@@ -222,8 +222,8 @@ export default function FractionalDirectorPage() {
               *Most brands fit between {siteConfig.pricing.retainerRange}/month depending on complexity. <br />
               Rolling monthly contract. Pause or cancel with 30 days notice.
             </p>
-            <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:bg-brand-accent transition-all w-full md:w-auto justify-center">
-              Book a Free Commercial Review
+            <Link href={siteConfig.ctas.secondary.href} className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:bg-brand-accent transition-all w-full md:w-auto justify-center">
+              {siteConfig.ctas.secondary.label}
             </Link>
           </div>
         </div>
@@ -293,8 +293,8 @@ export default function FractionalDirectorPage() {
               <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
                 {siteConfig.cta.label}
               </a>
-              <Link href="/#contact" className="px-8 py-4 bg-brand-surface border border-brand-border text-white font-medium rounded-lg hover:bg-white/5 transition-all min-w-[200px] text-center">
-                Complete the Application
+              <Link href={siteConfig.ctas.secondary.href} className="px-8 py-4 bg-brand-surface border border-brand-border text-white font-medium rounded-lg hover:bg-white/5 transition-all min-w-[200px] text-center">
+                {siteConfig.ctas.secondary.label}
               </Link>
             </div>
           </div>

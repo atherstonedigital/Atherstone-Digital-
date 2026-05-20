@@ -96,70 +96,78 @@ export default function ResultsPage() {
           </div>
         </section>
 
-        {/* QA Audit 2026-05-19 — Task 2.2: Real case studies pending Dan's permissions */}
-        <section className="container mx-auto px-6 mb-24">
-          <div className="relative bg-brand-surface border border-white/10 rounded-3xl overflow-hidden max-w-5xl mx-auto shadow-2xl p-8 md:p-12 text-center">
-            <h2 className="text-3xl font-display font-bold text-white mb-4">Case studies coming back online soon</h2>
-            <p className="text-brand-muted max-w-2xl mx-auto mb-8 leading-relaxed">
-              Three detailed write-ups are in production, with the named clients&apos; permission. In the meantime, see the testimonials and outcomes on the homepage.
-            </p>
-            <Link href="/#testimonials" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:bg-brand-accent transition-all">
-              Read what partners have said <ArrowRight size={18} />
-            </Link>
-          </div>
-        </section>
-
-        {/* Case study 2 — Xshowhome */}
-        <section className="container mx-auto px-6 mb-24">
-          <div className="relative bg-brand-terminal border border-white/10 rounded-3xl overflow-hidden max-w-5xl mx-auto shadow-2xl">
-            <div className="bg-white/5 border-b border-white/5 px-6 py-3 flex items-center gap-4">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
+        {/* Case studies */}
+        <section className="container mx-auto px-6 mb-24 space-y-12">
+          {[
+            {
+              eyebrow: 'Furniture & Homeware · Shopify · Warwickshire, UK',
+              brand: 'Xshowhome',
+              headline: '16,193 product records remediated',
+              situation:
+                'Xshowhome operates a multi-showroom ex-showhome furniture retail business across Warwickshire and the Midlands. The Shopify store had grown organically and the underlying data was in poor shape: thousands of product images attributed to the wrong brand, the Shopify Standard Taxonomy broken with 1,373 products assigned to nonsense categories like "Address Signs" and "Earthquake Alarms", and the store’s own legal entity name leaking into Google indexed page titles.',
+              did:
+                'Three-phase data remediation via Python/openpyxl scripts and Matrixify bulk import. Phase 1: alt text correction across all 16,193 image rows, 15,668 corrected, 190 generated from scratch. Phase 2: product type standardisation, 71 inconsistent values cleaned to 50 correct types across 1,486 rows. Phase 3: full taxonomy rebuild, all 6,337 products remapped to correct Shopify Standard Taxonomy paths.',
+              outcome: [
+                '16,193 product records remediated across the catalogue',
+                '15,668 alt texts corrected (97% of the catalogue), 190 generated from scratch',
+                '6,337 products remapped to a clean Shopify Standard Taxonomy',
+                'SEO audit score moved from 66 to 84 (before and after remediation)',
+                'Brand-name leaks removed from store name, alt text, and indexed titles',
+              ],
+              quote:
+                'The scale of what Dan uncovered in our product catalogue was genuinely shocking. Thousands of product records with the wrong information, taxonomy misclassifications we’d never have found ourselves. He fixed all of it systematically and quickly.',
+              cite: 'Gemma Pountney, Xshowhome',
+            },
+            {
+              eyebrow: 'Premium Retail · Multi-Location · Broadway, UK',
+              brand: 'Saverys of Broadway',
+              headline: 'Embedded fractional director across three showrooms',
+              situation:
+                'Saverys of Broadway is a premium Cotswolds retailer trading across three showroom locations. They needed someone senior who could hold the strategic picture for a premium brand without compromising the positioning, while also getting into the detail of how the site and Google presence actually performed week to week.',
+              did:
+                'Fractional director engagement spanning ecommerce strategy and ongoing execution: site work, Google presence (organic visibility, listings, search performance), and the weekly cadence of measurement and prioritisation that a multi-location premium retailer needs but rarely has in-house.',
+              outcome: [
+                'Embedded fractional director across three premium retail showrooms',
+                'Site and Google presence owned end to end, no agency relay',
+                'Strategy and execution delivered inside one rolling monthly retainer',
+              ],
+              quote:
+                'Dan understands premium brands. Having someone who can hold the strategic picture while also getting into the detail of how the site and our Google presence actually perform is exactly what we needed.',
+              cite: 'Gary Postlethwaite, Saverys of Broadway',
+            },
+          ].map((c) => (
+            <article key={c.brand} className="relative bg-brand-surface border border-white/10 rounded-3xl overflow-hidden max-w-5xl mx-auto shadow-2xl p-8 md:p-12">
+              <span className="text-xs font-mono text-brand-primary uppercase tracking-widest">{c.eyebrow}</span>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-white mt-3 mb-8 tracking-tight">
+                {c.brand}: <span className="text-brand-primary">{c.headline}</span>
+              </h2>
+              <div className="grid md:grid-cols-3 gap-8 mb-10">
+                <section>
+                  <h3 className="text-white font-display font-bold mb-3">The situation</h3>
+                  <p className="text-brand-muted text-sm leading-relaxed">{c.situation}</p>
+                </section>
+                <section>
+                  <h3 className="text-white font-display font-bold mb-3">What I did</h3>
+                  <p className="text-brand-muted text-sm leading-relaxed">{c.did}</p>
+                </section>
+                <section>
+                  <h3 className="text-white font-display font-bold mb-3">The outcome</h3>
+                  <ul className="space-y-2 text-sm text-brand-muted">
+                    {c.outcome.map((m) => (
+                      <li key={m} className="flex gap-2">
+                        <span className="text-brand-primary mt-0.5 shrink-0">▸</span>
+                        <span>{m}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
               </div>
-              <div className="text-xs font-mono text-brand-muted uppercase tracking-widest">CASE_STUDY_007.JSON</div>
-            </div>
-            <div className="p-8 md:p-12 grid lg:grid-cols-2 gap-12">
-              <div className="space-y-6 text-brand-muted">
-                <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 border border-brand-primary/30 rounded-full bg-brand-primary/5">
-                    <span className="text-brand-primary text-xs font-bold uppercase tracking-widest">Client: Xshowhome — Ex-Showhome Furniture Retailer</span>
-                  </div>
-                  <h2 className="text-3xl font-display font-bold text-white mb-2">Data Remediation at <br /><span className="text-brand-primary">Catalogue Scale</span></h2>
-                  <div className="text-xs text-brand-muted/60 uppercase tracking-wider">GMV Band: £1M–£2M · Furniture & Homeware · Shopify · UK Multi-Channel</div>
-                </div>
-                <div>
-                  <strong className="text-white block mb-2 font-display">The Challenge</strong>
-                  <p className="text-sm">Xshowhome operates a multi-showroom furniture retail business across Warwickshire and the Midlands. Their Shopify store had grown organically but the underlying data was in poor shape: 16,193 product images were attributed to the wrong brand, the Shopify Standard Taxonomy was completely broken with 1,373 products assigned to garbage categories like &ldquo;Address Signs&rdquo; and &ldquo;Earthquake Alarms&rdquo;, and the store&apos;s own legal entity name was leaking into Google indexed page titles.</p>
-                </div>
-                <div>
-                  <strong className="text-white block mb-2 font-display">The Fix</strong>
-                  <p className="text-sm">Three-phase data remediation via Python/openpyxl scripts and Matrixify bulk import. Phase 1: alt text correction across all 16,193 image rows — 15,668 corrected, 190 generated from scratch. Phase 2: product type standardisation — 71 inconsistent values cleaned to 50 correct types across 1,486 rows. Phase 3: full taxonomy rebuild — all 6,337 products remapped to correct Shopify Standard Taxonomy paths.</p>
-                </div>
-              </div>
-              <div className="bg-black/40 border border-white/5 rounded-2xl p-6 flex flex-col justify-center">
-                <div className="flex justify-between items-center border-b border-white/10 pb-4 mb-6">
-                  <span className="text-white font-medium font-display">Impact Report</span>
-                  <span className="text-brand-primary font-mono text-xs bg-brand-primary/10 px-2 py-1 rounded">DATA REMEDIATION</span>
-                </div>
-                <div className="space-y-5">
-                  {[
-                    { label: 'Product Records Fixed', value: '16,193' },
-                    { label: 'Alt Texts Corrected', value: '15,668 (97%)' },
-                    { label: 'Taxonomy Rebuilt', value: '6,337 products' },
-                    { label: 'SEO Audit Score', value: '66 → 84' },
-                    { label: 'Brand Leaks Eliminated', value: 'Store name, alt text, titles' },
-                  ].map((item) => (
-                    <div key={item.label} className="flex items-center justify-between">
-                      <span className="text-brand-muted text-sm">{item.label}</span>
-                      <span className="text-white font-bold font-mono text-sm">{item.value}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+              <blockquote className="border-l-2 border-brand-primary pl-6 italic text-brand-text leading-relaxed">
+                &ldquo;{c.quote}&rdquo;
+                <cite className="block not-italic text-sm text-brand-muted mt-3">{c.cite}</cite>
+              </blockquote>
+            </article>
+          ))}
         </section>
 
         {/* Sectors */}

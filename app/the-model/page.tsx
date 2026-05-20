@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Brain, Workflow, Database, Bot, Layers } from 'lucide-react';
 import { Contact } from '@/components/Contact';
+import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: 'The Force Multiplier Model: Human Strategy + AI Execution',
@@ -165,8 +166,8 @@ export default function TheModelPage() {
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Ready to deploy this system?</h2>
               <p className="text-brand-muted text-lg mb-8">I can audit your current stack and show you exactly where AI agents can replace manual drudgery.</p>
-              <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
-                Book a Free Commercial Review <ArrowRight size={20} />
+              <Link href={siteConfig.ctas.secondary.href} className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
+                {siteConfig.ctas.secondary.label} <ArrowRight size={20} />
               </Link>
             </div>
           </div>

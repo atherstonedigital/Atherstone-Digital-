@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, PoundSterling, ShieldAlert, Briefcase, CheckCircle } from 'lucide-react';
 import { Contact } from '@/components/Contact';
+import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: 'Why Go Fractional? Director vs Agency vs Full-Time',
@@ -114,6 +115,17 @@ export default function WhyFractionalPage() {
           </div>
         </section>
 
+        {/* How can one person do all this? */}
+        <section className="container mx-auto px-6 mb-24">
+          <div className="max-w-3xl mx-auto bg-brand-surface border border-brand-border rounded-3xl p-8 md:p-12">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-6">How can one person do all this?</h2>
+            <div className="space-y-4 text-brand-muted text-lg leading-relaxed">
+              <p>Fair question. The honest answer: most of the work that used to require a junior team now runs in the background. Catalogue audits, feed checks, data pulls, weekly reports, anomaly detection. All of it sits on a stack of automations I have built and refined over the past two years. I spend my time on the judgement calls, the writing, the strategy, the difficult fixes. The grunt work happens whether I am awake or not.</p>
+              <p>That is why the maths works. One operator, three partners, senior judgement on everything, automated execution on the rest.</p>
+            </div>
+          </div>
+        </section>
+
         {/* Three comparison cards */}
         <section className="container mx-auto px-6 mb-24">
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-start max-w-5xl mx-auto">
@@ -213,8 +225,8 @@ export default function WhyFractionalPage() {
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Stop paying for overhead.</h2>
               <p className="text-brand-muted text-lg mb-8">Allocate your budget to execution and growth, not account management layers.</p>
-              <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
-                Book a Free Commercial Review <ArrowRight size={20} />
+              <Link href={siteConfig.ctas.secondary.href} className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
+                {siteConfig.ctas.secondary.label} <ArrowRight size={20} />
               </Link>
             </div>
           </div>

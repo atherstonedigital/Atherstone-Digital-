@@ -5,8 +5,10 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       { userAgent: '*', allow: '/' },
       { userAgent: 'GPTBot', allow: '/' },
-      { userAgent: 'Google-Extended', allow: '/' },
+      { userAgent: 'ClaudeBot', allow: '/' },
       { userAgent: 'Claude-Web', allow: '/' },
+      { userAgent: 'PerplexityBot', allow: '/' },
+      { userAgent: 'Google-Extended', allow: '/' },
       { userAgent: 'CCBot', allow: '/' },
     ],
     sitemap: 'https://www.atherstonedigital.com/sitemap.xml',

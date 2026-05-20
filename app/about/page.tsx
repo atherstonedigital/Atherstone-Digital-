@@ -3,17 +3,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Target, ShieldCheck, Zap, Layers, MapPin } from 'lucide-react';
 import { Contact } from '@/components/Contact';
+import { BreadcrumbsJsonLd } from '@/components/Breadcrumbs';
 import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
-  title: 'About Dan Le Gresley | Fractional Ecommerce Director, Warwickshire',
-  description: 'Shopify Plus Architect & Growth Strategist based in Atherstone, Warwickshire. Founder of Atherstone Digital. AI-augmented fractional leadership for UK ecommerce brands.',
+  title: { absolute: 'Dan Le Gresley, Senior Shopify Operator | Atherstone Digital' },
+  description: 'Dan Le Gresley runs Atherstone Digital. Senior Shopify ecommerce help for UK brands £500k to £5M. Twenty years across blue-chip and DTC. Embedded weekly.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com/about',
   },
   openGraph: {
-    title: 'About Dan Le Gresley | Fractional Ecommerce Director, Warwickshire',
-    description: 'Shopify Plus Architect & Growth Strategist based in Atherstone, Warwickshire. Founder of Atherstone Digital. AI-augmented fractional leadership for UK ecommerce brands.',
+    title: 'Dan Le Gresley, Senior Shopify Operator | Atherstone Digital',
+    description: 'Dan Le Gresley runs Atherstone Digital. Senior Shopify ecommerce help for UK brands £500k to £5M. Twenty years across blue-chip and DTC. Embedded weekly.',
     url: 'https://www.atherstonedigital.com/about',
     type: 'website',
   },
@@ -45,6 +46,7 @@ export default function AboutPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <BreadcrumbsJsonLd label="About" path="/about" />
       <div className="pt-36 pb-20 bg-brand-dark min-h-screen">
 
         {/* Hero */}
@@ -56,7 +58,7 @@ export default function AboutPage() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Dan Le Gresley.</span>
             </h1>
             <p className="text-xl text-brand-muted max-w-2xl mx-auto leading-relaxed">
-              20 years in ecommerce and digital, working across both ends of the market. Blue chip clients including GSK, Amazon, Ecolab, Eli Lilly, and The Economist. DTC brands like Onbord, My Expert Midwife, and Electrocore. Now I take on three Shopify partners at a time and work as their embedded fractional director — owning the strategy, writing the code, running the ads, and shipping the automations. One person. One invoice. Everything connected.
+              20 years in ecommerce and digital, working across both ends of the market. Blue chip clients including GSK, Amazon, Ecolab, Eli Lilly, and The Economist. DTC brands like Onbord, My Expert Midwife, and Electrocore. Now I take on three Shopify partners at a time and work as their embedded fractional director, owning the strategy, writing the code, running the ads, and shipping the automations. One person. One invoice. Everything connected.
             </p>
           </div>
         </section>

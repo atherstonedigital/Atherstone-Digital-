@@ -6,6 +6,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { CustomCursor } from '@/components/CustomCursor';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { UTMBanner } from '@/components/UTMBanner';
 
 const GA_ID = 'G-65K1KRBWQJ';
 
@@ -30,11 +31,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.atherstonedigital.com'),
   title: {
-    default: 'Fractional Ecommerce Director for Shopify Brands | Atherstone Digital',
+    default: 'Senior Shopify Help. Embedded Weekly | Atherstone Digital',
     template: '%s | Atherstone Digital',
   },
-  description: 'Senior Shopify ecommerce leadership, fractionally. CRO, paid media, automation & development for brands doing £500k–£5M. 3 partners max. Book a teardown.',
-  keywords: ['fractional ecommerce director shopify', 'shopify ecommerce consultant UK', 'fractional ecommerce director UK', 'Shopify Expert Birmingham', 'Ecommerce Consultant Midlands', 'Shopify Plus Consultant'],
+  description: 'Senior Shopify ecommerce help for UK brands turning over £500k to £5M. One operator. Embedded weekly. Strategy, build, ads, automation. From £3,000 a month.',
+  keywords: ['shopify ecommerce consultant UK', 'shopify operator UK', 'Shopify Expert Birmingham', 'Ecommerce Consultant Midlands', 'Shopify Plus Consultant'],
   authors: [{ name: 'Dan Le Gresley' }],
   icons: {
     icon: '/favicon-c-bef0ns.svg',
@@ -70,7 +71,7 @@ const globalSchema = {
         '@type': 'ImageObject',
         url: 'https://www.atherstonedigital.com/favicon-c-bef0ns.svg',
       },
-      description: 'A fractional ecommerce director service for Shopify brands doing £500k\u2013£5M in annual revenue. AI-augmented operator replacing fragmented agency rosters with one senior partner. Based in Atherstone, Warwickshire.',
+      description: 'A fractional ecommerce director service for Shopify brands doing £500k to £5M in annual revenue. One senior operator replacing fragmented agency rosters. Based in Atherstone, Warwickshire.',
       email: 'info@atherstonedigital.com',
       telephone: '+447810838129',
       founder: {
@@ -118,9 +119,10 @@ const globalSchema = {
       name: 'Dan Le Gresley',
       jobTitle: 'Fractional Ecommerce Director',
       worksFor: { '@id': 'https://www.atherstonedigital.com/#organization' },
+      image: 'https://www.atherstonedigital.com/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png',
       url: 'https://www.atherstonedigital.com/about',
       sameAs: ['https://www.linkedin.com/in/danlegresley/'],
-      description: '15+ years scaling ecommerce brands. Former Head of Ecommerce at a UK £50M retailer. Shopify Plus Partner, Google Ads Certified, Klaviyo Expert.',
+      description: '20+ years scaling ecommerce brands, across blue-chip and DTC. Shopify Plus Partner, Google Ads Certified, Klaviyo Expert.',
     },
     {
       '@type': 'WebSite',
@@ -171,6 +173,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </form>
 
           <CustomCursor />
+          <UTMBanner />
           <Header />
           <main id="main-content" className="flex-grow min-h-screen">
             {children}

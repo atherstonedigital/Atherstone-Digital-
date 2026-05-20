@@ -47,7 +47,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     },
     audience: {
       '@type': 'Audience',
-      audienceType: 'Shopify brands doing £500k–£5M annual revenue',
+      audienceType: 'Shopify brands doing £500k to £5M annual revenue',
     },
   };
 

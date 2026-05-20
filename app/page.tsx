@@ -11,14 +11,14 @@ import { MondayDigestPreview } from '@/components/MondayDigestPreview';
 import { JobsFamiliar } from '@/components/JobsFamiliar';
 
 export const metadata: Metadata = {
-  title: 'Fractional Ecommerce Director for Shopify Brands | Warwickshire UK',
-  description: 'Fractional Ecommerce Director for Shopify brands doing £500k–£5M. Senior CRO, paid media, Klaviyo & development from Atherstone, Warwickshire. 3 partners max.',
+  title: { absolute: 'Senior Shopify Help. Embedded Weekly | Atherstone Digital' },
+  description: 'Senior Shopify ecommerce help for UK brands turning over £500k to £5M. One operator. Embedded weekly. Strategy, build, ads, automation. From £3,000 a month.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com',
   },
   openGraph: {
-    title: 'Fractional Ecommerce Director for Shopify Brands | Warwickshire UK',
-    description: 'Fractional Ecommerce Director for Shopify brands doing £500k–£5M. Senior CRO, paid media, Klaviyo & development from Atherstone, Warwickshire. 3 partners max.',
+    title: 'Senior Shopify Help. Embedded Weekly | Atherstone Digital',
+    description: 'Senior Shopify ecommerce help for UK brands turning over £500k to £5M. One operator. Embedded weekly. Strategy, build, ads, automation. From £3,000 a month.',
     url: 'https://www.atherstonedigital.com',
     type: 'website',
   },
@@ -106,7 +106,7 @@ const homepageSchema = {
         'Ecommerce Data Remediation',
         'Google Shopping Feed Optimisation',
       ],
-      description: '20 years in ecommerce and digital. Blue chip and DTC clients. Now provides fractional director services to Shopify brands doing £500k–£5M.',
+      description: '20 years in ecommerce and digital. Blue chip and DTC clients. Now provides fractional director services to Shopify brands doing £500k to £5M.',
       hasCredential: [
         { '@type': 'EducationalOccupationalCredential', name: 'Google Ads Certified' },
         { '@type': 'EducationalOccupationalCredential', name: 'Klaviyo Expert' },
@@ -161,7 +161,7 @@ function SocialProof() {
   // VERIFIED: All testimonials provided directly by Dan, April 2026
   const testimonials: Testimonial[] = [
     {
-      // VERIFIED: Gemma Pountney / Xshowhome — in portfolio, catalogue health project
+      // VERIFIED: Gemma Pountney / Xshowhome / in portfolio, catalogue health project
       quote: 'The scale of what Dan uncovered in our product catalogue was genuinely shocking. Thousands of product records with the wrong information, taxonomy misclassifications we\u2019d never have found ourselves, alt text that had been wrong since day one. He fixed all of it systematically and quickly, and the difference in how our catalogue looks and performs has been significant. He\u2019s meticulous in a way that\u2019s hard to find.',
       name: 'Gemma Pountney',
       title: '',
@@ -171,7 +171,7 @@ function SocialProof() {
       sector: 'Furniture & Homeware \u00b7 Shopify \u00b7 Warwickshire, UK',
     },
     {
-      // VERIFIED: Dr Frankie Harrison / Miracle Moon — automation project
+      // VERIFIED: Dr Frankie Harrison / Miracle Moon / automation project
       quote: 'Before working with Dan, our team was spending hours every week doing things manually that should never have been manual. He built out a complete automation system that connected our Shopify store, our email platform, our supplier feeds, everything, and it just works. We saved over 120 hours a month almost immediately. That\u2019s time we\u2019ve reinvested into actually growing the business.',
       name: 'Dr Frankie Harrison',
       title: '',
@@ -181,7 +181,7 @@ function SocialProof() {
       sector: 'Health & Wellness \u00b7 Shopify \u00b7 UK DTC',
     },
     {
-      // VERIFIED: Gary Postlethwaite / Saverys of Broadway — fractional director engagement
+      // VERIFIED: Gary Postlethwaite / Saverys of Broadway / fractional director engagement
       quote: 'Dan understands premium brands. He doesn\u2019t push for quick wins that compromise the positioning, he thinks carefully about how digital should work for a business like ours, where trust and relationship are everything. Having someone who can hold the strategic picture while also getting into the detail of how the site and our Google presence actually perform is exactly what we needed.',
       name: 'Gary Postlethwaite',
       title: '',
@@ -191,7 +191,7 @@ function SocialProof() {
       sector: 'Premium Retail \u00b7 Multi-Location \u00b7 UK',
     },
     {
-      // VERIFIED: Luke Aling / Ranch Creative — white-label partner
+      // VERIFIED: Luke Aling / Ranch Creative / white-label partner
       quote: 'Dan is the person we bring in when a client needs serious ecommerce thinking and we need to know it\u2019ll be delivered properly. He works seamlessly as an extension of the Ranch team, the client never feels like they\u2019re dealing with a third party. The quality of the strategy and the execution is consistently high, and he operates with real commercial intelligence, not just technical output.',
       name: 'Luke Aling',
       title: '',
@@ -201,7 +201,7 @@ function SocialProof() {
       sector: 'Agency Partner \u00b7 Home & Interiors \u00b7 UK',
     },
     {
-      // VERIFIED: Kim Waller / Licklibrary — Ranch Creative client (white label)
+      // VERIFIED: Kim Waller / Licklibrary / Ranch Creative client (white label)
       quote: 'We\u2019d been sitting on a wealth of data and had no idea what it was telling us. Dan came in, got into the analytics properly, and gave us a clear picture of where we were losing people and why. The recommendations were practical and prioritised, not a wishlist. We finally understood our users, and the improvements we made off the back of his work had a real impact on how the site performed.',
       name: 'Kim Waller',
       title: '',
@@ -269,7 +269,7 @@ function DirectorTeaser() {
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/3 flex justify-center">
             <div className="relative w-52 h-52 rounded-2xl overflow-hidden border-2 border-brand-primary/20 shadow-[0_0_40px_rgba(74,222,128,0.1)]">
-              <Image src="/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png" alt="Dan Le Gresley — Fractional Ecommerce Director based in Atherstone, Warwickshire" width={208} height={208} className="w-full h-full object-cover object-top" />
+              <Image src="/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png" alt="Dan Le Gresley, Fractional Ecommerce Director based in Atherstone, Warwickshire" width={208} height={208} className="w-full h-full object-cover object-top" />
             </div>
           </div>
           <div className="md:w-2/3 text-center md:text-left">
@@ -284,7 +284,7 @@ function DirectorTeaser() {
                 { tag: 'Shopify Plus Partner', proof: 'Building on Shopify since 2014. From Dawn theme edits to headless architectures.' },
                 { tag: 'Google Ads Certified', proof: 'ROAS-focused campaigns across Google Shopping, Search, and Performance Max.' },
                 { tag: 'Klaviyo Expert', proof: 'Built flows generating £115k+ in incremental email revenue across partner accounts.' },
-                { tag: 'n8n Automation', proof: 'Custom workflow automation — 120+ hours/month saved across active partners.' },
+                { tag: 'n8n Automation', proof: 'Custom workflow automation. 120+ hours/month saved across active partners.' },
               ].map((item) => (
                 <div key={item.tag} className="flex flex-col">
                   <span className="px-3 py-1 bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs rounded-full font-mono inline-block w-fit">{item.tag}</span>
@@ -307,7 +307,7 @@ function ValueComparison() {
     {
       label: 'Traditional Agency',
       highlight: false,
-      items: ['Junior AM as day-to-day contact', 'Senior talent sold, juniors deliver', 'Work split across 20+ clients', '£5k–£10k/mo for fractured output', 'No P&L ownership', 'Long onboarding, slow iterations'],
+      items: ['Junior AM as day-to-day contact', 'Senior talent sold, juniors deliver', 'Work split across 20+ clients', '£5k to £10k/mo for fractured output', 'No P&L ownership', 'Long onboarding, slow iterations'],
     },
     {
       label: 'Atherstone Digital',
@@ -457,7 +457,7 @@ function ProcessSection() {
   const steps = [
     { num: '01', title: 'Audit & Onboarding', desc: 'Week 1: Full tech stack audit, analytics review, and commercial baseline. We find the quick wins and the structural problems.' },
     { num: '02', title: 'Sprint Planning', desc: 'We agree a 90-day roadmap with weekly sprint priorities. Everything is tracked. Nothing gets lost in email threads.' },
-    { num: '03', title: 'Execution', desc: 'I build, test, and launch. Whether that\'s a new Shopify flow, a paid media campaign, or an n8n automation — I do the work.' },
+    { num: '03', title: 'Execution', desc: 'I build, test, and launch. Whether that\'s a new Shopify flow, a paid media campaign, or an n8n automation, I do the work.' },
     { num: '04', title: 'Measure & Iterate', desc: 'Weekly performance reviews. Monthly commercial reports. Quarterly strategy sessions. The feedback loop never stops.' },
   ];
 
@@ -487,7 +487,7 @@ function ResultsSection() {
     { icon: TrendingUp, value: '£250k', label: 'Monthly Revenue in 6 Months', sub: 'Ranch Creative partnership, home and interiors brand' },
     { icon: Users, value: '16,193', label: 'Product Records Remediated', sub: 'Xshowhome, full catalogue health audit and taxonomy rebuild' },
     { icon: Zap, value: '120+', label: 'Hours Per Month Automated', sub: 'Miracle Moon, 14 n8n workflows across 4 connected systems' },
-    { icon: BarChart2, value: '2.9%', label: 'Store Conversion Rate', sub: 'vs. industry average of 1.4% — site rebuild and CRO programme, Ranch Creative client' },
+    { icon: BarChart2, value: '2.9%', label: 'Store Conversion Rate', sub: 'vs. industry average of 1.4%, site rebuild and CRO programme, Ranch Creative client' },
   ];
 
   return (

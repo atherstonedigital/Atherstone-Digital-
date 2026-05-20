@@ -2,17 +2,18 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, TrendingUp, BarChart3, PieChart, LineChart, Database } from 'lucide-react';
 import { Contact } from '@/components/Contact';
+import { BreadcrumbsJsonLd } from '@/components/Breadcrumbs';
 import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
-  title: 'Shopify Ecommerce Results & Case Studies',
-  description: 'Real, named Shopify case studies and the measurement framework behind the fractional model. See the work, not invented numbers.',
+  title: { absolute: 'Shopify Ecommerce Case Studies, Numbers | Atherstone Digital' },
+  description: 'Real, named Shopify case studies and the measurement framework. Xshowhome catalogue health and Saverys multi-location fractional, attributed quotes and numbers.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com/results',
   },
   openGraph: {
-    title: 'Shopify Ecommerce Results & Case Studies | Atherstone Digital',
-    description: 'Real, named Shopify case studies and the measurement framework behind the fractional model. See the work, not invented numbers.',
+    title: 'Shopify Ecommerce Case Studies, Numbers | Atherstone Digital',
+    description: 'Real, named Shopify case studies and the measurement framework. Xshowhome catalogue health and Saverys multi-location fractional, attributed quotes and numbers.',
     url: 'https://www.atherstonedigital.com/results',
     type: 'website',
   },
@@ -53,7 +54,7 @@ const metrics = [
     bgIcon: Database,
     color: 'brand-primary',
     title: 'Data Integrity as a Foundation',
-    desc: 'Before optimising for growth, the data has to be clean. Broken taxonomy, wrong brand attribution in alt text, and NaN values in product descriptions all suppress organic visibility before a single ad is run. We audit the foundation first — then we scale.',
+    desc: 'Before optimising for growth, the data has to be clean. Broken taxonomy, wrong brand attribution in alt text, and NaN values in product descriptions all suppress organic visibility before a single ad is run. We audit the foundation first, then we scale.',
   },
 ];
 
@@ -61,6 +62,7 @@ export default function ResultsPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <BreadcrumbsJsonLd label="Results" path="/results" />
       <div className="pt-36 pb-20 bg-brand-dark min-h-screen">
         <div className="container mx-auto px-6 mb-8">
           <Link href="/" className="text-brand-muted hover:text-brand-primary transition-colors inline-flex items-center gap-2 text-sm font-medium">

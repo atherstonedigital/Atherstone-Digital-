@@ -1,8 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, AlertTriangle, Clock, Target, BarChart3, HelpCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, AlertTriangle, HelpCircle } from 'lucide-react';
 import { Contact } from '@/components/Contact';
 import { FAQAccordion } from '@/components/FAQAccordion';
+import { JobsFamiliar } from '@/components/JobsFamiliar';
 import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
@@ -81,14 +82,14 @@ export default function FractionalDirectorPage() {
             <span className="text-brand-primary text-xs font-mono uppercase tracking-widest font-bold">Current Capacity: {siteConfig.capacity.filled}/{siteConfig.capacity.total} Partners. {siteConfig.capacity.remaining} space remaining.</span>
           </div>
           <h1 className="font-display text-5xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
-            Fractional Ecommerce Director <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">(Shopify)</span>
+            I run ecommerce properly. <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Embedded. Weekly. Accountable.</span>
           </h1>
           <p className="text-xl text-brand-muted max-w-2xl mx-auto leading-relaxed mb-8">
-            Senior operational leadership for Shopify brands doing {siteConfig.revenueBand}. One operator, an AI agent stack, and full P&amp;L accountability. From {siteConfig.pricing.retainerFrom}/month.
+            For Shopify brands turning over {siteConfig.revenueBand} who are sick of agencies that promise senior and deliver junior.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm text-brand-text mb-10">
-            {['Hands-on Execution', 'Weekly Strategy', 'No Long Contracts'].map((tag) => (
+            {['Hands-on execution', 'Weekly strategy', 'Rolling monthly contract'].map((tag) => (
               <span key={tag} className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10">
                 <CheckCircle size={14} className="text-brand-primary" /> {tag}
               </span>
@@ -109,52 +110,20 @@ export default function FractionalDirectorPage() {
       </section>
 
       {/* Pain points */}
-      <section className="container mx-auto px-6 mb-24">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-display font-bold text-white mb-8 text-center">If this sounds familiar...</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              { icon: AlertTriangle, title: 'Fragmented Agencies', desc: "Your PPC agency blames the site. Your dev agency blames the traffic. No one owns the P&L." },
-              { icon: Clock, title: 'Unclear Priorities', desc: "You have a backlog of 50 ideas but don't know which one will actually move the needle this month." },
-              { icon: BarChart3, title: 'Tracking Confusion', desc: "GA4 says one thing. Shopify says another. You're flying blind on profit margins." },
-              { icon: Target, title: 'Leaky Funnel', desc: "Traffic is arriving, but mobile conversion is stuck. You need UX fixes, not just more ad spend." },
-            ].map((item) => (
-              <div key={item.title} className="bg-brand-surface border border-white/5 p-6 rounded-xl hover:border-red-500/30 transition-colors group">
-                <div className="flex items-center gap-3 mb-3">
-                  <item.icon className="text-red-500 group-hover:scale-110 transition-transform" size={24} />
-                  <h3 className="font-bold text-white">{item.title}</h3>
-                </div>
-                <p className="text-brand-muted text-sm">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <JobsFamiliar heading="If this sounds familiar..." />
 
-      {/* Deliverables */}
-      <section className="container mx-auto px-6 mb-24">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-display font-bold text-white mb-12 text-center">The Retainer: What You Get</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { n: '1', title: 'Commercial Strategy', items: ['Weekly 45-min sprint call', 'KPI Scoreboard & Profit tracking', 'Quarterly Roadmap planning'] },
-              { n: '2', title: 'CRO & UX', items: ['Landing page optimisation', 'Mobile UX improvements', 'A/B testing (if traffic allows)'] },
-              { n: '3', title: 'Paid Media', items: ['Google Shopping & Search', 'Meta Ads strategy', 'Feed optimisation'] },
-              { n: '4', title: 'Lifecycle Marketing', items: ['Klaviyo email flows', 'SMS setup', 'Retention strategy'] },
-              { n: '5', title: 'Technical Dev', items: ['Shopify theme edits', 'App integrations', 'n8n automation'] },
-              { n: '6', title: 'Data & Reporting', items: ['GA4 + Shopify analytics', 'Weekly Slack report', 'Monthly P&L review'] },
-            ].map((mod) => (
-              <div key={mod.n} className="border-l-2 border-brand-primary pl-6 py-2">
-                <h3 className="text-xl font-bold text-white mb-4">{mod.n}. {mod.title}</h3>
-                <ul className="space-y-3 text-sm text-brand-muted">
-                  {mod.items.map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-brand-primary mt-1.5 shrink-0"></div> {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+      {/* What you actually get */}
+      <section className="container mx-auto px-6 mb-24 mt-24">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-display font-bold text-white mb-6">What you actually get</h2>
+          <p className="text-brand-muted text-lg leading-relaxed mb-12">
+            One senior operator owning your Shopify P&amp;L. I write the code, run the ads, build the email flows, fix the feed, audit the catalogue, and report back every Friday. No account manager handoff, no junior owning the work, no relay of slide decks.
+          </p>
+          <div className="bg-brand-surface border border-brand-border rounded-2xl p-8 md:p-10">
+            <h3 className="text-xl font-bold text-white mb-4 font-display">A typical week</h3>
+            <p className="text-brand-muted text-base leading-relaxed">
+              Monday: weekly digest in your inbox at 08:00, revenue, ROAS, conversion, anomalies. Tuesday: sprint call, what we&apos;re shipping this week. Wednesday and Thursday: the work itself, whatever that is. Friday: what shipped, what&apos;s next, what changed in the numbers. No timesheets. No hours. Just the work and the outcomes.
+            </p>
           </div>
         </div>
       </section>

@@ -76,7 +76,7 @@ html.light .bg-black\/20 { background-color: rgba(241, 245, 249, 0.6); }
 html.light .bg-brand-dark\/80 { background-color: rgba(248, 250, 251, 0.85); }
 html.light .bg-brand-dark\/95 { background-color: rgba(248, 250, 251, 0.97); }
 
-/* Gradient text — keep brand-primary in light mode */
+/* Gradient text: keep brand-primary in light mode */
 html.light .text-brand-primary { color: #059669; }
 html.light .bg-brand-primary { background-color: #059669; }
 html.light .border-brand-primary\/20 { border-color: rgba(5, 150, 105, 0.2); }

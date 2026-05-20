@@ -6,16 +6,17 @@ import { SERVICES_DATA } from '@/lib/data';
 import { Contact } from '@/components/Contact';
 import { siteConfig } from '@/lib/siteConfig';
 import { ServicesPillarGrid } from '@/components/ServicesPillarGrid';
+import { BreadcrumbsJsonLd } from '@/components/Breadcrumbs';
 
 export const metadata: Metadata = {
-  title: 'Shopify Ecommerce Services | Growth, CRO & Automation',
-  description: 'Full-stack ecommerce services for Shopify brands. Shopify builds, CRO, paid media, n8n automation, Klaviyo and more — delivered by a single senior operator.',
+  title: { absolute: 'Shopify Ecommerce: Build, Grow, Automate | Atherstone Digital' },
+  description: 'Shopify build, CRO, paid media, Klaviyo lifecycle, and n8n automation. Full-stack ecommerce execution from one senior operator for UK brands £500k to £5M.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com/services',
   },
   openGraph: {
-    title: 'Shopify Ecommerce Services | Growth, CRO & Automation | Atherstone Digital',
-    description: 'Full-stack ecommerce services for Shopify brands. Shopify builds, CRO, paid media, n8n automation, Klaviyo and more — delivered by a single senior operator.',
+    title: 'Shopify Ecommerce: Build, Grow, Automate | Atherstone Digital',
+    description: 'Shopify build, CRO, paid media, Klaviyo lifecycle, and n8n automation. Full-stack ecommerce execution from one senior operator for UK brands £500k to £5M.',
     url: 'https://www.atherstonedigital.com/services',
     type: 'website',
   },
@@ -43,6 +44,7 @@ export default function ServicesPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <BreadcrumbsJsonLd label="Services" path="/services" />
       <div className="pt-36 pb-20 bg-brand-dark min-h-screen">
 
         {/* Hero */}

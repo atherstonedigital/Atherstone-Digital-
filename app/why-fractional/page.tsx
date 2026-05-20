@@ -2,17 +2,18 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, PoundSterling, ShieldAlert, Briefcase, CheckCircle } from 'lucide-react';
 import { Contact } from '@/components/Contact';
+import { BreadcrumbsJsonLd } from '@/components/Breadcrumbs';
 import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
-  title: 'Why Go Fractional? Director vs Agency vs Full-Time',
-  description: 'See exactly why a fractional ecommerce director beats an agency and costs 70% less than a full-time hire. Real numbers, real savings.',
+  title: { absolute: 'Ecommerce Maths: Agency vs In-House | Atherstone Digital' },
+  description: 'Shopify ecommerce help that costs less than agency overhead and a lot less than a full-time hire. See the maths against a typical UK £500k to £5M brand.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com/why-fractional',
   },
   openGraph: {
-    title: 'Why Go Fractional? Director vs Agency vs Full-Time',
-    description: 'See exactly why a fractional ecommerce director beats an agency and costs 70% less than a full-time hire. Real numbers, real savings.',
+    title: 'Ecommerce Maths: Agency vs In-House | Atherstone Digital',
+    description: 'Shopify ecommerce help that costs less than agency overhead and a lot less than a full-time hire. See the maths against a typical UK £500k to £5M brand.',
     url: 'https://www.atherstonedigital.com/why-fractional',
     type: 'website',
   },
@@ -26,7 +27,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'Why choose a Fractional Ecommerce Director over an Agency?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Agencies charge high retainers to cover office rent, account managers, and junior staff learning curves. A Fractional Director provides senior-level strategy and execution directly — eliminating the overhead and saving an estimated £98,000 per year versus a comparable agency roster.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Agencies charge high retainers to cover office rent, account managers, and junior staff learning curves. A Fractional Director provides senior-level strategy and execution directly, eliminating the overhead and saving an estimated £98,000 per year versus a comparable agency roster.' },
     },
     {
       '@type': 'Question',
@@ -36,7 +37,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'What is the minimum commitment?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Atherstone Digital operates on a rolling monthly retainer. There is no minimum term. You can scale up during Q4 peak periods or pause during quiet months — unlike a full-time employee.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Atherstone Digital operates on a rolling monthly retainer. There is no minimum term. You can scale up during Q4 peak periods or pause during quiet months. Unlike a full-time employee.' },
     },
     {
       '@type': 'Question',
@@ -50,6 +51,7 @@ export default function WhyFractionalPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <BreadcrumbsJsonLd label="Why Fractional" path="/why-fractional" />
       <div className="pt-36 pb-20 bg-brand-dark min-h-screen">
         <div className="container mx-auto px-6 mb-8">
           <Link href="/" className="text-brand-muted hover:text-brand-primary transition-colors inline-flex items-center gap-2 text-sm font-medium">
@@ -85,10 +87,10 @@ export default function WhyFractionalPage() {
               </thead>
               <tbody>
                 {[
-                  ['Monthly cost', '£5,000–£10,000', '£7,000–£10,000', 'From £3,000'],
-                  ['Annual cost', '£60k–£120k', '£85k–£120k + NI/pension', 'From £36k'],
+                  ['Monthly cost', '£5,000 to £10,000', '£7,000 to £10,000', 'From £3,000'],
+                  ['Annual cost', '£60k to £120k', '£85k to £120k + NI/pension', 'From £36k'],
                   ['Seniority level', 'Junior execution', 'Varies', 'Director-level only'],
-                  ['Time to start', '4–6 weeks', '3–6 months to hire', 'Week 1'],
+                  ['Time to start', '4 to 6 weeks', '3 to 6 months to hire', 'Week 1'],
                   ['P&L ownership', '✗', '✓', '✓'],
                   ['Tech execution', 'Separate dev cost', '✗ (strategy only)', '✓ Built-in'],
                   ['Flexibility', 'Fixed contract', 'Fixed salary', 'Monthly rolling'],
@@ -164,7 +166,7 @@ export default function WhyFractionalPage() {
                 <ul className="space-y-4 text-brand-muted text-sm leading-relaxed">
                   {[
                     ['Fixed Liability', '£85k+ salary + NI + pension regardless of performance.'],
-                    ['Recruitment Lag', '3–6 months to find, hire, and onboard a Head of Ecom.'],
+                    ['Recruitment Lag', '3 to 6 months to find, hire, and onboard a Head of Ecom.'],
                     ['Single Skillset', 'A Director creates strategy but rarely writes code. You still need a dev.'],
                   ].map(([title, desc]) => (
                     <li key={title} className="flex gap-3">

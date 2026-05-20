@@ -4,17 +4,18 @@ import { ArrowRight, CheckCircle, AlertTriangle, HelpCircle } from 'lucide-react
 import { Contact } from '@/components/Contact';
 import { FAQAccordion } from '@/components/FAQAccordion';
 import { JobsFamiliar } from '@/components/JobsFamiliar';
+import { BreadcrumbsJsonLd } from '@/components/Breadcrumbs';
 import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
-  title: 'Fractional Ecommerce Director for Shopify | Atherstone Digital',
-  description: 'Senior operational leadership for Shopify brands doing £500k–£5M. Strategy, development, and growth — one senior partner, from £3,000/month.',
+  title: { absolute: 'Embedded Shopify Operator for UK Brands | Atherstone Digital' },
+  description: 'Senior Shopify ecommerce help for UK brands doing £500k to £5M. One embedded operator. Weekly execution. Rolling monthly. From £3,000 a month.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com/fractional-ecommerce-director',
   },
   openGraph: {
-    title: 'Fractional Ecommerce Director for Shopify | Atherstone Digital',
-    description: 'Senior operational leadership for Shopify brands doing £500k–£5M. Strategy, development, and growth — one senior partner, from £3,000/month.',
+    title: 'Embedded Shopify Operator for UK Brands | Atherstone Digital',
+    description: 'Senior Shopify ecommerce help for UK brands doing £500k to £5M. One embedded operator. Weekly execution. Rolling monthly. From £3,000 a month.',
     url: 'https://www.atherstonedigital.com/fractional-ecommerce-director',
     type: 'website',
   },
@@ -23,13 +24,14 @@ export const metadata: Metadata = {
 export default function FractionalDirectorPage() {
   return (
     <div className="pt-36 pb-20 bg-brand-dark min-h-screen">
+      <BreadcrumbsJsonLd label="Fractional Ecommerce Director" path="/fractional-ecommerce-director" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Service',
         name: 'Fractional Ecommerce Director',
         serviceType: 'Fractional Ecommerce Director',
-        provider: { '@type': 'Organization', name: 'Atherstone Digital', url: 'https://www.atherstonedigital.com' },
-        description: 'A fractional ecommerce director service for Shopify brands doing \u00a3500k\u2013\u00a35M in annual revenue. One senior operator replacing fragmented agency rosters with AI-augmented execution.',
+        provider: { '@id': 'https://www.atherstonedigital.com/#organization' },
+        description: 'A fractional ecommerce director service for Shopify brands doing \u00a3500k to \u00a35M in annual revenue. One senior operator replacing fragmented agency rosters with embedded weekly execution.',
         url: 'https://www.atherstonedigital.com/fractional-ecommerce-director',
         offers: { '@type': 'Offer', price: '3000', priceCurrency: 'GBP', description: 'Monthly retainers starting from £3,000/month depending on complexity.' },
       }) }} />
@@ -40,17 +42,17 @@ export default function FractionalDirectorPage() {
           {
             '@type': 'Question',
             name: 'What does a Fractional Ecommerce Director do?',
-            acceptedAnswer: { '@type': 'Answer', text: 'A Fractional Ecommerce Director provides senior-level ecommerce leadership — strategy, execution, and technical oversight — on a part-time or retainer basis. Unlike an agency, they own the P&L and work directly on your business. Unlike a consultant, they actually execute the work.' },
+            acceptedAnswer: { '@type': 'Answer', text: 'A Fractional Ecommerce Director provides senior-level ecommerce leadership: strategy, execution, and technical oversight, on a part-time or retainer basis. Unlike an agency, they own the P&L and work directly on your business. Unlike a consultant, they actually execute the work.' },
           },
           {
             '@type': 'Question',
             name: 'How much does a Fractional Ecommerce Director cost in the UK?',
-            acceptedAnswer: { '@type': 'Answer', text: 'Fractional Ecommerce Director retainers typically start from £3,000 per month in the UK. This compares to £85,000–£120,000 per year for a full-time hire, or £5,000–£10,000 per month for a traditional agency. Atherstone Digital retainers start from £3,000/month on a rolling monthly contract.' },
+            acceptedAnswer: { '@type': 'Answer', text: 'Fractional Ecommerce Director retainers typically start from £3,000 per month in the UK. This compares to £85,000 to £120,000 per year for a full-time hire, or £5,000 to £10,000 per month for a traditional agency. Atherstone Digital retainers start from £3,000/month on a rolling monthly contract.' },
           },
           {
             '@type': 'Question',
             name: 'How quickly will we see results?',
-            acceptedAnswer: { '@type': 'Answer', text: 'Technical quick wins — fixing tracking, site speed, and UX bugs — typically surface within the first 10 days. Revenue impact from CRO and paid media optimisation usually trends upward from Month 2–3 as changes compound.' },
+            acceptedAnswer: { '@type': 'Answer', text: 'Technical quick wins, fixing tracking, site speed, and UX bugs, typically surface within the first 10 days. Revenue impact from CRO and paid media optimisation usually trends upward from Month 2 to 3 as changes compound.' },
           },
           {
             '@type': 'Question',
@@ -65,7 +67,7 @@ export default function FractionalDirectorPage() {
           {
             '@type': 'Question',
             name: 'Is the retainer a fixed contract?',
-            acceptedAnswer: { '@type': 'Answer', text: 'Retainers are fixed monthly based on agreed scope with no surprise hourly billing. Contracts are rolling monthly — pause or cancel with 30 days notice. There are no long-term lock-ins.' },
+            acceptedAnswer: { '@type': 'Answer', text: 'Retainers are fixed monthly based on agreed scope with no surprise hourly billing. Contracts are rolling monthly. Pause or cancel with 30 days notice. There are no long-term lock-ins.' },
           },
         ],
       }) }} />
@@ -204,7 +206,7 @@ export default function FractionalDirectorPage() {
           <div>
             <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><CheckCircle className="text-brand-primary" size={20} /> Who This Is For</h3>
             <ul className="space-y-3 text-brand-muted text-sm">
-              {['Founders doing £500k–£5M/year revenue.', 'Brands on Shopify or Shopify Plus.', 'Teams frustrated with "hands-off" agencies.', 'Owners who want to focus on product/brand, not tech.'].map((item) => (
+              {['Founders doing £500k to £5M/year revenue.', 'Brands on Shopify or Shopify Plus.', 'Teams frustrated with "hands-off" agencies.', 'Owners who want to focus on product/brand, not tech.'].map((item) => (
                 <li key={item}>• {item}</li>
               ))}
             </ul>
@@ -226,19 +228,19 @@ export default function FractionalDirectorPage() {
           <h2 className="text-3xl font-display font-bold text-white mb-10 text-center">Where You Are Shapes How We Start</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-brand-surface p-8 rounded-2xl border border-brand-border">
-              <div className="text-brand-primary font-bold text-lg mb-1">£500k – £1.5M Revenue</div>
+              <div className="text-brand-primary font-bold text-lg mb-1">£500k to £1.5M Revenue</div>
               <div className="text-brand-muted text-sm mb-6">Founder-led, wearing 10 hats</div>
               <ul className="space-y-4 text-sm text-brand-muted">
-                <li className="flex gap-2"><span className="text-brand-primary mt-0.5 shrink-0">▸</span>The first priority is usually fixing the data foundation — tracking, feed quality, and product data that&apos;s been neglected while you focused on growth.</li>
+                <li className="flex gap-2"><span className="text-brand-primary mt-0.5 shrink-0">▸</span>The first priority is usually fixing the data foundation: tracking, feed quality, and product data that&apos;s been neglected while you focused on growth.</li>
                 <li className="flex gap-2"><span className="text-brand-primary mt-0.5 shrink-0">▸</span>We move fast on quick wins to prove the model: site speed, checkout friction, a first email flow.</li>
                 <li className="flex gap-2"><span className="text-brand-primary mt-0.5 shrink-0">▸</span>Month 3 goal: a machine that works while you sleep.</li>
               </ul>
             </div>
             <div className="bg-brand-surface p-8 rounded-2xl border border-brand-border">
-              <div className="text-brand-primary font-bold text-lg mb-1">£1.5M – £5M Revenue</div>
+              <div className="text-brand-primary font-bold text-lg mb-1">£1.5M to £5M Revenue</div>
               <div className="text-brand-muted text-sm mb-6">Team in place, agencies frustrating you</div>
               <ul className="space-y-4 text-sm text-brand-muted">
-                <li className="flex gap-2"><span className="text-brand-primary mt-0.5 shrink-0">▸</span>The first priority is usually replacing or auditing your existing agency setup — understanding what&apos;s actually working and what&apos;s burning budget.</li>
+                <li className="flex gap-2"><span className="text-brand-primary mt-0.5 shrink-0">▸</span>The first priority is usually replacing or auditing your existing agency setup, understanding what&apos;s actually working and what&apos;s burning budget.</li>
                 <li className="flex gap-2"><span className="text-brand-primary mt-0.5 shrink-0">▸</span>We bring a single point of accountability to a fragmented supplier roster.</li>
                 <li className="flex gap-2"><span className="text-brand-primary mt-0.5 shrink-0">▸</span>Month 3 goal: margin improvement, not just revenue growth.</li>
               </ul>

@@ -39,7 +39,7 @@ export function MondayDigestPreview() {
         <div className="px-6 py-4 border-b border-brand-border flex items-center gap-3">
           <div className="w-2 h-2 rounded-full bg-brand-primary" />
           <span className="text-brand-text text-sm font-medium">
-            Your Week in Numbers — Monday 14 April
+            Your Week in Numbers. Monday 14 April
           </span>
           <span className="ml-auto text-brand-muted text-xs font-mono">08:00</span>
         </div>

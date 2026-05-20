@@ -41,14 +41,14 @@ export function LeadMagnet() {
             The 5 Shopify Metrics Most Brands Track Wrong
           </h2>
           <p className="text-brand-muted text-lg mb-8 leading-relaxed">
-            A practical guide to the numbers that actually predict revenue growth. Used by brands doing £500k–£5M.
+            A practical guide to the numbers that actually predict revenue growth. Used by brands doing £500k to £5M.
           </p>
 
           {submitted ? (
             <div className="space-y-4">
               <div className="flex items-center gap-3 p-4 bg-brand-primary/10 border border-brand-primary/20 rounded-xl">
                 <CheckCircle size={20} className="text-brand-primary shrink-0" />
-                <p className="text-brand-text font-medium">Your guide is ready — download it now.</p>
+                <p className="text-brand-text font-medium">Your guide is ready. Download it now.</p>
               </div>
               <a
                 href="/atherstone-5-metrics.pdf"

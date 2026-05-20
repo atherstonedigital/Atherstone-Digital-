@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Brain, Workflow, Database, Bot, Layers } from 'lucide-react';
 import { Contact } from '@/components/Contact';
+import { BreadcrumbsJsonLd } from '@/components/Breadcrumbs';
 import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ const articleSchema = {
 const steps = [
   { num: '01', title: 'Audit & Onboarding', desc: 'Week 1: Full tech stack audit, analytics review, and commercial baseline. We find the quick wins and the structural problems simultaneously.' },
   { num: '02', title: 'Sprint Planning', desc: 'We agree a 90-day roadmap with weekly sprint priorities. Everything is tracked in a shared workspace. Nothing gets lost in email threads.' },
-  { num: '03', title: 'Execution', desc: 'I build, test, and launch. Whether that\'s a new Shopify flow, a paid media campaign, or an n8n automation — I do the work, not an account manager.' },
+  { num: '03', title: 'Execution', desc: 'I build, test, and launch. Whether that\'s a new Shopify flow, a paid media campaign, or an n8n automation, I do the work, not an account manager.' },
   { num: '04', title: 'Measure & Iterate', desc: 'Weekly performance reviews. Monthly commercial reports. Quarterly strategy sessions. The feedback loop never stops compounding.' },
 ];
 
@@ -39,6 +40,7 @@ export default function TheModelPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <BreadcrumbsJsonLd label="The Model" path="/the-model" />
       <div className="pt-36 pb-20 bg-brand-dark min-h-screen">
         <div className="container mx-auto px-6 mb-8">
           <Link href="/" className="text-brand-muted hover:text-brand-primary transition-colors inline-flex items-center gap-2 text-sm font-medium">
@@ -95,7 +97,7 @@ export default function TheModelPage() {
                 </div>
               </div>
               <p className="text-brand-muted text-lg leading-relaxed mb-8">
-                AI is powerful, but it cannot replace <strong className="text-white">Commercial Intuition</strong>. My role is to act as your Fractional C-Suite partner — sitting in your leadership meetings, auditing your P&L, and making the high-stakes decisions that algorithms can&apos;t.
+                AI is powerful, but it cannot replace <strong className="text-white">Commercial Intuition</strong>. My role is to act as your Fractional C-Suite partner: sitting in your leadership meetings, auditing your P&L, and making the high-stakes decisions that algorithms can&apos;t.
               </p>
               <div className="space-y-4">
                 {[
@@ -125,7 +127,7 @@ export default function TheModelPage() {
                 </div>
               </div>
               <p className="text-brand-muted text-lg leading-relaxed mb-8">
-                While I set the strategy, my fleet of custom <strong className="text-white">n8n Workflows</strong> and <strong className="text-white">LLM Agents</strong> execute the tactical work 24/7 — eliminating human error and busy work entirely.
+                While I set the strategy, my fleet of custom <strong className="text-white">n8n Workflows</strong> and <strong className="text-white">LLM Agents</strong> execute the tactical work 24/7, eliminating human error and busy work entirely.
               </p>
               <div className="space-y-4">
                 {[

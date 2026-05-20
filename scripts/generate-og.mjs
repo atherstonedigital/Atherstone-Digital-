@@ -32,7 +32,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" v
   <rect x="40" y="40" width="1120" height="550" fill="none" stroke="${LIME}" stroke-opacity="0.12" stroke-width="1" rx="20"/>
   <text x="96" y="190" font-family="${mono}" font-size="26" letter-spacing="7" fill="${LIME}">FRACTIONAL ECOMMERCE DIRECTOR</text>
   <text x="92" y="330" font-family="${display}" font-weight="800" font-size="124" fill="${TEXT}">ATHERSTONE<tspan fill="${LIME}">.</tspan></text>
-  <text x="96" y="410" font-family="${display}" font-weight="500" font-size="36" fill="${MUTED}">Fractional ecommerce help for £1M to £5M Shopify brands.</text>
+  <text x="96" y="410" font-family="${display}" font-weight="500" font-size="36" fill="${MUTED}">Fractional ecommerce help for £500k to £5M Shopify brands.</text>
   <text x="96" y="556" font-family="${mono}" font-size="24" letter-spacing="2" fill="${LIME}">atherstonedigital.com</text>
 </svg>`;
 

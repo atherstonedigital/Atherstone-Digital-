@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Quote, BarChart2 } from 'lucide-react';
 import { MondayDigestPreview } from '@/components/MondayDigestPreview';
+import { JobsFamiliar } from '@/components/JobsFamiliar';
 
 export const metadata: Metadata = {
   title: 'Fractional Ecommerce Director for Shopify Brands | Warwickshire UK',
@@ -128,13 +129,14 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageSchema) }} />
       <Hero />
       <EntityDefinition />
+      <JobsFamiliar />
       <SocialProof />
-      <DirectorTeaser />
-      <ValueComparison />
-      <ServicesPreview />
-      <AILayerSection />
-      <ProcessSection />
       <ResultsSection />
+      <ValueComparison />
+      <AILayerSection />
+      <DirectorTeaser />
+      <ProcessSection />
+      <ServicesPreview />
       <LeadMagnet />
       <Contact />
     </div>
@@ -377,7 +379,7 @@ function ServicesPreview() {
     <section className="py-24 bg-brand-surface">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">The Force Multiplier Stack.</h2>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">What you get every week.</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {pillars.map((p) => {
@@ -422,16 +424,13 @@ function AILayerSection() {
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(74,222,128,0.3) 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <div className="text-xs font-mono text-brand-primary uppercase tracking-widest mb-3">What AI-Augmented Actually Means</div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">The AI agents do the grunt work.</h2>
+          <div className="text-xs font-mono text-brand-primary uppercase tracking-widest mb-3">How the maths works</div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">Why one person can run this much.</h2>
         </div>
 
         <div className="max-w-3xl mx-auto mb-12 space-y-4 text-brand-muted text-lg leading-relaxed">
           <p>
-            Most fractional directors bill you for time spent pulling data, writing product descriptions, and chasing catalogue errors. I don&apos;t. A stack of agents running on n8n handles the work that used to justify a junior team.
-          </p>
-          <p>
-            That&apos;s what makes the economics work. You get senior strategy and execution at a fraction of director cost because the AI layer absorbs the grunt work.
+            Most fractional directors bill you for time spent pulling data, writing product descriptions, and chasing catalogue errors. I do not. A stack of automations running on n8n handles the work that used to justify a junior team. That is why the maths works.
           </p>
         </div>
 

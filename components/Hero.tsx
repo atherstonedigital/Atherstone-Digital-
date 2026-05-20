@@ -153,28 +153,28 @@ export function Hero() {
 
         <div className="mb-4 opacity-0 animate-fade-in" style={{ animationDelay: '0.1s' }}>
           <span className={`inline-block px-4 py-1.5 text-[10px] md:text-xs uppercase tracking-[0.2em] border rounded-full backdrop-blur-sm ${isLight ? 'text-gray-500 border-gray-300 bg-white/50' : 'text-brand-muted border-white/10 bg-white/[0.03]'}`}>
-            AI-Augmented · Shopify-Native · UK-Based
+            Senior · Embedded · Accountable
           </span>
         </div>
 
         <div className="max-w-6xl mx-auto text-center mb-6 relative">
           {!isLight && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-32 bg-brand-primary/20 blur-[100px] rounded-full pointer-events-none"></div>}
           <h1 className={`relative font-display text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-tight ${isLight ? 'text-gray-900' : 'text-white drop-shadow-2xl'}`}>
-            Your Fractional Ecommerce Director for <span className="text-brand-primary">Shopify.</span>
+            Senior Shopify operator, with the work actually <span className="text-brand-primary">done.</span>
           </h1>
         </div>
 
         <p className={`text-xl md:text-2xl font-medium mb-10 leading-relaxed max-w-3xl mx-auto text-center opacity-0 animate-fade-in ${isLight ? 'text-gray-800' : 'text-brand-text'}`} style={{ animationDelay: '0.2s' }}>
-          One senior operator. A stack of AI agents doing the grunt work. The cost structure that makes it possible.
+          Fractional ecommerce leadership for brands turning over {siteConfig.revenueBand}. I do the writing, the building, the ads, the analysis, the fixing. No juniors, no relay handoffs. Three partners at a time. From {siteConfig.pricing.retainerFrom} a month.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 opacity-0 animate-fade-in w-full sm:w-auto" style={{ animationDelay: '0.5s' }}>
-          <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className={`group relative w-full sm:w-auto px-10 py-5 bg-brand-primary font-bold text-lg rounded-xl overflow-hidden transition-all hover:scale-[1.02] flex items-center justify-center gap-3 ${isLight ? 'text-white shadow-lg' : 'text-brand-dark shadow-[0_0_40px_rgba(74,222,128,0.3)] hover:shadow-[0_0_60px_rgba(74,222,128,0.5)]'}`}>
+          <a href={siteConfig.ctas.primary.href} target="_blank" rel="noopener noreferrer" className={`group relative w-full sm:w-auto px-10 py-5 bg-brand-primary font-bold text-lg rounded-xl overflow-hidden transition-all hover:scale-[1.02] flex items-center justify-center gap-3 ${isLight ? 'text-white shadow-lg' : 'text-brand-dark shadow-[0_0_40px_rgba(74,222,128,0.3)] hover:shadow-[0_0_60px_rgba(74,222,128,0.5)]'}`}>
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out skew-x-12"></div>
-            <span className="relative z-10 flex items-center gap-2">{siteConfig.cta.label} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" /></span>
+            <span className="relative z-10 flex items-center gap-2">{siteConfig.ctas.primary.label} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" /></span>
           </a>
-          <Link href="/why-fractional" className={`w-full sm:w-auto px-10 py-5 font-medium text-lg rounded-xl transition-all flex items-center justify-center gap-2 backdrop-blur-md group/btn ${isLight ? 'bg-gray-900/5 hover:bg-gray-900/10 text-gray-900 border border-gray-300 hover:border-brand-primary/30' : 'bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-brand-primary/30'}`}>
-            See How the Economics Work
+          <Link href={siteConfig.ctas.secondary.href} className={`w-full sm:w-auto px-10 py-5 font-medium text-lg rounded-xl transition-all flex items-center justify-center gap-2 backdrop-blur-md group/btn ${isLight ? 'bg-gray-900/5 hover:bg-gray-900/10 text-gray-900 border border-gray-300 hover:border-brand-primary/30' : 'bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-brand-primary/30'}`}>
+            {siteConfig.ctas.secondary.label}
             <ArrowRight size={18} className="text-brand-muted group-hover/btn:translate-x-1 transition-all" />
           </Link>
         </div>

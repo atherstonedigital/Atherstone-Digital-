@@ -12,7 +12,7 @@ const ctas = {
 export const siteConfig = {
   name: 'Atherstone Digital',
   entity:
-    'Atherstone Digital is a fractional ecommerce director service for Shopify brands doing £500k–£5M in annual revenue, based in Warwickshire, UK.',
+    'Atherstone Digital is a fractional ecommerce director service for Shopify brands doing £500k to £5M in annual revenue, based in Warwickshire, UK.',
   capacity: {
     total: 3,
     filled: 2,
@@ -31,7 +31,7 @@ export const siteConfig = {
     retainerFrom: '£3,000',
     retainerRange: '£3,000 to £5,000',
   },
-  revenueBand: '£500k–£5M',
+  revenueBand: '£500k to £5M',
   location: {
     town: 'Atherstone',
     county: 'Warwickshire',

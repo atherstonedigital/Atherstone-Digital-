@@ -9,13 +9,13 @@ import { ServicesPillarGrid } from '@/components/ServicesPillarGrid';
 
 export const metadata: Metadata = {
   title: 'Shopify Ecommerce Services | Growth, CRO & Automation',
-  description: 'Full-stack ecommerce services for Shopify brands. Shopify builds, CRO, paid media, n8n automation, Klaviyo and more — delivered by a single senior operator.',
+  description: 'Full-stack ecommerce services for Shopify brands. Store builds, CRO, Google and Meta ads, automation, email and retention. Delivered by a single senior operator.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com/services',
   },
   openGraph: {
     title: 'Shopify Ecommerce Services | Growth, CRO & Automation | Atherstone Digital',
-    description: 'Full-stack ecommerce services for Shopify brands. Shopify builds, CRO, paid media, n8n automation, Klaviyo and more — delivered by a single senior operator.',
+    description: 'Full-stack ecommerce services for Shopify brands. Store builds, CRO, Google and Meta ads, automation, email and retention. Delivered by a single senior operator.',
     url: 'https://www.atherstonedigital.com/services',
     type: 'website',
   },
@@ -25,7 +25,7 @@ const schema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   name: 'Ecommerce Services | Atherstone Digital',
-  description: 'Full-stack ecommerce execution: Shopify Plus development, CRO, Google & Meta Ads, Klaviyo lifecycle marketing, n8n automation, and AI search optimisation.',
+  description: 'Full-stack ecommerce execution: Shopify Plus development, CRO, Google and Meta ads, email and retention, automation, and AI search optimisation.',
   url: 'https://www.atherstonedigital.com/services',
   mainEntity: {
     '@type': 'ItemList',
@@ -67,7 +67,7 @@ export default function ServicesPage() {
             <div className="bg-brand-dark rounded-[22px] p-8 md:p-12 lg:flex gap-12 items-center relative z-10">
               <div className="lg:w-1/2 mb-8 lg:mb-0">
                 <h2 className="text-3xl font-display font-bold text-white mb-4">
-                  The Core Offering: <br /><span className="text-brand-primary">Fractional Ecommerce Director</span>
+                  The Core Offering: <br /><span className="text-brand-primary">Senior Shopify Ecommerce Consultant</span>
                 </h2>
                 <p className="text-brand-muted text-lg mb-8 leading-relaxed">
                   This is the retainer. I replace your need for a full-time Head of Ecommerce. I take ownership of your Shopify P&L, define the roadmap, and manage the execution.
@@ -77,7 +77,7 @@ export default function ServicesPage() {
                 </Link>
               </div>
               <div className="lg:w-1/2 space-y-4">
-                {['Commercial Strategy & KPI Tracking', 'CRO & UX Improvements', 'Paid Media Management (Google + Meta)', 'Lifecycle Marketing (Klaviyo)', 'Full Stack Development & Automation', 'Weekly Reporting & Sprint Calls'].map((item) => (
+                {['Commercial Strategy & KPI Tracking', 'CRO & UX Improvements', 'Paid Media Management (Google + Meta)', 'Email & Retention (Klaviyo)', 'Full Stack Development & Automation', 'Weekly Reporting & Sprint Calls'].map((item) => (
                   <div key={item} className="flex items-center gap-3 text-brand-text text-sm">
                     <div className="w-1.5 h-1.5 rounded-full bg-brand-primary shrink-0"></div>
                     {item}

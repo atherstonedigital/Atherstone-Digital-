@@ -10,14 +10,14 @@ Shopify and Shopify Plus brands doing £500k to £5M in annual revenue who want 
 
 ## Services
 - Shopify store builds
-- CRO and conversion optimisation
-- Paid media (Google and Meta)
-- n8n automation
-- Google feed optimisation
-- Klaviyo lifecycle marketing
-- LLM search readiness
-- Shopify catalogue health
-- Technical development
+- Conversion rate optimisation
+- Google and Meta ads
+- Shopify automation
+- Google Shopping feeds
+- Email and retention (Klaviyo)
+- AI search optimisation
+- Catalogue management
+- Custom development
 
 ## Founder
 Dan Le Gresley. 20 years in ecommerce and digital. Blue chip and DTC clients. Shopify Plus Partner, Google Ads Certified, Klaviyo Expert.

@@ -357,19 +357,19 @@ function ServicesPreview() {
   const pillars = [
     {
       title: 'Grow the revenue',
-      sub: 'CRO, Paid Media, Lifecycle',
+      sub: 'CRO, Ads, Email',
       body: 'The work that turns traffic into revenue and customers into repeat buyers.',
       pillar: 'grow' as const,
     },
     {
       title: 'Run the operation',
-      sub: 'Automation, Feed, Catalogue',
+      sub: 'Automation, Feeds, Catalogue',
       body: 'The unglamorous ops work that silently costs you revenue when it goes wrong.',
       pillar: 'run' as const,
     },
     {
       title: 'Build the tech',
-      sub: 'Store, Custom, AI-Ready',
+      sub: 'Store Builds, Custom Dev, AI Search',
       body: 'The technical foundation your growth sits on top of.',
       pillar: 'build' as const,
     },

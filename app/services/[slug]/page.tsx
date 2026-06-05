@@ -5,8 +5,10 @@ import { SERVICES_DATA } from '@/lib/data';
 import { ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react';
 import { Contact } from '@/components/Contact';
 
+const DEDICATED_PAGES = new Set(['shopify-catalogue-health']);
+
 export async function generateStaticParams() {
-  return SERVICES_DATA.map((s) => ({ slug: s.slug }));
+  return SERVICES_DATA.filter((s) => !DEDICATED_PAGES.has(s.slug)).map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {

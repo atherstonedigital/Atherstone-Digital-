@@ -16,12 +16,12 @@ One operator embeds directly into Shopify brands to drive revenue, strategy, and
 - **Automation:** n8n (workflow automation), Zapier.
 - **Marketing:** Klaviyo (Email/SMS), Google Ads, Meta Ads.
 - **Analytics:** GA4, Triple Whale, server-side tracking.
-- **AI/Search:** LLM search readiness (GEO), Structured Data (Schema).
+- **AI/Search:** AI search optimisation (GEO), Structured Data (Schema).
 
 ## Services
-1. **Senior Leadership:** C-suite strategy without the overhead.
-2. **Technical Execution:** Custom theme dev, API integrations, speed optimisation.
-3. **Growth Marketing:** CRO, PPC management, and retention (LTV).
+1. **Grow the revenue:** Conversion rate optimisation, Google and Meta ads, email and retention.
+2. **Run the operation:** Shopify automation, Google Shopping feeds, catalogue management.
+3. **Build the tech:** Shopify store builds, custom development, AI search optimisation.
 
 ## Pricing Model
 - **Model:** Monthly retainer from £3,000/month. Maximum three partners at a time.

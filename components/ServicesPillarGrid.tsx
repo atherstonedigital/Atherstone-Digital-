@@ -7,9 +7,9 @@ import { ArrowRight } from 'lucide-react';
 import { SERVICES_DATA, ServicePillar } from '@/lib/data';
 
 const PILLARS: { key: ServicePillar; title: string; sub: string }[] = [
-  { key: 'grow', title: 'Grow the revenue', sub: 'CRO, Paid Media, Lifecycle' },
-  { key: 'run', title: 'Run the operation', sub: 'Automation, Feed, Catalogue' },
-  { key: 'build', title: 'Build the tech', sub: 'Store, Custom, AI-Ready' },
+  { key: 'grow', title: 'Grow the revenue', sub: 'CRO, Ads, Email' },
+  { key: 'run', title: 'Run the operation', sub: 'Automation, Feeds, Catalogue' },
+  { key: 'build', title: 'Build the tech', sub: 'Store Builds, Custom Dev, AI Search' },
 ];
 
 export function ServicesPillarGrid() {

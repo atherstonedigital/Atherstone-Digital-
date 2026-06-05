@@ -2,7 +2,7 @@
 
 Atherstone Digital is a Shopify ecommerce consultancy for brands doing £500k to £5M in annual revenue, based in Warwickshire, UK. One senior operator runs the whole Shopify ecommerce function, for less than an agency. Founded and run by Dan Le Gresley (15+ years scaling Shopify brands, former Head of Ecommerce at a UK £50M retailer). The service replaces fragmented agency rosters with one senior Shopify ecommerce consultant backed by a stack of AI agents handling catalogue, content, and reporting work. Retainers from £3,000/month. Maximum three partners at a time.
 
-Primary services: Shopify store builds, CRO, paid media, n8n automation, feed optimisation, lifecycle marketing, LLM search readiness, catalogue health, technical development.
+Primary services: Shopify store builds, conversion rate optimisation, Google and Meta ads, Shopify automation, Google Shopping feeds, email and retention, AI search optimisation, catalogue management, custom development.
 
 Contact: info@atherstonedigital.com
 Book: https://calendly.com/dan-atherstonedigital/30min

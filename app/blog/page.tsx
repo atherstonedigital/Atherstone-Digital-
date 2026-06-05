@@ -5,13 +5,13 @@ import { ArrowRight, Calendar, Clock } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Shopify Ecommerce Blog',
-  description: 'Practical Shopify ecommerce growth content from Dan Le Gresley. Strategy, CRO, n8n automation, and paid media insights for brands doing £500k to £5M.',
+  description: 'Practical Shopify ecommerce growth content from Dan Le Gresley. Strategy, CRO, automation, and paid media insights for brands doing £500k to £5M.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com/blog',
   },
   openGraph: {
     title: 'Shopify Ecommerce Blog | Atherstone Digital',
-    description: 'Practical Shopify ecommerce growth content from Dan Le Gresley. Strategy, CRO, n8n automation, and paid media insights for brands doing £500k to £5M.',
+    description: 'Practical Shopify ecommerce growth content from Dan Le Gresley. Strategy, CRO, automation, and paid media insights for brands doing £500k to £5M.',
     url: 'https://www.atherstonedigital.com/blog',
     type: 'website',
   },

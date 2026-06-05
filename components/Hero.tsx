@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { ArrowRight, ChevronDown, Terminal, Cpu, TrendingUp } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import { siteConfig } from '@/lib/siteConfig';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -151,12 +151,6 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mb-4 opacity-0 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-          <span className={`inline-block px-4 py-1.5 text-[10px] md:text-xs uppercase tracking-[0.2em] border rounded-full backdrop-blur-sm ${isLight ? 'text-gray-500 border-gray-300 bg-white/50' : 'text-brand-muted border-white/10 bg-white/[0.03]'}`}>
-            Senior · Embedded · Accountable
-          </span>
-        </div>
-
         <div className="max-w-6xl mx-auto text-center mb-6 relative">
           {!isLight && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-32 bg-brand-primary/20 blur-[100px] rounded-full pointer-events-none"></div>}
           <h1 className={`relative font-display text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-tight ${isLight ? 'text-gray-900' : 'text-white drop-shadow-2xl'}`}>
@@ -179,23 +173,6 @@ export function Hero() {
           </Link>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 w-full max-w-4xl opacity-0 animate-fade-in" style={{ animationDelay: '0.7s' }}>
-          {[
-            { icon: Cpu, text: 'Shopify Plus Architect', sub: 'Enterprise Scale' },
-            { icon: Terminal, text: 'n8n Automation', sub: 'Custom Agent Workflows' },
-            { icon: TrendingUp, text: 'Google Ads Certified', sub: 'ROAS Engineering' },
-          ].map((item, idx) => (
-            <div key={idx} className={`group flex flex-col items-center gap-3 p-6 rounded-2xl border backdrop-blur-sm transition-all duration-500 hover:border-brand-primary/20 ${isLight ? 'bg-white/60 border-gray-200 hover:shadow-md' : 'bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:shadow-[0_0_30px_rgba(74,222,128,0.05)]'}`}>
-              <div className="p-3 rounded-full bg-brand-primary/5 text-brand-primary group-hover:scale-110 transition-transform duration-300">
-                <item.icon size={24} />
-              </div>
-              <div className="text-center">
-                <div className={`font-medium font-display ${isLight ? 'text-gray-900' : 'text-white'}`}>{item.text}</div>
-                <div className={`text-xs uppercase tracking-wider mt-1 ${isLight ? 'text-gray-500' : 'text-brand-muted'}`}>{item.sub}</div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20 pointer-events-none opacity-50">

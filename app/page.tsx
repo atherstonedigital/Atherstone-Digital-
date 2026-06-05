@@ -7,7 +7,7 @@ import { siteConfig } from '@/lib/siteConfig';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Quote, BarChart2 } from 'lucide-react';
-import { MondayDigestPreview } from '@/components/MondayDigestPreview';
+
 import { JobsFamiliar } from '@/components/JobsFamiliar';
 
 export const metadata: Metadata = {
@@ -133,7 +133,6 @@ export default function HomePage() {
       <SocialProof />
       <ResultsSection />
       <ValueComparison />
-      <AILayerSection />
       <DirectorTeaser />
       <ProcessSection />
       <ServicesPreview />
@@ -325,7 +324,7 @@ function ValueComparison() {
     <section id="value" className="py-24 bg-brand-dark scroll-mt-28">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">Why Fractional Wins.</h2>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">Why Not An Agency.</h2>
           <p className="text-brand-muted text-xl max-w-2xl mx-auto">Compare the real cost of your options.</p>
         </div>
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -343,7 +342,8 @@ function ValueComparison() {
             </div>
           ))}
         </div>
-        <div className="text-center mt-10">
+        <p className="text-brand-muted text-center text-sm mt-10 max-w-2xl mx-auto">Senior work at less than agency cost, because the repetitive jobs are automated rather than billed to you by the hour.</p>
+        <div className="text-center mt-6">
           <Link href="/why-not-an-agency" className="inline-flex items-center gap-2 text-brand-primary hover:text-brand-accent font-medium transition-colors">
             See the full cost breakdown <ArrowRight size={16} />
           </Link>
@@ -412,41 +412,6 @@ function ServicesPreview() {
           <Link href="/services" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors shadow-[0_0_20px_rgba(74,222,128,0.2)]">
             View All Services <ArrowRight size={18} />
           </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function AILayerSection() {
-  return (
-    <section className="py-24 bg-brand-dark relative overflow-hidden border-t border-white/5">
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(74,222,128,0.3) 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
-          <div className="text-xs font-mono text-brand-primary uppercase tracking-widest mb-3">How the maths works</div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">Why one person can run this much.</h2>
-        </div>
-
-        <div className="max-w-3xl mx-auto mb-12 space-y-4 text-brand-muted text-lg leading-relaxed">
-          <p>
-            Most fractional directors bill you for time spent pulling data, writing product descriptions, and chasing catalogue errors. I do not. A stack of automations running on n8n handles the work that used to justify a junior team. That is why the maths works.
-          </p>
-        </div>
-
-        <MondayDigestPreview />
-
-        <div className="max-w-3xl mx-auto mt-12 space-y-4">
-          {[
-            { label: 'Data', desc: 'Catalogue errors, alt text gaps, and pricing inconsistencies flagged automatically across your entire Shopify.' },
-            { label: 'Content', desc: 'On-brand product descriptions and feed titles generated at scale, reviewed before publishing.' },
-            { label: 'Reporting', desc: 'Weekly digest in your inbox every Monday. No dashboards to maintain.' },
-          ].map((item) => (
-            <div key={item.label} className="flex items-start gap-3">
-              <span className="text-brand-primary font-mono text-xs font-bold mt-1 shrink-0 w-20">{item.label}</span>
-              <p className="text-brand-muted text-sm leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>

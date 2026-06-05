@@ -6,7 +6,8 @@ import { SERVICES_DATA } from '@/lib/data';
 import { siteConfig } from '@/lib/siteConfig';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, TrendingUp, Users, Zap, Quote, BarChart2 } from 'lucide-react';
+import { ArrowRight, CheckCircle, Quote } from 'lucide-react';
+import { ScrollReveal } from '@/components/ScrollReveal';
 
 import { JobsFamiliar } from '@/components/JobsFamiliar';
 
@@ -457,38 +458,68 @@ function ResultsSection() {
   return (
     <section id="results" className="py-24 bg-brand-surface scroll-mt-28">
       <div className="container mx-auto px-6 max-w-5xl">
-        <p className="text-xs font-sans text-brand-primary uppercase tracking-widest mb-4">02 / Proof</p>
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-brand-text mb-16 tracking-tight">The Numbers.</h2>
+        <ScrollReveal>
+          <p
+            className="font-sans text-brand-primary uppercase font-semibold mb-4"
+            style={{ fontSize: '0.72rem', letterSpacing: '0.16em' }}
+          >
+            02 / Proof
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={0.08}>
+          <h2
+            className="font-display font-semibold text-brand-text mb-16 tracking-tight"
+            style={{ fontSize: 'clamp(2rem, 4.4vw, 3.3rem)' }}
+          >
+            The Numbers.
+          </h2>
+        </ScrollReveal>
 
         <div className="grid sm:grid-cols-3 gap-12 mb-16">
-          {metrics.map((m) => (
-            <div key={m.label}>
-              <div className="font-display font-bold text-brand-text mb-2" style={{ fontSize: 'clamp(2.8rem, 5vw, 4rem)' }}>
-                {m.value}<span className="text-brand-primary">{m.mark}</span>
+          {metrics.map((m, i) => (
+            <ScrollReveal key={m.label} delay={0.1 + 0.08 * i}>
+              <div>
+                <div
+                  className="font-display font-semibold text-brand-text mb-2"
+                  style={{ fontSize: 'clamp(2.6rem, 5.8vw, 4.6rem)' }}
+                >
+                  {m.value}<span className="text-brand-primary">{m.mark}</span>
+                </div>
+                <div
+                  className="font-sans text-brand-muted uppercase font-semibold"
+                  style={{ fontSize: '0.72rem', letterSpacing: '0.16em' }}
+                >
+                  {m.label}
+                </div>
               </div>
-              <div className="font-sans text-sm text-brand-muted uppercase tracking-wider">{m.label}</div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
-        <blockquote className="border-l-2 border-brand-primary pl-8 py-4 mb-6 max-w-3xl">
-          <p className="font-display text-xl md:text-2xl text-brand-text italic leading-relaxed">
-            &ldquo;He operates with real commercial intelligence, not just technical output.&rdquo;
+        <ScrollReveal delay={0.34}>
+          <blockquote className="border-l-2 border-brand-primary pl-8 py-4 mb-6 max-w-3xl">
+            <p className="font-display text-xl md:text-2xl text-brand-text italic leading-relaxed">
+              &ldquo;He operates with real commercial intelligence, not just technical output.&rdquo;
+            </p>
+            <footer className="mt-4 font-sans text-sm text-brand-muted">
+              Luke Aling, Ranch Creative
+            </footer>
+          </blockquote>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.42}>
+          <p className="font-sans text-sm text-brand-muted max-w-2xl">
+            Partners include Xshowhome, Miracle Moon, Saverys of Broadway, Licklibrary, and Ranch Creative.
           </p>
-          <footer className="mt-4 font-sans text-sm text-brand-muted">
-            Luke Aling, Ranch Creative
-          </footer>
-        </blockquote>
+        </ScrollReveal>
 
-        <p className="font-sans text-sm text-brand-muted max-w-2xl">
-          Partners include Xshowhome, Miracle Moon, Saverys of Broadway, Licklibrary, and Ranch Creative.
-        </p>
-
-        <div className="mt-8">
-          <Link href="/results" className="inline-flex items-center gap-2 text-brand-primary hover:text-brand-accent font-medium transition-colors">
-            View case studies <ArrowRight size={16} />
-          </Link>
-        </div>
+        <ScrollReveal delay={0.5}>
+          <div className="mt-8">
+            <Link href="/results" className="inline-flex items-center gap-2 text-brand-primary hover:text-brand-accent font-medium transition-colors">
+              View case studies <ArrowRight size={16} />
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -16,7 +16,7 @@ const config: Config = {
         brand: {
           dark: '#F3F0E8',
           surface: '#FFFFFF',
-          surfaceHighlight: '#EDE9E0',
+          surfaceHighlight: 'rgba(23, 21, 15, 0.05)',
           primary: '#BC4A2B',
           accent: '#8A5A2B',
           text: '#17150F',

@@ -7,13 +7,13 @@ import { siteConfig, pageTitle } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: { absolute: pageTitle('About Dan Le Gresley') },
-  description: 'Shopify Plus Architect & Growth Strategist based in Atherstone, Warwickshire. Founder of Atherstone Digital. One senior Shopify ecommerce consultant for UK brands.',
+  description: 'Senior Shopify ecommerce consultant based in Atherstone, Warwickshire. Founder of Atherstone Digital. One senior operator for UK brands doing £500k to £5M.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com/about',
   },
   openGraph: {
     title: pageTitle('About Dan Le Gresley'),
-    description: 'Shopify Plus Architect & Growth Strategist based in Atherstone, Warwickshire. Founder of Atherstone Digital. One senior Shopify ecommerce consultant for UK brands.',
+    description: 'Senior Shopify ecommerce consultant based in Atherstone, Warwickshire. Founder of Atherstone Digital. One senior operator for UK brands doing £500k to £5M.',
     url: 'https://www.atherstonedigital.com/about',
     type: 'website',
   },
@@ -27,7 +27,7 @@ const schema = {
     '@type': 'Person',
     name: 'Dan Le Gresley',
     jobTitle: 'Shopify Ecommerce Consultant',
-    description: 'Shopify Plus Architect & Growth Strategist helping brands scale revenue as one senior Shopify ecommerce consultant. Founder of Atherstone Digital, based in Warwickshire.',
+    description: 'Senior Shopify ecommerce consultant helping brands scale revenue. Founder of Atherstone Digital, based in Warwickshire.',
     image: 'https://www.atherstonedigital.com/dan-le-gresley-shopify-ecommerce-consultant.png',
     sameAs: ['https://www.linkedin.com/in/danlegresley/', 'https://www.atherstonedigital.com'],
     worksFor: { '@type': 'Organization', name: 'Atherstone Digital', url: 'https://www.atherstonedigital.com' },
@@ -115,7 +115,7 @@ export default function AboutPage() {
                   <div className="absolute top-0 right-0 p-4 opacity-10 group-hover/card:opacity-20 transition-opacity">
                     <Zap size={40} className="text-brand-primary" />
                   </div>
-                  <h3 className="text-brand-primary font-bold mb-2 text-lg">My Fractional Model</h3>
+                  <h3 className="text-brand-primary font-bold mb-2 text-lg">The Embedded Model</h3>
                   <ul className="space-y-2 text-sm text-brand-muted">
                     <li className="flex gap-2"><span className="text-brand-primary">✓</span> Direct access to director-level thinking</li>
                     <li className="flex gap-2"><span className="text-brand-primary">✓</span> Full Stack Execution (Dev + Growth)</li>

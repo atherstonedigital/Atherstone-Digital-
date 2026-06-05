@@ -61,7 +61,7 @@ export default function WhyNotAnAgencyPage() {
         <section className="relative px-6 mb-20">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] bg-brand-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
           <div className="container mx-auto max-w-5xl text-center relative z-10">
-            <h1 className="font-display text-5xl lg:text-7xl font-bold text-white mb-8 tracking-tight">
+            <h1 className="font-display text-5xl lg:text-7xl font-bold text-brand-text mb-8 tracking-tight">
               The Maths <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Just Makes Sense.</span>
             </h1>
@@ -77,7 +77,7 @@ export default function WhyNotAnAgencyPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr>
-                  <th className="text-left p-4 text-brand-muted font-mono uppercase tracking-wider text-xs"></th>
+                  <th className="text-left p-4 text-brand-muted font-sans uppercase tracking-wider text-xs"></th>
                   <th className="p-4 text-center text-red-400 font-bold">Traditional Agency</th>
                   <th className="p-4 text-center text-blue-400 font-bold">Full-Time Director</th>
                   <th className="p-4 text-center text-brand-primary font-bold bg-brand-primary/5 rounded-t-xl border-t border-x border-brand-primary/20">Atherstone Digital</th>
@@ -105,7 +105,7 @@ export default function WhyNotAnAgencyPage() {
                   <td className="p-4"></td>
                   <td className="p-4"></td>
                   <td className="p-4 bg-brand-primary/5 rounded-b-xl border-b border-x border-brand-primary/20">
-                    <Link href="/#contact" className="block w-full text-center py-2 bg-brand-primary text-brand-dark font-bold rounded-lg text-xs hover:bg-brand-accent transition-colors">
+                    <Link href="/#contact" className="block w-full text-center py-2 bg-brand-primary text-white font-bold rounded-lg text-xs hover:bg-brand-accent transition-colors">
                       Get Started
                     </Link>
                   </td>
@@ -118,7 +118,7 @@ export default function WhyNotAnAgencyPage() {
         {/* How can one person do all this? */}
         <section className="container mx-auto px-6 mb-24">
           <div className="max-w-3xl mx-auto bg-brand-surface border border-brand-border rounded-3xl p-8 md:p-12">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-6">How can one person do all this?</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-text mb-6">How can one person do all this?</h2>
             <div className="space-y-4 text-brand-muted text-lg leading-relaxed">
               <p>Fair question. The honest answer: most of the work that used to require a junior team now runs in the background. Catalogue audits, feed checks, data pulls, weekly reports, anomaly detection. All of it sits on a stack of automations I have built and refined over the past two years. I spend my time on the judgement calls, the writing, the strategy, the difficult fixes. The grunt work happens whether I am awake or not.</p>
               <p>That is why the maths works. One operator, three partners, senior judgement on everything, automated execution on the rest.</p>
@@ -130,13 +130,13 @@ export default function WhyNotAnAgencyPage() {
         <section className="container mx-auto px-6 mb-24">
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-start max-w-5xl mx-auto">
 
-            <div className="group relative bg-brand-surface/30 border border-white/5 p-8 rounded-3xl hover:border-red-500/30 transition-all duration-500">
+            <div className="group relative bg-brand-surface/30 border border-brand-border p-8 rounded-3xl hover:border-red-500/30 transition-all duration-500">
               <div className="absolute inset-0 bg-gradient-to-b from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl pointer-events-none"></div>
               <div className="relative z-10">
                 <div className="w-14 h-14 bg-red-500/10 text-red-500 rounded-2xl flex items-center justify-center mb-6 border border-red-500/20 group-hover:scale-110 transition-transform duration-300">
                   <ShieldAlert size={28} />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2 font-display">The Agency Trap</h3>
+                <h3 className="text-2xl font-bold text-brand-text mb-2 font-display">The Agency Trap</h3>
                 <p className="text-red-400/80 text-sm font-medium mb-6 uppercase tracking-wider">High Overhead • Slow</p>
                 <ul className="space-y-4 text-brand-muted text-sm leading-relaxed">
                   {[
@@ -146,20 +146,20 @@ export default function WhyNotAnAgencyPage() {
                   ].map(([title, desc]) => (
                     <li key={title} className="flex gap-3">
                       <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-red-500/20 text-red-500 flex items-center justify-center text-xs font-bold">×</span>
-                      <span><strong className="text-white block mb-0.5">{title}</strong>{desc}</span>
+                      <span><strong className="text-brand-text block mb-0.5">{title}</strong>{desc}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
 
-            <div className="group relative bg-brand-surface/30 border border-white/5 p-8 rounded-3xl hover:border-blue-500/30 transition-all duration-500">
+            <div className="group relative bg-brand-surface/30 border border-brand-border p-8 rounded-3xl hover:border-blue-500/30 transition-all duration-500">
               <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl pointer-events-none"></div>
               <div className="relative z-10">
                 <div className="w-14 h-14 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center mb-6 border border-blue-500/20 group-hover:scale-110 transition-transform duration-300">
                   <Briefcase size={28} />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2 font-display">The Full-Time Risk</h3>
+                <h3 className="text-2xl font-bold text-brand-text mb-2 font-display">The Full-Time Risk</h3>
                 <p className="text-blue-400/80 text-sm font-medium mb-6 uppercase tracking-wider">Fixed Cost • Inflexible</p>
                 <ul className="space-y-4 text-brand-muted text-sm leading-relaxed">
                   {[
@@ -169,22 +169,22 @@ export default function WhyNotAnAgencyPage() {
                   ].map(([title, desc]) => (
                     <li key={title} className="flex gap-3">
                       <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-xs font-bold">!</span>
-                      <span><strong className="text-white block mb-0.5">{title}</strong>{desc}</span>
+                      <span><strong className="text-brand-text block mb-0.5">{title}</strong>{desc}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
 
-            <div className="relative bg-gradient-to-b from-brand-surfaceHighlight to-brand-terminal border border-brand-primary/40 p-8 rounded-3xl shadow-[0_0_50px_rgba(74,222,128,0.1)] transform md:-translate-y-6">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-primary text-brand-dark text-[10px] font-bold px-4 py-1.5 rounded-full tracking-widest uppercase shadow-[0_4px_20px_rgba(74,222,128,0.4)]">
+            <div className="relative bg-gradient-to-b from-brand-surfaceHighlight to-brand-surface border border-brand-primary/40 p-8 rounded-3xl transform md:-translate-y-6">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-primary text-white text-[10px] font-bold px-4 py-1.5 rounded-full tracking-widest uppercase shadow-md">
                 Recommended Model
               </div>
               <div className="relative z-10">
-                <div className="w-14 h-14 bg-brand-primary text-brand-dark rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(74,222,128,0.4)]">
+                <div className="w-14 h-14 bg-brand-primary text-white rounded-2xl flex items-center justify-center mb-6">
                   <PoundSterling size={32} />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2 font-display">The Embedded Operator Edge</h3>
+                <h3 className="text-2xl font-bold text-brand-text mb-2 font-display">The Embedded Operator Edge</h3>
                 <p className="text-brand-primary text-sm font-bold mb-6 uppercase tracking-wider">Agile • Senior • ROI-First</p>
                 <ul className="space-y-5 text-brand-text text-sm leading-relaxed">
                   {[
@@ -193,8 +193,8 @@ export default function WhyNotAnAgencyPage() {
                     ['Full Stack', 'Strategy, Dev, and Growth in one retainer. I build what I plan.'],
                   ].map(([title, desc]) => (
                     <li key={title} className="flex gap-3">
-                      <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-brand-primary text-brand-dark flex items-center justify-center text-xs font-bold">✓</span>
-                      <span><strong className="text-white block mb-0.5">{title}</strong>{desc}</span>
+                      <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-brand-primary text-white flex items-center justify-center text-xs font-bold">✓</span>
+                      <span><strong className="text-brand-text block mb-0.5">{title}</strong>{desc}</span>
                     </li>
                   ))}
                 </ul>
@@ -206,11 +206,11 @@ export default function WhyNotAnAgencyPage() {
         {/* FAQ */}
         <section className="container mx-auto px-6 mb-24">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-display text-3xl font-bold text-white mb-8 text-center">Common Questions</h2>
+            <h2 className="font-display text-3xl font-bold text-brand-text mb-8 text-center">Common Questions</h2>
             <div className="space-y-4">
               {faqSchema.mainEntity.map((item, i) => (
                 <div key={i} className="bg-brand-surface rounded-xl p-6 border border-brand-border">
-                  <h3 className="font-bold text-white mb-2">{item.name}</h3>
+                  <h3 className="font-bold text-brand-text mb-2">{item.name}</h3>
                   <p className="text-brand-muted text-sm leading-relaxed">{item.acceptedAnswer.text}</p>
                 </div>
               ))}
@@ -223,9 +223,9 @@ export default function WhyNotAnAgencyPage() {
           <div className="bg-gradient-to-br from-brand-surface to-brand-dark border border-brand-border rounded-3xl p-12 text-center relative overflow-hidden group max-w-4xl mx-auto">
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none group-hover:bg-brand-primary/10 transition-colors duration-700"></div>
             <div className="relative z-10 max-w-2xl mx-auto">
-              <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Stop paying for overhead.</h2>
+              <h2 className="text-3xl lg:text-4xl font-display font-bold text-brand-text mb-6">Stop paying for overhead.</h2>
               <p className="text-brand-muted text-lg mb-8">Allocate your budget to execution and growth, not account management layers.</p>
-              <Link href={siteConfig.ctas.secondary.href} className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
+              <Link href={siteConfig.ctas.secondary.href} className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-white font-bold rounded-lg transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
                 {siteConfig.ctas.secondary.label} <ArrowRight size={20} />
               </Link>
             </div>

@@ -20,7 +20,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   return (
     <div className="border-b border-brand-border last:border-0">
       <button onClick={() => setOpen(!open)} className="w-full py-6 flex items-center justify-between text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark rounded-lg group" aria-expanded={open}>
-        <span className={`font-medium text-lg ${open ? 'text-brand-primary' : 'text-white'} group-hover:text-brand-primary transition-colors`}>{question}</span>
+        <span className={`font-medium text-lg ${open ? 'text-brand-primary' : 'text-brand-text'} group-hover:text-brand-primary transition-colors`}>{question}</span>
         <ChevronDown className={`text-brand-muted transition-transform duration-300 ${open ? 'rotate-180 text-brand-primary' : ''}`} size={20} />
       </button>
       <div className={`overflow-hidden transition-all duration-300 ${open ? 'max-h-96 opacity-100 mb-6' : 'max-h-0 opacity-0'}`}>
@@ -34,7 +34,7 @@ export function FAQAccordion() {
   return (
     <section className="container mx-auto px-6 mb-24">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl font-display font-bold text-white mb-10 text-center">Common Questions</h2>
+        <h2 className="text-3xl font-display font-bold text-brand-text mb-10 text-center">Common Questions</h2>
         <div className="bg-brand-surface rounded-2xl p-6 border border-brand-border">
           {faqs.map((faq) => (
             <FAQItem key={faq.q} question={faq.q} answer={faq.a} />

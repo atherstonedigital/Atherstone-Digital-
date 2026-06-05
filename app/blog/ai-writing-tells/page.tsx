@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 
 function H2({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="font-display text-3xl md:text-4xl font-bold text-white mt-20 mb-6 leading-tight tracking-tight">
+    <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-text mt-20 mb-6 leading-tight tracking-tight">
       {children}
     </h2>
   );
@@ -58,7 +58,7 @@ function P({ children }: { children: React.ReactNode }) {
 function Tell({ name, children }: { name: string; children: React.ReactNode }) {
   return (
     <p className="text-brand-text/85 text-lg leading-[1.75] mb-6">
-      <strong className="text-white font-semibold">{name}</strong> {children}
+      <strong className="text-brand-text font-semibold">{name}</strong> {children}
     </p>
   );
 }
@@ -105,19 +105,19 @@ export default function AiWritingTellsPage() {
 
       <div className="pt-36 pb-24 bg-brand-dark min-h-screen">
         <div className="container mx-auto px-6 mb-10 max-w-3xl">
-          <Link href="/blog" className="text-brand-muted hover:text-brand-primary transition-colors inline-flex items-center gap-2 text-sm font-mono uppercase tracking-widest">
+          <Link href="/blog" className="text-brand-muted hover:text-brand-primary transition-colors inline-flex items-center gap-2 text-sm font-sans uppercase tracking-widest">
             <ArrowLeft size={14} /> Back to all posts
           </Link>
         </div>
 
         <article className="container mx-auto px-6 max-w-3xl">
           <header className="mb-16">
-            <div className="flex flex-wrap items-center gap-4 mb-8 font-mono text-xs uppercase tracking-widest text-brand-muted">
+            <div className="flex flex-wrap items-center gap-4 mb-8 font-sans text-xs uppercase tracking-widest text-brand-muted">
               <span className="px-3 py-1 border border-brand-primary/30 rounded-full bg-brand-primary/5 text-brand-primary">AI</span>
               <span>{new Date(PUBLISHED).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
               <span>{READING_TIME_MINUTES} min read</span>
             </div>
-            <h1 className="font-display text-4xl md:text-6xl font-bold text-white mb-8 leading-[1.05] tracking-tight">
+            <h1 className="font-display text-4xl md:text-6xl font-bold text-brand-text mb-8 leading-[1.05] tracking-tight">
               {TITLE}
             </h1>
             <p className="text-xl md:text-2xl text-brand-muted leading-relaxed">
@@ -143,7 +143,7 @@ export default function AiWritingTellsPage() {
 
             <H2>What the skill is</H2>
             <P>
-              It is a Claude skill called <code className="font-mono text-brand-primary bg-brand-primary/10 px-1.5 py-0.5 rounded">ai-writing-tells</code>. A skill in this context is a markdown file Claude reads before doing certain kinds of work. This one defines the patterns that mark text as machine-generated and tells Claude to strip them out of any prose it produces before handing the output back.
+              It is a Claude skill called <code className="font-sans text-brand-primary bg-brand-primary/10 px-1.5 py-0.5 rounded">ai-writing-tells</code>. A skill in this context is a markdown file Claude reads before doing certain kinds of work. This one defines the patterns that mark text as machine-generated and tells Claude to strip them out of any prose it produces before handing the output back.
             </P>
             <P>
               I built the rule set from Wikipedia&apos;s Signs of AI writing page, a field guide their cleanup team put together from thousands of real AI submissions. Then I added the tells most relevant to commercial work: emails, posts, proposals, product copy, briefs.
@@ -197,13 +197,13 @@ export default function AiWritingTellsPage() {
 
             <H2>How to use it</H2>
             <P>
-              Download the file below. It is a <code className="font-mono text-brand-primary bg-brand-primary/10 px-1.5 py-0.5 rounded">.skill</code> package, a zipped folder containing the rule set and the long-form catalogue.
+              Download the file below. It is a <code className="font-sans text-brand-primary bg-brand-primary/10 px-1.5 py-0.5 rounded">.skill</code> package, a zipped folder containing the rule set and the long-form catalogue.
             </P>
             <P>
-              If you use Claude Code, drop the unzipped folder into your project&apos;s <code className="font-mono text-brand-primary bg-brand-primary/10 px-1.5 py-0.5 rounded">.claude/skills/</code> directory and Claude will read it automatically before any writing task.
+              If you use Claude Code, drop the unzipped folder into your project&apos;s <code className="font-sans text-brand-primary bg-brand-primary/10 px-1.5 py-0.5 rounded">.claude/skills/</code> directory and Claude will read it automatically before any writing task.
             </P>
             <P>
-              If you use Claude directly on the web or desktop app, you can either paste the contents of the <code className="font-mono text-brand-primary bg-brand-primary/10 px-1.5 py-0.5 rounded">SKILL.md</code> file into your system prompt, or upload the file and ask Claude to apply it when writing. The rules work the same way regardless of how you load them.
+              If you use Claude directly on the web or desktop app, you can either paste the contents of the <code className="font-sans text-brand-primary bg-brand-primary/10 px-1.5 py-0.5 rounded">SKILL.md</code> file into your system prompt, or upload the file and ask Claude to apply it when writing. The rules work the same way regardless of how you load them.
             </P>
             <P>
               It is free. No email gate. Take it, use it, fork it, change it. The point is to push back against AI slop, not to gatekeep the patch.
@@ -213,11 +213,11 @@ export default function AiWritingTellsPage() {
 
         {/* Download block, visually distinct from prose */}
         <section className="container mx-auto px-6 max-w-4xl mt-16">
-          <div className="bg-brand-surface border border-brand-primary/30 rounded-2xl p-8 md:p-10 shadow-[0_0_40px_rgba(74,222,128,0.06)]">
-            <div className="flex items-center gap-2 mb-4 font-mono text-xs uppercase tracking-widest text-brand-primary">
+          <div className="bg-brand-surface border border-brand-primary/30 rounded-2xl p-8 md:p-10">
+            <div className="flex items-center gap-2 mb-4 font-sans text-xs uppercase tracking-widest text-brand-primary">
               <FileText size={14} /> Free download
             </div>
-            <h3 className="font-display text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-brand-text mb-3 leading-tight">
               The ai-writing-tells skill
             </h3>
             <p className="text-brand-muted leading-relaxed mb-8 max-w-2xl">
@@ -226,11 +226,11 @@ export default function AiWritingTellsPage() {
             <a
               href={DOWNLOAD_PATH}
               download
-              className="inline-flex items-center gap-2 bg-brand-primary text-brand-dark font-bold px-6 py-3 rounded-lg hover:bg-brand-accent transition-colors focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-brand-dark"
+              className="inline-flex items-center gap-2 bg-brand-primary text-white font-bold px-6 py-3 rounded-lg hover:bg-brand-accent transition-colors focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-brand-dark"
             >
               <Download size={18} /> Download the skill (.skill, {DOWNLOAD_SIZE})
             </a>
-            <div className="mt-6 pt-6 border-t border-brand-border font-mono text-sm">
+            <div className="mt-6 pt-6 border-t border-brand-border font-sans text-sm">
               <div className="text-brand-primary">ai-writing-tells.skill</div>
               <div className="text-brand-muted mt-1">
                 A Claude skill that strips the AI fingerprint from any prose Claude writes.

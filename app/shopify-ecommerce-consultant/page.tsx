@@ -79,9 +79,9 @@ export default function ShopifyEcommerceConsultantPage() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-primary"></span>
             </span>
-            <span className="text-brand-primary text-xs font-mono uppercase tracking-widest font-bold">Current Capacity: {siteConfig.capacity.filled}/{siteConfig.capacity.total} Partners. {siteConfig.capacity.remaining} space remaining.</span>
+            <span className="text-brand-primary text-xs font-sans uppercase tracking-widest font-bold">Current Capacity: {siteConfig.capacity.filled}/{siteConfig.capacity.total} Partners. {siteConfig.capacity.remaining} space remaining.</span>
           </div>
-          <h1 className="font-display text-5xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
+          <h1 className="font-display text-5xl lg:text-7xl font-bold text-brand-text mb-6 tracking-tight">
             I run ecommerce properly. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Embedded. Weekly. Accountable.</span>
           </h1>
@@ -90,20 +90,20 @@ export default function ShopifyEcommerceConsultantPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm text-brand-text mb-10">
             {['Hands-on execution', 'Weekly strategy', 'Rolling monthly contract'].map((tag) => (
-              <span key={tag} className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+              <span key={tag} className="flex items-center gap-2 bg-brand-text/[0.03] px-4 py-2 rounded-full border border-brand-border">
                 <CheckCircle size={14} className="text-brand-primary" /> {tag}
               </span>
             ))}
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-            <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
+            <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-white font-bold rounded-lg transition-all hover:bg-brand-accent min-w-[200px] text-center">
               {siteConfig.cta.label}
             </a>
-            <Link href={siteConfig.ctas.secondary.href} className="px-8 py-4 bg-transparent border border-brand-border text-white font-medium rounded-lg hover:bg-white/5 transition-all min-w-[200px] text-center">
+            <Link href={siteConfig.ctas.secondary.href} className="px-8 py-4 bg-transparent border border-brand-border text-brand-text font-medium rounded-lg hover:bg-brand-text/[0.03] transition-all min-w-[200px] text-center">
               {siteConfig.ctas.secondary.label}
             </Link>
           </div>
-          <p className="text-sm font-mono text-brand-muted uppercase tracking-wider">
+          <p className="text-sm font-sans text-brand-muted uppercase tracking-wider">
             Retainers from <span className="text-brand-primary font-bold">{siteConfig.pricing.retainerFrom}/month</span>
           </p>
         </div>
@@ -115,12 +115,12 @@ export default function ShopifyEcommerceConsultantPage() {
       {/* What you actually get */}
       <section className="container mx-auto px-6 mb-24 mt-24">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-display font-bold text-white mb-6">What you actually get</h2>
+          <h2 className="text-3xl font-display font-bold text-brand-text mb-6">What you actually get</h2>
           <p className="text-brand-muted text-lg leading-relaxed mb-12">
             One senior operator owning your Shopify P&amp;L. I write the code, run the ads, build the email flows, fix the feed, audit the catalogue, and report back every Friday. No account manager handoff, no junior owning the work, no relay of slide decks.
           </p>
           <div className="bg-brand-surface border border-brand-border rounded-2xl p-8 md:p-10">
-            <h3 className="text-xl font-bold text-white mb-4 font-display">A typical week</h3>
+            <h3 className="text-xl font-bold text-brand-text mb-4 font-display">A typical week</h3>
             <p className="text-brand-muted text-base leading-relaxed">
               Monday: weekly digest in your inbox at 08:00, revenue, ROAS, conversion, anomalies. Tuesday: sprint call, what we&apos;re shipping this week. Wednesday and Thursday: the work itself, whatever that is. Friday: what shipped, what&apos;s next, what changed in the numbers. No timesheets. No hours. Just the work and the outcomes.
             </p>
@@ -131,7 +131,7 @@ export default function ShopifyEcommerceConsultantPage() {
       {/* First 10 days */}
       <section className="container mx-auto px-6 mb-24">
         <div className="bg-brand-surfaceHighlight rounded-3xl p-8 md:p-12 max-w-4xl mx-auto border border-brand-border">
-          <h2 className="text-2xl font-bold text-white mb-6 font-display">First 10 Days: The Audit & Plan</h2>
+          <h2 className="text-2xl font-bold text-brand-text mb-6 font-display">First 10 Days: The Audit & Plan</h2>
           <div className="space-y-4">
             {[
               { n: '01', title: 'Access & Audit', desc: "I get into your Shopify, GA4, and Ad accounts. I look for broken tracking, wasted spend, and low-hanging UX fruit." },
@@ -139,9 +139,9 @@ export default function ShopifyEcommerceConsultantPage() {
               { n: '03', title: 'Implementation Begins', desc: "I don't wait for permission slips. I start fixing the obvious technical debt immediately." },
             ].map((step) => (
               <div key={step.n} className="flex gap-4 items-start">
-                <div className="bg-brand-dark p-2 rounded-lg text-brand-primary font-bold font-mono shrink-0">{step.n}</div>
+                <div className="bg-brand-dark p-2 rounded-lg text-brand-primary font-bold font-sans shrink-0">{step.n}</div>
                 <div>
-                  <strong className="text-white block">{step.title}</strong>
+                  <strong className="text-brand-text block">{step.title}</strong>
                   <p className="text-brand-muted text-sm">{step.desc}</p>
                 </div>
               </div>
@@ -153,14 +153,14 @@ export default function ShopifyEcommerceConsultantPage() {
       {/* 90 day plan */}
       <section className="container mx-auto px-6 mb-24">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-display font-bold text-white mb-10 text-center">Typical 90-Day Plan</h2>
+          <h2 className="text-3xl font-display font-bold text-brand-text mb-10 text-center">Typical 90-Day Plan</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
               { month: 'Month 1: Stabilise', items: ['Fix tracking/data hygiene', 'Audit ad performance', 'Improve site speed', 'Fix checkout friction'] },
               { month: 'Month 2: Optimise', items: ['Merchandising overhaul', 'Email flow expansion', 'Landing page logic', 'Offer testing'] },
               { month: 'Month 3: Scale', items: ['Aggressive CRO testing', 'Channel expansion', 'Retention strategy', 'Automating ops (n8n)'] },
             ].map((m) => (
-              <div key={m.month} className="bg-brand-surface p-6 rounded-2xl border border-white/5">
+              <div key={m.month} className="bg-brand-surface p-6 rounded-2xl border border-brand-border">
                 <h3 className="text-brand-primary font-bold mb-2">{m.month}</h3>
                 <ul className="text-sm text-brand-muted space-y-2">
                   {m.items.map((item) => <li key={item}>• {item}</li>)}
@@ -176,22 +176,22 @@ export default function ShopifyEcommerceConsultantPage() {
         <div className="max-w-3xl mx-auto bg-gradient-to-br from-brand-surface to-brand-dark border border-brand-primary/30 rounded-3xl p-8 md:p-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none"></div>
           <div className="relative z-10 text-center">
-            <h2 className="text-4xl font-display font-bold text-white mb-4">Investment</h2>
+            <h2 className="text-4xl font-display font-bold text-brand-text mb-4">Investment</h2>
             <p className="text-2xl text-brand-primary font-bold mb-8">Retainers from {siteConfig.pricing.retainerFrom} / month</p>
-            <div className="text-left bg-black/20 p-6 rounded-xl border border-white/10 mb-8">
-              <h4 className="text-white font-bold mb-4 flex items-center gap-2"><HelpCircle size={16} /> What affects the retainer level?</h4>
+            <div className="text-left bg-brand-dark/60 p-6 rounded-xl border border-brand-border mb-8">
+              <h4 className="text-brand-text font-bold mb-4 flex items-center gap-2"><HelpCircle size={16} /> What affects the retainer level?</h4>
               <ul className="space-y-2 text-sm text-brand-muted">
-                <li className="flex gap-2">• <strong className="text-white/80">SKU Complexity:</strong> Single product vs 5,000 SKU catalogue.</li>
-                <li className="flex gap-2">• <strong className="text-white/80">Channels:</strong> Just UK vs International stores (Multi-currency).</li>
-                <li className="flex gap-2">• <strong className="text-white/80">Tech Debt:</strong> Fresh store vs messy legacy code.</li>
-                <li className="flex gap-2">• <strong className="text-white/80">Ad Spend Volume:</strong> Higher volume requires more daily management.</li>
+                <li className="flex gap-2">• <strong className="text-brand-text/80">SKU Complexity:</strong> Single product vs 5,000 SKU catalogue.</li>
+                <li className="flex gap-2">• <strong className="text-brand-text/80">Channels:</strong> Just UK vs International stores (Multi-currency).</li>
+                <li className="flex gap-2">• <strong className="text-brand-text/80">Tech Debt:</strong> Fresh store vs messy legacy code.</li>
+                <li className="flex gap-2">• <strong className="text-brand-text/80">Ad Spend Volume:</strong> Higher volume requires more daily management.</li>
               </ul>
             </div>
             <p className="text-sm text-brand-muted mb-8">
               *Most brands fit between {siteConfig.pricing.retainerRange}/month depending on complexity. <br />
               Rolling monthly contract. Pause or cancel with 30 days notice.
             </p>
-            <Link href={siteConfig.ctas.secondary.href} className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:bg-brand-accent transition-all w-full md:w-auto justify-center">
+            <Link href={siteConfig.ctas.secondary.href} className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-white font-bold rounded-lg hover:bg-brand-accent transition-all w-full md:w-auto justify-center">
               {siteConfig.ctas.secondary.label}
             </Link>
           </div>
@@ -202,7 +202,7 @@ export default function ShopifyEcommerceConsultantPage() {
       <section className="container mx-auto px-6 mb-24">
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
           <div>
-            <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><CheckCircle className="text-brand-primary" size={20} /> Who This Is For</h3>
+            <h3 className="text-xl font-bold text-brand-text mb-4 flex items-center gap-2"><CheckCircle className="text-brand-primary" size={20} /> Who This Is For</h3>
             <ul className="space-y-3 text-brand-muted text-sm">
               {['Founders doing £500k to £5M/year revenue.', 'Brands on Shopify or Shopify Plus.', 'Teams frustrated with "hands-off" agencies.', 'Owners who want to focus on product/brand, not tech.'].map((item) => (
                 <li key={item}>• {item}</li>
@@ -210,7 +210,7 @@ export default function ShopifyEcommerceConsultantPage() {
             </ul>
           </div>
           <div>
-            <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><AlertTriangle className="text-red-500" size={20} /> Who This Is NOT For</h3>
+            <h3 className="text-xl font-bold text-brand-text mb-4 flex items-center gap-2"><AlertTriangle className="text-red-500" size={20} /> Who This Is NOT For</h3>
             <ul className="space-y-3 text-brand-muted text-sm">
               {['Dropshippers or pre-revenue startups.', 'Brands not on Shopify (e.g. Magento/Woo).', 'Anyone looking for "guaranteed" hacks.', "Brands not ready to give a senior operator room to work."].map((item) => (
                 <li key={item}>• {item}</li>
@@ -223,7 +223,7 @@ export default function ShopifyEcommerceConsultantPage() {
       {/* Revenue segmentation */}
       <section className="container mx-auto px-6 mb-24">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-display font-bold text-white mb-10 text-center">Where You Are Shapes How We Start</h2>
+          <h2 className="text-3xl font-display font-bold text-brand-text mb-10 text-center">Where You Are Shapes How We Start</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-brand-surface p-8 rounded-2xl border border-brand-border">
               <div className="text-brand-primary font-bold text-lg mb-1">£500k to £1.5M Revenue</div>
@@ -255,14 +255,14 @@ export default function ShopifyEcommerceConsultantPage() {
         <div className="bg-gradient-to-br from-brand-surfaceHighlight to-brand-dark border border-brand-border rounded-3xl p-12 text-center relative overflow-hidden max-w-4xl mx-auto">
           <div className="absolute inset-0 bg-brand-primary/5 pointer-events-none"></div>
           <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Take control of your growth.</h2>
+            <h2 className="text-3xl lg:text-4xl font-display font-bold text-brand-text mb-6">Take control of your growth.</h2>
             <p className="text-brand-muted text-lg mb-4">One senior partner. Weekly execution. Clear pricing.</p>
             <p className="text-brand-primary font-bold text-xl mb-8">Retainers from {siteConfig.pricing.retainerFrom} / month</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all hover:bg-brand-accent min-w-[200px] text-center">
+              <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-brand-primary text-white font-bold rounded-lg transition-all hover:bg-brand-accent min-w-[200px] text-center">
                 {siteConfig.cta.label}
               </a>
-              <Link href={siteConfig.ctas.secondary.href} className="px-8 py-4 bg-brand-surface border border-brand-border text-white font-medium rounded-lg hover:bg-white/5 transition-all min-w-[200px] text-center">
+              <Link href={siteConfig.ctas.secondary.href} className="px-8 py-4 bg-brand-surface border border-brand-border text-brand-text font-medium rounded-lg hover:bg-brand-text/[0.03] transition-all min-w-[200px] text-center">
                 {siteConfig.ctas.secondary.label}
               </Link>
             </div>

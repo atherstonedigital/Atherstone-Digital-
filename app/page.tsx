@@ -212,18 +212,18 @@ function SocialProof() {
   ];
 
   return (
-    <section className="py-16 bg-brand-dark border-t border-white/5">
+    <section className="py-16 bg-brand-dark border-t border-brand-border">
       <div className="container mx-auto px-6">
         <div className="text-center mb-10">
-          <p className="text-xs font-mono text-brand-primary uppercase tracking-widest mb-2">What Partners Say</p>
+          <p className="text-xs font-sans text-brand-primary uppercase tracking-widest mb-2">What Partners Say</p>
         </div>
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {testimonials.slice(0, 3).map((t, i) => (
             <div key={i} className="bg-brand-surface rounded-2xl p-6 border border-brand-border relative">
               <Quote size={20} className="text-brand-primary/30 mb-3" />
               <p className="text-brand-text text-sm leading-relaxed mb-4 font-light italic">&ldquo;{t.quote}&rdquo;</p>
-              <div className="pt-4 border-t border-white/5">
-                <div className="text-white font-semibold text-sm">
+              <div className="pt-4 border-t border-brand-border">
+                <div className="text-brand-text font-semibold text-sm">
                   {t.name}{t.title ? ` \u2014 ${t.title}` : ''}
                 </div>
                 <div className="text-sm text-brand-muted mt-1">
@@ -244,8 +244,8 @@ function SocialProof() {
             <div key={i + 3} className="bg-brand-surface rounded-2xl p-6 border border-brand-border relative">
               <Quote size={20} className="text-brand-primary/30 mb-3" />
               <p className="text-brand-text text-sm leading-relaxed mb-4 font-light italic">&ldquo;{t.quote}&rdquo;</p>
-              <div className="pt-4 border-t border-white/5">
-                <div className="text-white font-semibold text-sm">
+              <div className="pt-4 border-t border-brand-border">
+                <div className="text-brand-text font-semibold text-sm">
                   {t.name}{t.title ? ` \u2014 ${t.title}` : ''}
                 </div>
                 <div className="text-sm text-brand-muted mt-1">{t.company}</div>
@@ -267,13 +267,13 @@ function DirectorTeaser() {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/3 flex justify-center">
-            <div className="relative w-52 h-52 rounded-2xl overflow-hidden border-2 border-brand-primary/20 shadow-[0_0_40px_rgba(74,222,128,0.1)]">
+            <div className="relative w-52 h-52 rounded-2xl overflow-hidden border-2 border-brand-primary/20">
               <Image src="/dan-le-gresley-shopify-ecommerce-consultant.png" alt="Dan Le Gresley, Shopify ecommerce consultant based in Atherstone, Warwickshire" width={208} height={208} className="w-full h-full object-cover object-top" />
             </div>
           </div>
           <div className="md:w-2/3 text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 border border-brand-primary/30 rounded-full bg-brand-primary/5 text-brand-primary text-xs font-bold uppercase tracking-widest">The Director</div>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Meet Dan Le Gresley.</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-text mb-4 tracking-tight">Meet Dan Le Gresley.</h2>
             <div className="text-brand-muted text-lg leading-relaxed mb-6 space-y-4">
               <p>20 years in ecommerce and digital, working across both ends of the market. Blue chip clients including GSK, Amazon, Ecolab, Eli Lilly, and The Economist. DTC brands like Onbord, My Expert Midwife, and Electrocore. The through-line is always the same: make the commercial side of digital actually work.</p>
               <p>Now I take on three partners at a time and work as their embedded fractional director. I own the strategy, write the code, run the ads, and ship the automations. One person. One invoice. Everything connected.</p>
@@ -286,7 +286,7 @@ function DirectorTeaser() {
                 { tag: 'n8n Automation', proof: 'Custom workflow automation — 120+ hours/month saved across active partners.' },
               ].map((item) => (
                 <div key={item.tag} className="flex flex-col">
-                  <span className="px-3 py-1 bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs rounded-full font-mono inline-block w-fit">{item.tag}</span>
+                  <span className="px-3 py-1 bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs rounded-full font-sans inline-block w-fit">{item.tag}</span>
                   <span className="text-brand-muted/70 text-xs mt-1 ml-1">{item.proof}</span>
                 </div>
               ))}
@@ -324,13 +324,13 @@ function ValueComparison() {
     <section id="value" className="py-24 bg-brand-dark scroll-mt-28">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">Why Not An Agency.</h2>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-brand-text mb-4">Why Not An Agency.</h2>
           <p className="text-brand-muted text-xl max-w-2xl mx-auto">Compare the real cost of your options.</p>
         </div>
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {cols.map((col) => (
-            <div key={col.label} className={`rounded-2xl p-8 border relative ${col.highlight ? 'bg-brand-surfaceHighlight border-brand-primary/40 shadow-[0_0_40px_rgba(74,222,128,0.1)]' : 'bg-brand-surface border-white/5'}`}>
-              <h3 className={`font-display text-lg font-bold mb-6 ${col.highlight ? 'text-brand-primary' : 'text-white'}`}>{col.label}</h3>
+            <div key={col.label} className={`rounded-2xl p-8 border relative ${col.highlight ? 'bg-brand-surfaceHighlight border-brand-primary/40' : 'bg-brand-surface border-brand-border'}`}>
+              <h3 className={`font-display text-lg font-bold mb-6 ${col.highlight ? 'text-brand-primary' : 'text-brand-text'}`}>{col.label}</h3>
               <ul className="space-y-3">
                 {col.items.map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
@@ -379,7 +379,7 @@ function ServicesPreview() {
     <section className="py-24 bg-brand-surface">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">What you get every week.</h2>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-brand-text mb-4">What you get every week.</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {pillars.map((p) => {
@@ -388,10 +388,10 @@ function ServicesPreview() {
               <Link
                 key={p.pillar}
                 href={`/services?pillar=${p.pillar}`}
-                className="group p-8 bg-brand-dark rounded-2xl border border-brand-border hover:border-brand-primary/30 hover:shadow-[0_0_20px_rgba(74,222,128,0.05)] transition-all duration-300"
+                className="group p-8 bg-brand-dark rounded-2xl border border-brand-border hover:border-brand-primary/30 transition-all duration-300"
               >
-                <div className="text-xs font-mono text-brand-primary uppercase tracking-wider mb-3">{p.sub}</div>
-                <h3 className="font-display text-2xl font-bold text-white mb-3 group-hover:text-brand-primary transition-colors">{p.title}</h3>
+                <div className="text-xs font-sans text-brand-primary uppercase tracking-wider mb-3">{p.sub}</div>
+                <h3 className="font-display text-2xl font-bold text-brand-text mb-3 group-hover:text-brand-primary transition-colors">{p.title}</h3>
                 <p className="text-brand-muted text-sm leading-relaxed mb-6">{p.body}</p>
                 <ul className="space-y-2 text-sm text-brand-muted/70">
                   {services.map((s) => (
@@ -409,7 +409,7 @@ function ServicesPreview() {
           })}
         </div>
         <div className="text-center mt-10">
-          <Link href="/services" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors shadow-[0_0_20px_rgba(74,222,128,0.2)]">
+          <Link href="/services" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-white font-bold rounded-xl hover:bg-brand-accent transition-colors">
             View All Services <ArrowRight size={18} />
           </Link>
         </div>
@@ -430,14 +430,14 @@ function ProcessSection() {
     <section id="process" className="py-24 bg-brand-dark scroll-mt-28">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">How It Works.</h2>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-brand-text mb-4">How It Works.</h2>
           <p className="text-brand-muted text-xl max-w-2xl mx-auto">No lengthy SOWs. No agency politics. Just a senior operator embedded in your business from week one.</p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {steps.map((step) => (
             <div key={step.num} className="relative">
               <div className="text-5xl font-display font-bold text-brand-primary/20 mb-4">{step.num}</div>
-              <h3 className="font-display font-bold text-white text-xl mb-3">{step.title}</h3>
+              <h3 className="font-display font-bold text-brand-text text-xl mb-3">{step.title}</h3>
               <p className="text-brand-muted text-sm leading-relaxed">{step.desc}</p>
             </div>
           ))}
@@ -448,33 +448,43 @@ function ProcessSection() {
 }
 
 function ResultsSection() {
-  const stats = [
-    { icon: TrendingUp, value: '£250k', label: 'Monthly Revenue in 6 Months', sub: 'Ranch Creative partnership, home and interiors brand' },
-    { icon: Users, value: '16,193', label: 'Product Records Remediated', sub: 'Xshowhome, full catalogue health audit and taxonomy rebuild' },
-    { icon: Zap, value: '120+', label: 'Hours Per Month Automated', sub: 'Miracle Moon, 14 n8n workflows across 4 connected systems' },
-    { icon: BarChart2, value: '2.9%', label: 'Store Conversion Rate', sub: 'vs. industry average of 1.4% — site rebuild and CRO programme, Ranch Creative client' },
+  const metrics = [
+    { value: '£250k', label: 'Monthly revenue within 6 months', mark: '+' },
+    { value: '16,193', label: 'Product records remediated', mark: '' },
+    { value: '120', label: 'Hours per month automated', mark: '+' },
   ];
 
   return (
     <section id="results" className="py-24 bg-brand-surface scroll-mt-28">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">The Numbers.</h2>
-          <p className="text-brand-muted text-xl max-w-2xl mx-auto">Real commercial outcomes from real partnerships.</p>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
-          {stats.map((stat, i) => (
-            <div key={i} className="text-center p-8 bg-brand-dark rounded-2xl border border-brand-border">
-              <div className="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center mx-auto mb-4">
-                <stat.icon size={24} className="text-brand-primary" />
+      <div className="container mx-auto px-6 max-w-5xl">
+        <p className="text-xs font-sans text-brand-primary uppercase tracking-widest mb-4">02 / Proof</p>
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-brand-text mb-16 tracking-tight">The Numbers.</h2>
+
+        <div className="grid sm:grid-cols-3 gap-12 mb-16">
+          {metrics.map((m) => (
+            <div key={m.label}>
+              <div className="font-display font-bold text-brand-text mb-2" style={{ fontSize: 'clamp(2.8rem, 5vw, 4rem)' }}>
+                {m.value}<span className="text-brand-primary">{m.mark}</span>
               </div>
-              <div className="font-display text-5xl font-bold text-brand-primary mb-2">{stat.value}</div>
-              <div className="font-medium text-white mb-1">{stat.label}</div>
-              <div className="text-xs text-brand-muted">{stat.sub}</div>
+              <div className="font-sans text-sm text-brand-muted uppercase tracking-wider">{m.label}</div>
             </div>
           ))}
         </div>
-        <div className="text-center">
+
+        <blockquote className="border-l-2 border-brand-primary pl-8 py-4 mb-6 max-w-3xl">
+          <p className="font-display text-xl md:text-2xl text-brand-text italic leading-relaxed">
+            &ldquo;He operates with real commercial intelligence, not just technical output.&rdquo;
+          </p>
+          <footer className="mt-4 font-sans text-sm text-brand-muted">
+            Luke Aling, Ranch Creative
+          </footer>
+        </blockquote>
+
+        <p className="font-sans text-sm text-brand-muted max-w-2xl">
+          Partners include Xshowhome, Miracle Moon, Saverys of Broadway, Licklibrary, and Ranch Creative.
+        </p>
+
+        <div className="mt-8">
           <Link href="/results" className="inline-flex items-center gap-2 text-brand-primary hover:text-brand-accent font-medium transition-colors">
             View case studies <ArrowRight size={16} />
           </Link>

@@ -41,15 +41,15 @@ export function ServicesPillarGrid() {
             }`}
           >
             <div className="mb-6">
-              <div className="text-xs font-mono text-brand-primary uppercase tracking-widest mb-2">{pillar.sub}</div>
-              <h3 className="font-display text-2xl font-bold text-white">{pillar.title}</h3>
+              <div className="text-xs font-sans text-brand-primary uppercase tracking-widest mb-2">{pillar.sub}</div>
+              <h3 className="font-display text-2xl font-bold text-brand-text">{pillar.title}</h3>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {services.map((service) => (
                 <Link
                   key={service.id}
                   href={`/services/${service.slug}`}
-                  className="relative p-6 rounded-2xl bg-brand-surface border border-white/5 overflow-hidden group hover:-translate-y-1 transition-transform duration-300"
+                  className="relative p-6 rounded-2xl bg-brand-surface border border-brand-border overflow-hidden group hover:-translate-y-1 transition-transform duration-300"
                 >
                   <div className="relative z-10 flex flex-col h-full">
                     <div className="flex items-start justify-between mb-4">
@@ -58,9 +58,9 @@ export function ServicesPillarGrid() {
                       </div>
                       <ArrowRight size={16} className="text-brand-muted -rotate-45 group-hover:rotate-0 group-hover:text-brand-primary transition-all duration-300" />
                     </div>
-                    <h4 className="text-lg font-bold text-white mb-2 font-display group-hover:text-brand-primary transition-colors">{service.title}</h4>
+                    <h4 className="text-lg font-bold text-brand-text mb-2 font-display group-hover:text-brand-primary transition-colors">{service.title}</h4>
                     <p className="text-brand-muted text-sm mb-4 leading-relaxed flex-grow">{service.description}</p>
-                    <div className="pt-4 border-t border-white/5 mt-auto">
+                    <div className="pt-4 border-t border-brand-border mt-auto">
                       <p className="text-[10px] font-bold text-brand-accent uppercase tracking-widest">Outcome: {service.outcome}</p>
                     </div>
                   </div>

@@ -9,30 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-dm-sans)', 'sans-serif'],
-        display: ['var(--font-syne)', 'sans-serif'],
-        mono: ['var(--font-jetbrains-mono)', 'monospace'],
+        sans: ['var(--font-hanken-grotesk)', 'sans-serif'],
+        display: ['var(--font-fraunces)', 'serif'],
       },
       colors: {
         brand: {
-          dark: '#060D08',
-          surface: '#041812',
-          surfaceHighlight: '#08261e',
-          primary: '#4ADE80',
-          accent: '#26cf64',
-          text: '#f1f5f9',
-          muted: '#94a3b8',
-          border: 'rgba(255, 255, 255, 0.08)',
-          terminal: '#05110d',
-        },
-      },
-      animation: {
-        'fade-in': 'fadeIn 0.5s ease-out forwards',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+          dark: '#F3F0E8',
+          surface: '#FFFFFF',
+          surfaceHighlight: '#EDE9E0',
+          primary: '#BC4A2B',
+          accent: '#8A5A2B',
+          text: '#17150F',
+          muted: '#6B6557',
+          border: 'rgba(23, 21, 15, 0.12)',
         },
       },
     },

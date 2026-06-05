@@ -69,8 +69,8 @@ export default function CategoryPage({ params }: { params: { category: string } 
             <ArrowLeft size={16} /> All Articles
           </Link>
           <div className="max-w-3xl">
-            <span className="inline-block px-3 py-1 mb-4 border border-brand-primary/30 rounded-full bg-brand-primary/5 text-brand-primary text-xs font-mono uppercase tracking-widest">{category}</span>
-            <h1 className="font-display text-5xl font-bold text-white mb-4 tracking-tight">{category} Articles.</h1>
+            <span className="inline-block px-3 py-1 mb-4 border border-brand-primary/30 rounded-full bg-brand-primary/5 text-brand-primary text-xs font-sans uppercase tracking-widest">{category}</span>
+            <h1 className="font-display text-5xl font-bold text-brand-text mb-4 tracking-tight">{category} Articles.</h1>
             <p className="text-xl text-brand-muted leading-relaxed">
               All {category.toLowerCase()} guides and insights from the Atherstone Digital blog.
             </p>
@@ -81,13 +81,13 @@ export default function CategoryPage({ params }: { params: { category: string } 
           <div className="max-w-4xl mx-auto space-y-6">
             {posts.map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`}
-                className="group block bg-brand-surface rounded-2xl p-8 border border-brand-border hover:border-brand-primary/30 hover:shadow-[0_0_20px_rgba(74,222,128,0.05)] transition-all duration-300">
+                className="group block bg-brand-surface rounded-2xl p-8 border border-brand-border hover:border-brand-primary/30 transition-all duration-300">
                 <div className="flex flex-wrap items-center gap-4 mb-4">
                   <span className="px-3 py-1 bg-brand-primary/10 text-brand-primary text-xs font-bold rounded-full">{post.category}</span>
                   <span className="flex items-center gap-1 text-xs text-brand-muted"><Calendar size={12} /> {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                   <span className="flex items-center gap-1 text-xs text-brand-muted"><Clock size={12} /> {post.readTime}</span>
                 </div>
-                <h2 className="font-display text-2xl font-bold text-white mb-3 group-hover:text-brand-primary transition-colors leading-snug">{post.title}</h2>
+                <h2 className="font-display text-2xl font-bold text-brand-text mb-3 group-hover:text-brand-primary transition-colors leading-snug">{post.title}</h2>
                 <p className="text-brand-muted leading-relaxed mb-4">{post.excerpt}</p>
                 <div className="flex items-center gap-1 text-brand-primary text-sm font-medium">
                   Read article <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />

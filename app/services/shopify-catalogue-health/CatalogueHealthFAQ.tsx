@@ -35,7 +35,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         className="w-full py-6 flex items-center justify-between text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark rounded-lg group"
         aria-expanded={open}
       >
-        <span className={`font-medium text-lg ${open ? 'text-brand-primary' : 'text-white'} group-hover:text-brand-primary transition-colors`}>
+        <span className={`font-medium text-lg ${open ? 'text-brand-primary' : 'text-brand-text'} group-hover:text-brand-primary transition-colors`}>
           {question}
         </span>
         <ChevronDown
@@ -54,7 +54,7 @@ export function CatalogueHealthFAQ() {
   return (
     <section className="container mx-auto px-6 mb-20">
       <div className="max-w-3xl mx-auto">
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-10 text-center tracking-tight">
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-text mb-10 text-center tracking-tight">
           Common questions
         </h2>
         <div className="bg-brand-surface rounded-2xl p-6 border border-brand-border">

@@ -2,161 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
 html {
   scroll-padding-top: 130px;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #060D08; }
-::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #4ADE80; }
+::-webkit-scrollbar-track { background: #F3F0E8; }
+::-webkit-scrollbar-thumb { background: #C4BFAD; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #BC4A2B; }
 
 body {
-  background-color: #060D08;
-  color: #f1f5f9;
-  position: relative;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Global noise texture */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-  z-index: 50;
-}
-
-/* ============ LIGHT MODE ============ */
-html.light body {
-  background-color: #f8fafb;
-  color: #1e293b;
-}
-
-html.light body::before {
-  opacity: 0.02;
-}
-
-html.light ::-webkit-scrollbar-track { background: #f1f5f9; }
-html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
-
-/* Brand color overrides for light mode */
-html.light .bg-brand-dark { background-color: #f8fafb; }
-html.light .bg-brand-surface { background-color: #ffffff; }
-html.light .bg-brand-surfaceHighlight { background-color: #f0fdf4; }
-html.light .bg-\[\#060D08\] { background-color: #f8fafb; }
-html.light .bg-\[\#05110d\] { background-color: #ffffff; }
-
-/* Text */
-html.light .text-white:not(.text-transparent):not(.hero-section .text-white) { color: #0f172a; }
-html.light .text-brand-text { color: #334155; }
-html.light .text-brand-muted { color: #64748b; }
-
-/* Gradient text needs to stay transparent */
-html.light .text-transparent { color: transparent; }
-
-/* Borders */
-html.light .border-brand-border { border-color: rgba(0, 0, 0, 0.08); }
-html.light .border-white\/5 { border-color: rgba(0, 0, 0, 0.06); }
-html.light .border-white\/10 { border-color: rgba(0, 0, 0, 0.08); }
-
-/* Backgrounds with white alpha */
-html.light .bg-white\/5 { background-color: rgba(0, 0, 0, 0.03); }
-html.light .bg-white\/10 { background-color: rgba(0, 0, 0, 0.06); }
-html.light .bg-white\/\[0\.02\] { background-color: rgba(0, 0, 0, 0.02); }
-html.light .bg-white\/\[0\.03\] { background-color: rgba(0, 0, 0, 0.02); }
-html.light .bg-white\/\[0\.05\] { background-color: rgba(0, 0, 0, 0.04); }
-html.light .bg-black\/40 { background-color: rgba(241, 245, 249, 0.9); }
-html.light .bg-black\/20 { background-color: rgba(241, 245, 249, 0.6); }
-
-/* Header */
-html.light .bg-brand-dark\/80 { background-color: rgba(248, 250, 251, 0.85); }
-html.light .bg-brand-dark\/95 { background-color: rgba(248, 250, 251, 0.97); }
-
-/* Gradient text — keep brand-primary in light mode */
-html.light .text-brand-primary { color: #059669; }
-html.light .bg-brand-primary { background-color: #059669; }
-html.light .border-brand-primary\/20 { border-color: rgba(5, 150, 105, 0.2); }
-html.light .border-brand-primary\/30 { border-color: rgba(5, 150, 105, 0.3); }
-html.light .border-brand-primary\/40 { border-color: rgba(5, 150, 105, 0.4); }
-html.light .bg-brand-primary\/5 { background-color: rgba(5, 150, 105, 0.05); }
-html.light .bg-brand-primary\/10 { background-color: rgba(5, 150, 105, 0.1); }
-html.light .shadow-\[0_0_20px_rgba\(74\2c 222\2c 128\2c 0\.2\)\] { box-shadow: 0 0 20px rgba(5,150,105,0.15); }
-html.light .shadow-\[0_0_40px_rgba\(74\2c 222\2c 128\2c 0\.3\)\] { box-shadow: 0 0 40px rgba(5,150,105,0.15); }
-
-/* Card surfaces */
-html.light .bg-brand-surface\/30 { background-color: rgba(255, 255, 255, 0.7); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-html.light .bg-brand-surface\/40 { background-color: rgba(255, 255, 255, 0.8); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-html.light .bg-brand-surface\/60 { background-color: rgba(255, 255, 255, 0.9); }
-html.light .bg-brand-dark\/50 { background-color: rgba(248, 250, 251, 0.7); }
-
-/* Form inputs */
-html.light input,
-html.light select,
-html.light textarea { color: #0f172a; }
-html.light input::placeholder,
-html.light textarea::placeholder { color: #94a3b8; }
-
-/* Gradient from/to overrides */
-html.light .from-brand-surfaceHighlight { --tw-gradient-from: #f0fdf4; }
-html.light .to-brand-dark { --tw-gradient-to: #f8fafb; }
-html.light .from-brand-surface { --tw-gradient-from: #ffffff; }
-html.light .to-\[\#05110d\] { --tw-gradient-to: #ffffff; }
-html.light .from-brand-dark { --tw-gradient-from: #f8fafb; }
-
-/* Footer */
-html.light footer { background-color: #f8fafb; border-color: rgba(0,0,0,0.06); }
-
-/* Dropdown */
-html.light .bg-\[\#060D08\]\/95 { background-color: rgba(255, 255, 255, 0.97); box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-
-/* Dark panel overrides for results page etc */
-html.light .bg-\[\#05110d\] { background-color: #ffffff; }
-
-/* Dropdown shadow override */
-html.light .shadow-\[0_10px_40px_rgba\(0\2c 0\2c 0\2c 0\.5\)\] { box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-html.light .shadow-\[0_0_50px_rgba\(74\2c 222\2c 128\2c 0\.1\)\] { box-shadow: 0 0 50px rgba(5,150,105,0.08); }
-html.light .shadow-2xl { box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
-
-/* Selection */
-html.light ::selection {
-  background-color: #059669;
-  color: #ffffff;
-}
-
-/* Glass utilities */
-.glass {
-  background: rgba(4, 24, 18, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-html.light .glass {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.glass-light {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-html.light .glass-light {
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.perspective-1000 {
-  perspective: 1000px;
+  background-color: #F3F0E8;
+  color: #17150F;
 }
 
 ::selection {
-  background-color: #4ADE80;
-  color: #060D08;
+  background-color: #BC4A2B;
+  color: #F3F0E8;
+}
+
+input, select, textarea {
+  color: #17150F;
+}
+input::placeholder, textarea::placeholder {
+  color: #6B6557;
+}
+
+/* Hero mask animation */
+@keyframes maskReveal {
+  from { transform: translateY(112%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mask-line,
+  .hero-fade-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

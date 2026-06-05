@@ -33,7 +33,7 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    name: `Atherstone Digital — Fractional Ecommerce Director serving ${location.city}`,
+    name: `Atherstone Digital, Shopify ecommerce consultant serving ${location.city}`,
     description: location.seoDescription,
     url: `https://www.atherstonedigital.com/${location.slug}`,
     telephone: '+447810838129',
@@ -55,7 +55,7 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
       },
       {
         '@type': 'Question',
-        name: `What does a Fractional Ecommerce Director do for ${location.city} brands?`,
+        name: `What does a Shopify ecommerce consultant do for ${location.city} brands?`,
         acceptedAnswer: { '@type': 'Answer', text: 'I act as your senior ecommerce leader on a part-time basis — owning the strategy, the technical roadmap, and the growth execution for your Shopify store. This includes CRO, paid media, Klaviyo lifecycle marketing, and automation.' },
       },
       {
@@ -71,7 +71,7 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.atherstonedigital.com' },
-      { '@type': 'ListItem', position: 2, name: `Fractional Ecommerce Director ${location.city}`, item: `https://www.atherstonedigital.com/${location.slug}` },
+      { '@type': 'ListItem', position: 2, name: `Shopify Ecommerce Consultant ${location.city}`, item: `https://www.atherstonedigital.com/${location.slug}` },
     ],
   };
 

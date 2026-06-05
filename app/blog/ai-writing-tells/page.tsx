@@ -13,7 +13,7 @@ const PUBLISHED = '2026-05-12';
 const DOWNLOAD_PATH = '/downloads/ai-writing-tells.skill';
 const DOWNLOAD_SIZE = '12 KB';
 const READING_TIME_MINUTES = 6;
-const CONTACT_HREF = '/fractional-ecommerce-director';
+const CONTACT_HREF = '/shopify-ecommerce-consultant';
 
 export const metadata: Metadata = {
   title: META_TITLE,

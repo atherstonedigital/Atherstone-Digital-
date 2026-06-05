@@ -43,12 +43,12 @@ app/
 ├── services/[slug]/page.tsx    → /services/shopify-plus-architecture etc
 ├── [locationSlug]/page.tsx     → /shopify-expert-birmingham etc
 ├── blog/page.tsx               → /blog
-├── blog/[slug]/page.tsx        → /blog/why-fractional-beats-agency etc
-├── why-fractional/page.tsx     → /why-fractional
+├── blog/[slug]/page.tsx        → /blog/shopify-seo-guide-2025 etc
+├── why-not-an-agency/page.tsx  → /why-not-an-agency
 ├── the-model/page.tsx          → /the-model
 ├── results/page.tsx            → /results
 ├── about/page.tsx              → /about
-├── fractional-ecommerce-director/page.tsx
+├── shopify-ecommerce-consultant/page.tsx
 ├── sitemap.ts                  → Auto-generates /sitemap.xml
 └── robots.ts                   → Auto-generates /robots.txt
 ```

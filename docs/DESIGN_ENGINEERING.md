@@ -2,7 +2,7 @@
 
 ## Visual Identity
 
-Atherstone Digital uses a dark-mode-first aesthetic with vivid green accents. The visual language communicates technical precision and premium quality — fitting for a fractional ecommerce director targeting DTC brands and Shopify Plus merchants.
+Atherstone Digital uses a dark-mode-first aesthetic with vivid green accents. The visual language communicates technical precision and premium quality — fitting for a Shopify ecommerce consultant targeting DTC brands and Shopify Plus merchants.
 
 ### Color System
 

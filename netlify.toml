@@ -9,6 +9,26 @@
 # Set www.atherstonedigital.com as the PRIMARY domain in:
 # Netlify Dashboard → Domain management → Set as primary domain
 
+# Phase 1 re-anchor: 301 the retired term-carrying URLs to their Shopify-anchored slugs
+[[redirects]]
+  from = "/fractional-ecommerce-director"
+  to = "/shopify-ecommerce-consultant"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/why-fractional"
+  to = "/why-not-an-agency"
+  status = 301
+  force = true
+
+# Renamed founder image: 301 the old path in case it was ever linked or indexed
+[[redirects]]
+  from = "/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png"
+  to = "/dan-le-gresley-shopify-ecommerce-consultant.png"
+  status = 301
+  force = true
+
 # Redirect old /locations/ pages to homepage
 [[redirects]]
   from = "/locations/*"

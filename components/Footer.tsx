@@ -14,7 +14,7 @@ export function Footer() {
               ATHERSTONE<span className="text-brand-primary">.</span>
             </div>
             <p className="text-sm mb-4 leading-relaxed">
-              Fractional Ecommerce Director for Shopify Brands.<br />
+              Senior Shopify operator for brands doing £500k to £5M.<br />
               Midlands HQ (Warwickshire, CV9).<br />
               Serving the UK & Global Partners.
             </p>

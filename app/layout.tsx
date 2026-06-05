@@ -6,6 +6,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { CustomCursor } from '@/components/CustomCursor';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { siteConfig } from '@/lib/siteConfig';
 
 const GA_ID = 'G-65K1KRBWQJ';
 
@@ -30,11 +31,10 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.atherstonedigital.com'),
   title: {
-    default: 'Fractional Ecommerce Director for Shopify Brands | Atherstone Digital',
+    default: siteConfig.homepageTitle,
     template: '%s | Atherstone Digital',
   },
-  description: 'Senior Shopify ecommerce leadership, fractionally. CRO, paid media, automation & development for brands doing £500k–£5M. 3 partners max. Book a teardown.',
-  keywords: ['fractional ecommerce director shopify', 'shopify ecommerce consultant UK', 'fractional ecommerce director UK', 'Shopify Expert Birmingham', 'Ecommerce Consultant Midlands', 'Shopify Plus Consultant'],
+  description: 'Senior Shopify ecommerce, run end to end. CRO, paid media, automation and development for brands doing £500k to £5M. 3 partners max. Book a teardown.',
   authors: [{ name: 'Dan Le Gresley' }],
   icons: {
     icon: '/favicon-c-bef0ns.svg',
@@ -70,13 +70,13 @@ const globalSchema = {
         '@type': 'ImageObject',
         url: 'https://www.atherstonedigital.com/favicon-c-bef0ns.svg',
       },
-      description: 'A fractional ecommerce director service for Shopify brands doing £500k\u2013£5M in annual revenue. AI-augmented operator replacing fragmented agency rosters with one senior partner. Based in Atherstone, Warwickshire.',
+      description: 'A Shopify ecommerce consultancy for brands doing £500k\u2013£5M in annual revenue. AI-augmented operator replacing fragmented agency rosters with one senior partner. Based in Atherstone, Warwickshire.',
       email: 'info@atherstonedigital.com',
       telephone: '+447810838129',
       founder: {
         '@type': 'Person',
         name: 'Dan Le Gresley',
-        jobTitle: 'Fractional Ecommerce Director',
+        jobTitle: 'Shopify Ecommerce Consultant',
         sameAs: ['https://www.linkedin.com/in/danlegresley/'],
       },
       contactPoint: {
@@ -116,7 +116,7 @@ const globalSchema = {
       '@type': 'Person',
       '@id': 'https://www.atherstonedigital.com/#dan',
       name: 'Dan Le Gresley',
-      jobTitle: 'Fractional Ecommerce Director',
+      jobTitle: 'Shopify Ecommerce Consultant',
       worksFor: { '@id': 'https://www.atherstonedigital.com/#organization' },
       url: 'https://www.atherstonedigital.com/about',
       sameAs: ['https://www.linkedin.com/in/danlegresley/'],

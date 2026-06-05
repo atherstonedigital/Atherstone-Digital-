@@ -165,7 +165,7 @@ export function Hero() {
         </div>
 
         <p className={`text-xl md:text-2xl font-medium mb-10 leading-relaxed max-w-3xl mx-auto text-center opacity-0 animate-fade-in ${isLight ? 'text-gray-800' : 'text-brand-text'}`} style={{ animationDelay: '0.2s' }}>
-          Fractional ecommerce leadership for brands turning over {siteConfig.revenueBand}. I do the writing, the building, the ads, the analysis, the fixing. No juniors, no relay handoffs. Three partners at a time. From {siteConfig.pricing.retainerFrom} a month.
+          Senior Shopify ecommerce, run end to end, for brands turning over {siteConfig.revenueBand}. I do the writing, the building, the ads, the analysis, the fixing. No juniors, no relay handoffs. Three partners at a time. From {siteConfig.pricing.retainerFrom} a month.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 opacity-0 animate-fade-in w-full sm:w-auto" style={{ animationDelay: '0.5s' }}>

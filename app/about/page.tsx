@@ -3,17 +3,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Target, ShieldCheck, Zap, Layers, MapPin } from 'lucide-react';
 import { Contact } from '@/components/Contact';
-import { siteConfig } from '@/lib/siteConfig';
+import { siteConfig, pageTitle } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
-  title: 'About Dan Le Gresley | Fractional Ecommerce Director, Warwickshire',
-  description: 'Shopify Plus Architect & Growth Strategist based in Atherstone, Warwickshire. Founder of Atherstone Digital. AI-augmented fractional leadership for UK ecommerce brands.',
+  title: { absolute: pageTitle('About Dan Le Gresley') },
+  description: 'Shopify Plus Architect & Growth Strategist based in Atherstone, Warwickshire. Founder of Atherstone Digital. One senior Shopify ecommerce consultant for UK brands.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com/about',
   },
   openGraph: {
-    title: 'About Dan Le Gresley | Fractional Ecommerce Director, Warwickshire',
-    description: 'Shopify Plus Architect & Growth Strategist based in Atherstone, Warwickshire. Founder of Atherstone Digital. AI-augmented fractional leadership for UK ecommerce brands.',
+    title: pageTitle('About Dan Le Gresley'),
+    description: 'Shopify Plus Architect & Growth Strategist based in Atherstone, Warwickshire. Founder of Atherstone Digital. One senior Shopify ecommerce consultant for UK brands.',
     url: 'https://www.atherstonedigital.com/about',
     type: 'website',
   },
@@ -26,9 +26,9 @@ const schema = {
   mainEntity: {
     '@type': 'Person',
     name: 'Dan Le Gresley',
-    jobTitle: 'Fractional Ecommerce Director',
-    description: 'Shopify Plus Architect & Growth Strategist helping brands scale revenue via fractional leadership. Founder of Atherstone Digital, based in Warwickshire.',
-    image: 'https://www.atherstonedigital.com/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png',
+    jobTitle: 'Shopify Ecommerce Consultant',
+    description: 'Shopify Plus Architect & Growth Strategist helping brands scale revenue as one senior Shopify ecommerce consultant. Founder of Atherstone Digital, based in Warwickshire.',
+    image: 'https://www.atherstonedigital.com/dan-le-gresley-shopify-ecommerce-consultant.png',
     sameAs: ['https://www.linkedin.com/in/danlegresley/', 'https://www.atherstonedigital.com'],
     worksFor: { '@type': 'Organization', name: 'Atherstone Digital', url: 'https://www.atherstonedigital.com' },
     knowsAbout: ['Shopify Plus', 'Ecommerce Strategy', 'n8n Automation', 'Google Ads', 'CRO', 'AI Search Optimization'],
@@ -70,8 +70,8 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-brand-primary/20 rounded-3xl rotate-6 group-hover:rotate-3 transition-transform duration-500 blur-2xl opacity-60"></div>
               <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl aspect-[4/5] group-hover:scale-[1.02] transition-transform duration-500 bg-brand-surface">
                 <Image
-                  src="/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png"
-                  alt="Dan Le Gresley - Speaker, Shopify Expert & Fractional Ecommerce Director"
+                  src="/dan-le-gresley-shopify-ecommerce-consultant.png"
+                  alt="Dan Le Gresley, Shopify Expert & Ecommerce Consultant"
                   width={800}
                   height={1000}
                   className="w-full h-full object-cover"

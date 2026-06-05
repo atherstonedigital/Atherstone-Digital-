@@ -7,30 +7,30 @@ import { JobsFamiliar } from '@/components/JobsFamiliar';
 import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
-  title: 'Fractional Ecommerce Director for Shopify | Atherstone Digital',
-  description: 'Senior operational leadership for Shopify brands doing £500k to £5M. Strategy, development, and growth, one senior partner, from £3,000/month.',
+  title: { absolute: 'Shopify Ecommerce Consultant for £500k to £5M Brands | UK' },
+  description: 'One senior Shopify operator running the whole ecommerce function for brands doing £500k to £5M. Strategy, development, and growth, from £3,000 a month.',
   alternates: {
-    canonical: 'https://www.atherstonedigital.com/fractional-ecommerce-director',
+    canonical: 'https://www.atherstonedigital.com/shopify-ecommerce-consultant',
   },
   openGraph: {
-    title: 'Fractional Ecommerce Director for Shopify | Atherstone Digital',
-    description: 'Senior operational leadership for Shopify brands doing £500k to £5M. Strategy, development, and growth, one senior partner, from £3,000/month.',
-    url: 'https://www.atherstonedigital.com/fractional-ecommerce-director',
+    title: 'Shopify Ecommerce Consultant for £500k to £5M Brands | UK',
+    description: 'One senior Shopify operator running the whole ecommerce function for brands doing £500k to £5M. Strategy, development, and growth, from £3,000 a month.',
+    url: 'https://www.atherstonedigital.com/shopify-ecommerce-consultant',
     type: 'website',
   },
 };
 
-export default function FractionalDirectorPage() {
+export default function ShopifyEcommerceConsultantPage() {
   return (
     <div className="pt-36 pb-20 bg-brand-dark min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Service',
-        name: 'Fractional Ecommerce Director',
-        serviceType: 'Fractional Ecommerce Director',
+        name: 'Shopify Ecommerce Consultant',
+        serviceType: 'Shopify Ecommerce Consultancy',
         provider: { '@type': 'Organization', name: 'Atherstone Digital', url: 'https://www.atherstonedigital.com' },
-        description: 'A fractional ecommerce director service for Shopify brands doing \u00a3500k to \u00a35M in annual revenue. One senior operator replacing fragmented agency rosters with AI-augmented execution.',
-        url: 'https://www.atherstonedigital.com/fractional-ecommerce-director',
+        description: 'A Shopify ecommerce consultancy for brands doing \u00a3500k to \u00a35M in annual revenue. One senior operator runs the whole Shopify ecommerce function, replacing fragmented agency rosters with AI-augmented execution.',
+        url: 'https://www.atherstonedigital.com/shopify-ecommerce-consultant',
         offers: { '@type': 'Offer', price: '3000', priceCurrency: 'GBP', description: 'Monthly retainers starting from £3,000/month depending on complexity.' },
       }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -39,13 +39,13 @@ export default function FractionalDirectorPage() {
         mainEntity: [
           {
             '@type': 'Question',
-            name: 'What does a Fractional Ecommerce Director do?',
-            acceptedAnswer: { '@type': 'Answer', text: 'A Fractional Ecommerce Director provides senior-level ecommerce leadership (strategy, execution, and technical oversight) on a part-time or retainer basis. Unlike an agency, they own the P&L and work directly on your business. Unlike a consultant, they actually execute the work.' },
+            name: 'What does a Shopify ecommerce consultant do?',
+            acceptedAnswer: { '@type': 'Answer', text: 'A Shopify ecommerce consultant provides senior-level ecommerce leadership (strategy, execution, and technical oversight) on a retainer basis. Unlike an agency, they own the P&L and work directly on your business. Unlike a pure adviser, they actually execute the work.' },
           },
           {
             '@type': 'Question',
-            name: 'How much does a Fractional Ecommerce Director cost in the UK?',
-            acceptedAnswer: { '@type': 'Answer', text: 'Fractional Ecommerce Director retainers typically start from £3,000 per month in the UK. This compares to £85,000 to £120,000 per year for a full-time hire, or £5,000 to £10,000 per month for a traditional agency. Atherstone Digital retainers start from £3,000/month on a rolling monthly contract.' },
+            name: 'How much does a Shopify ecommerce consultant cost in the UK?',
+            acceptedAnswer: { '@type': 'Answer', text: 'Shopify ecommerce consultant retainers typically start from £3,000 per month in the UK. This compares to £85,000 to £120,000 per year for a full-time hire, or £5,000 to £10,000 per month for a traditional agency. Atherstone Digital retainers start from £3,000/month on a rolling monthly contract.' },
           },
           {
             '@type': 'Question',
@@ -59,7 +59,7 @@ export default function FractionalDirectorPage() {
           },
           {
             '@type': 'Question',
-            name: 'What size brand is the fractional model right for?',
+            name: 'What size brand is this model right for?',
             acceptedAnswer: { '@type': 'Answer', text: 'The model works best for Shopify brands doing £500,000 to £5,000,000 in annual revenue. Brands in this range are typically too large to manage growth alone, but not yet large enough to justify a full-time senior hire at £100,000+ per year.' },
           },
           {

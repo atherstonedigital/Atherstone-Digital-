@@ -6,13 +6,13 @@ import { CATALOGUE_HEALTH_DATA, SERVICES_DATA } from '@/lib/data';
 import { CatalogueHealthFAQ } from './CatalogueHealthFAQ';
 
 export const metadata: Metadata = {
-  title: 'Shopify Catalogue Health Audit & Fix | Atherstone Digital',
+  title: 'Shopify Catalogue Management | Product Data Audit & Fix',
   description: 'Fixed-price Shopify product data audit and remediation. We find and fix alt text errors, taxonomy misclassifications, and metadata gaps that hurt your search rankings and Google Shopping performance.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com/services/shopify-catalogue-health',
   },
   openGraph: {
-    title: 'Shopify Catalogue Health Audit & Fix | Atherstone Digital',
+    title: 'Shopify Catalogue Management | Product Data Audit & Fix',
     description: 'Fixed-price Shopify product data audit and remediation for brands doing £500k to £5M. We fix the catalogue data issues your agency missed.',
     url: 'https://www.atherstonedigital.com/services/shopify-catalogue-health',
     type: 'website',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Shopify Catalogue Health Audit & Fix',
+  name: 'Shopify Catalogue Management',
   description: 'Fixed-price Shopify product data audit and remediation. We find and fix alt text errors, taxonomy misclassifications, product type inconsistencies, and metadata gaps for Shopify stores.',
   provider: {
     '@type': 'Organization',
@@ -112,7 +112,7 @@ const breadcrumbSchema = {
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.atherstonedigital.com' },
     { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.atherstonedigital.com/services' },
-    { '@type': 'ListItem', position: 3, name: 'Shopify Catalogue Health Audit & Fix', item: 'https://www.atherstonedigital.com/services/shopify-catalogue-health' },
+    { '@type': 'ListItem', position: 3, name: 'Catalogue Management', item: 'https://www.atherstonedigital.com/services/shopify-catalogue-health' },
   ],
 };
 

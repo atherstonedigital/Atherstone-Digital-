@@ -116,7 +116,7 @@ export default function TheModelPage() {
             <div className="relative group bg-brand-surface/40 border border-brand-border rounded-3xl p-8 lg:p-10 hover:bg-brand-surface/60 transition-colors">
               <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-l from-brand-accent/50 to-transparent rounded-t-3xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
               <div className="flex items-center gap-6 mb-8">
-                <div className="w-16 h-16 bg-brand-accent/10 rounded-2xl flex items-center justify-center text-brand-accent border border-brand-accent/20 shadow-[0_0_20px_rgba(204,240,120,0.15)]">
+                <div className="w-16 h-16 bg-brand-accent/10 rounded-2xl flex items-center justify-center text-brand-accent border border-brand-accent/20">
                   <Bot size={32} />
                 </div>
                 <div>

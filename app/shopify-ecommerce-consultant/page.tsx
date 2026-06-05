@@ -4,16 +4,16 @@ import { ArrowRight, CheckCircle, AlertTriangle, HelpCircle } from 'lucide-react
 import { Contact } from '@/components/Contact';
 import { FAQAccordion } from '@/components/FAQAccordion';
 import { JobsFamiliar } from '@/components/JobsFamiliar';
-import { siteConfig, pageTitle } from '@/lib/siteConfig';
+import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
-  title: { absolute: pageTitle('Shopify Ecommerce Consultant') },
+  title: { absolute: 'Shopify Ecommerce Consultant for £500k to £5M Brands | UK' },
   description: 'One senior Shopify operator running the whole ecommerce function for brands doing £500k to £5M. Strategy, development, and growth, from £3,000 a month.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com/shopify-ecommerce-consultant',
   },
   openGraph: {
-    title: pageTitle('Shopify Ecommerce Consultant'),
+    title: 'Shopify Ecommerce Consultant for £500k to £5M Brands | UK',
     description: 'One senior Shopify operator running the whole ecommerce function for brands doing £500k to £5M. Strategy, development, and growth, from £3,000 a month.',
     url: 'https://www.atherstonedigital.com/shopify-ecommerce-consultant',
     type: 'website',

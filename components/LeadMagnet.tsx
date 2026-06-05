@@ -36,8 +36,8 @@ export function LeadMagnet() {
     <section className="py-20 bg-brand-surface">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto border-l-4 border-brand-primary bg-brand-dark rounded-2xl p-8 md:p-12">
-          <span className="text-brand-primary text-xs font-mono font-bold uppercase tracking-widest">Free Download</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-white mt-3 mb-3">
+          <span className="text-brand-primary text-xs font-sans font-bold uppercase tracking-widest">Free Download</span>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-text mt-3 mb-3">
             The 5 Shopify Metrics Most Brands Track Wrong
           </h2>
           <p className="text-brand-muted text-lg mb-8 leading-relaxed">
@@ -53,7 +53,7 @@ export function LeadMagnet() {
               <a
                 href="/atherstone-5-metrics.pdf"
                 download
-                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-primary text-brand-dark font-bold rounded-lg hover:bg-brand-accent transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-primary text-white font-bold rounded-lg hover:bg-brand-accent transition-colors"
               >
                 <Download size={18} /> Download the Guide (PDF)
               </a>
@@ -67,12 +67,12 @@ export function LeadMagnet() {
                   name="email"
                   required
                   placeholder="Your work email"
-                  className="flex-1 bg-white/5 border border-brand-border rounded-lg px-4 py-3 text-white placeholder-brand-muted/50 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:ring-offset-1 focus:ring-offset-brand-dark focus:border-brand-primary/50 transition-colors text-sm"
+                  className="flex-1 bg-brand-surface border border-brand-border rounded-lg px-4 py-3 text-brand-text placeholder-brand-muted/50 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:ring-offset-1 focus:ring-offset-brand-surface focus:border-brand-primary/50 transition-colors text-sm"
                 />
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-6 py-3 bg-brand-primary text-brand-dark font-bold rounded-lg hover:bg-brand-accent transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                  className="px-6 py-3 bg-brand-primary text-white font-bold rounded-lg hover:bg-brand-accent transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
                 >
                   {isSubmitting ? <Loader2 size={18} className="animate-spin" /> : <>Send Me the Guide <ArrowRight size={16} /></>}
                 </button>

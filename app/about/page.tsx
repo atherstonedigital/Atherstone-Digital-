@@ -51,7 +51,7 @@ export default function AboutPage() {
         <section className="relative px-6 mb-24">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] bg-brand-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
           <div className="container mx-auto max-w-4xl text-center relative z-10">
-            <h1 className="font-display text-5xl lg:text-7xl font-bold text-white mb-8 tracking-tight">
+            <h1 className="font-display text-5xl lg:text-7xl font-bold text-brand-text mb-8 tracking-tight">
               About <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Dan Le Gresley.</span>
             </h1>
@@ -68,7 +68,7 @@ export default function AboutPage() {
             {/* Image */}
             <div className="relative group order-2 lg:order-1">
               <div className="absolute inset-0 bg-brand-primary/20 rounded-3xl rotate-6 group-hover:rotate-3 transition-transform duration-500 blur-2xl opacity-60"></div>
-              <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl aspect-[4/5] group-hover:scale-[1.02] transition-transform duration-500 bg-brand-surface">
+              <div className="relative rounded-3xl overflow-hidden border border-brand-border shadow-2xl aspect-[4/5] group-hover:scale-[1.02] transition-transform duration-500 bg-brand-surface">
                 <Image
                   src="/dan-le-gresley-shopify-ecommerce-consultant.png"
                   alt="Dan Le Gresley, Shopify Expert & Ecommerce Consultant"
@@ -76,12 +76,12 @@ export default function AboutPage() {
                   height={1000}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent opacity-60"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-surface/90 via-transparent to-transparent opacity-60"></div>
                 <div className="absolute bottom-6 left-6 right-6">
-                  <div className="inline-block px-3 py-1 mb-2 bg-brand-primary text-brand-dark border border-brand-primary/50 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
+                  <div className="inline-block px-3 py-1 mb-2 bg-brand-primary text-white border border-brand-primary/50 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
                     Founder & Director
                   </div>
-                  <h3 className="font-display text-2xl font-bold text-white">Dan Le Gresley</h3>
+                  <h3 className="font-display text-2xl font-bold text-brand-text">Dan Le Gresley</h3>
                   <p className="text-brand-muted text-sm mt-1">Fractional Ecommerce Director</p>
                 </div>
               </div>
@@ -90,12 +90,12 @@ export default function AboutPage() {
             {/* Content */}
             <div className="order-1 lg:order-2 space-y-10">
               <div>
-                <h2 className="text-4xl lg:text-5xl font-display font-bold text-white mb-6">
+                <h2 className="text-4xl lg:text-5xl font-display font-bold text-brand-text mb-6">
                   The &ldquo;Agency&rdquo; Model <br />
                   <span className="text-brand-muted">is broken.</span>
                 </h2>
                 <p className="text-lg text-brand-muted leading-relaxed">
-                  Clients are tired of paying for overhead. I founded Atherstone Digital to offer a lean, high-impact alternative. <strong className="text-white">One senior partner</strong> replacing an entire department.
+                  Clients are tired of paying for overhead. I founded Atherstone Digital to offer a lean, high-impact alternative. <strong className="text-brand-text">One senior partner</strong> replacing an entire department.
                 </p>
               </div>
 
@@ -124,7 +124,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <Link href="/services" className="text-white font-bold hover:text-brand-primary transition-colors inline-flex items-center gap-2 group border-b border-brand-primary/30 pb-1">
+              <Link href="/services" className="text-brand-text font-bold hover:text-brand-primary transition-colors inline-flex items-center gap-2 group border-b border-brand-primary/30 pb-1">
                 Explore My Capabilities <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform text-brand-primary" />
               </Link>
             </div>
@@ -141,15 +141,15 @@ export default function AboutPage() {
                   <MapPin size={12} className="text-brand-primary" />
                   <span className="text-brand-primary text-xs font-bold uppercase tracking-widest">Midlands Based</span>
                 </div>
-                <h2 className="text-3xl font-display font-bold text-white mb-4">The Human Connection</h2>
+                <h2 className="text-3xl font-display font-bold text-brand-text mb-4">The Human Connection</h2>
                 <p className="text-brand-muted text-lg leading-relaxed">
-                  While I serve global clients remotely, I believe real business is built on relationships, not just Jira tickets. For partners in the West Midlands, I offer exclusive <strong className="text-white">Face-to-Face Sessions</strong>. I&apos;m just as comfortable whiteboarding complex logic with your dev team as I am presenting ROI to your stakeholders.
+                  While I serve global clients remotely, I believe real business is built on relationships, not just Jira tickets. For partners in the West Midlands, I offer exclusive <strong className="text-brand-text">Face-to-Face Sessions</strong>. I&apos;m just as comfortable whiteboarding complex logic with your dev team as I am presenting ROI to your stakeholders.
                 </p>
               </div>
-              <div className="bg-brand-dark/50 p-6 rounded-2xl border border-white/5 text-center">
-                <div className="text-4xl font-bold text-white mb-2 font-display">50<span className="text-brand-primary text-2xl">mi</span></div>
+              <div className="bg-brand-dark/50 p-6 rounded-2xl border border-brand-border text-center">
+                <div className="text-4xl font-bold text-brand-text mb-2 font-display">50<span className="text-brand-primary text-2xl">mi</span></div>
                 <p className="text-xs text-brand-muted uppercase tracking-widest">Radius from Atherstone (CV9)</p>
-                <div className="mt-4 pt-4 border-t border-white/5 text-xs text-brand-muted">
+                <div className="mt-4 pt-4 border-t border-brand-border text-xs text-brand-muted">
                   Priority On-Site Support for <br />Warwickshire & West Mids
                 </div>
               </div>
@@ -159,14 +159,14 @@ export default function AboutPage() {
 
         {/* Principles */}
         <section className="container mx-auto px-6 mb-24">
-          <h2 className="text-3xl font-display font-bold text-white mb-12 text-center">My Operating Principles</h2>
+          <h2 className="text-3xl font-display font-bold text-brand-text mb-12 text-center">My Operating Principles</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {principles.map((p) => (
               <div key={p.title} className="bg-brand-surface p-8 rounded-2xl border border-brand-border hover:border-brand-primary/30 transition-colors">
                 <div className="w-12 h-12 bg-brand-primary/10 rounded-lg flex items-center justify-center text-brand-primary mb-6">
                   <p.icon size={24} />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{p.title}</h3>
+                <h3 className="text-xl font-bold text-brand-text mb-3">{p.title}</h3>
                 <p className="text-brand-muted">{p.desc}</p>
               </div>
             ))}
@@ -179,9 +179,9 @@ export default function AboutPage() {
             <div className="absolute right-0 bottom-0 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none"></div>
             <div className="relative z-10 max-w-2xl mx-auto">
               <Zap size={48} className="text-brand-primary mx-auto mb-6" />
-              <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Ready to upgrade your team?</h2>
+              <h2 className="text-3xl lg:text-4xl font-display font-bold text-brand-text mb-6">Ready to upgrade your team?</h2>
               <p className="text-brand-muted text-lg mb-8">Stop paying for agency overhead. Start investing in senior talent that moves the needle.</p>
-              <Link href={siteConfig.ctas.secondary.href} className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1">
+              <Link href={siteConfig.ctas.secondary.href} className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-white font-bold rounded-lg transition-all transform hover:-translate-y-1">
                 {siteConfig.ctas.secondary.label} <ArrowRight size={20} />
               </Link>
             </div>

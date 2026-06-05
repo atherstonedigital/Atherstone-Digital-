@@ -185,10 +185,10 @@ export default function ShopifyCatalogueHealthPage() {
         {/* Hero */}
         <section className="container mx-auto px-6 mb-20">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block px-3 py-1 mb-6 border border-brand-primary/30 rounded-full bg-brand-primary/5 text-brand-primary text-xs font-mono uppercase tracking-widest">
+            <div className="inline-block px-3 py-1 mb-6 border border-brand-primary/30 rounded-full bg-brand-primary/5 text-brand-primary text-xs font-sans uppercase tracking-widest">
               Fixed-Price Productised Service
             </div>
-            <h1 className="font-display text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+            <h1 className="font-display text-5xl lg:text-6xl font-bold text-brand-text mb-6 tracking-tight">
               Your Shopify Catalogue Data Is Costing You Sales
             </h1>
             <p className="text-xl text-brand-muted leading-relaxed max-w-3xl mx-auto mb-10">
@@ -198,7 +198,7 @@ export default function ShopifyCatalogueHealthPage() {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors shadow-[0_0_20px_rgba(74,222,128,0.2)] hover:shadow-[0_0_30px_rgba(74,222,128,0.4)]"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-white font-bold rounded-xl hover:bg-brand-accent transition-colors"
             >
               {siteConfig.cta.label} <ArrowRight size={18} />
             </a>
@@ -208,7 +208,7 @@ export default function ShopifyCatalogueHealthPage() {
         {/* Problem Statement */}
         <section className="container mx-auto px-6 mb-20">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-8 tracking-tight">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-text mb-8 tracking-tight">
               The problem most Shopify brands don&apos;t know they have
             </h2>
             <div className="text-brand-muted text-lg leading-relaxed space-y-6">
@@ -237,7 +237,7 @@ export default function ShopifyCatalogueHealthPage() {
         {/* What's Included */}
         <section className="container mx-auto px-6 mb-20">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-10 tracking-tight text-center">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-text mb-10 tracking-tight text-center">
               What&apos;s included
             </h2>
             <div className="grid gap-6">
@@ -249,7 +249,7 @@ export default function ShopifyCatalogueHealthPage() {
                   <div className="flex items-start gap-4">
                     <CheckCircle size={22} className="text-brand-primary mt-1 shrink-0" />
                     <div>
-                      <h3 className="font-display font-bold text-white text-xl mb-2">{item.title}</h3>
+                      <h3 className="font-display font-bold text-brand-text text-xl mb-2">{item.title}</h3>
                       <p className="text-brand-muted leading-relaxed">{item.description}</p>
                     </div>
                   </div>
@@ -262,7 +262,7 @@ export default function ShopifyCatalogueHealthPage() {
         {/* How It Works */}
         <section className="container mx-auto px-6 mb-20">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-10 tracking-tight text-center">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-text mb-10 tracking-tight text-center">
               How it works
             </h2>
             <div className="grid gap-8">
@@ -272,7 +272,7 @@ export default function ShopifyCatalogueHealthPage() {
                     <span className="font-display font-bold text-brand-primary text-lg">{i + 1}</span>
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-white text-xl mb-2">{step.title}</h3>
+                    <h3 className="font-display font-bold text-brand-text text-xl mb-2">{step.title}</h3>
                     <p className="text-brand-muted leading-relaxed">{step.description}</p>
                   </div>
                 </div>
@@ -284,7 +284,7 @@ export default function ShopifyCatalogueHealthPage() {
         {/* Pricing */}
         <section className="container mx-auto px-6 mb-20">
           <div className="max-w-5xl mx-auto">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight text-center">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-text mb-4 tracking-tight text-center">
               Simple, transparent pricing
             </h2>
             <p className="text-brand-muted text-lg text-center mb-12 max-w-2xl mx-auto">
@@ -298,19 +298,19 @@ export default function ShopifyCatalogueHealthPage() {
                     key={tier.name}
                     className={`rounded-2xl p-8 border relative ${
                       isPopular
-                        ? 'bg-brand-surfaceHighlight border-brand-primary/40 shadow-[0_0_40px_rgba(74,222,128,0.1)]'
+                        ? 'bg-brand-surfaceHighlight border-brand-primary/40'
                         : 'bg-brand-surface border-brand-border'
                     }`}
                   >
                     {isPopular && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand-primary text-brand-dark text-xs font-bold rounded-full">
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand-primary text-white text-xs font-bold rounded-full">
                         MOST POPULAR
                       </div>
                     )}
-                    <div className="text-xs font-mono text-brand-primary uppercase tracking-widest mb-3">
+                    <div className="text-xs font-sans text-brand-primary uppercase tracking-widest mb-3">
                       {tier.name}
                     </div>
-                    <div className="font-display text-4xl font-bold text-white mb-2">
+                    <div className="font-display text-4xl font-bold text-brand-text mb-2">
                       £{tier.price.toLocaleString()}
                     </div>
                     <div className="text-brand-muted text-sm mb-6">{tier.skuRange}</div>
@@ -328,7 +328,7 @@ export default function ShopifyCatalogueHealthPage() {
         {/* Why This Matters Now */}
         <section className="container mx-auto px-6 mb-20">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-8 tracking-tight">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-text mb-8 tracking-tight">
               Why this matters more than it used to
             </h2>
             <div className="text-brand-muted text-lg leading-relaxed space-y-6">
@@ -348,7 +348,7 @@ export default function ShopifyCatalogueHealthPage() {
         {/* Credibility */}
         <section className="container mx-auto px-6 mb-20">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-8 tracking-tight">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-text mb-8 tracking-tight">
               Built on real experience, not theory
             </h2>
             <div className="text-brand-muted text-lg leading-relaxed space-y-6">
@@ -371,7 +371,7 @@ export default function ShopifyCatalogueHealthPage() {
         {/* Final CTA */}
         <section className="container mx-auto px-6 mb-20">
           <div className="bg-brand-surfaceHighlight rounded-3xl p-12 text-center border border-brand-border max-w-4xl mx-auto">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-text mb-6 tracking-tight">
               Let&apos;s see what&apos;s hiding in your product data
             </h2>
             <p className="text-brand-muted text-lg mb-8 max-w-2xl mx-auto">
@@ -381,7 +381,7 @@ export default function ShopifyCatalogueHealthPage() {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-xl hover:bg-brand-accent transition-colors shadow-[0_0_20px_rgba(74,222,128,0.2)] hover:shadow-[0_0_30px_rgba(74,222,128,0.4)]"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-white font-bold rounded-xl hover:bg-brand-accent transition-colors"
             >
               {siteConfig.cta.label} <ArrowRight size={18} />
             </a>
@@ -391,7 +391,7 @@ export default function ShopifyCatalogueHealthPage() {
         {/* Other Services */}
         <section className="container mx-auto px-6 mb-20">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-display text-2xl font-bold text-white mb-8">Other Services</h2>
+            <h2 className="font-display text-2xl font-bold text-brand-text mb-8">Other Services</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {SERVICES_DATA.filter((s) => s.id !== 'catalogue-health').slice(0, 3).map((s) => (
                 <Link
@@ -399,8 +399,8 @@ export default function ShopifyCatalogueHealthPage() {
                   href={`/services/${s.slug}`}
                   className="group p-5 bg-brand-surface rounded-xl border border-brand-border hover:border-brand-primary/30 transition-all"
                 >
-                  <div className="text-xs font-mono text-brand-primary mb-2">{s.outcome}</div>
-                  <div className="font-display font-bold text-white group-hover:text-brand-primary transition-colors">{s.title}</div>
+                  <div className="text-xs font-sans text-brand-primary mb-2">{s.outcome}</div>
+                  <div className="font-display font-bold text-brand-text group-hover:text-brand-primary transition-colors">{s.title}</div>
                   <div className="flex items-center gap-1 text-xs text-brand-primary mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
                     More <ArrowRight size={10} />
                   </div>

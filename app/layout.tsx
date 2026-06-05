@@ -1,30 +1,24 @@
 import type { Metadata } from 'next';
-import { DM_Sans, Syne, JetBrains_Mono } from 'next/font/google';
+import { Fraunces, Hanken_Grotesk } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { CustomCursor } from '@/components/CustomCursor';
-import { ThemeProvider } from '@/components/ThemeProvider';
 import { siteConfig } from '@/lib/siteConfig';
 
 const GA_ID = 'G-65K1KRBWQJ';
 
-const dmSans = DM_Sans({
+const fraunces = Fraunces({
   subsets: ['latin'],
-  variable: '--font-dm-sans',
+  variable: '--font-fraunces',
   display: 'swap',
+  axes: ['opsz'],
 });
 
-const syne = Syne({
+const hankenGrotesk = Hanken_Grotesk({
   subsets: ['latin'],
-  variable: '--font-syne',
-  display: 'swap',
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
+  variable: '--font-hanken-grotesk',
   display: 'swap',
 });
 
@@ -134,7 +128,7 @@ const globalSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-GB" className={`${dmSans.variable} ${syne.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en-GB" className={`${fraunces.variable} ${hankenGrotesk.variable}`}>
       <head>
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
         <Script id="ga4-init" strategy="afterInteractive">
@@ -147,11 +141,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="alternate" type="text/markdown" href="/llms.txt" title="AI Context" />
       </head>
       <body className="antialiased font-sans bg-brand-dark text-brand-text">
-        <ThemeProvider>
           <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-brand-primary focus:text-brand-dark focus:font-bold focus:rounded-lg focus:outline-none">
             Skip to main content
           </a>
-          {/* Netlify Forms Detection - must exist as static HTML */}
           <form name="application" data-netlify="true" hidden>
             <input type="text" name="name" />
             <input type="email" name="email" />
@@ -176,7 +168,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </main>
           <Footer />
-        </ThemeProvider>
       </body>
     </html>
   );

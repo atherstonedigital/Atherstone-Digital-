@@ -10,7 +10,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-12">
 
           <div className="text-center md:text-left max-w-sm">
-            <div className="font-display font-bold text-xl text-white tracking-tighter mb-3">
+            <div className="font-display font-bold text-xl text-brand-text tracking-tighter mb-3">
               ATHERSTONE<span className="text-brand-primary">.</span>
             </div>
             <p className="text-sm mb-4 leading-relaxed">
@@ -23,7 +23,7 @@ export function Footer() {
           </div>
 
           <div className="text-center md:text-left">
-            <h4 className="font-bold text-white text-sm mb-3">Services</h4>
+            <h4 className="font-bold text-brand-text text-sm mb-3">Services</h4>
             <ul className="text-xs text-brand-muted space-y-1.5">
               {SERVICES_DATA.map((service) => (
                 <li key={service.id}>
@@ -36,7 +36,7 @@ export function Footer() {
           </div>
 
           <div className="text-center md:text-left">
-            <h4 className="font-bold text-white text-sm mb-3">Local Service Area (Midlands)</h4>
+            <h4 className="font-bold text-brand-text text-sm mb-3">Local Service Area (Midlands)</h4>
             <ul className="text-xs text-brand-muted space-y-1.5 grid grid-cols-2 gap-x-8 md:block md:gap-0">
               {LOCATIONS_DATA.map((loc) => (
                 <li key={loc.city}>
@@ -50,10 +50,10 @@ export function Footer() {
 
           <div className="flex flex-col md:items-end gap-4 text-center md:text-right w-full md:w-auto">
             <div className="space-y-1 text-sm font-medium">
-              <a href="mailto:info@atherstonedigital.com" className="block text-white hover:text-brand-primary transition-colors">info@atherstonedigital.com</a>
-              <a href="tel:07810838129" className="block text-white hover:text-brand-primary transition-colors">07810 838 129</a>
+              <a href="mailto:info@atherstonedigital.com" className="block text-brand-text hover:text-brand-primary transition-colors">info@atherstonedigital.com</a>
+              <a href="tel:07810838129" className="block text-brand-text hover:text-brand-primary transition-colors">07810 838 129</a>
             </div>
-            <div className="flex justify-center md:justify-end gap-6 text-sm pt-4 border-t border-white/5 w-full">
+            <div className="flex justify-center md:justify-end gap-6 text-sm pt-4 border-t border-brand-border w-full">
               <a href="https://www.linkedin.com/in/danlegresley/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-primary transition-colors">LinkedIn</a>
               <Link href="/privacy" className="hover:text-brand-primary transition-colors">Privacy</Link>
               <Link href="/terms" className="hover:text-brand-primary transition-colors">Terms</Link>

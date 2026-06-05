@@ -72,7 +72,7 @@ export default function ResultsPage() {
         <section className="relative px-6 mb-20">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] bg-brand-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
           <div className="container mx-auto max-w-5xl text-center relative z-10">
-            <h1 className="font-display text-5xl lg:text-7xl font-bold text-white mb-8 tracking-tight">
+            <h1 className="font-display text-5xl lg:text-7xl font-bold text-brand-text mb-8 tracking-tight">
               Commercial <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Impact.</span>
             </h1>
@@ -89,7 +89,7 @@ export default function ResultsPage() {
             {stats.map((stat) => (
               <div key={stat.value} className="bg-brand-surface border border-brand-border rounded-2xl p-6 text-center hover:border-brand-primary/30 transition-colors">
                 <div className="font-display text-4xl lg:text-5xl font-bold text-brand-primary mb-2">{stat.value}</div>
-                <div className="text-white font-medium text-sm mb-1">{stat.label}</div>
+                <div className="text-brand-text font-medium text-sm mb-1">{stat.label}</div>
                 <div className="text-brand-muted text-xs">{stat.sublabel}</div>
               </div>
             ))}
@@ -136,22 +136,22 @@ export default function ResultsPage() {
               cite: 'Gary Postlethwaite, Saverys of Broadway',
             },
           ].map((c) => (
-            <article key={c.brand} className="relative bg-brand-surface border border-white/10 rounded-3xl overflow-hidden max-w-5xl mx-auto shadow-2xl p-8 md:p-12">
-              <span className="text-xs font-mono text-brand-primary uppercase tracking-widest">{c.eyebrow}</span>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-white mt-3 mb-8 tracking-tight">
+            <article key={c.brand} className="relative bg-brand-surface border border-brand-border rounded-3xl overflow-hidden max-w-5xl mx-auto shadow-2xl p-8 md:p-12">
+              <span className="text-xs font-sans text-brand-primary uppercase tracking-widest">{c.eyebrow}</span>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-brand-text mt-3 mb-8 tracking-tight">
                 {c.brand}: <span className="text-brand-primary">{c.headline}</span>
               </h2>
               <div className="grid md:grid-cols-3 gap-8 mb-10">
                 <section>
-                  <h3 className="text-white font-display font-bold mb-3">The situation</h3>
+                  <h3 className="text-brand-text font-display font-bold mb-3">The situation</h3>
                   <p className="text-brand-muted text-sm leading-relaxed">{c.situation}</p>
                 </section>
                 <section>
-                  <h3 className="text-white font-display font-bold mb-3">What I did</h3>
+                  <h3 className="text-brand-text font-display font-bold mb-3">What I did</h3>
                   <p className="text-brand-muted text-sm leading-relaxed">{c.did}</p>
                 </section>
                 <section>
-                  <h3 className="text-white font-display font-bold mb-3">The outcome</h3>
+                  <h3 className="text-brand-text font-display font-bold mb-3">The outcome</h3>
                   <ul className="space-y-2 text-sm text-brand-muted">
                     {c.outcome.map((m) => (
                       <li key={m} className="flex gap-2">
@@ -173,11 +173,11 @@ export default function ResultsPage() {
         {/* Sectors */}
         <section className="container mx-auto px-6 mb-24">
           <div className="max-w-5xl mx-auto text-center">
-            <h2 className="text-3xl font-display font-bold text-white mb-4">Sectors &amp; Verticals</h2>
+            <h2 className="text-3xl font-display font-bold text-brand-text mb-4">Sectors &amp; Verticals</h2>
             <p className="text-brand-muted mb-8">The fractional model works across Shopify verticals. Current and past partner sectors include:</p>
             <div className="flex flex-wrap justify-center gap-3">
               {['Furniture & Homeware', 'Fashion & Apparel', 'Health & Wellness', 'Lifestyle & Gifting', 'Beauty & Skincare', 'Sports & Outdoors'].map((sector) => (
-                <span key={sector} className="px-4 py-2 text-sm text-brand-muted border border-white/10 rounded-full bg-brand-surface">{sector}</span>
+                <span key={sector} className="px-4 py-2 text-sm text-brand-muted border border-brand-border rounded-full bg-brand-surface">{sector}</span>
               ))}
             </div>
           </div>
@@ -186,10 +186,10 @@ export default function ResultsPage() {
         {/* Measurement framework */}
         <section className="container mx-auto px-6 mb-24">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-display font-bold text-white mb-12 text-center">Measurement Framework</h2>
+            <h2 className="text-3xl font-display font-bold text-brand-text mb-12 text-center">Measurement Framework</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {metrics.map((m) => (
-                <div key={m.title} className="group relative bg-brand-surface/40 p-8 rounded-3xl border border-white/5 hover:border-brand-primary/30 transition-all duration-300">
+                <div key={m.title} className="group relative bg-brand-surface/40 p-8 rounded-3xl border border-brand-border hover:border-brand-primary/30 transition-all duration-300">
                   <div className="absolute top-4 right-4 text-brand-primary/20 group-hover:text-brand-primary/40 transition-colors">
                     <m.bgIcon size={48} />
                   </div>
@@ -197,7 +197,7 @@ export default function ResultsPage() {
                     <div className="w-12 h-12 bg-brand-primary/10 rounded-xl flex items-center justify-center text-brand-primary mb-6 border border-brand-primary/20">
                       <m.icon size={24} />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-3 font-display">{m.title}</h3>
+                    <h3 className="text-2xl font-bold text-brand-text mb-3 font-display">{m.title}</h3>
                     <p className="text-brand-muted leading-relaxed text-sm">{m.desc}</p>
                   </div>
                 </div>
@@ -210,9 +210,9 @@ export default function ResultsPage() {
         <section className="container mx-auto px-6 mb-16">
           <div className="bg-gradient-to-br from-brand-surfaceHighlight to-brand-dark border border-brand-border rounded-3xl p-12 text-center relative overflow-hidden group max-w-4xl mx-auto">
             <div className="relative z-10 max-w-2xl mx-auto">
-              <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Let&apos;s improve your numbers.</h2>
+              <h2 className="text-3xl lg:text-4xl font-display font-bold text-brand-text mb-6">Let&apos;s improve your numbers.</h2>
               <p className="text-brand-muted text-lg mb-8">Apply for a partnership and see what changes in your numbers.</p>
-              <Link href={siteConfig.ctas.secondary.href} className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
+              <Link href={siteConfig.ctas.secondary.href} className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-white font-bold rounded-lg transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
                 {siteConfig.ctas.secondary.label} <ArrowRight size={20} />
               </Link>
             </div>

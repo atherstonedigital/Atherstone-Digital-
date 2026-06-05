@@ -94,9 +94,9 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
           <div className="container mx-auto max-w-5xl text-center relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-brand-primary/30 rounded-full bg-brand-primary/5 backdrop-blur-sm">
               <MapPin size={12} className="text-brand-primary" />
-              <span className="text-brand-primary text-xs font-mono uppercase tracking-widest font-bold">Serving {location.city}</span>
+              <span className="text-brand-primary text-xs font-sans uppercase tracking-widest font-bold">Serving {location.city}</span>
             </div>
-            <h1 className="font-display text-5xl lg:text-7xl font-bold text-white mb-8 tracking-tight">
+            <h1 className="font-display text-5xl lg:text-7xl font-bold text-brand-text mb-8 tracking-tight">
               Fractional Ecommerce Director{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">
                 for {location.heroTitle} Brands.
@@ -106,7 +106,7 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
               You don&apos;t need a London agency charging London rates. You need a senior partner based in the Midlands who understands your P&amp;L and can meet you in <strong>{location.city}</strong> for real strategy sessions.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/#contact" className="px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all hover:bg-brand-accent min-w-[200px] flex items-center justify-center gap-2">
+              <Link href="/#contact" className="px-8 py-4 bg-brand-primary text-white font-bold rounded-lg transition-all hover:bg-brand-accent min-w-[200px] flex items-center justify-center gap-2">
                 Book a Free Commercial Review <Coffee size={18} />
               </Link>
             </div>
@@ -116,7 +116,7 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
         {/* Unique local content */}
         <section className="container mx-auto px-6 mb-20">
           <div className="max-w-4xl mx-auto bg-brand-surface rounded-2xl p-10 border border-brand-border">
-            <h2 className="font-display text-2xl font-bold text-white mb-6">Working With {location.city} Brands</h2>
+            <h2 className="font-display text-2xl font-bold text-brand-text mb-6">Working With {location.city} Brands</h2>
             <p className="text-brand-muted text-lg leading-relaxed">{location.uniqueContent}</p>
           </div>
         </section>
@@ -125,9 +125,9 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
         <section className="container mx-auto px-6 mb-24">
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div>
-              <h2 className="text-3xl font-display font-bold text-white mb-6">Why Local Matters</h2>
+              <h2 className="text-3xl font-display font-bold text-brand-text mb-6">Why Local Matters</h2>
               <p className="text-brand-muted text-lg mb-6 leading-relaxed">
-                Ecommerce is digital, but <strong>Trust</strong> is human. While I work with brands globally, my {location.city} partners get a distinct advantage: <span className="text-white font-bold">Face-to-Face Strategy</span>.
+                Ecommerce is digital, but <strong>Trust</strong> is human. While I work with brands globally, my {location.city} partners get a distinct advantage: <span className="text-brand-text font-bold">Face-to-Face Strategy</span>.
               </p>
               <ul className="space-y-4">
                 {[
@@ -140,27 +140,27 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
                       <item.icon size={20} />
                     </div>
                     <div>
-                      <strong className="text-white block">{item.title}</strong>
+                      <strong className="text-brand-text block">{item.title}</strong>
                       <span className="text-sm text-brand-muted">{item.desc}</span>
                     </div>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-brand-surfaceHighlight rounded-3xl p-8 border border-white/5 relative overflow-hidden">
+            <div className="bg-brand-surfaceHighlight rounded-3xl p-8 border border-brand-border relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary/10 rounded-full blur-2xl"></div>
               <div className="relative z-10 text-center">
                 <div className="inline-block p-4 rounded-full bg-brand-dark border border-brand-primary/30 mb-6 shadow-lg">
                   <MapPin size={32} className="text-brand-primary" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">{location.city}</h3>
+                <h3 className="text-2xl font-bold text-brand-text mb-2">{location.city}</h3>
                 <p className="text-brand-muted mb-6">Priority Service Area</p>
-                <div className="bg-brand-dark/50 rounded-xl p-4 border border-white/5">
+                <div className="bg-brand-dark/50 rounded-xl p-4 border border-brand-border">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-xs text-brand-muted uppercase tracking-wider">Travel Time</span>
-                    <span className="text-brand-primary font-bold font-mono">{location.distance}</span>
+                    <span className="text-brand-primary font-bold font-sans">{location.distance}</span>
                   </div>
-                  <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                  <div className="w-full bg-brand-text/5 h-1.5 rounded-full overflow-hidden">
                     <div className="bg-brand-primary h-full w-1/4 animate-pulse"></div>
                   </div>
                   <p className="text-xs text-brand-muted mt-3 text-left">*No travel costs billed for monthly strategy sessions in this zone.</p>
@@ -173,7 +173,7 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
         {/* Services */}
         <section className="container mx-auto px-6 mb-24">
           <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-display font-bold text-white mb-4">Full Stack Capabilities</h2>
+            <h2 className="text-3xl font-display font-bold text-brand-text mb-4">Full Stack Capabilities</h2>
             <p className="text-brand-muted">I bring the same enterprise-grade stack to {location.city} that I deploy for global brands.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -182,9 +182,9 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
               { icon: TrendingUp, title: 'Growth & CRO', desc: 'A/B testing, landing page strategy, and Paid Media management (Google/Meta).' },
               { icon: ShieldCheck, title: 'Automation', desc: 'n8n workflows to automate inventory, reporting, and customer tagging.' },
             ].map((item) => (
-              <div key={item.title} className="bg-brand-surface p-6 rounded-2xl border border-white/5">
+              <div key={item.title} className="bg-brand-surface p-6 rounded-2xl border border-brand-border">
                 <item.icon className="text-brand-primary mb-4" size={24} />
-                <h3 className="font-bold text-white mb-2">{item.title}</h3>
+                <h3 className="font-bold text-brand-text mb-2">{item.title}</h3>
                 <p className="text-sm text-brand-muted">{item.desc}</p>
               </div>
             ))}
@@ -194,7 +194,7 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
         {/* FAQ */}
         <section className="container mx-auto px-6 mb-24">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-display text-3xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
+            <h2 className="font-display text-3xl font-bold text-brand-text mb-8 text-center">Frequently Asked Questions</h2>
             <div className="space-y-4">
               {[
                 { q: `Do you offer face-to-face meetings in ${location.city}?`, a: `Yes. ${location.city} is ${location.distance === 'HQ' ? 'my home base' : `${location.distance} from my Atherstone studio`}. In-person strategy sessions are included in all retainer packages at no extra travel cost.` },
@@ -202,7 +202,7 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
                 { q: 'How quickly can you start?', a: 'Subject to capacity, I can usually begin within 2 weeks. Week one is a full tech stack audit and commercial baseline.' },
               ].map((faq, i) => (
                 <div key={i} className="bg-brand-surface rounded-xl p-6 border border-brand-border">
-                  <h3 className="font-bold text-white mb-2">{faq.q}</h3>
+                  <h3 className="font-bold text-brand-text mb-2">{faq.q}</h3>
                   <p className="text-brand-muted text-sm leading-relaxed">{faq.a}</p>
                 </div>
               ))}
@@ -215,9 +215,9 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
           <div className="bg-gradient-to-br from-brand-surface to-brand-dark border border-brand-border rounded-3xl p-12 text-center relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none group-hover:bg-brand-primary/10 transition-colors duration-700"></div>
             <div className="relative z-10 max-w-2xl mx-auto">
-              <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Let&apos;s meet in {location.city}.</h2>
+              <h2 className="text-3xl lg:text-4xl font-display font-bold text-brand-text mb-6">Let&apos;s meet in {location.city}.</h2>
               <p className="text-brand-muted text-lg mb-8">Stop relying on Zoom calls with junior account managers. Get a senior partner on your team.</p>
-              <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
+              <Link href="/#contact" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-white font-bold rounded-lg transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
                 Book a Free Commercial Review <ArrowRight size={20} />
               </Link>
             </div>

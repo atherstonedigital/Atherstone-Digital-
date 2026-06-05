@@ -49,30 +49,30 @@ export default function ServicesPage() {
         <section className="container mx-auto px-6 mb-20 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-brand-primary/30 rounded-full bg-brand-primary/5">
             <Briefcase size={12} className="text-brand-primary" />
-            <span className="text-brand-primary text-xs font-mono uppercase tracking-widest font-bold">The Engagement Model</span>
+            <span className="text-brand-primary text-xs font-sans uppercase tracking-widest font-bold">The Engagement Model</span>
           </div>
-          <h1 className="font-display text-5xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
+          <h1 className="font-display text-5xl lg:text-7xl font-bold text-brand-text mb-6 tracking-tight">
             One Director. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Full Stack Execution.</span>
           </h1>
           <p className="text-xl text-brand-muted max-w-2xl mx-auto leading-relaxed">
-            I don&apos;t sell &ldquo;services&rdquo; in isolation. I provide <strong className="text-white">Senior Operational Leadership</strong> (The Director) and use a specific set of high-leverage tools (The Stack) to execute the strategy.
+            I don&apos;t sell &ldquo;services&rdquo; in isolation. I provide <strong className="text-brand-text">Senior Operational Leadership</strong> (The Director) and use a specific set of high-leverage tools (The Stack) to execute the strategy.
           </p>
         </section>
 
         {/* Core product card */}
         <section className="container mx-auto px-6 mb-24">
-          <div className="bg-gradient-to-b from-brand-surfaceHighlight to-brand-dark border border-brand-primary/30 rounded-3xl p-1 relative overflow-hidden shadow-[0_0_50px_rgba(74,222,128,0.05)] max-w-5xl mx-auto">
+          <div className="bg-gradient-to-b from-brand-surfaceHighlight to-brand-dark border border-brand-primary/30 rounded-3xl p-1 relative overflow-hidden max-w-5xl mx-auto">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1 bg-brand-primary/50 blur-[2px]"></div>
             <div className="bg-brand-dark rounded-[22px] p-8 md:p-12 lg:flex gap-12 items-center relative z-10">
               <div className="lg:w-1/2 mb-8 lg:mb-0">
-                <h2 className="text-3xl font-display font-bold text-white mb-4">
+                <h2 className="text-3xl font-display font-bold text-brand-text mb-4">
                   The Core Offering: <br /><span className="text-brand-primary">Senior Shopify Ecommerce Consultant</span>
                 </h2>
                 <p className="text-brand-muted text-lg mb-8 leading-relaxed">
                   This is the retainer. I replace your need for a full-time Head of Ecommerce. I take ownership of your Shopify P&L, define the roadmap, and manage the execution.
                 </p>
-                <Link href="/shopify-ecommerce-consultant" className="inline-flex items-center gap-2 px-6 py-3 bg-brand-primary text-brand-dark font-bold rounded-lg hover:bg-brand-accent transition-all">
+                <Link href="/shopify-ecommerce-consultant" className="inline-flex items-center gap-2 px-6 py-3 bg-brand-primary text-white font-bold rounded-lg hover:bg-brand-accent transition-all">
                   See Full Details & Pricing <ArrowRight size={18} />
                 </Link>
               </div>
@@ -90,7 +90,7 @@ export default function ServicesPage() {
 
         {/* Services grouped by pillar */}
         <section className="container mx-auto px-6 mb-24">
-          <h2 className="font-display text-3xl font-bold text-white mb-4 text-center">The Tool Stack</h2>
+          <h2 className="font-display text-3xl font-bold text-brand-text mb-4 text-center">The Tool Stack</h2>
           <p className="text-brand-muted text-center mb-12 max-w-xl mx-auto">
             Each service below is a capability I use within a retainer engagement. They are not sold in isolation. They are the levers I pull to move your numbers.
           </p>
@@ -102,9 +102,9 @@ export default function ServicesPage() {
         {/* CTA */}
         <section className="container mx-auto px-6 mb-16">
           <div className="bg-brand-surfaceHighlight rounded-3xl p-12 text-center border border-brand-border max-w-4xl mx-auto">
-            <h2 className="text-3xl font-display font-bold text-white mb-6">Not sure where to start?</h2>
+            <h2 className="text-3xl font-display font-bold text-brand-text mb-6">Not sure where to start?</h2>
             <p className="text-brand-muted text-lg mb-8">Book a call. I&apos;ll tell you exactly what I&apos;d prioritise for your store.</p>
-            <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
+            <a href={siteConfig.cta.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-white font-bold rounded-lg transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
               {siteConfig.cta.label} <ArrowRight size={20} />
             </a>
           </div>

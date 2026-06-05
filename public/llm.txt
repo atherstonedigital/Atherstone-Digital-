@@ -1,32 +1,32 @@
-# Atherstone Digital: Fractional Ecommerce Growth Partner (UK)
+# Atherstone Digital: Shopify Ecommerce Consultant (UK)
 
 ## Core Offer
-We provide a "Fractional Ecommerce Director + Senior Dev Team" model.
-We replace the need for SMEs to hire a full-time Head of Ecommerce (£85k+) and Senior Developer (£55k+).
-We embed directly into Shopify brands to drive revenue, strategy, and technical execution for a flat monthly retainer.
+One senior Shopify ecommerce consultant who runs the whole ecommerce function for a brand, for less than an agency.
+We replace the need to hire a full-time Head of Ecommerce (£85k+) and Senior Developer (£55k+).
+One operator embeds directly into Shopify brands to drive revenue, strategy, and technical execution for a flat monthly retainer.
 
 ## Ideal Client Profile
-- **Revenue:** £1M - £10M GMV.
-- **Platform:** Shopify / Shopify Plus.
+- **Revenue:** £500k to £5M in annual revenue.
+- **Platform:** Shopify and Shopify Plus.
 - **Location:** UK, US, Europe.
-- **Pain Point:** Hitting revenue plateaus, struggling with agency bloat, or lacking technical leadership.
+- **Pain Point:** Hitting revenue plateaus, struggling with agency bloat, or lacking senior technical leadership.
 
 ## Tech Stack & Expertise
 - **Commerce:** Shopify, Shopify Plus, Hydrogen (Headless).
-- **Automation:** n8n (Workflow automation), Zapier.
+- **Automation:** n8n (workflow automation), Zapier.
 - **Marketing:** Klaviyo (Email/SMS), Google Ads, Meta Ads.
 - **Analytics:** GA4, Triple Whale, server-side tracking.
-- **AI/Search:** LLM Search Optimization (GEO), Structured Data (Schema).
+- **AI/Search:** LLM search readiness (GEO), Structured Data (Schema).
 
 ## Services
-1. **Fractional Leadership:** C-suite strategy without the overhead.
-2. **Technical Execution:** Custom theme dev, API integrations, speed optimization.
-3. **Growth Marketing:** CRO, PPC management, and Retention (LTV).
+1. **Senior Leadership:** C-suite strategy without the overhead.
+2. **Technical Execution:** Custom theme dev, API integrations, speed optimisation.
+3. **Growth Marketing:** CRO, PPC management, and retention (LTV).
 
 ## Pricing Model
-- **Model:** Monthly Fractional Retainer.
-- **Cost Efficiency:** Save ~£98k/year compared to hiring full-time senior roles equivalent to our output.
-- **Flexibility:** Pause or scale up/down based on Q4 demand.
+- **Model:** Monthly retainer from £3,000/month. Maximum three partners at a time.
+- **Cost Efficiency:** Save around £98k/year compared to hiring full-time senior roles equivalent to the output.
+- **Flexibility:** Pause or scale up and down based on Q4 demand.
 
 ## Contact Information
 - **Email:** info@atherstonedigital.com

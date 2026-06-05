@@ -230,7 +230,7 @@ export const LOCATIONS_DATA: LocationItem[] = [
     slug: 'ecommerce-agency-atherstone',
     distance: 'HQ',
     seoTitle: 'Ecommerce Agency Atherstone | Shopify Growth Partner',
-    seoDescription: 'Fractional Ecommerce Director based in Atherstone (CV9). Local Shopify strategy and growth for Midlands brands. Book a strategy coffee at my HQ.',
+    seoDescription: 'Shopify ecommerce consultant based in Atherstone (CV9). Local Shopify strategy and growth for Midlands brands. Book a strategy coffee at my HQ.',
     heroTitle: 'Atherstone',
     uniqueContent: 'Atherstone is home base. My studio is based in CV9, right in the heart of North Warwickshire. If you\'re a local brand looking for a senior ecommerce partner who truly understands the Midlands market — someone you can have a coffee with, not a Zoom call — this is where it starts. Being embedded in the local business community means I\'m genuinely invested in the growth of Atherstone brands.',
   },
@@ -238,8 +238,8 @@ export const LOCATIONS_DATA: LocationItem[] = [
     city: 'Birmingham',
     slug: 'shopify-expert-birmingham',
     distance: '40 mins',
-    seoTitle: 'Shopify Expert Birmingham | Fractional Ecommerce Director',
-    seoDescription: 'Looking for a Shopify Expert in Birmingham? I provide Fractional Director services to Birmingham brands. Strategy, Dev & Growth with face-to-face support.',
+    seoTitle: 'Shopify Expert Birmingham | Shopify Ecommerce Consultant',
+    seoDescription: 'Looking for a Shopify Expert in Birmingham? I provide senior Shopify ecommerce consultant services to Birmingham brands. Strategy, Dev & Growth with face-to-face support.',
     heroTitle: 'Birmingham',
     uniqueContent: 'Birmingham is the UK\'s second city and its ecommerce scene is exploding. From the Jewellery Quarter to Digbeth\'s creative district, I work with Birmingham brands that are ready to scale beyond the region. At just 40 minutes from my Atherstone HQ, face-to-face strategy sessions are the norm — not the exception. Whether you\'re in the NEC corridor or the city centre, I\'ll be there.',
   },
@@ -248,7 +248,7 @@ export const LOCATIONS_DATA: LocationItem[] = [
     slug: 'ecommerce-consultant-tamworth',
     distance: '15 mins',
     seoTitle: 'Ecommerce Consultant Tamworth | Shopify Strategy',
-    seoDescription: 'Senior Ecommerce Consultant serving Tamworth brands. I replace agencies with a fractional partner model. 15 mins from Ventura Park.',
+    seoDescription: 'Senior Shopify ecommerce consultant serving Tamworth brands. I replace agencies with one senior operator. 15 mins from Ventura Park.',
     heroTitle: 'Tamworth',
     uniqueContent: 'Tamworth is practically on my doorstep — 15 minutes from my Atherstone studio. The town has a strong retail and manufacturing heritage, and I work with several Tamworth-based brands making their move into direct-to-consumer ecommerce. If you\'re an established local business looking to build or scale an online revenue channel, I offer a level of proximity and accountability that no London agency can match.',
   },
@@ -257,7 +257,7 @@ export const LOCATIONS_DATA: LocationItem[] = [
     slug: 'ecommerce-agency-leicester',
     distance: '35 mins',
     seoTitle: 'Ecommerce Agency Leicester | Shopify Plus Partner',
-    seoDescription: 'Don\'t hire a remote agency. Hire a Fractional Ecommerce Director who can meet you in Leicester. Strategy, CRO, and Development for Leicestershire brands.',
+    seoDescription: 'Don\'t hire a remote agency. Hire a Shopify ecommerce consultant who can meet you in Leicester. Strategy, CRO, and Development for Leicestershire brands.',
     heroTitle: 'Leicester',
     uniqueContent: 'Leicester has one of the UK\'s most vibrant and diverse SME communities — particularly in fashion, food, and manufacturing. I\'ve worked with Leicester brands navigating the complexities of multi-currency stores, international shipping logic, and complex product catalogues. At 35 minutes away, I can be in your office for a quarterly strategy review without charging you travel fees.',
   },
@@ -322,7 +322,7 @@ The fractional model works best for brands doing £500k–£5M in annual ecommer
 - Can't justify a full-time director hire yet
 - Are frustrated with agency account management
 
-If that's you, [book a strategy call](/fractional-ecommerce-director). You can also [see why fractional beats agencies on cost](/why-fractional).
+If that's you, [book a strategy call](/shopify-ecommerce-consultant). You can also [see why fractional beats agencies on cost](/why-not-an-agency).
     `,
   },
   {
@@ -384,7 +384,7 @@ Track:
 - Average position for target keywords
 - Core Web Vitals pass rate
 
-We run monthly SEO reviews for all our [fractional partners](/fractional-ecommerce-director). [Get in touch](/#contact) if you'd like us to audit your Shopify store's [conversion rate](/services/conversion-rate-optimisation) and organic visibility.
+We run monthly SEO reviews for all our [fractional partners](/shopify-ecommerce-consultant). [Get in touch](/#contact) if you'd like us to audit your Shopify store's [conversion rate](/services/conversion-rate-optimisation) and organic visibility.
     `,
   },
   {
@@ -440,7 +440,7 @@ For brands with subscription products, n8n monitors upcoming renewals and, 7 day
 
 n8n has a cloud version if you don't want to self-host. The learning curve is real but manageable — the drag-and-drop interface is intuitive once you understand the node model.
 
-We build and manage all [automation infrastructure](/services/ecommerce-automation) for our fractional partners. Pair these workflows with a solid [Klaviyo retention strategy](/services/retention-marketing) for maximum impact. If you want these workflows running in your stack, [let's talk](/fractional-ecommerce-director).
+We build and manage all [automation infrastructure](/services/ecommerce-automation) for our fractional partners. Pair these workflows with a solid [Klaviyo retention strategy](/services/retention-marketing) for maximum impact. If you want these workflows running in your stack, [let's talk](/shopify-ecommerce-consultant).
     `,
   },
   {
@@ -509,7 +509,7 @@ The fractional model is typically cheaper *and* delivers more tangible output be
 
 If you need someone to **tell you what to do**, hire a consultant. If you need someone to **do it with you** (or for you), hire a fractional director.
 
-For Shopify brands doing £500k–£5M in revenue, the fractional model almost always delivers better ROI. [See how the retainer works](/fractional-ecommerce-director) or [compare costs against agencies and full-time hires](/why-fractional).
+For Shopify brands doing £500k–£5M in revenue, the fractional model almost always delivers better ROI. [See how the retainer works](/shopify-ecommerce-consultant) or [compare costs against agencies and full-time hires](/why-not-an-agency).
     `,
   },
   {
@@ -586,7 +586,7 @@ By the end of 90 days, you should have clear commercial evidence of impact.
 
 ## Ready to Hire?
 
-If you're a Shopify brand doing £500k–£5M and this model resonates, [book a 20-minute fit call](/fractional-ecommerce-director) to see if we're a good match.
+If you're a Shopify brand doing £500k–£5M and this model resonates, [book a 20-minute fit call](/shopify-ecommerce-consultant) to see if we're a good match.
     `,
   },
   {
@@ -663,7 +663,7 @@ For everyone else — particularly Shopify brands in the £500k–£5M range —
 
 ## Make the Switch
 
-If you're weighing up these options, [see the full breakdown of what the retainer includes](/fractional-ecommerce-director) or [read why fractional beats agencies too](/why-fractional). Consider how [n8n automation](/services/ecommerce-automation) multiplies fractional output even further.
+If you're weighing up these options, [see the full breakdown of what the retainer includes](/shopify-ecommerce-consultant) or [read why fractional beats agencies too](/why-not-an-agency). Consider how [n8n automation](/services/ecommerce-automation) multiplies fractional output even further.
     `,
   },
   {
@@ -736,7 +736,7 @@ Most brands complete the transition in 4–6 weeks without any disruption to the
 
 ## Ready to Compare?
 
-[Book a 20-minute fit call](/fractional-ecommerce-director) to discuss what the switch would look like for your brand. Or [see the full cost breakdown vs agencies and full-time hires](/why-fractional).
+[Book a 20-minute fit call](/shopify-ecommerce-consultant) to discuss what the switch would look like for your brand. Or [see the full cost breakdown vs agencies and full-time hires](/why-not-an-agency).
     `,
   },
   {
@@ -820,7 +820,7 @@ The investment to set up a core automation stack is typically **£2,000–£5,00
 
 Given the numbers above (£22k in time savings + £60k in error reduction + revenue uplift), most brands see **positive ROI within 30 days**.
 
-We build and manage all [automation infrastructure](/services/ecommerce-automation) for our fractional partners. [Let's talk about automating your operations](/fractional-ecommerce-director).
+We build and manage all [automation infrastructure](/services/ecommerce-automation) for our fractional partners. [Let's talk about automating your operations](/shopify-ecommerce-consultant).
     `,
   },
   {
@@ -941,7 +941,7 @@ Need a taxonomy audit? [Book a free session](https://calendly.com/dan-atherstone
 
 Three years ago, "fractional ecommerce director" was a niche term that founders had to explain to their investors. Now it's a recognised model — and with recognition comes dilution.
 
-The market has filled with consultants repositioning as [fractional directors](/fractional-ecommerce-director), agencies offering "fractional" services through junior staff, and solo operators who are great at one discipline (usually paid media) calling themselves full-stack ecommerce leaders.
+The market has filled with consultants repositioning as [fractional directors](/shopify-ecommerce-consultant), agencies offering "fractional" services through junior staff, and solo operators who are great at one discipline (usually paid media) calling themselves full-stack ecommerce leaders.
 
 ### AI has raised the floor — and widened the gap
 
@@ -1131,7 +1131,7 @@ This isn't a revenue flow — it's a deliverability flow. A bloated, unengaged l
 
 If your Klaviyo account has fewer than 5 active flows, or your email revenue is under 20% of total, there's significant upside to capture.
 
-We audit and rebuild [Klaviyo accounts](/services/retention-marketing) as part of every [fractional engagement](/fractional-ecommerce-director). [Book a call to discuss your email strategy](/#contact).
+We audit and rebuild [Klaviyo accounts](/services/retention-marketing) as part of every [fractional engagement](/shopify-ecommerce-consultant). [Book a call to discuss your email strategy](/#contact).
     `,
   },
   {
@@ -1208,7 +1208,7 @@ The total cost of this stack (excluding Klaviyo, which you're already paying for
 
 If you're doing this for the first time, start with the automation that saves the most human hours per week. For most brands, that's **order tagging and fulfilment routing**. It's low-risk, high-impact, and you'll see results within a week.
 
-We build and manage the full [automation stack](/services/ecommerce-automation) for our fractional partners. If you want to stop paying humans to do what machines should handle, [book a strategy call](/fractional-ecommerce-director).
+We build and manage the full [automation stack](/services/ecommerce-automation) for our fractional partners. If you want to stop paying humans to do what machines should handle, [book a strategy call](/shopify-ecommerce-consultant).
     `,
   },
   {
@@ -1299,7 +1299,7 @@ Total additional cost: £100–£300/month for API usage and search tooling.
 
 AI is a tool, not a strategy. The brands getting results are the ones integrating it into [existing workflows and automations](/services/ecommerce-automation), not the ones buying standalone AI products and hoping for magic.
 
-If you want help identifying where AI fits into your specific stack, [book a strategy call](/fractional-ecommerce-director). We'll map your current workflows and show you exactly where AI saves time and money.
+If you want help identifying where AI fits into your specific stack, [book a strategy call](/shopify-ecommerce-consultant). We'll map your current workflows and show you exactly where AI saves time and money.
     `,
   },
   {
@@ -1394,7 +1394,7 @@ For brands doing £500k–£5M, you don't need a £2,000/month BI tool. Here's w
 - **Klaviyo analytics** — with tightened attribution windows
 - **A monthly P&L** — the single most important document in your business
 
-If you want help rebuilding your reporting stack or auditing the metrics you're currently tracking, [book a strategy call](/fractional-ecommerce-director). We build [measurement frameworks](/services/paid-media-strategy) into every fractional engagement.
+If you want help rebuilding your reporting stack or auditing the metrics you're currently tracking, [book a strategy call](/shopify-ecommerce-consultant). We build [measurement frameworks](/services/paid-media-strategy) into every fractional engagement.
     `,
   },
 ];

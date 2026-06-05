@@ -4,14 +4,14 @@ import { BLOG_POSTS } from '@/lib/data';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Shopify Ecommerce Blog | Fractional Director Insights',
-  description: 'Practical ecommerce growth content from Dan Le Gresley — Fractional Ecommerce Director. Shopify strategy, CRO, n8n automation, and paid media insights.',
+  title: 'Shopify Ecommerce Blog',
+  description: 'Practical Shopify ecommerce growth content from Dan Le Gresley. Strategy, CRO, n8n automation, and paid media insights for brands doing £500k to £5M.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com/blog',
   },
   openGraph: {
-    title: 'Shopify Ecommerce Blog | Fractional Director Insights | Atherstone Digital',
-    description: 'Practical ecommerce growth content from Dan Le Gresley — Fractional Ecommerce Director. Shopify strategy, CRO, n8n automation, and paid media insights.',
+    title: 'Shopify Ecommerce Blog | Atherstone Digital',
+    description: 'Practical Shopify ecommerce growth content from Dan Le Gresley. Strategy, CRO, n8n automation, and paid media insights for brands doing £500k to £5M.',
     url: 'https://www.atherstonedigital.com/blog',
     type: 'website',
   },
@@ -25,7 +25,7 @@ export default function BlogPage() {
     '@type': 'Blog',
     name: 'Atherstone Digital Blog',
     url: 'https://www.atherstonedigital.com/blog',
-    description: 'Ecommerce growth insights from a Fractional Ecommerce Director',
+    description: 'Shopify ecommerce growth insights from a senior Shopify ecommerce consultant',
     author: { '@type': 'Person', name: 'Dan Le Gresley' },
   };
 

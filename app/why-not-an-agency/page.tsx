@@ -2,18 +2,18 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, PoundSterling, ShieldAlert, Briefcase, CheckCircle } from 'lucide-react';
 import { Contact } from '@/components/Contact';
-import { siteConfig } from '@/lib/siteConfig';
+import { siteConfig, pageTitle } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
-  title: 'Why Go Fractional? Director vs Agency vs Full-Time',
-  description: 'See exactly why a fractional ecommerce director beats an agency and costs 70% less than a full-time hire. Real numbers, real savings.',
+  title: { absolute: pageTitle('Why Not An Agency?') },
+  description: 'See exactly why one senior Shopify ecommerce consultant beats an agency and costs 70% less than a full-time hire. Real numbers, real savings.',
   alternates: {
-    canonical: 'https://www.atherstonedigital.com/why-fractional',
+    canonical: 'https://www.atherstonedigital.com/why-not-an-agency',
   },
   openGraph: {
-    title: 'Why Go Fractional? Director vs Agency vs Full-Time',
-    description: 'See exactly why a fractional ecommerce director beats an agency and costs 70% less than a full-time hire. Real numbers, real savings.',
-    url: 'https://www.atherstonedigital.com/why-fractional',
+    title: pageTitle('Why Not An Agency?'),
+    description: 'See exactly why one senior Shopify ecommerce consultant beats an agency and costs 70% less than a full-time hire. Real numbers, real savings.',
+    url: 'https://www.atherstonedigital.com/why-not-an-agency',
     type: 'website',
   },
 };
@@ -21,17 +21,17 @@ export const metadata: Metadata = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  url: 'https://www.atherstonedigital.com/why-fractional',
+  url: 'https://www.atherstonedigital.com/why-not-an-agency',
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Why choose a Fractional Ecommerce Director over an Agency?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Agencies charge high retainers to cover office rent, account managers, and junior staff learning curves. A Fractional Director provides senior-level strategy and execution directly — eliminating the overhead and saving an estimated £98,000 per year versus a comparable agency roster.' },
+      name: 'Why choose a Shopify ecommerce consultant over an agency?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Agencies charge high retainers to cover office rent, account managers, and junior staff learning curves. One senior Shopify ecommerce consultant provides senior-level strategy and execution directly — eliminating the overhead and saving an estimated £98,000 per year versus a comparable agency roster.' },
     },
     {
       '@type': 'Question',
-      name: 'Is a Fractional Director cheaper than hiring full-time?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes. A full-time Head of Ecommerce plus a Senior Developer typically costs over £140,000 per year including salary, National Insurance, pension, and benefits. Atherstone Digital\u2019s fractional model starts from £36,000/year (£3,000/month) for equivalent output \u2014 versus £140,000+ all-in for a comparable full-time team.' },
+      name: 'Is a Shopify ecommerce consultant cheaper than hiring full-time?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. A full-time Head of Ecommerce plus a Senior Developer typically costs over £140,000 per year including salary, National Insurance, pension, and benefits. Atherstone Digital\u2019s model starts from £36,000/year (£3,000/month) for equivalent output \u2014 versus £140,000+ all-in for a comparable full-time team.' },
     },
     {
       '@type': 'Question',
@@ -40,13 +40,13 @@ const faqSchema = {
     },
     {
       '@type': 'Question',
-      name: 'Can I use a Fractional Director alongside my existing agency?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes. A fractional director can manage your existing agency relationships, brief creative suppliers, and audit their output. Many partners find they can replace one or more agencies entirely once the fractional model is in place.' },
+      name: 'Can I use a Shopify ecommerce consultant alongside my existing agency?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. A Shopify ecommerce consultant can manage your existing agency relationships, brief creative suppliers, and audit their output. Many partners find they can replace one or more agencies entirely once the consultant is in place.' },
     },
   ],
 };
 
-export default function WhyFractionalPage() {
+export default function WhyNotAnAgencyPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
@@ -184,7 +184,7 @@ export default function WhyFractionalPage() {
                 <div className="w-14 h-14 bg-brand-primary text-brand-dark rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(74,222,128,0.4)]">
                   <PoundSterling size={32} />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2 font-display">The Fractional Edge</h3>
+                <h3 className="text-2xl font-bold text-white mb-2 font-display">The Embedded Operator Edge</h3>
                 <p className="text-brand-primary text-sm font-bold mb-6 uppercase tracking-wider">Agile • Senior • ROI-First</p>
                 <ul className="space-y-5 text-brand-text text-sm leading-relaxed">
                   {[

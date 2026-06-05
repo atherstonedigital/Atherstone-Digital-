@@ -6,13 +6,13 @@ import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: 'Shopify Ecommerce Results & Case Studies',
-  description: 'Real, named Shopify case studies and the measurement framework behind the fractional model. See the work, not invented numbers.',
+  description: 'Real, named Shopify case studies and the measurement framework behind the consultancy. See the work, not invented numbers.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com/results',
   },
   openGraph: {
     title: 'Shopify Ecommerce Results & Case Studies | Atherstone Digital',
-    description: 'Real, named Shopify case studies and the measurement framework behind the fractional model. See the work, not invented numbers.',
+    description: 'Real, named Shopify case studies and the measurement framework behind the consultancy. See the work, not invented numbers.',
     url: 'https://www.atherstonedigital.com/results',
     type: 'website',
   },
@@ -22,7 +22,7 @@ const schema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'Ecommerce Growth Results & Case Studies',
-  description: 'Real, named commercial work and the measurement framework behind the fractional model for Shopify brands.',
+  description: 'Real, named commercial work and the measurement framework behind the Shopify ecommerce consultancy.',
   url: 'https://www.atherstonedigital.com/results',
 };
 

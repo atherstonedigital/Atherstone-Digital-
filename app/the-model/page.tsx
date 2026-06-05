@@ -22,7 +22,7 @@ const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: 'The Force Multiplier Operating System: Human Strategy + AI Execution',
-  description: 'How to achieve 10x output with 1x headcount by combining a Fractional Director with autonomous AI agents.',
+  description: 'How to achieve 10x output with 1x headcount by combining one senior Shopify operator with autonomous AI agents.',
   url: 'https://www.atherstonedigital.com/the-model',
   author: { '@type': 'Person', name: 'Dan Le Gresley' },
   publisher: { '@type': 'Organization', name: 'Atherstone Digital' },

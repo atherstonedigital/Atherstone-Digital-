@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Atherstone Digital is a fractional ecommerce director consultancy website built with Next.js 14 (App Router) and deployed as a static site on Netlify.
+Atherstone Digital is a Shopify ecommerce consultancy website built with Next.js 14 (App Router) and deployed as a static site on Netlify.
 
 ## Tech Stack
 
@@ -33,9 +33,9 @@ app/                          # Next.js App Router pages
 ├── blog/[slug]/page.tsx      # Dynamic blog post pages
 ├── about/                    # About page
 ├── results/                  # Results/case studies
-├── why-fractional/           # Why Fractional page
+├── why-not-an-agency/        # Why Not An Agency page
 ├── the-model/                # The Model page
-├── fractional-ecommerce-director/
+├── shopify-ecommerce-consultant/
 ├── privacy/                  # Privacy policy
 ├── terms/                    # Terms of service
 ├── sitemap.ts                # Auto-generated sitemap.xml

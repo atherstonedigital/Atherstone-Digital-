@@ -72,7 +72,7 @@ export default function ServicesPage() {
                 <p className="text-brand-muted text-lg mb-8 leading-relaxed">
                   This is the retainer. I replace your need for a full-time Head of Ecommerce. I take ownership of your Shopify P&L, define the roadmap, and manage the execution.
                 </p>
-                <Link href="/fractional-ecommerce-director" className="inline-flex items-center gap-2 px-6 py-3 bg-brand-primary text-brand-dark font-bold rounded-lg hover:bg-brand-accent transition-all">
+                <Link href="/shopify-ecommerce-consultant" className="inline-flex items-center gap-2 px-6 py-3 bg-brand-primary text-brand-dark font-bold rounded-lg hover:bg-brand-accent transition-all">
                   See Full Details & Pricing <ArrowRight size={18} />
                 </Link>
               </div>

@@ -11,8 +11,11 @@ const ctas = {
 
 export const siteConfig = {
   name: 'Atherstone Digital',
+  descriptor: 'Shopify ecommerce consultant',
+  titleSuffix: 'Shopify Ecommerce Consultant UK',
+  homepageTitle: 'Shopify Ecommerce Consultant for DTC Brands | Atherstone Digital',
   entity:
-    'Atherstone Digital is a fractional ecommerce director service for Shopify brands doing £500k to £5M in annual revenue, based in Warwickshire, UK.',
+    'Atherstone Digital is a Shopify ecommerce consultancy for brands doing £500k to £5M in annual revenue, based in Warwickshire, UK. One senior operator runs the whole Shopify ecommerce function, for less than an agency.',
   capacity: {
     total: 3,
     filled: 2,
@@ -39,3 +42,9 @@ export const siteConfig = {
     postcodePrefix: 'CV9',
   },
 };
+
+// Page titles render as "[Page title] | Shopify Ecommerce Consultant UK".
+// The homepage uses siteConfig.homepageTitle directly.
+export function pageTitle(title: string): string {
+  return `${title} | ${siteConfig.titleSuffix}`;
+}

@@ -11,14 +11,14 @@ import { MondayDigestPreview } from '@/components/MondayDigestPreview';
 import { JobsFamiliar } from '@/components/JobsFamiliar';
 
 export const metadata: Metadata = {
-  title: 'Fractional Ecommerce Director for Shopify Brands | Warwickshire UK',
-  description: 'Fractional Ecommerce Director for Shopify brands doing £500k–£5M. Senior CRO, paid media, Klaviyo & development from Atherstone, Warwickshire. 3 partners max.',
+  title: { absolute: siteConfig.homepageTitle },
+  description: 'Senior Shopify ecommerce consultant for brands doing £500k to £5M. One operator runs CRO, paid media, Klaviyo and development, for less than an agency.',
   alternates: {
     canonical: 'https://www.atherstonedigital.com',
   },
   openGraph: {
-    title: 'Fractional Ecommerce Director for Shopify Brands | Warwickshire UK',
-    description: 'Fractional Ecommerce Director for Shopify brands doing £500k–£5M. Senior CRO, paid media, Klaviyo & development from Atherstone, Warwickshire. 3 partners max.',
+    title: siteConfig.homepageTitle,
+    description: 'Senior Shopify ecommerce consultant for brands doing £500k to £5M. One operator runs CRO, paid media, Klaviyo and development, for less than an agency.',
     url: 'https://www.atherstonedigital.com',
     type: 'website',
   },
@@ -47,7 +47,7 @@ const homepageSchema = {
         email: 'info@atherstonedigital.com',
       },
       sameAs: ['https://www.linkedin.com/in/danlegresley/'],
-      description: 'A fractional ecommerce director service for Shopify brands doing \u00a3500k\u2013\u00a35M in annual revenue. AI-augmented operator replacing fragmented agency rosters with one senior partner.',
+      description: 'A Shopify ecommerce consultancy for brands doing \u00a3500k\u2013\u00a35M in annual revenue. AI-augmented operator replacing fragmented agency rosters with one senior partner.',
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: '5',
@@ -91,7 +91,7 @@ const homepageSchema = {
       '@type': 'Person',
       '@id': 'https://www.atherstonedigital.com/#person',
       name: 'Dan Le Gresley',
-      jobTitle: 'Fractional Ecommerce Director',
+      jobTitle: 'Shopify Ecommerce Consultant',
       worksFor: { '@id': 'https://www.atherstonedigital.com/#organization' },
       url: 'https://www.atherstonedigital.com/about',
       sameAs: ['https://www.linkedin.com/in/danlegresley/'],
@@ -106,7 +106,7 @@ const homepageSchema = {
         'Ecommerce Data Remediation',
         'Google Shopping Feed Optimisation',
       ],
-      description: '20 years in ecommerce and digital. Blue chip and DTC clients. Now provides fractional director services to Shopify brands doing £500k–£5M.',
+      description: '20 years in ecommerce and digital. Blue chip and DTC clients. Now runs the Shopify ecommerce function for brands doing £500k–£5M.',
       hasCredential: [
         { '@type': 'EducationalOccupationalCredential', name: 'Google Ads Certified' },
         { '@type': 'EducationalOccupationalCredential', name: 'Klaviyo Expert' },
@@ -269,7 +269,7 @@ function DirectorTeaser() {
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/3 flex justify-center">
             <div className="relative w-52 h-52 rounded-2xl overflow-hidden border-2 border-brand-primary/20 shadow-[0_0_40px_rgba(74,222,128,0.1)]">
-              <Image src="/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png" alt="Dan Le Gresley — Fractional Ecommerce Director based in Atherstone, Warwickshire" width={208} height={208} className="w-full h-full object-cover object-top" />
+              <Image src="/dan-le-gresley-shopify-ecommerce-consultant.png" alt="Dan Le Gresley, Shopify ecommerce consultant based in Atherstone, Warwickshire" width={208} height={208} className="w-full h-full object-cover object-top" />
             </div>
           </div>
           <div className="md:w-2/3 text-center md:text-left">
@@ -344,7 +344,7 @@ function ValueComparison() {
           ))}
         </div>
         <div className="text-center mt-10">
-          <Link href="/why-fractional" className="inline-flex items-center gap-2 text-brand-primary hover:text-brand-accent font-medium transition-colors">
+          <Link href="/why-not-an-agency" className="inline-flex items-center gap-2 text-brand-primary hover:text-brand-accent font-medium transition-colors">
             See the full cost breakdown <ArrowRight size={16} />
           </Link>
         </div>

@@ -2,14 +2,14 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | Atherstone Digital',
-  description: "Terms of Service for Atherstone Digital's fractional ecommerce consultancy and development services.",
+  title: 'Terms of Service',
+  description: "Terms of Service for Atherstone Digital's Shopify ecommerce consultancy and development services.",
   alternates: {
     canonical: 'https://www.atherstonedigital.com/terms',
   },
   openGraph: {
     title: 'Terms of Service | Atherstone Digital',
-    description: "Terms of Service for Atherstone Digital's fractional ecommerce consultancy and development services.",
+    description: "Terms of Service for Atherstone Digital's Shopify ecommerce consultancy and development services.",
     url: 'https://www.atherstonedigital.com/terms',
     type: 'website',
   },

@@ -43,9 +43,9 @@ export function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-8 pointer-events-auto">
-          <Link href="/fractional-ecommerce-director" onClick={closeMobile}
-            className={`text-sm font-medium transition-colors tracking-wide ${isActive('/fractional-ecommerce-director') ? 'text-brand-primary' : 'text-brand-muted hover:text-brand-primary'}`}>
-            Fractional Director
+          <Link href="/shopify-ecommerce-consultant" onClick={closeMobile}
+            className={`text-sm font-medium transition-colors tracking-wide ${isActive('/shopify-ecommerce-consultant') ? 'text-brand-primary' : 'text-brand-muted hover:text-brand-primary'}`}>
+            Shopify Consultant
           </Link>
 
           <div className="relative group">
@@ -66,9 +66,9 @@ export function Header() {
             </div>
           </div>
 
-          <Link href="/why-fractional" onClick={closeMobile}
-            className={`text-sm font-medium transition-colors tracking-wide ${isActive('/why-fractional') ? 'text-brand-primary' : 'text-brand-muted hover:text-brand-primary'}`}>
-            Why Fractional?
+          <Link href="/why-not-an-agency" onClick={closeMobile}
+            className={`text-sm font-medium transition-colors tracking-wide ${isActive('/why-not-an-agency') ? 'text-brand-primary' : 'text-brand-muted hover:text-brand-primary'}`}>
+            Why Not An Agency?
           </Link>
           <Link href="/results" onClick={closeMobile}
             className={`text-sm font-medium transition-colors tracking-wide ${isActive('/results') ? 'text-brand-primary' : 'text-brand-muted hover:text-brand-primary'}`}>
@@ -106,7 +106,7 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-brand-dark/95 backdrop-blur-xl border-t border-brand-border pointer-events-auto">
           <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
-            <Link href="/fractional-ecommerce-director" onClick={closeMobile} className="text-white font-medium py-2 border-b border-brand-border">Fractional Director</Link>
+            <Link href="/shopify-ecommerce-consultant" onClick={closeMobile} className="text-white font-medium py-2 border-b border-brand-border">Shopify Consultant</Link>
             <button onClick={() => setMobileServicesOpen(!mobileServicesOpen)} aria-expanded={mobileServicesOpen} className="text-white font-medium py-2 border-b border-brand-border flex justify-between items-center w-full">
               Services <ChevronDown size={16} className={`transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`} />
             </button>
@@ -117,7 +117,7 @@ export function Header() {
                 ))}
               </div>
             )}
-            <Link href="/why-fractional" onClick={closeMobile} className="text-white font-medium py-2 border-b border-brand-border">Why Fractional?</Link>
+            <Link href="/why-not-an-agency" onClick={closeMobile} className="text-white font-medium py-2 border-b border-brand-border">Why Not An Agency?</Link>
             <Link href="/results" onClick={closeMobile} className="text-white font-medium py-2 border-b border-brand-border">Results</Link>
             <Link href="/blog" onClick={closeMobile} className="text-white font-medium py-2 border-b border-brand-border">Blog</Link>
             <div className="flex items-center justify-between py-2 border-b border-brand-border">

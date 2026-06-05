@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: { category: string 
   if (!category) return {};
   return {
     title: `${category} Articles | Ecommerce Growth Blog`,
-    description: `${category} insights and guides from Dan Le Gresley — Fractional Ecommerce Director. Practical ${category.toLowerCase()} content for Shopify brands.`,
+    description: `${category} insights and guides from Dan Le Gresley, senior Shopify ecommerce consultant. Practical ${category.toLowerCase()} content for Shopify brands.`,
     alternates: {
       canonical: `https://www.atherstonedigital.com/blog/category/${params.category}`,
     },

@@ -78,7 +78,7 @@ export default function ResultsPage() {
             </h1>
             <p className="text-xl text-brand-muted max-w-2xl mx-auto leading-relaxed">
               I don&apos;t sell hours. I sell outcomes. <br />
-              Here is the data behind the fractional model.
+              Here is the data.
             </p>
           </div>
         </section>
@@ -211,7 +211,7 @@ export default function ResultsPage() {
           <div className="bg-gradient-to-br from-brand-surfaceHighlight to-brand-dark border border-brand-border rounded-3xl p-12 text-center relative overflow-hidden group max-w-4xl mx-auto">
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Let&apos;s improve your numbers.</h2>
-              <p className="text-brand-muted text-lg mb-8">Apply for a partnership to see what the Fractional model can do for your bottom line.</p>
+              <p className="text-brand-muted text-lg mb-8">Apply for a partnership and see what changes in your numbers.</p>
               <Link href={siteConfig.ctas.secondary.href} className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-brand-dark font-bold rounded-lg hover:shadow-[0_0_20px_rgba(74,222,128,0.4)] transition-all transform hover:-translate-y-1 hover:bg-brand-accent">
                 {siteConfig.ctas.secondary.label} <ArrowRight size={20} />
               </Link>

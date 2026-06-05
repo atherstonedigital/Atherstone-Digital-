@@ -66,7 +66,7 @@ export default function WhyNotAnAgencyPage() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Just Makes Sense.</span>
             </h1>
             <p className="text-xl text-brand-muted max-w-2xl mx-auto leading-relaxed">
-              Why pay for a traditional agency&apos;s office rent, account managers, and junior learning curves? The Fractional model is engineered for ROI.
+              Why pay for a traditional agency&apos;s office rent, account managers, and junior learning curves? One senior operator costs less and delivers more.
             </p>
           </div>
         </section>

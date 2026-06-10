@@ -586,7 +586,7 @@ By the end of 90 days, you should have clear commercial evidence of impact.
 
 ## Ready to Hire?
 
-If you're a Shopify brand doing £500k–£5M and this model resonates, [book a 20-minute fit call](/shopify-ecommerce-consultant) to see if we're a good match.
+If you're a Shopify brand doing £500k–£5M and this model resonates, [book a 30-minute fit call](/shopify-ecommerce-consultant) to see if we're a good match.
     `,
   },
   {
@@ -736,7 +736,7 @@ Most brands complete the transition in 4–6 weeks without any disruption to the
 
 ## Ready to Compare?
 
-[Book a 20-minute fit call](/shopify-ecommerce-consultant) to discuss what the switch would look like for your brand. Or [see the full cost breakdown vs agencies and full-time hires](/why-not-an-agency).
+[Book a 30-minute fit call](/shopify-ecommerce-consultant) to discuss what the switch would look like for your brand. Or [see the full cost breakdown vs agencies and full-time hires](/why-not-an-agency).
     `,
   },
   {
@@ -867,7 +867,7 @@ For our client, fixing 16,193 rows took two days of scripting and one Matrixify 
 
 ---
 
-If you'd like us to run a data audit on your Shopify store, [book a free 20-minute teardown](https://calendly.com/dan-atherstonedigital/30min). Or learn more about our [fixed-price Shopify Catalogue Health Audit & Fix](/services/shopify-catalogue-health) service.
+If you'd like us to run a data audit on your Shopify store, [book a free 30-minute teardown](https://calendly.com/dan-atherstonedigital/30min). Or learn more about our [fixed-price Shopify Catalogue Health Audit & Fix](/services/shopify-catalogue-health) service.
     `,
   },
   {
@@ -967,7 +967,7 @@ The retainer-for-strategy model is being rejected. Founders who've been through 
 
 ---
 
-[Book a 20-minute fit call](https://calendly.com/dan-atherstonedigital/30min) to see if the Atherstone Digital model is right for your Shopify brand.
+[Book a 30-minute fit call](https://calendly.com/dan-atherstonedigital/30min) to see if the Atherstone Digital model is right for your Shopify brand.
     `,
   },
   {

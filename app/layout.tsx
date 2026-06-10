@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     default: siteConfig.homepageTitle,
     template: '%s | Atherstone Digital',
   },
-  description: 'Senior Shopify ecommerce, run end to end. CRO, paid media, automation and development for brands doing £500k to £5M. 3 partners max. Book a teardown.',
+  description: 'Senior Shopify ecommerce, run end to end. CRO, paid media, automation and development for brands doing £500k to £5M. 3 partners max. Book a 30-minute call.',
   authors: [{ name: 'Dan Le Gresley' }],
   icons: {
     icon: '/favicon-a-clay.svg',
@@ -84,7 +84,7 @@ const globalSchema = {
         email: 'info@atherstonedigital.com',
         contactType: 'customer service',
       },
-      priceRange: '£3000 - £10000',
+      priceRange: '£3,000 - £5,000',
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Atherstone',

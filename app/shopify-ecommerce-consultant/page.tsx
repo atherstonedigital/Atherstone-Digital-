@@ -75,13 +75,6 @@ export default function ShopifyEcommerceConsultantPage() {
       <section className="relative px-6 mb-24">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] bg-brand-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
         <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-brand-primary/30 rounded-full bg-brand-primary/5">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-primary"></span>
-            </span>
-            <span className="text-brand-primary text-xs font-sans uppercase tracking-widest font-bold">Current Capacity: {siteConfig.capacity.filled}/{siteConfig.capacity.total} Partners. {siteConfig.capacity.remaining} space remaining.</span>
-          </div>
           <h1 className="font-display text-5xl lg:text-7xl font-bold text-brand-text mb-6 tracking-tight">
             I run ecommerce properly. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Embedded. Weekly. Accountable.</span>

@@ -56,9 +56,6 @@ export function Contact() {
                 If you&apos;d like to chat, send a quick brief. Three to five lines is plenty.
               </p>
             </div>
-            <div className="mt-12 relative z-10">
-              <p className="text-xs text-brand-muted font-sans">Current Capacity: <span className="text-brand-primary">{siteConfig.capacity.filled}/{siteConfig.capacity.total}</span></p>
-            </div>
           </div>
 
           <div className="p-10 md:w-3/5">

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { ogImage } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     description: 'Privacy Policy for Atherstone Digital. Learn how we collect, use, and protect your data under UK GDPR.',
     url: 'https://www.atherstonedigital.com/privacy',
     type: 'website',
+    images: [ogImage],
   },
 };
 

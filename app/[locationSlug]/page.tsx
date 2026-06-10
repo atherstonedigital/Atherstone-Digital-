@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { LOCATIONS_DATA } from '@/lib/data';
+import { ogImage } from '@/lib/siteConfig';
 import { ArrowLeft, ArrowRight, MapPin, Coffee, Users, ShieldCheck, TrendingUp, Cpu } from 'lucide-react';
 import { Contact } from '@/components/Contact';
 
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: { params: { locationSlug: str
     alternates: {
       canonical: `https://www.atherstonedigital.com/${loc.slug}`,
     },
-    openGraph: { title: loc.seoTitle, description: loc.seoDescription, url: `https://www.atherstonedigital.com/${loc.slug}` },
+    openGraph: { title: loc.seoTitle, description: loc.seoDescription, url: `https://www.atherstonedigital.com/${loc.slug}`, images: [ogImage] },
   };
 }
 

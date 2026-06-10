@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     description: 'Fixed-price Shopify product data audit and remediation for brands doing £500k to £5M. We fix the catalogue data issues your agency missed.',
     url: 'https://www.atherstonedigital.com/services/shopify-catalogue-health',
     type: 'website',
+    images: [ogImage],
   },
 };
 
@@ -116,7 +117,7 @@ const breadcrumbSchema = {
   ],
 };
 
-import { siteConfig } from '@/lib/siteConfig';
+import { siteConfig, ogImage } from '@/lib/siteConfig';
 const CALENDLY_URL = siteConfig.cta.url;
 
 const whatsIncluded = [

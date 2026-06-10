@@ -63,16 +63,18 @@ Defined in `tailwind.config.ts` under `theme.extend.colors.brand`:
 
 | Token              | Value                      | Usage                  |
 |--------------------|-----------------------------|------------------------|
-| `brand-dark`       | `#060D08`                  | Page backgrounds       |
-| `brand-surface`    | `#041812`                  | Card/section backgrounds |
-| `brand-surfaceHighlight` | `#08261e`            | Hover/active surfaces  |
-| `brand-primary`    | `#4ADE80`                  | Primary green CTA/links |
-| `brand-accent`     | `#26cf64`                  | Accent green highlights |
-| `brand-text`       | `#f1f5f9`                  | Body text (light)      |
-| `brand-muted`      | `#94a3b8`                  | Secondary/muted text   |
-| `brand-border`     | `rgba(255, 255, 255, 0.08)` | Subtle borders        |
+| `brand-dark`       | `#F3F0E8`                  | Page backgrounds (bone) |
+| `brand-surface`    | `#FFFFFF`                  | Card/section backgrounds |
+| `brand-surfaceHighlight` | `rgba(23, 21, 15, 0.05)` | Hover/active surfaces |
+| `brand-primary`    | `#BC4A2B`                  | Primary clay CTA/links |
+| `brand-accent`     | `#8A5A2B`                  | Accent ochre highlights |
+| `brand-text`       | `#17150F`                  | Body text (ink)        |
+| `brand-muted`      | `#6B6557`                  | Secondary/muted text   |
+| `brand-border`     | `rgba(23, 21, 15, 0.12)`   | Subtle borders         |
 
-Fonts: DM Sans (body), Syne (display headings), JetBrains Mono (code).
+Fonts: Hanken Grotesk (body, `font-sans`), Fraunces (display headings, `font-display`).
+
+Brand assets (favicon, OG images) live in `public/`. After brand changes, regenerate the rasterised versions with `node scripts/generate-og.mjs` and `node scripts/generate-icons.mjs` (both require dev-only `sharp`).
 
 ## Content Management
 

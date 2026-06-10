@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { BLOG_POSTS } from '@/lib/data';
+import { ogImage } from '@/lib/siteConfig';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     description: 'Practical Shopify ecommerce growth content from Dan Le Gresley. Strategy, CRO, automation, and paid media insights for brands doing £500k to £5M.',
     url: 'https://www.atherstonedigital.com/blog',
     type: 'website',
+    images: [ogImage],
   },
 };
 

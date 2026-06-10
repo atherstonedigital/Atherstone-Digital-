@@ -8,7 +8,7 @@ const DEK = 'A free Claude skill that strips the patterns marking text as machin
 const META_TITLE = 'AI writing has a fingerprint. Most ecommerce brands are publishing it. | Atherstone Digital';
 const META_DESCRIPTION = 'A free Claude skill that strips the AI fingerprint out of ecommerce copy, emails, and blog posts. Download the rule set, no email gate.';
 const CANONICAL = `https://www.atherstonedigital.com/blog/${SLUG}`;
-const OG_IMAGE = 'https://www.atherstonedigital.com/og-ai-writing-tells.svg';
+const OG_IMAGE = 'https://www.atherstonedigital.com/og-ai-writing-tells.png';
 const PUBLISHED = '2026-05-12';
 const DOWNLOAD_PATH = '/downloads/ai-writing-tells.skill';
 const DOWNLOAD_SIZE = '12 KB';
@@ -79,7 +79,7 @@ export default function AiWritingTellsPage() {
       name: 'Atherstone Digital',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.atherstonedigital.com/favicon-c-bef0ns.svg',
+        url: 'https://www.atherstonedigital.com/og-image.png',
       },
     },
     datePublished: PUBLISHED,

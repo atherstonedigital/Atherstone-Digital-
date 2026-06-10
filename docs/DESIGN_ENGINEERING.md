@@ -2,28 +2,27 @@
 
 ## Visual Identity
 
-Atherstone Digital uses a dark-mode-first aesthetic with vivid green accents. The visual language communicates technical precision and premium quality — fitting for a Shopify ecommerce consultant targeting DTC brands and Shopify Plus merchants.
+Atherstone Digital uses a light editorial aesthetic — a warm bone background, ink text, and clay/ochre accents. The visual language communicates senior, considered craft — fitting for a Shopify ecommerce consultant targeting DTC brands and Shopify Plus merchants.
 
 ### Color System
 
 | Role        | Token                  | Hex / Value                 | Notes                                    |
 |-------------|------------------------|-----------------------------|------------------------------------------|
-| Background  | `brand-dark`           | `#060D08`                   | Near-black with a green undertone        |
-| Surface     | `brand-surface`        | `#041812`                   | Cards, sections, elevated containers     |
-| Surface HL  | `brand-surfaceHighlight` | `#08261e`                 | Hover states, active elements            |
-| Primary     | `brand-primary`        | `#4ADE80`                   | CTAs, links, key UI accents              |
-| Accent      | `brand-accent`         | `#26cf64`                   | Accent green highlights                  |
-| Text        | `brand-text`           | `#f1f5f9`                   | Primary body text (Slate 100)            |
-| Muted       | `brand-muted`          | `#94a3b8`                   | Secondary text, captions (Slate 400)     |
-| Border      | `brand-border`         | `rgba(255, 255, 255, 0.08)` | Subtle dividers and card edges           |
+| Background  | `brand-dark`           | `#F3F0E8`                   | Warm bone page background                |
+| Surface     | `brand-surface`        | `#FFFFFF`                   | Cards, sections, elevated containers     |
+| Surface HL  | `brand-surfaceHighlight` | `rgba(23, 21, 15, 0.05)`  | Hover states, active elements            |
+| Primary     | `brand-primary`        | `#BC4A2B`                   | Clay — CTAs, links, key UI accents       |
+| Accent      | `brand-accent`         | `#8A5A2B`                   | Ochre highlights                         |
+| Text        | `brand-text`           | `#17150F`                   | Primary body text (ink)                  |
+| Muted       | `brand-muted`          | `#6B6557`                   | Secondary text, captions                 |
+| Border      | `brand-border`         | `rgba(23, 21, 15, 0.12)`    | Subtle dividers and card edges           |
 
 ### Typography
 
 | Role      | Font Family     | Tailwind Class   | Usage                          |
 |-----------|-----------------|------------------|--------------------------------|
-| Body      | DM Sans         | `font-sans`      | Paragraphs, UI text            |
-| Display   | Syne            | `font-display`   | Headings, hero titles          |
-| Code      | JetBrains Mono  | `font-mono`      | Code snippets, technical text  |
+| Body      | Hanken Grotesk  | `font-sans`      | Paragraphs, UI text            |
+| Display   | Fraunces        | `font-display`   | Headings, hero titles          |
 
 ### Animations
 

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Fraunces, Hanken_Grotesk } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
@@ -31,7 +31,8 @@ export const metadata: Metadata = {
   description: 'Senior Shopify ecommerce, run end to end. CRO, paid media, automation and development for brands doing £500k to £5M. 3 partners max. Book a teardown.',
   authors: [{ name: 'Dan Le Gresley' }],
   icons: {
-    icon: '/favicon-c-bef0ns.svg',
+    icon: '/favicon-a-clay.svg',
+    apple: '/apple-touch-icon.png',
   },
   openGraph: {
     type: 'website',
@@ -52,6 +53,10 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: '#F3F0E8',
+};
+
 const globalSchema = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -62,7 +67,7 @@ const globalSchema = {
       url: 'https://www.atherstonedigital.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.atherstonedigital.com/favicon-c-bef0ns.svg',
+        url: 'https://www.atherstonedigital.com/og-image.png',
       },
       description: 'A Shopify ecommerce consultancy for brands doing £500k\u2013£5M in annual revenue. AI-augmented operator replacing fragmented agency rosters with one senior partner. Based in Atherstone, Warwickshire.',
       email: 'info@atherstonedigital.com',

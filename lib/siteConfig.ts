@@ -18,11 +18,6 @@ export const siteConfig = {
     'Atherstone Digital is a Shopify ecommerce consultancy for brands doing £500k to £5M in annual revenue, based in Warwickshire, UK. One senior operator runs the whole Shopify ecommerce function, for less than an agency.',
   capacity: {
     total: 3,
-    filled: 2,
-    nextIntake: 'April 2026',
-    get remaining() {
-      return this.total - this.filled;
-    },
   },
   ctas,
   // Back-compat alias: existing references to siteConfig.cta resolve to the primary CTA.

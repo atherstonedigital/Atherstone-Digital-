@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { siteConfig } from '@/lib/siteConfig';
 
 export function Hero() {
@@ -12,20 +12,6 @@ export function Hero() {
       style={{ minHeight: '100svh' }}
     >
       <div className="container mx-auto px-6 relative z-10 flex flex-col items-center max-w-5xl">
-
-        {/* Eyebrow */}
-        <div
-          className="hero-fade-up flex items-center gap-3 mb-10"
-          style={{ animation: 'fadeUp 0.7s var(--ease-out) 0.8s both' }}
-        >
-          <Check size={14} className="text-brand-primary" strokeWidth={3} />
-          <span
-            className="font-sans uppercase text-brand-muted font-semibold"
-            style={{ fontSize: '0.72rem', letterSpacing: '0.16em' }}
-          >
-            {siteConfig.capacity.remaining} of {siteConfig.capacity.total} places open
-          </span>
-        </div>
 
         {/* Masked H1 */}
         <h1

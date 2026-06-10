@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { ogImage } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     description: "Terms of Service for Atherstone Digital's Shopify ecommerce consultancy and development services.",
     url: 'https://www.atherstonedigital.com/terms',
     type: 'website',
+    images: [ogImage],
   },
 };
 

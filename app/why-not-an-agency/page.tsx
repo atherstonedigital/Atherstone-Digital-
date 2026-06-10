@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, PoundSterling, ShieldAlert, Briefcase, CheckCircle } from 'lucide-react';
 import { Contact } from '@/components/Contact';
-import { siteConfig, pageTitle } from '@/lib/siteConfig';
+import { siteConfig, pageTitle, ogImage } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: { absolute: pageTitle('Why Not An Agency?') },
@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description: 'See exactly why one senior Shopify ecommerce consultant beats an agency and costs 70% less than a full-time hire. Real numbers, real savings.',
     url: 'https://www.atherstonedigital.com/why-not-an-agency',
     type: 'website',
+    images: [ogImage],
   },
 };
 

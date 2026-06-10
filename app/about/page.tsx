@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Target, ShieldCheck, Zap, Layers, MapPin } from 'lucide-react';
 import { Contact } from '@/components/Contact';
-import { siteConfig, pageTitle } from '@/lib/siteConfig';
+import { siteConfig, pageTitle, ogImage } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: { absolute: pageTitle('About Dan Le Gresley') },
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     description: 'Senior Shopify ecommerce consultant based in Atherstone, Warwickshire. Founder of Atherstone Digital. One senior operator for UK brands doing £500k to £5M.',
     url: 'https://www.atherstonedigital.com/about',
     type: 'website',
+    images: [ogImage],
   },
 };
 

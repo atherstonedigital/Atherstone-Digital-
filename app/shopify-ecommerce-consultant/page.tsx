@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle, AlertTriangle, HelpCircle } from 'lucide-react
 import { Contact } from '@/components/Contact';
 import { FAQAccordion } from '@/components/FAQAccordion';
 import { JobsFamiliar } from '@/components/JobsFamiliar';
-import { siteConfig } from '@/lib/siteConfig';
+import { siteConfig, ogImage } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: { absolute: 'Shopify Ecommerce Consultant for £500k to £5M Brands | UK' },
@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     description: 'One senior Shopify operator running the whole ecommerce function for brands doing £500k to £5M. Strategy, development, and growth, from £3,000 a month.',
     url: 'https://www.atherstonedigital.com/shopify-ecommerce-consultant',
     type: 'website',
+    images: [ogImage],
   },
 };
 

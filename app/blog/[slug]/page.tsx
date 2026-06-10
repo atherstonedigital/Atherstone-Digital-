@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { BLOG_POSTS } from '@/lib/data';
+import { ogImage } from '@/lib/siteConfig';
 import { ArrowLeft, Calendar, Clock, User, Share2, Linkedin, Twitter } from 'lucide-react';
 import { Contact } from '@/components/Contact';
 
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: post.title,
     description: post.excerpt,
-    openGraph: { title: post.title, description: post.excerpt, type: 'article', publishedTime: post.date, url: `https://www.atherstonedigital.com/blog/${post.slug}` },
+    openGraph: { title: post.title, description: post.excerpt, type: 'article', publishedTime: post.date, url: `https://www.atherstonedigital.com/blog/${post.slug}`, images: [ogImage] },
     alternates: {
       canonical: `https://www.atherstonedigital.com/blog/${post.slug}`,
     },

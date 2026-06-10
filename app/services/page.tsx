@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, Briefcase } from 'lucide-react';
 import { SERVICES_DATA } from '@/lib/data';
 import { Contact } from '@/components/Contact';
-import { siteConfig } from '@/lib/siteConfig';
+import { siteConfig, ogImage } from '@/lib/siteConfig';
 import { ServicesPillarGrid } from '@/components/ServicesPillarGrid';
 
 export const metadata: Metadata = {
@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     description: 'Full-stack ecommerce services for Shopify brands. Store builds, CRO, Google and Meta ads, automation, email and retention. Delivered by a single senior operator.',
     url: 'https://www.atherstonedigital.com/services',
     type: 'website',
+    images: [ogImage],
   },
 };
 

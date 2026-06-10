@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SERVICES_DATA } from '@/lib/data';
+import { ogImage } from '@/lib/siteConfig';
 import { ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react';
 import { Contact } from '@/components/Contact';
 
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: service.seoDescription,
       url: `https://www.atherstonedigital.com/services/${service.slug}`,
       type: 'website',
+      images: [ogImage],
     },
   };
 }

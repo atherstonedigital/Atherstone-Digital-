@@ -3,7 +3,7 @@ import { Hero } from '@/components/Hero';
 import { Contact } from '@/components/Contact';
 import { LeadMagnet } from '@/components/LeadMagnet';
 import { SERVICES_DATA } from '@/lib/data';
-import { siteConfig } from '@/lib/siteConfig';
+import { siteConfig, ogImage } from '@/lib/siteConfig';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle, Quote } from 'lucide-react';
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     description: 'Senior Shopify ecommerce consultant for brands doing £500k to £5M. One operator runs CRO, paid media, Klaviyo and development, for less than an agency.',
     url: 'https://www.atherstonedigital.com',
     type: 'website',
+    images: [ogImage],
   },
 };
 

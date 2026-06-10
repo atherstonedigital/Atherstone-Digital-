@@ -43,6 +43,16 @@ export const siteConfig = {
   },
 };
 
+// Default social share image (1200x630). Next.js does not deep-merge metadata:
+// a page that defines its own `openGraph` replaces the root layout's entirely,
+// so every page-level openGraph block must include this in `images` explicitly.
+export const ogImage = {
+  url: '/og-image.jpg',
+  width: 1200,
+  height: 630,
+  alt: 'Atherstone Digital — Shopify Ecommerce Consultant',
+};
+
 // Page titles render as "[Page title] | Shopify Ecommerce Consultant UK".
 // The homepage uses siteConfig.homepageTitle directly.
 export function pageTitle(title: string): string {

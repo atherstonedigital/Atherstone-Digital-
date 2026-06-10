@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, TrendingUp, BarChart3, PieChart, LineChart, Database } from 'lucide-react';
 import { Contact } from '@/components/Contact';
-import { siteConfig } from '@/lib/siteConfig';
+import { siteConfig, ogImage } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: 'Shopify Ecommerce Results & Case Studies',
@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description: 'Real, named Shopify case studies and the measurement framework behind the consultancy. See the work, not invented numbers.',
     url: 'https://www.atherstonedigital.com/results',
     type: 'website',
+    images: [ogImage],
   },
 };
 

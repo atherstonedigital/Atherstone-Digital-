@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Brain, Workflow, Database, Bot, Layers } from 'lucide-react';
 import { Contact } from '@/components/Contact';
-import { siteConfig } from '@/lib/siteConfig';
+import { siteConfig, ogImage } from '@/lib/siteConfig';
 
 export const metadata: Metadata = {
   title: 'The Force Multiplier Model: Human Strategy + AI Execution',
@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description: 'How Atherstone Digital combines Human Commercial Strategy with Autonomous AI Agents and n8n workflows to deliver 10x output for UK ecommerce brands.',
     url: 'https://www.atherstonedigital.com/the-model',
     type: 'website',
+    images: [ogImage],
   },
 };
 

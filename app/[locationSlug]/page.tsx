@@ -42,7 +42,7 @@ export default function LocationPage({ params }: { params: { locationSlug: strin
     address: { '@type': 'PostalAddress', addressLocality: 'Atherstone', addressRegion: 'Warwickshire', addressCountry: 'GB', postalCode: 'CV9' },
     geo: { '@type': 'GeoCoordinates', latitude: 52.5746, longitude: -1.5492 },
     areaServed: { '@type': 'City', name: location.city },
-    priceRange: '£3000 - £10000',
+    priceRange: '£3,000 - £5,000',
   };
 
   const faqSchema = {

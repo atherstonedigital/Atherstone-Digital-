@@ -1,12 +1,12 @@
 {
-  "$comment": "Proposed additions to docs/brand/tokens.json, pending the brand owner's approval. scripts/build-tokens.mjs merges them after tokens.json, so the site uses them now and every generated line they produce is marked PROPOSED. On approval, move each entry into tokens.json and delete it here. Colour values are hex, a reference to another colour token as {name}, or a mix: {\"mix\": a, \"weight\": w, \"into\": b} is token a at weight w mixed into token b in sRGB, computed per theme at generation time.",
+  "$comment": "Additions to docs/brand/tokens.json, approved by the brand owner at the end of Phase 2 (each entry keeps its reason). scripts/build-tokens.mjs merges them after tokens.json and marks every generated line they produce APPROVED; it refuses any entry whose status is not approved. They stay here because this file is in git and docs/brand is not; fold them into tokens.json at the next brand-book version. Colour values are hex, a reference to another colour token as {name}, or a mix: {\"mix\": a, \"weight\": w, \"into\": b} is token a at weight w mixed into token b in sRGB, computed per theme at generation time.",
   "basis": "docs/brand/tokens.json version 1",
   "source": "Phase 1 report, section 5 (What the homepage needed that the system does not define), unless an entry says otherwise",
   "color": {
     "tokens": [
       {
         "name": "focus",
-        "status": "proposed",
+        "status": "approved",
         "change": "replaces the light value",
         "was": { "light": "#b8862b", "dark": "#d9b45e" },
         "value": { "light": "#a57825", "dark": "#d9b45e" },
@@ -15,7 +15,7 @@
       },
       {
         "name": "focus-on-highlight",
-        "status": "proposed",
+        "status": "approved",
         "change": "new",
         "value": { "light": "{brass-600}", "dark": "{focus}" },
         "usage": "The focus ring on a control that sits on brass-300 (the highlighted Health Check card). Light: 3.79:1 on brass-300. Dark: 5.51:1 on brass-300.",
@@ -23,7 +23,7 @@
       },
       {
         "name": "link-on-highlight",
-        "status": "proposed",
+        "status": "approved",
         "change": "new",
         "value": { "light": "{green-700}", "dark": "{ink}" },
         "usage": "Text links on brass-300 (the Read more link on the highlighted Health Check card). Dark: ink, 9.32:1 on brass-300.",
@@ -31,7 +31,7 @@
       },
       {
         "name": "band",
-        "status": "proposed",
+        "status": "approved",
         "change": "new",
         "value": { "light": "{green-900}", "dark": { "mix": "green-900", "weight": 0.2, "into": "paper" } },
         "usage": "The full-width contact band at the foot of each page. Text on it uses on-band.",
@@ -39,7 +39,7 @@
       },
       {
         "name": "on-band",
-        "status": "proposed",
+        "status": "approved",
         "change": "new",
         "value": { "light": "{on-green}", "dark": "{ink}" },
         "usage": "Text and icons on the band. Light: on-green, 11.55:1. Dark: ink, 10.68:1.",
@@ -47,7 +47,7 @@
       },
       {
         "name": "rule-on-band",
-        "status": "proposed",
+        "status": "approved",
         "change": "new",
         "value": { "light": { "mix": "on-band", "weight": 0.28, "into": "band" }, "dark": { "mix": "on-band", "weight": 0.28, "into": "band" } },
         "usage": "The hairline under a section heading and any divider on the band. Decorative, like rule, so it may sit below 3:1.",
@@ -59,7 +59,7 @@
     "fonts": [
       {
         "family": "Newsreader",
-        "status": "proposed",
+        "status": "approved",
         "change": "new: metric-matched fallback face",
         "fallback": {
           "name": "Newsreader fallback",
@@ -75,7 +75,7 @@
     "styles": [
       {
         "name": "display-1",
-        "status": "proposed",
+        "status": "approved",
         "change": "responsive size steps and the optical size",
         "steps": [
           { "fontSize": "34px" },
@@ -88,14 +88,14 @@
       },
       {
         "name": "figure",
-        "status": "proposed",
+        "status": "approved",
         "change": "structured from the usage note",
         "fontVariantNumeric": "tabular-nums",
         "reason": "The figure usage note says tabular numerals on. Structured here so the generated .figure class sets them."
       },
       {
         "name": "eyebrow",
-        "status": "proposed",
+        "status": "approved",
         "change": "structured from the usage note",
         "textTransform": "uppercase",
         "reason": "The eyebrow usage note says set in uppercase in CSS, and the SectionHeading component takes sentence-case text and sets it uppercase. Structured here so the generated .eyebrow class does it."
@@ -106,14 +106,14 @@
     "tokens": [
       {
         "name": "nav-height",
-        "status": "proposed",
+        "status": "approved",
         "value": "64px",
         "usage": "Height of the fixed site nav. The body (or the page wrapper) is padded by it and scroll-padding-top uses it, so the nav never covers the first section or a focused control.",
         "reason": "The brand book fixes the nav and pads the body by its height but gives no height. Phase 1 used 64px (space-16) at every width."
       },
       {
         "name": "gutter",
-        "status": "proposed",
+        "status": "approved",
         "steps": [
           { "value": "16px" },
           { "minWidth": "720px", "value": "24px" },
@@ -124,21 +124,21 @@
       },
       {
         "name": "measure-lg",
-        "status": "proposed",
+        "status": "approved",
         "value": "60ch",
         "usage": "Maximum width of body-lg copy: the hero sub-copy and the first paragraph of a page.",
         "reason": "The brand book sets body-lg at 60ch and the body-lg usage note says max 60 characters a line, but tokens.json only defines measure (68ch). Not in the Phase 2 task's list; proposed so components do not write 60ch by hand."
       },
       {
         "name": "touch-target",
-        "status": "proposed",
+        "status": "approved",
         "value": "44px",
         "usage": "Minimum height (and width for icon-only controls) of every interactive element on touch screens.",
         "reason": "The brand book requires 44px touch targets and the Button and Forms specs set a 44px minimum height, but no token holds the number. Not in the Phase 2 task's list; proposed so buttons, fields, nav links and the drawer controls share one value."
       },
       {
         "name": "sheet-width",
-        "status": "proposed",
+        "status": "approved",
         "value": "420px",
         "usage": "Maximum width of the mobile nav drawer (the Sheet). Below it the drawer is full width.",
         "reason": "Phase 1's drawer width, kept by the Phase 2 navigation group. The brand book puts the drawer on paper-raised with a rule edge but gives it no width."
@@ -147,20 +147,20 @@
   },
   "zIndex": {
     "tokens": [
-      { "name": "content", "status": "proposed", "value": 0, "reason": "Page content. Part of the z-index scale from the Phase 1 report (the ui-ux-pro-max rule: one token scale, never z-[9999]); the brand defines none." },
-      { "name": "nav", "status": "proposed", "value": 40, "reason": "The fixed site nav sits above content. Part of the same scale." },
-      { "name": "dropdown", "status": "proposed", "value": 50, "reason": "The Services and Sectors dropdown panels open over the nav's neighbours. Part of the same scale." },
-      { "name": "sheet-overlay", "status": "proposed", "value": 90, "reason": "The scrim behind the mobile nav sheet. Part of the same scale." },
-      { "name": "sheet", "status": "proposed", "value": 100, "reason": "The mobile nav sheet itself. Part of the same scale." },
-      { "name": "skip-link", "status": "proposed", "value": 1000, "reason": "The skip link must stay above everything, including an open sheet. Part of the same scale." }
+      { "name": "content", "status": "approved", "value": 0, "reason": "Page content. Part of the z-index scale from the Phase 1 report (the ui-ux-pro-max rule: one token scale, never z-[9999]); the brand defines none." },
+      { "name": "nav", "status": "approved", "value": 40, "reason": "The fixed site nav sits above content. Part of the same scale." },
+      { "name": "dropdown", "status": "approved", "value": 50, "reason": "The Services and Sectors dropdown panels open over the nav's neighbours. Part of the same scale." },
+      { "name": "sheet-overlay", "status": "approved", "value": 90, "reason": "The scrim behind the mobile nav sheet. Part of the same scale." },
+      { "name": "sheet", "status": "approved", "value": 100, "reason": "The mobile nav sheet itself. Part of the same scale." },
+      { "name": "skip-link", "status": "approved", "value": 1000, "reason": "The skip link must stay above everything, including an open sheet. Part of the same scale." }
     ]
   },
   "motion": {
     "tokens": [
-      { "name": "duration-colour", "status": "proposed", "value": "150ms", "reason": "Brand book, Motion: transitions on colour and underline thickness run 150ms, ease-out. Made a token so CSS and GSAP share it." },
-      { "name": "duration-press", "status": "proposed", "value": "80ms", "reason": "Brand book, Motion: buttons scale to 0.98 on pointer-down over 80ms. Made a token so CSS and GSAP share it." },
-      { "name": "duration-drawer", "status": "proposed", "value": "320ms", "reason": "Brand book, Motion: drawers and accordions settle over 300 to 350ms. Phase 1 used 320ms for the drawer." },
-      { "name": "ease-drawer", "status": "proposed", "value": "cubic-bezier(0.2, 0.8, 0.2, 1)", "reason": "The curve the Phase 1 drawer used: it settles without overshoot, as the brand book asks of the drawer spring (no more than 2px). Used by the CSS fallback and the reduced-motion path. Not in the Phase 2 task's list; proposed with the durations." }
+      { "name": "duration-colour", "status": "approved", "value": "150ms", "reason": "Brand book, Motion: transitions on colour and underline thickness run 150ms, ease-out. Made a token so CSS and GSAP share it." },
+      { "name": "duration-press", "status": "approved", "value": "80ms", "reason": "Brand book, Motion: buttons scale to 0.98 on pointer-down over 80ms. Made a token so CSS and GSAP share it." },
+      { "name": "duration-drawer", "status": "approved", "value": "320ms", "reason": "Brand book, Motion: drawers and accordions settle over 300 to 350ms. Phase 1 used 320ms for the drawer." },
+      { "name": "ease-drawer", "status": "approved", "value": "cubic-bezier(0.2, 0.8, 0.2, 1)", "reason": "The curve the Phase 1 drawer used: it settles without overshoot, as the brand book asks of the drawer spring (no more than 2px). Used by the CSS fallback and the reduced-motion path. Not in the Phase 2 task's list; proposed with the durations." }
     ]
   }
 }

@@ -1,5 +1,5 @@
 // generated from docs/brand/tokens.json, do not edit.
-// Merged with design/tokens.additions.json. Every token's value, source, usage note and proposal status, and the type
+// Merged with design/tokens.additions.json. Every token's value, source, usage note and addition status, and the type
 // samples, for the /design-system page. Regenerate with `npm run tokens`; the build never reads docs/brand.
 
 import type { ColorToken, TypeStyle } from './tokens';
@@ -11,10 +11,10 @@ export interface ColourDoc {
   dark: string;
   source: { light: string; dark: string };
   usage: string;
-  proposed: boolean;
+  addition: boolean;
   change?: string;
   reason?: string;
-  /** The tokens.json value a proposal replaces. */
+  /** The tokens.json value an approved addition replaces. */
   was?: { light: string; dark: string };
 }
 
@@ -27,11 +27,11 @@ export interface FontFallbackDoc {
   ascentOverride: string;
   descentOverride: string;
   lineGapOverride: string;
-  proposed: boolean;
+  addition: boolean;
   reason: string;
 }
 
-/** A type style. proposed holds what the additions change. */
+/** A type style. addition holds what the approved additions change. */
 export interface TypeDoc {
   name: TypeStyle;
   group: string;
@@ -43,7 +43,7 @@ export interface TypeDoc {
   fontStyle?: string;
   sample: string;
   usage: string;
-  proposed?: {
+  addition?: {
     change?: string;
     reason: string;
     steps?: readonly { minWidth: number; fontSize: string }[];
@@ -60,7 +60,7 @@ export interface ScaleDoc {
   usage: string;
 }
 
-/** A proposed layout token; value is the base, steps the widths it changes at. */
+/** An approved layout token; value is the base, steps the widths it changes at. */
 export interface LayoutDoc {
   name: string;
   value: string;
@@ -93,7 +93,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "#0e1612"
     },
     "usage": "Page ground. Every page starts here; it is a cool chalk, never cream.",
-    "proposed": false
+    "addition": false
   },
   {
     "name": "paper-raised",
@@ -104,7 +104,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "#16211b"
     },
     "usage": "Forms, pull-quotes and the Health Check pricing table. Separated from paper by a rule, never a shadow.",
-    "proposed": false
+    "addition": false
   },
   {
     "name": "ink",
@@ -115,7 +115,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "#eceeea"
     },
     "usage": "All headings and body copy on paper and paper-raised. 15.9:1 on paper (light), 15.3:1 (dark).",
-    "proposed": false
+    "addition": false
   },
   {
     "name": "ink-muted",
@@ -126,7 +126,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "#a9b3ac"
     },
     "usage": "Eyebrows, captions, chart axes, the quieter line under a stat. 6.8:1 on paper (light), 9.1:1 (dark). Never for body copy.",
-    "proposed": false
+    "addition": false
   },
   {
     "name": "rule",
@@ -137,7 +137,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "#2a3630"
     },
     "usage": "The hairline. Section dividers, table rows, the line under a heading. Decorative only: it carries no meaning, so it may sit below 3:1.",
-    "proposed": false
+    "addition": false
   },
   {
     "name": "rule-strong",
@@ -148,7 +148,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "#8a958e"
     },
     "usage": "Borders that carry meaning: form fields, the secondary button outline, table header rule. 3.6:1 on paper (light), 4.6:1 (dark).",
-    "proposed": false
+    "addition": false
   },
   {
     "name": "green-900",
@@ -159,7 +159,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "#7fbf9e"
     },
     "usage": "The brand colour. Primary button fill, the wordmark on light ground, the dark band behind the contact section. Text on it uses on-green.",
-    "proposed": false
+    "addition": false
   },
   {
     "name": "green-700",
@@ -170,7 +170,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "#5fa683"
     },
     "usage": "Primary button hover and pressed. Links in body copy (7.2:1 on paper, light; 7.0:1 dark).",
-    "proposed": false
+    "addition": false
   },
   {
     "name": "on-green",
@@ -181,7 +181,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "#0e1612"
     },
     "usage": "Text and icons on green-900 and green-700 fills. 11.4:1 on green-900 (light), 9.6:1 (dark).",
-    "proposed": false
+    "addition": false
   },
   {
     "name": "brass-600",
@@ -192,7 +192,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "#d9b45e"
     },
     "usage": "The one accent. The marker beside a figure, the active nav item, the chart series the title is about, the eyebrow on the homepage hero. 5.2:1 on paper (light), 9.3:1 (dark). Never as a button fill.",
-    "proposed": false
+    "addition": false
   },
   {
     "name": "brass-300",
@@ -203,7 +203,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "#4a3b18"
     },
     "usage": "Highlight band behind a quoted figure or a key sentence; the Health Check tier the reader should pick. Text on it is ink.",
-    "proposed": false
+    "addition": false
   },
   {
     "name": "signal-good",
@@ -214,7 +214,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "#7fd19a"
     },
     "usage": "Reports and charts only: a number that moved the right way. Always paired with the word or arrow that says so.",
-    "proposed": false
+    "addition": false
   },
   {
     "name": "signal-critical",
@@ -225,7 +225,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "#f08a80"
     },
     "usage": "Reports, charts and form errors only: a number that moved the wrong way, a field that failed. Always paired with text.",
-    "proposed": false
+    "addition": false
   },
   {
     "name": "focus",
@@ -236,7 +236,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "#d9b45e"
     },
     "usage": "Keyboard focus ring: 2px solid, 2px offset, on every interactive element. Light: 3.64:1 on paper, 3.95:1 on paper-raised, 3.17:1 on green-900. Dark: 9.32:1 on paper, 6.32:1 on band.",
-    "proposed": true,
+    "addition": true,
     "change": "replaces the light value",
     "reason": "The light value #b8862b measures 2.99:1 on paper, not the 3.1:1 its usage note claims, so the ring fails WCAG 1.4.11 on the page ground. #a57825 keeps the brass hue and clears 3:1 on paper, paper-raised and the green band. The dark value is unchanged.",
     "was": {
@@ -253,7 +253,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "focus"
     },
     "usage": "The focus ring on a control that sits on brass-300 (the highlighted Health Check card). Light: 3.79:1 on brass-300. Dark: 5.51:1 on brass-300.",
-    "proposed": true,
+    "addition": true,
     "change": "new",
     "reason": "Found while generating Phase 2 tokens, not in the Phase 1 report. The proposed light focus measures 2.82:1 on brass-300. No single ring colour can reach 3:1 on both brass-300 and green-900 in the light theme (their luminances leave no value between), so the highlight ground needs its own ring. Phase 1 drew the light ring in brass-600 everywhere for the same reason."
   },
@@ -266,7 +266,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "ink"
     },
     "usage": "Text links on brass-300 (the Read more link on the highlighted Health Check card). Dark: ink, 9.32:1 on brass-300.",
-    "proposed": true,
+    "addition": true,
     "change": "new",
     "reason": "Phase 1 report, section 5, link colour on the highlighted card. In the dark theme green-700 on brass-300 measures 3.77:1 and fails AA for text; ink passes. The light theme keeps green-700. A token keeps the switch out of component code."
   },
@@ -279,7 +279,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "green-900 at 20% into paper"
     },
     "usage": "The full-width contact band at the foot of each page. Text on it uses on-band.",
-    "proposed": true,
+    "addition": true,
     "change": "new",
     "reason": "The brand book makes the contact section a green-900 band with on-green text. In the dark theme green-900 is a light mint (#7fbf9e), right for a button fill but it turns a full-bleed band into a pale slab, while tokens.json calls it the dark band. The dark value mixes green-900 20% into paper (about #25382e), so the band stays a deep green: on-band (ink) measures 10.68:1 on it and ink-muted 5.78:1."
   },
@@ -292,7 +292,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "ink"
     },
     "usage": "Text and icons on the band. Light: on-green, 11.55:1. Dark: ink, 10.68:1.",
-    "proposed": true,
+    "addition": true,
     "change": "new",
     "reason": "Pairs with band. on-green darkens in the dark theme for the mint button fill, which would put dark text on the deep green band; the band needs light text in both themes."
   },
@@ -305,7 +305,7 @@ export const colourDocs: readonly ColourDoc[] = [
       "dark": "on-band at 28% into band"
     },
     "usage": "The hairline under a section heading and any divider on the band. Decorative, like rule, so it may sit below 3:1.",
-    "proposed": true,
+    "addition": true,
     "change": "new",
     "reason": "rule is tuned for paper and vanishes on the green band. Phase 1 drew the band's hairline as on-band at 28% into the band; this makes that value a token."
   }
@@ -323,7 +323,7 @@ export const fontFallbackDocs: readonly FontFallbackDoc[] = [
     "ascentOverride": "65.9%",
     "descentOverride": "23.8%",
     "lineGapOverride": "0%",
-    "proposed": true,
+    "addition": true,
     "reason": "The brand book asks for size-adjust so nothing shifts when the fonts load, but type.fonts in tokens.json is empty. next/font computes a fallback for Schibsted Grotesk itself, but Next 14.2.5 has no metrics for Newsreader and emits none, so every Newsreader heading would reflow on swap. These are the Phase 1 values (report section 5); in Phase 2 they measured within 0.3% of Newsreader's width and within a pixel of its ascent and descent at 100px in Chromium, where unadjusted Times is 11% narrower."
   }
 ];
@@ -339,7 +339,7 @@ export const typeDocs: readonly TypeDoc[] = [
     "letterSpacing": "-0.015em",
     "sample": "Your ecommerce director. Hands on, on a monthly retainer.",
     "usage": "The homepage H1 only. Newsreader at optical size 72.",
-    "proposed": {
+    "addition": {
       "change": "responsive size steps and the optical size",
       "reason": "tokens.json has one size per style. At 390px a 64px H1 breaks mid-phrase, and at 320 by 640 the hero only fits with a 34px step. These are the steps the Phase 1 homepage used (34px below 360px, 40px to 719px, 52px to 1023px, 64px from 1024px). The optical size 72 is stated in the display-1 usage note; it is structured here so the generator can emit it.",
       "steps": [
@@ -384,7 +384,7 @@ export const typeDocs: readonly TypeDoc[] = [
     "letterSpacing": "-0.02em",
     "sample": "16,193",
     "usage": "Proof figures and chart callouts. Tabular numerals on. Always followed by its quieter line in small.",
-    "proposed": {
+    "addition": {
       "change": "structured from the usage note",
       "reason": "The figure usage note says tabular numerals on. Structured here so the generated .figure class sets them.",
       "fontVariantNumeric": "tabular-nums"
@@ -431,7 +431,7 @@ export const typeDocs: readonly TypeDoc[] = [
     "letterSpacing": "0.08em",
     "sample": "FOR FURNITURE AND INTERIORS RETAILERS",
     "usage": "Set in uppercase in CSS. The label above a heading, the sector tag on an article. ink-muted, or brass-600 on the homepage hero only.",
-    "proposed": {
+    "addition": {
       "change": "structured from the usage note",
       "reason": "The eyebrow usage note says set in uppercase in CSS, and the SectionHeading component takes sentence-case text and sets it uppercase. Structured here so the generated .eyebrow class does it.",
       "textTransform": "uppercase"

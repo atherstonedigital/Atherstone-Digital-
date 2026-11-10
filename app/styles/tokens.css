@@ -1,6 +1,6 @@
 /* generated from docs/brand/tokens.json, do not edit. */
-/* Merged with design/tokens.additions.json: every line marked PROPOSED comes from it and is pending the brand owner's
-   approval. Regenerate with `npm run tokens` (needs docs/brand/tokens.json locally; the build never reads it). */
+/* Merged with design/tokens.additions.json: every line marked APPROVED comes from it, approved by the brand
+   owner with Phase 2. Regenerate with `npm run tokens` (needs docs/brand/tokens.json locally; the build never reads it). */
 
 /* ------------------------------------------------------------------ colour */
 /* Light: the default, and any subtree marked data-theme="light". */
@@ -34,22 +34,22 @@
   /* Reports, charts and form errors only: a number that moved the wrong way, a field that failed. Always paired with text. */
   --signal-critical: #a3342b;
   /* Keyboard focus ring: 2px solid, 2px offset, on every interactive element. Light: 3.64:1 on paper, 3.95:1 on paper-raised, 3.17:1 on green-900. Dark: 9.32:1 on paper, 6.32:1 on band. */
-  /* PROPOSED, pending approval: see design/tokens.additions.json. Was #b8862b (light), #d9b45e (dark). */
+  /* APPROVED addition: see design/tokens.additions.json. Was #b8862b (light), #d9b45e (dark). */
   --focus: #a57825;
   /* The focus ring on a control that sits on brass-300 (the highlighted Health Check card). Light: 3.79:1 on brass-300. Dark: 5.51:1 on brass-300. */
-  /* PROPOSED, pending approval: see design/tokens.additions.json. */
+  /* APPROVED addition: see design/tokens.additions.json. */
   --focus-on-highlight: var(--brass-600);
   /* Text links on brass-300 (the Read more link on the highlighted Health Check card). Dark: ink, 9.32:1 on brass-300. */
-  /* PROPOSED, pending approval: see design/tokens.additions.json. */
+  /* APPROVED addition: see design/tokens.additions.json. */
   --link-on-highlight: var(--green-700);
   /* The full-width contact band at the foot of each page. Text on it uses on-band. */
-  /* PROPOSED, pending approval: see design/tokens.additions.json. */
+  /* APPROVED addition: see design/tokens.additions.json. */
   --band: var(--green-900);
   /* Text and icons on the band. Light: on-green, 11.55:1. Dark: ink, 10.68:1. */
-  /* PROPOSED, pending approval: see design/tokens.additions.json. */
+  /* APPROVED addition: see design/tokens.additions.json. */
   --on-band: var(--on-green);
   /* The hairline under a section heading and any divider on the band. Decorative, like rule, so it may sit below 3:1. */
-  /* PROPOSED, pending approval: see design/tokens.additions.json. */
+  /* APPROVED addition: see design/tokens.additions.json. */
   --rule-on-band: #546f64; /* on-band at 28% into band */
 }
 
@@ -69,17 +69,17 @@
   --brass-300: #4a3b18;
   --signal-good: #7fd19a;
   --signal-critical: #f08a80;
-  /* focus: PROPOSED, pending approval: see design/tokens.additions.json. */
+  /* focus: APPROVED addition: see design/tokens.additions.json. */
   --focus: #d9b45e;
-  /* focus-on-highlight: PROPOSED, pending approval: see design/tokens.additions.json. */
+  /* focus-on-highlight: APPROVED addition: see design/tokens.additions.json. */
   --focus-on-highlight: var(--focus);
-  /* link-on-highlight: PROPOSED, pending approval: see design/tokens.additions.json. */
+  /* link-on-highlight: APPROVED addition: see design/tokens.additions.json. */
   --link-on-highlight: var(--ink);
-  /* band: PROPOSED, pending approval: see design/tokens.additions.json. */
+  /* band: APPROVED addition: see design/tokens.additions.json. */
   --band: #25382e; /* green-900 at 20% into paper */
-  /* on-band: PROPOSED, pending approval: see design/tokens.additions.json. */
+  /* on-band: APPROVED addition: see design/tokens.additions.json. */
   --on-band: var(--ink);
-  /* rule-on-band: PROPOSED, pending approval: see design/tokens.additions.json. */
+  /* rule-on-band: APPROVED addition: see design/tokens.additions.json. */
   --rule-on-band: #5d6b63; /* on-band at 28% into band */
 }
 
@@ -100,24 +100,24 @@
     --brass-300: #4a3b18;
     --signal-good: #7fd19a;
     --signal-critical: #f08a80;
-    /* focus: PROPOSED, pending approval: see design/tokens.additions.json. */
+    /* focus: APPROVED addition: see design/tokens.additions.json. */
     --focus: #d9b45e;
-    /* focus-on-highlight: PROPOSED, pending approval: see design/tokens.additions.json. */
+    /* focus-on-highlight: APPROVED addition: see design/tokens.additions.json. */
     --focus-on-highlight: var(--focus);
-    /* link-on-highlight: PROPOSED, pending approval: see design/tokens.additions.json. */
+    /* link-on-highlight: APPROVED addition: see design/tokens.additions.json. */
     --link-on-highlight: var(--ink);
-    /* band: PROPOSED, pending approval: see design/tokens.additions.json. */
+    /* band: APPROVED addition: see design/tokens.additions.json. */
     --band: #25382e; /* green-900 at 20% into paper */
-    /* on-band: PROPOSED, pending approval: see design/tokens.additions.json. */
+    /* on-band: APPROVED addition: see design/tokens.additions.json. */
     --on-band: var(--ink);
-    /* rule-on-band: PROPOSED, pending approval: see design/tokens.additions.json. */
+    /* rule-on-band: APPROVED addition: see design/tokens.additions.json. */
     --rule-on-band: #5d6b63; /* on-band at 28% into band */
   }
 }
 
 /* ------------------------------------------------------------------ fallback faces
    Local fonts scaled to the web font's metrics, so text does not reflow when the web font swaps in. */
-/* Newsreader: PROPOSED, pending approval: see design/tokens.additions.json. */
+/* Newsreader: APPROVED addition: see design/tokens.additions.json. */
 @font-face {
   font-family: "Newsreader fallback";
   src: local("Times New Roman"), local("Liberation Serif");
@@ -135,7 +135,7 @@
   --font-sans: var(--font-schibsted-grotesk, "Schibsted Grotesk"), "Helvetica Neue", Arial, sans-serif;
 
   /* Type style properties, read by the type classes below. */
-  --display-1-font-size: 34px; /* PROPOSED: responsive steps, tokens.json size applies from the widest step */
+  --display-1-font-size: 34px; /* APPROVED: responsive steps, tokens.json size applies from the widest step */
   --display-1-line-height: 1.0;
   --display-1-font-weight: 500;
   --display-1-letter-spacing: -0.015em;
@@ -191,14 +191,14 @@
   --radius-sm: 2px; /* Form fields and the secondary button outline. */
   --radius-md: 4px; /* Primary button, the monogram favicon. Nothing rounder exists. */
 
-  /* Layout: PROPOSED, pending approval: see design/tokens.additions.json. */
+  /* Layout: APPROVED addition: see design/tokens.additions.json. */
   --nav-height: 64px; /* Height of the fixed site nav. The body (or the page wrapper) is padded by it and scroll-padding-top uses it, so the nav never covers the first section or a focused control. */
   --gutter: 16px; /* Page side gutter outside the container, and the column gap of the 12-column grid. */
   --measure-lg: 60ch; /* Maximum width of body-lg copy: the hero sub-copy and the first paragraph of a page. */
   --touch-target: 44px; /* Minimum height (and width for icon-only controls) of every interactive element on touch screens. */
   --sheet-width: 420px; /* Maximum width of the mobile nav drawer (the Sheet). Below it the drawer is full width. */
 
-  /* z-index scale: PROPOSED, pending approval: see design/tokens.additions.json. */
+  /* z-index scale: APPROVED addition: see design/tokens.additions.json. */
   --z-content: 0;
   --z-nav: 40;
   --z-dropdown: 50;
@@ -206,33 +206,33 @@
   --z-sheet: 100;
   --z-skip-link: 1000;
 
-  /* Motion: PROPOSED, pending approval: see design/tokens.additions.json. */
+  /* Motion: APPROVED addition: see design/tokens.additions.json. */
   --duration-colour: 150ms;
   --duration-press: 80ms;
   --duration-drawer: 320ms;
   --ease-drawer: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Responsive steps (PROPOSED), mobile first. */
+/* Responsive steps (APPROVED), mobile first. */
 @media (min-width: 360px) {
   :root {
-    --display-1-font-size: 40px; /* PROPOSED */
+    --display-1-font-size: 40px; /* APPROVED */
   }
 }
 @media (min-width: 720px) {
   :root {
-    --display-1-font-size: 52px; /* PROPOSED */
-    --gutter: 24px; /* PROPOSED */
+    --display-1-font-size: 52px; /* APPROVED */
+    --gutter: 24px; /* APPROVED */
   }
 }
 @media (min-width: 1024px) {
   :root {
-    --display-1-font-size: 64px; /* PROPOSED */
+    --display-1-font-size: 64px; /* APPROVED */
   }
 }
 @media (min-width: 1200px) {
   :root {
-    --gutter: 32px; /* PROPOSED */
+    --gutter: 32px; /* APPROVED */
   }
 }
 
@@ -246,7 +246,7 @@
   font-weight: var(--display-1-font-weight);
   letter-spacing: var(--display-1-letter-spacing);
   font-optical-sizing: auto;
-  font-variation-settings: "opsz" 72; /* PROPOSED */
+  font-variation-settings: "opsz" 72; /* APPROVED */
 }
 .display-2 {
   font-family: var(--font-display);
@@ -263,7 +263,7 @@
   font-weight: var(--figure-font-weight);
   letter-spacing: var(--figure-letter-spacing);
   font-optical-sizing: auto;
-  font-variant-numeric: tabular-nums; /* PROPOSED */
+  font-variant-numeric: tabular-nums; /* APPROVED */
 }
 .heading-1 {
   font-family: var(--font-display);
@@ -292,7 +292,7 @@
   line-height: var(--eyebrow-line-height);
   font-weight: var(--eyebrow-font-weight);
   letter-spacing: var(--eyebrow-letter-spacing);
-  text-transform: uppercase; /* PROPOSED */
+  text-transform: uppercase; /* APPROVED */
 }
 .body-lg {
   font-family: var(--font-sans);

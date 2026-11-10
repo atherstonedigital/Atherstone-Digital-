@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import {
   comparison,
   contactSection,
+  emailFigure,
   hero,
   leadMagnet,
   offers,
@@ -85,7 +86,8 @@ const garyResultDraft = (() => {
 
 export default function BrandSection() {
   const [gary, gemma, luke] = proof.testimonials;
-  const [first, second, third, fourth] = proof.figures;
+  const [first, second, third] = proof.figures;
+  const fourth = emailFigure;
 
   return (
     <div className="grid grid-cols-1 gap-space-16 text-ink">

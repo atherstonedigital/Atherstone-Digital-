@@ -4,7 +4,7 @@ import type { ColorToken } from '@/lib/design/tokens';
 import { colourDocs, type ColourDoc } from '@/lib/design/tokens.docs';
 import { cn } from '@/lib/utils';
 
-import { ProposedMark } from './parts';
+import { ApprovedMark } from './parts';
 
 // Every colour token: its name and usage note, then a swatch in each theme side by side. Each swatch sits in a wrapper
 // marked data-theme="light" or data-theme="dark", which app/styles/tokens.css resolves on its own, so both themes show
@@ -53,7 +53,7 @@ function ColourRow({ doc }: { doc: ColourDoc }) {
       <div className="col-span-2 grid content-start gap-space-1 min-[720px]:col-span-6">
         <p className="body font-semibold text-ink">{doc.name}</p>
         <p className="small max-w-measure text-ink">{doc.usage}</p>
-        {doc.proposed ? <ProposedMark className="mt-space-1" /> : null}
+        {doc.addition ? <ApprovedMark className="mt-space-1" /> : null}
       </div>
       <div className="min-[720px]:col-span-3">
         <Swatch doc={doc} theme="light" />

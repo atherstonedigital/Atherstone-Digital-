@@ -11,7 +11,9 @@
   the site's forms are rendered by React (components/site/ContactForm.tsx and components/site/LeadMagnet.tsx), so this
   file lists every field each form posts. Netlify keeps only fields it has seen here: when a field is added to or
   renamed in lib/content/site.ts, change it here too. Form detection must be on in the Netlify site settings.
-  The forms post with fetch to "/" as application/x-www-form-urlencoded, with form-name and the honeypot.
+  The forms post with fetch as application/x-www-form-urlencoded, with form-name and the honeypot: to "/" from the
+  homepage and /scorecard, and to "/contact/thank-you" from /contact, which is also where a visitor without JavaScript
+  lands. Only the two forms below exist; the pre-rebuild site's forms are gone.
 -->
 
 <!-- The brief form: contactSection.netlifyFormName in lib/content/site.ts -->

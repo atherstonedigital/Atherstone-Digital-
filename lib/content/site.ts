@@ -1,6 +1,7 @@
-// Site content for the design-system route and the Phase 3 pages, taken verbatim from docs/site-plan.md where the
-// plan has copy. Apostrophes are set typographically. Anything the plan does not supply is marked as a Phase 1 draft
-// (Phase 1 report, section 5) and is pending Dan's approval before launch.
+// Content shared by the nav, footer, homepage and design-system route, taken verbatim from docs/site-plan.md where the
+// plan has copy. Apostrophes are set typographically. Anything the plan does not supply is marked as a Phase 1, 2 or 3
+// draft and is pending Dan's approval before launch. Page-level copy is in lib/content/pages; this file stays free of
+// heavy imports because the nav and footer bundles import it.
 //
 // Public repo rule: only figures already public on the live site appear here (16,193 product records, 120+ hours a
 // month, £250k monthly revenue within six months via Ranch Creative, £115k+ incremental email revenue). The plan's
@@ -20,6 +21,7 @@ import type {
   PageMeta,
   ProblemTag,
   ProblemsSection,
+  ProofFigure,
   ProofSection,
   SectorsSection,
   SiteFooter,
@@ -50,6 +52,18 @@ export const contact: ContactDetails = {
 };
 
 const bookACall: Link = { label: 'Book a 30-minute call', href: contact.calendlyUrl, external: true };
+
+/**
+ * The two actions every offer and sector page ends with (plan: Service pages, "book a call, or start with the Health
+ * Check"; sector template: "Book a call · Start with a Health Check").
+ */
+export const closingActions = {
+  primary: bookACall,
+  secondary: { label: 'Start with a Health Check', href: '/store-health-check' } as Link,
+};
+
+/** Phase 2 draft, pending Dan's approval: the plan gives the FAQ blocks no heading. */
+export const faqHeading = { eyebrow: 'FAQ', heading: 'Questions owners ask first' };
 
 // ------------------------------------------------------------------ offers and sectors (shared by nav, footer, homepage)
 
@@ -225,8 +239,8 @@ export const hero: Hero = {
 
 export const proof: ProofSection = {
   heading: 'The numbers',
-  // Only the figures already public on the live site. The plan's quieter line is not carried: most of it is
-  // permission-gated, and its two public sentences are the 120+ and £250k figures below.
+  // Phase 3 decision 2: the three figures already public on the live site, with their lines. The plan's other two proof
+  // figures and its quieter line wait for the client's written permission; 16,193 is the one the two sets share.
   figures: [
     {
       figure: '16,193',
@@ -243,12 +257,8 @@ export const proof: ProofSection = {
       line: 'Monthly revenue within six months for a home and interiors brand, via Ranch Creative',
       source: 'Existing public claim (plan: What to claim, and where, Ranch client)',
     },
-    {
-      figure: '£115k+',
-      line: 'Incremental email revenue across partner accounts',
-      source: 'Existing public claim (plan: Meet Dan credentials, Klaviyo)',
-    },
   ],
+  // Decision 7: no result line under any testimonial until the lines are signed off.
   testimonials: [
     {
       quote: 'Dan understands premium brands. He doesn’t push for quick wins that compromise the positioning, he thinks carefully about how digital should work for a business like ours, where trust and relationship are everything. Having someone who can hold the strategic picture while also getting into the detail of how the site and our Google presence actually perform is exactly what we needed.',
@@ -342,6 +352,13 @@ export const howItWorks: StepsSection = {
   ],
 };
 
+/** The fourth public figure: a credential (plan, Meet Dan), not part of the proof block. */
+export const emailFigure: ProofFigure = {
+  figure: '£115k+',
+  line: 'Incremental email revenue across partner accounts',
+  source: 'Existing public claim (plan: Meet Dan credentials, Klaviyo)',
+};
+
 export const meetDan: AboutSection = {
   eyebrow: 'Meet Dan',
   heading: 'Dan Le Gresley',
@@ -361,37 +378,33 @@ export const insights: InsightsSection = {
   eyebrow: 'Insights',
   // The plan's line continues "Three latest articles with sector tags.", read as an instruction, not copy.
   heading: 'Thinking for showroom retailers',
-  // The plan's weeks 1 to 3. No article is written yet; slugs are Phase 1 proposals.
+  // No planned article is written yet, so the homepage shows three moved /blog posts (decision 8) that sit in the
+  // plan's clusters: the two furniture catalogue posts and the Klaviyo flows post. The latest clustered post, "The 5
+  // Shopify Metrics Most Brands Track Wrong", is passed over because it shares its name with the retired lead magnet on
+  // the kill list. Titles as in lib/content/insights-archive.ts, which this file does not import (the nav bundle
+  // imports this file).
   articles: [
     {
-      week: 1,
-      slug: 'why-half-your-furniture-catalogue-never-appears-in-google-shopping',
-      href: '/insights/why-half-your-furniture-catalogue-never-appears-in-google-shopping',
-      title: 'Why half your furniture catalogue never appears in Google Shopping',
-      targetTerm: 'furniture Google Shopping feed',
+      slug: 'shopify-taxonomy-guide-2025',
+      href: '/insights/shopify-taxonomy-guide-2025',
+      title: 'Shopify Standard Taxonomy: How to Fix a Broken Product Catalogue',
       sectorTag: 'Furniture',
-      linksTo: { sector: 'furniture-retailers', offer: 'store-health-check' },
     },
     {
-      week: 2,
-      slug: 'ga4-says-one-thing-shopify-says-another',
-      href: '/insights/ga4-says-one-thing-shopify-says-another',
-      title: 'GA4 says one thing, Shopify says another. Which one do you believe?',
-      targetTerm: 'GA4 Shopify revenue mismatch',
+      slug: 'shopify-product-data-audit-guide',
+      href: '/insights/shopify-product-data-audit-guide',
+      title: 'The Shopify Product Data Audit: Why 97% of Your Alt Text Might Be Wrong',
       sectorTag: 'Furniture',
-      linksTo: { sector: 'furniture-retailers', offer: 'store-health-check' },
     },
     {
-      week: 3,
-      slug: 'the-showroom-sale-your-website-made',
-      href: '/insights/the-showroom-sale-your-website-made',
-      title: 'The showroom sale your website made and never got credit for',
-      targetTerm: 'showroom and online store attribution',
-      sectorTag: 'Furniture',
-      linksTo: { sector: 'furniture-retailers', offer: 'ecommerce-director' },
+      slug: 'klaviyo-email-flows-shopify-brands',
+      href: '/insights/klaviyo-email-flows-shopify-brands',
+      title: 'The 7 Klaviyo Email Flows Every Shopify Brand Needs (With Revenue Benchmarks)',
+      sectorTag: 'Email and samples',
     },
   ],
 };
+
 
 // The confirmation links: two case studies, so the wait is not dead time (plan, /contact).
 const caseStudyLinks: Link[] = [

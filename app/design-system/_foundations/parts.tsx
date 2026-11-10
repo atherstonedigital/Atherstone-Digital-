@@ -6,11 +6,11 @@ import { cn } from '@/lib/utils';
 // column, the value beside it, each row closed by a rule hairline), the form the sections group set for case-study
 // tags: the brand has no badges, so nothing here is a pill or a chip.
 
-/** The label on every proposed token: in words, never a badge. */
-export const PROPOSED_LABEL = 'Proposed, pending approval';
+/** The label on every approved addition: in words, never a badge. */
+export const APPROVED_LABEL = 'Approved addition';
 
-export function ProposedMark({ className }: { className?: string }) {
-  return <p className={cn('small font-medium text-ink', className)}>{PROPOSED_LABEL}</p>;
+export function ApprovedMark({ className }: { className?: string }) {
+  return <p className={cn('small font-medium text-ink', className)}>{APPROVED_LABEL}</p>;
 }
 
 export interface LedgerRow {

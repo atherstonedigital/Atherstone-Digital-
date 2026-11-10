@@ -6,9 +6,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ------------------------------------------------------------------ new system
-   The base for pages built on the design system. Pages in app/(legacy) sit inside the .legacy wrapper, which
-   app/(legacy)/legacy.css uses to undo the inherited parts of this base and keep their old look. */
+/* ------------------------------------------------------------------ the base for every page */
 
 /* shadcn/ui variables mapped to the tokens once, as docs/brand/README.md specifies (Building it: shadcn and GSAP), so
    every primitive inherits the brand and shadcn's own look never shows. The values are references, so they follow
@@ -76,8 +74,8 @@ body {
 }
 
 /* Every interactive element shows the focus ring: 2px solid, 2px offset, the focus token. Never remove it.
-   On brass-300 use focus-visible:outline-focus-on-highlight. Legacy pages keep their own focus styles. */
-:where(:not(.legacy, .legacy *)):focus-visible {
+   On brass-300 use focus-visible:outline-focus-on-highlight. */
+:focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
 }

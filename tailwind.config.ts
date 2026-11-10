@@ -27,8 +27,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // Every value comes from lib/design/tokens.ts, generated from docs/brand/tokens.json; no hex is written here
-      // except the legacy brand-* set below.
+      // Every value comes from lib/design/tokens.ts, generated from docs/brand/tokens.json; no hex is written here.
       colors: {
         ...colors,
         // shadcn/ui's semantic names, mapped to the tokens in app/globals.css, so hand-written shadcn primitives
@@ -44,24 +43,12 @@ const config: Config = {
         border: 'var(--border)',
         input: 'var(--input)',
         ring: 'var(--ring)',
-        // Pre-rebuild palette, used only by app/(legacy) and the old components. Remove in Phase 3.
-        brand: {
-          dark: '#F3F0E8',
-          surface: '#FFFFFF',
-          surfaceHighlight: 'rgba(23, 21, 15, 0.05)',
-          primary: '#BC4A2B',
-          accent: '#8A5A2B',
-          text: '#17150F',
-          muted: '#6B6557',
-          border: 'rgba(23, 21, 15, 0.12)',
-        },
       },
       // space-1 to space-24, measure, container and the layout tokens. Tailwind 3.4 feeds spacing into width,
       // max-width, min-height, inset and gap, so max-w-measure and min-h-touch-target work from here.
       spacing: { ...spacing },
       borderRadius: { ...borderRadius },
-      // font-display and font-sans read --font-display and --font-sans. On the new system they are Newsreader and
-      // Schibsted Grotesk; app/(legacy)/legacy.css points them back at Fraunces and Hanken Grotesk inside .legacy.
+      // font-display and font-sans read --font-display and --font-sans: Newsreader and Schibsted Grotesk.
       fontFamily: {
         display: [fontFamily.display],
         sans: [fontFamily.sans],

@@ -10,8 +10,8 @@ import { cn } from '@/lib/utils';
 // covers the first section, and <main> carries id="main" and tabindex="-1" so the skip link lands on it. It also adds
 // the touchstart listener iOS Safari needs before it shows the buttons' press.
 //
-// The padding sits on this wrapper, not on <body>, because the root layout also serves the pages in app/(legacy).
-// Phase 3 can use it as the new route group's layout.
+// The padding sits on this wrapper, not on <body>, so the shell carries everything the fixed Nav asks of a page.
+// app/(site)/layout.tsx, app/not-found.tsx and app/design-system/page.tsx render it.
 
 export interface SiteShellProps {
   children: React.ReactNode;

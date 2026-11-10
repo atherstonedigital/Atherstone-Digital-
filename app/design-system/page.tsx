@@ -9,7 +9,7 @@ import { brandBasis } from '@/lib/design/tokens.docs';
 
 import { ColourTokens } from './_foundations/colour';
 import { TokenGroup } from './_foundations/parts';
-import { ProposedAdditions } from './_foundations/proposed';
+import { ApprovedAdditions } from './_foundations/approved';
 import { RadiusScale, SpacingScale } from './_foundations/scales';
 import { TypeStyles } from './_foundations/type';
 import BrandSection from './_sections/brand';
@@ -17,7 +17,7 @@ import FormsDataSection from './_sections/forms-data';
 import NavigationSection from './_sections/navigation';
 import SectionsSection from './_sections/sections';
 
-// The design-system page: every token in both themes, the proposed additions, then each component group in
+// The design-system page: every token in both themes, the approved additions, then each component group in
 // app/design-system/_sections. A working page for review, kept out of search: it carries demo forms, a sample FAQPage
 // schema and drafts pending approval. It is built on the new system's shell (Nav with the theme toggle, Footer).
 
@@ -72,11 +72,11 @@ const parts: Part[] = [
     ),
   },
   {
-    id: 'proposed',
+    id: 'approved',
     eyebrow: 'Tokens',
-    heading: 'Proposed additions',
-    intro: `What design/tokens.additions.json adds to or changes in ${brandBasis}. The site uses them now; each one is pending the brand owner’s approval.`,
-    content: <ProposedAdditions />,
+    heading: 'Approved additions',
+    intro: `What design/tokens.additions.json adds to or changes in ${brandBasis}. The brand owner approved each one with Phase 2.`,
+    content: <ApprovedAdditions />,
   },
   {
     id: 'brand',
@@ -117,7 +117,7 @@ export default function DesignSystemPage() {
           <h1 className="display-2 mb-space-4 text-ink">Design system</h1>
           <p className="body-lg max-w-measure-lg text-ink">
             Every token and component the rebuilt site is made of, in the light and dark themes. Anything marked
-            proposed is pending the brand owner’s approval.
+            approved addition comes from design/tokens.additions.json.
           </p>
         </div>
         {/* From 1024px the theme toggle is in the bar; below it, it is in the drawer, so it is also offered here. */}

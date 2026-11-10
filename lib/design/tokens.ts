@@ -1,5 +1,5 @@
 // generated from docs/brand/tokens.json, do not edit.
-// Merged with design/tokens.additions.json; the names in `proposed` are pending the brand owner's approval.
+// Merged with design/tokens.additions.json; the names in `approvedAdditions` come from it, approved by the brand owner.
 // Regenerate with `npm run tokens`. Values are the custom properties defined in app/styles/tokens.css, so the
 // theme flips without a rebuild; tailwind.config.ts and lib/utils.ts read these objects.
 
@@ -157,8 +157,8 @@ export const easing = {
   drawer: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
 } as const;
 
-/** Tokens whose values come from design/tokens.additions.json, pending the brand owner's approval. */
-export const proposed = [
+/** Tokens whose values come from design/tokens.additions.json, approved by the brand owner. */
+export const approvedAdditions = [
   'colour focus',
   'colour focus-on-highlight',
   'colour link-on-highlight',

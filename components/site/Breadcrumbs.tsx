@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { TextLink } from '@/components/brand/Button';
 import { siteUrl } from '@/lib/content/site';
+import { breadcrumbListJsonLd, serializeJsonLd, type Crumb } from '@/lib/structured-data';
 import { cn } from '@/lib/utils';
 
 // Breadcrumbs for the sector, results and insights pages, which the plan's structured data list asks to carry
@@ -15,25 +16,9 @@ import { cn } from '@/lib/utils';
 /** The canonical origin (lib/content/site.ts), which app/layout.tsx also gives metadataBase. */
 const SITE_URL = siteUrl;
 
-export interface Crumb {
-  label: string;
-  /** The page's path on this site, such as /results/xshowhome. The last crumb is the current page. */
-  href: string;
-}
-
-/** The BreadcrumbList JSON-LD for a trail: every crumb with its position, name and absolute URL. */
-export function breadcrumbListJsonLd(items: Crumb[], baseUrl: string = SITE_URL) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: item.label,
-      item: new URL(item.href, baseUrl).toString(),
-    })),
-  };
-}
+// The schema builder and the crumb type live in lib/structured-data.ts, shared with lib/seo.ts; re-exported here for
+// the pages that already import them from this file.
+export { breadcrumbListJsonLd, type Crumb };
 
 export interface BreadcrumbsProps extends Omit<React.HTMLAttributes<HTMLElement>, 'children'> {
   /** The trail from Home to the current page, in order. */
@@ -82,9 +67,7 @@ export function Breadcrumbs({
         <script
           type="application/ld+json"
           // Escapes < so a label can never close the script element.
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(breadcrumbListJsonLd(items, baseUrl)).replace(/</g, '\\u003c'),
-          }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbListJsonLd(items, baseUrl)) }}
         />
       ) : null}
     </nav>

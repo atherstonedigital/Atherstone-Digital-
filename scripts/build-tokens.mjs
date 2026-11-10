@@ -4,8 +4,8 @@
 //
 // Run by hand with `npm run tokens`. docs/brand is kept out of git because the repo is public, so nothing at build
 // or deploy time may run this script or read docs/brand: the committed outputs are the build's only source.
-// It also writes lib/design/tokens.docs.ts: every token's value, usage note and proposal status, plus the type samples,
-// for the /design-system page.
+// It also writes lib/design/tokens.docs.ts: every token's value, usage note and whether it is an approved addition,
+// plus the type samples, for the /design-system page.
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
@@ -77,8 +77,11 @@ const fail = (message) => {
   console.error(`build-tokens: ${message}`);
   process.exit(1);
 };
-const requireProposal = (entry, where) => {
-  if (!entry.status) fail(`${where} "${entry.name}" in ${ADDITIONS_FILE} has no status.`);
+// Only approved additions reach the site: a new entry is approved by the brand owner before it is generated.
+const requireApproval = (entry, where) => {
+  if (entry.status !== 'approved') {
+    fail(`${where} "${entry.name}" in ${ADDITIONS_FILE} has status "${entry.status ?? 'none'}". Only approved additions are generated: get the brand owner's approval and set its status to approved.`);
+  }
   if (!entry.reason) fail(`${where} "${entry.name}" in ${ADDITIONS_FILE} has no reason.`);
 };
 // Copy is written without em dashes; comments carried over from the JSON are held to the same rule.
@@ -94,18 +97,18 @@ const pxNumber = (value) => {
 const THEMES = brand.color.themes.map((theme) => theme.id);
 if (THEMES.join() !== 'light,dark') fail(`expected the themes light and dark, found ${THEMES.join(', ')}.`);
 
-/** name -> { value: {light, dark}, usage, proposed, reason, was } in tokens.json order, additions after */
+/** name -> { value: {light, dark}, usage, addition, reason, was } in tokens.json order, additions after */
 const colours = new Map();
 for (const token of brand.color.tokens) {
-  colours.set(token.name, { value: token.value, usage: token.usage, proposed: false });
+  colours.set(token.name, { value: token.value, usage: token.usage, addition: false });
 }
 for (const token of additions.color?.tokens ?? []) {
-  requireProposal(token, 'Colour');
+  requireApproval(token, 'Colour');
   const existing = colours.get(token.name);
   colours.set(token.name, {
     value: token.value,
     usage: token.usage ?? existing?.usage,
-    proposed: true,
+    addition: true,
     reason: token.reason,
     was: existing ? existing.value : undefined,
   });
@@ -162,10 +165,10 @@ const families = brand.type.families;
 // Metric-matched local fallback faces (size-adjust and the metric overrides), keyed by family name: tokens.json
 // type.fonts first, additions after.
 const fontFallbacks = new Map();
-for (const font of brand.type.fonts ?? []) if (font.fallback) fontFallbacks.set(font.family, { ...font, proposed: false });
+for (const font of brand.type.fonts ?? []) if (font.fallback) fontFallbacks.set(font.family, { ...font, addition: false });
 for (const font of additions.type?.fonts ?? []) {
-  requireProposal({ ...font, name: font.family }, 'Font');
-  fontFallbacks.set(font.family, { ...font, proposed: true });
+  requireApproval({ ...font, name: font.family }, 'Font');
+  fontFallbacks.set(font.family, { ...font, addition: true });
 }
 
 function fontStack(stack) {
@@ -181,7 +184,7 @@ function fontStack(stack) {
 }
 
 const typeAdditions = new Map((additions.type?.styles ?? []).map((style) => {
-  requireProposal(style, 'Type style');
+  requireApproval(style, 'Type style');
   return [style.name, style];
 }));
 
@@ -194,18 +197,18 @@ for (const name of typeAdditions.keys()) {
 
 // ------------------------------------------------------------------ scales
 
-const spacingTokens = brand.spacing.tokens.map((token) => ({ ...token, proposed: false }));
+const spacingTokens = brand.spacing.tokens.map((token) => ({ ...token, addition: false }));
 const layoutTokens = (additions.layout?.tokens ?? []).map((token) => {
-  requireProposal(token, 'Layout token');
-  return { ...token, proposed: true };
+  requireApproval(token, 'Layout token');
+  return { ...token, addition: true };
 });
 const radiusTokens = brand.radius.tokens;
 const zTokens = (additions.zIndex?.tokens ?? []).map((token) => {
-  requireProposal(token, 'z-index token');
+  requireApproval(token, 'z-index token');
   return token;
 });
 const motionTokens = (additions.motion?.tokens ?? []).map((token) => {
-  requireProposal(token, 'Motion token');
+  requireApproval(token, 'Motion token');
   return token;
 });
 
@@ -225,11 +228,11 @@ const baseOfSteps = (list, key, owner) => {
 
 const css = [];
 const line = (text = '') => css.push(text);
-const PROPOSED = 'PROPOSED, pending approval: see design/tokens.additions.json.';
+const APPROVED = 'APPROVED addition: see design/tokens.additions.json.';
 
 line(`/* ${HEADER} */`);
-line(`/* Merged with ${ADDITIONS_FILE}: every line marked PROPOSED comes from it and is pending the brand owner's`);
-line('   approval. Regenerate with `npm run tokens` (needs docs/brand/tokens.json locally; the build never reads it). */');
+line(`/* Merged with ${ADDITIONS_FILE}: every line marked APPROVED comes from it, approved by the brand`);
+line('   owner with Phase 2. Regenerate with `npm run tokens` (needs docs/brand/tokens.json locally; the build never reads it). */');
 line();
 
 function colourBlock(theme, indent) {
@@ -239,10 +242,10 @@ function colourBlock(theme, indent) {
     if (theme === 'light') {
       const notes = [];
       if (token.usage) notes.push(clean(token.usage));
-      if (token.proposed) notes.push(token.was ? `${PROPOSED} Was ${describeRaw(token.was.light)} (light), ${describeRaw(token.was.dark)} (dark).` : PROPOSED);
+      if (token.addition) notes.push(token.was ? `${APPROVED} Was ${describeRaw(token.was.light)} (light), ${describeRaw(token.was.dark)} (dark).` : APPROVED);
       for (const note of notes) out.push(`${indent}/* ${note} */`);
-    } else if (token.proposed) {
-      out.push(`${indent}/* ${name}: ${PROPOSED} */`);
+    } else if (token.addition) {
+      out.push(`${indent}/* ${name}: ${APPROVED} */`);
     }
     const raw = token.value[theme];
     const value = cssColour(name, theme);
@@ -277,7 +280,7 @@ if (fontFallbacks.size) {
   line('   Local fonts scaled to the web font\'s metrics, so text does not reflow when the web font swaps in. */');
   for (const [family, font] of fontFallbacks) {
     const f = font.fallback;
-    line(`/* ${family}${font.proposed ? `: ${PROPOSED}` : ''} */`);
+    line(`/* ${family}${font.addition ? `: ${APPROVED}` : ''} */`);
     line('@font-face {');
     line(`  font-family: "${f.name}";`);
     line(`  src: ${f.local.map((name) => `local("${name}")`).join(', ')};`);
@@ -302,12 +305,12 @@ for (const style of typeStyles) {
   let size = style.fontSize;
   if (add?.steps) {
     size = baseOfSteps(add.steps, 'fontSize', style.name);
-    for (const step of add.steps.slice(1)) addStep(step.minWidth, `--${style.name}-font-size: ${step.fontSize}; /* PROPOSED */`);
+    for (const step of add.steps.slice(1)) addStep(step.minWidth, `--${style.name}-font-size: ${step.fontSize}; /* APPROVED */`);
     const widest = add.steps.at(-1).fontSize;
     if (widest !== style.fontSize) console.warn(`build-tokens: ${style.name} widest step ${widest} differs from tokens.json ${style.fontSize}.`);
   }
-  const proposedNote = add?.steps ? ' /* PROPOSED: responsive steps, tokens.json size applies from the widest step */' : '';
-  line(`  --${style.name}-font-size: ${size};${proposedNote}`);
+  const additionNote = add?.steps ? ' /* APPROVED: responsive steps, tokens.json size applies from the widest step */' : '';
+  line(`  --${style.name}-font-size: ${size};${additionNote}`);
   line(`  --${style.name}-line-height: ${style.lineHeight};`);
   line(`  --${style.name}-font-weight: ${style.fontWeight};`);
   if (style.letterSpacing) line(`  --${style.name}-letter-spacing: ${style.letterSpacing};`);
@@ -319,27 +322,27 @@ line();
 line('  /* Radius */');
 for (const token of radiusTokens) line(`  --${token.name}: ${token.value}; /* ${clean(token.usage)} */`);
 line();
-line(`  /* Layout: ${PROPOSED} */`);
+line(`  /* Layout: ${APPROVED} */`);
 for (const token of layoutTokens) {
   let value = token.value;
   if (token.steps) {
     value = baseOfSteps(token.steps, 'value', token.name);
-    for (const step of token.steps.slice(1)) addStep(step.minWidth, `--${token.name}: ${step.value}; /* PROPOSED */`);
+    for (const step of token.steps.slice(1)) addStep(step.minWidth, `--${token.name}: ${step.value}; /* APPROVED */`);
   }
   line(`  --${token.name}: ${value}; /* ${clean(token.usage)} */`);
 }
 line();
-line(`  /* z-index scale: ${PROPOSED} */`);
+line(`  /* z-index scale: ${APPROVED} */`);
 for (const token of zTokens) line(`  --z-${token.name}: ${token.value};`);
 line();
-line(`  /* Motion: ${PROPOSED} */`);
+line(`  /* Motion: ${APPROVED} */`);
 for (const token of motionTokens) line(`  --${token.name}: ${token.value};`);
 line('}');
 line();
 
 const sortedSteps = [...steps.entries()].sort((a, b) => a[0] - b[0]);
 if (sortedSteps.length) {
-  line('/* Responsive steps (PROPOSED), mobile first. */');
+  line('/* Responsive steps (APPROVED), mobile first. */');
   for (const [px, declarations] of sortedSteps) {
     line(`@media (min-width: ${px}px) {`);
     line('  :root {');
@@ -363,9 +366,9 @@ for (const style of typeStyles) {
   if (style.letterSpacing) line(`  letter-spacing: var(--${style.name}-letter-spacing);`);
   if (style.fontStyle) line(`  font-style: ${style.fontStyle};`);
   if (style.family === 'display') line('  font-optical-sizing: auto;');
-  if (add?.fontVariationSettings) line(`  font-variation-settings: ${add.fontVariationSettings}; /* PROPOSED */`);
-  if (add?.fontVariantNumeric) line(`  font-variant-numeric: ${add.fontVariantNumeric}; /* PROPOSED */`);
-  if (add?.textTransform) line(`  text-transform: ${add.textTransform}; /* PROPOSED */`);
+  if (add?.fontVariationSettings) line(`  font-variation-settings: ${add.fontVariationSettings}; /* APPROVED */`);
+  if (add?.fontVariantNumeric) line(`  font-variant-numeric: ${add.fontVariantNumeric}; /* APPROVED */`);
+  if (add?.textTransform) line(`  text-transform: ${add.textTransform}; /* APPROVED */`);
   line('}');
 }
 
@@ -386,7 +389,7 @@ const knownSizes = new Set([...spacingTokens, ...layoutTokens].map((t) => t.name
 for (const name of maxWidthNames) if (!knownSizes.has(name)) fail(`maxWidth needs a "${name}" token.`);
 
 tsLine(`// ${HEADER}`);
-tsLine(`// Merged with ${ADDITIONS_FILE}; the names in \`proposed\` are pending the brand owner's approval.`);
+tsLine(`// Merged with ${ADDITIONS_FILE}; the names in \`approvedAdditions\` come from it, approved by the brand owner.`);
 tsLine('// Regenerate with `npm run tokens`. Values are the custom properties defined in app/styles/tokens.css, so the');
 tsLine('// theme flips without a rebuild; tailwind.config.ts and lib/utils.ts read these objects.');
 tsLine();
@@ -471,17 +474,17 @@ tsLine('export const easing = {');
 tsLine(objectLiteral(eases.map((t) => [easeKey(t.name), q(t.value)])));
 tsLine('} as const;');
 tsLine();
-const proposedNames = [
-  ...[...colours].filter(([, t]) => t.proposed).map(([name]) => `colour ${name}`),
-  ...[...fontFallbacks].filter(([, f]) => f.proposed).map(([family]) => `font ${family} fallback`),
+const additionNames = [
+  ...[...colours].filter(([, t]) => t.addition).map(([name]) => `colour ${name}`),
+  ...[...fontFallbacks].filter(([, f]) => f.addition).map(([family]) => `font ${family} fallback`),
   ...typeStyles.filter((s) => s.addition).map((s) => `type ${s.name}`),
   ...layoutTokens.map((t) => `layout ${t.name}`),
   ...zTokens.map((t) => `z-index ${t.name}`),
   ...motionTokens.map((t) => `motion ${t.name}`),
 ];
-tsLine(`/** Tokens whose values come from ${ADDITIONS_FILE}, pending the brand owner's approval. */`);
-tsLine('export const proposed = [');
-proposedNames.forEach((name) => tsLine(`  ${q(name)},`));
+tsLine(`/** Tokens whose values come from ${ADDITIONS_FILE}, approved by the brand owner. */`);
+tsLine('export const approvedAdditions = [');
+additionNames.forEach((name) => tsLine(`  ${q(name)},`));
 tsLine('] as const;');
 
 // ------------------------------------------------------------------ lib/design/tokens.docs.ts
@@ -510,7 +513,7 @@ const colourDocs = [...colours].map(([name, token]) => {
     dark: resolveHex(name, 'dark'),
     source: { light: describeSource(token.value.light), dark: describeSource(token.value.dark) },
     usage: token.usage ?? '',
-    proposed: token.proposed,
+    addition: token.addition,
     change: addition?.change,
     reason: token.reason,
     was: token.was
@@ -533,7 +536,7 @@ const typeDocs = brand.type.groups.flatMap((group) =>
       fontStyle: style.fontStyle,
       sample: PUBLIC_SAMPLES[style.name] ?? style.sample ?? style.name,
       usage: style.usage ?? '',
-      proposed: add
+      addition: add
         ? {
             change: add.change,
             reason: add.reason,
@@ -565,7 +568,7 @@ const docs = {
   fontFallbackDocs: [...fontFallbacks].map(([family, font]) => ({
     family,
     ...font.fallback,
-    proposed: font.proposed,
+    addition: font.addition,
     reason: font.reason ?? '',
   })),
   typeDocs,
@@ -590,7 +593,7 @@ const DOC_TYPES = {
 
 const docsTs = [];
 docsTs.push(`// ${HEADER}`);
-docsTs.push(`// Merged with ${ADDITIONS_FILE}. Every token's value, source, usage note and proposal status, and the type`);
+docsTs.push(`// Merged with ${ADDITIONS_FILE}. Every token's value, source, usage note and addition status, and the type`);
 docsTs.push('// samples, for the /design-system page. Regenerate with `npm run tokens`; the build never reads docs/brand.');
 docsTs.push('');
 docsTs.push("import type { ColorToken, TypeStyle } from './tokens';");
@@ -602,10 +605,10 @@ export interface ColourDoc {
   dark: string;
   source: { light: string; dark: string };
   usage: string;
-  proposed: boolean;
+  addition: boolean;
   change?: string;
   reason?: string;
-  /** The tokens.json value a proposal replaces. */
+  /** The tokens.json value an approved addition replaces. */
   was?: { light: string; dark: string };
 }
 
@@ -618,11 +621,11 @@ export interface FontFallbackDoc {
   ascentOverride: string;
   descentOverride: string;
   lineGapOverride: string;
-  proposed: boolean;
+  addition: boolean;
   reason: string;
 }
 
-/** A type style. proposed holds what the additions change. */
+/** A type style. addition holds what the approved additions change. */
 export interface TypeDoc {
   name: TypeStyle;
   group: string;
@@ -634,7 +637,7 @@ export interface TypeDoc {
   fontStyle?: string;
   sample: string;
   usage: string;
-  proposed?: {
+  addition?: {
     change?: string;
     reason: string;
     steps?: readonly { minWidth: number; fontSize: string }[];
@@ -651,7 +654,7 @@ export interface ScaleDoc {
   usage: string;
 }
 
-/** A proposed layout token; value is the base, steps the widths it changes at. */
+/** An approved layout token; value is the base, steps the widths it changes at. */
 export interface LayoutDoc {
   name: string;
   value: string;
@@ -715,4 +718,4 @@ for (const [fg, bg, min] of CONTRAST_PAIRS) {
   console.log(`  ${`${fg} on ${bg}`.padEnd(34)} min ${String(min).padEnd(4)} ${cells.join('   ')}`);
 }
 console.log(failures ? `\n${failures} pair(s) below their minimum.` : '\nEvery checked pair meets its minimum.');
-console.log(`${proposedNames.length} proposed token(s) merged from ${ADDITIONS_FILE}.`);
+console.log(`${additionNames.length} approved addition(s) merged from ${ADDITIONS_FILE}.`);

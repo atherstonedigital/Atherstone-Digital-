@@ -1,97 +1,74 @@
-# CLAUDE.md — Atherstone Digital
+# CLAUDE.md: Atherstone Digital
 
-## Project Overview
+## Project
 
-Atherstone Digital is a Shopify ecommerce consultancy website built with Next.js 14 (App Router) and deployed as a static site on Netlify.
-
-## Tech Stack
-
-- **Framework**: Next.js 14 (App Router, `output: 'export'` for static generation)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS with custom brand theme
-- **Hosting**: Netlify (static, `/out` directory)
-- **Blog**: MDX-based via `next-mdx-remote` with `gray-matter` frontmatter parsing
-
-## Key Commands
+Atherstone Digital is one person, Dan Le Gresley, working as the ecommerce director for premium furniture and interiors retailers with showrooms. This repo is the marketing site: Next.js 14.2.5 App Router with `output: 'export'`, TypeScript strict, Tailwind 3.4, deployed as static files from `/out` on Netlify (Node 18). The repo is public.
 
 ```bash
-npm install       # Install dependencies
-npm run dev       # Local dev server at http://localhost:3000
-npm run build     # Static export to /out
-npm run lint      # ESLint via Next.js
+npm run dev       # http://localhost:3000
+npm run build     # static export to /out
+npm run lint
+npm run tokens    # regenerate the design tokens (needs docs/brand locally)
 ```
 
-## Project Structure
+Static export only: no API routes, server actions, middleware, SSR or `next.config` redirects. Redirects go in `netlify.toml` (the map is `lib/content/redirects.ts`). Forms post to Netlify Forms, so every field must also be in the static stub `public/__forms.html`.
 
-```
-app/                          # Next.js App Router pages
-├── page.tsx                  # Homepage
-├── layout.tsx                # Root layout
-├── globals.css               # Global styles + Tailwind imports
-├── services/[slug]/page.tsx  # Dynamic service pages
-├── [locationSlug]/page.tsx   # Dynamic location/city pages
-├── blog/[slug]/page.tsx      # Dynamic blog post pages
-├── about/                    # About page
-├── results/                  # Results/case studies
-├── why-not-an-agency/        # Why Not An Agency page
-├── the-model/                # The Model page
-├── shopify-ecommerce-consultant/
-├── privacy/                  # Privacy policy
-├── terms/                    # Terms of service
-├── sitemap.ts                # Auto-generated sitemap.xml
-└── robots.ts                 # Auto-generated robots.txt
+## Where things live
 
-components/                   # Shared React components
-├── Header.tsx                # Site header/navigation
-├── Footer.tsx                # Site footer
-├── Hero.tsx                  # Homepage hero section
-├── Contact.tsx               # Contact form
-├── CustomCursor.tsx          # Custom cursor effect
-├── LeadMagnet.tsx            # Lead magnet CTA
-└── ThemeProvider.tsx          # Theme context provider
+- `app/(site)/`: the rebuilt site. Its `layout.tsx` renders the Nav, `<main>` and Footer (`components/site/SiteShell.tsx`); a page file renders only its sections and exports `metadata` from `buildMetadata()`.
+- `app/(legacy)/`: the pre-rebuild routes, kept until the integrate step removes them with `lib/data.ts`, `lib/siteConfig.ts`, `components/*.tsx` at the top level, the Fraunces and Hanken Grotesk fonts, and the old favicon and `og-image.*` files.
+- `app/design-system/`: every token and component in both themes. Keep it; it is noindex.
+- `app/og/[group]/[image]/route.tsx`: share images rendered at build for routes without a hand-made one (`lib/og/share-card.tsx`, fonts in `assets/fonts`). Hand-made ones are in `public/og`.
+- Icons: `app/icon.svg`, `app/apple-icon.png`, `app/manifest.ts`, `public/favicon-32.png`, `public/favicon-48.png`, `public/icon-192.png`, `public/icon-512.png`.
+- `docs/site-plan.md` (the plan: copy, sitemap, title tags, schema) and `docs/brand/` (brand book, `tokens.json`, component READMEs, assets) are local only and never in git. Nothing the build runs may read them.
 
-lib/
-├── data.ts                   # Blog posts, locations, services data
-└── siteConfig.ts             # Site configuration (single source of truth for CTA, capacity, pricing)
+## Design tokens
 
-public/                       # Static assets (images, fonts)
-```
+`scripts/build-tokens.mjs` reads `docs/brand/tokens.json`, merges `design/tokens.additions.json` (additions the brand owner approved; the script refuses any entry whose status is not `approved`) and writes `app/styles/tokens.css`, `lib/design/tokens.ts` and `lib/design/tokens.docs.ts`. The outputs are committed and are the build's only source: never edit them by hand, run `npm run tokens`. `tailwind.config.ts` reads `lib/design/tokens.ts`; type utilities are named exactly as the type styles (`display-1`, `display-2`, `heading-1`, `heading-2`, `figure`, `quote`, `eyebrow`, `body-lg`, `body`, `small`, `button`). Colours are tokens (`paper`, `paper-raised`, `ink`, `ink-muted`, `rule`, `rule-strong`, `green-900`, `green-700`, `on-green`, `brass-600`, `brass-300`, `signal-*`, `focus`, `band`, `on-band`); never write a hex in a component. Where a value cannot be a custom property (theme colour, manifest, share images) read `colorValues` from `lib/design/tokens.ts`. Fonts: Newsreader (display) and Schibsted Grotesk (sans) through next/font. No third face.
 
-## Brand & Design Tokens
+## Components (use them; do not restyle; extend minimally and say so)
 
-Defined in `tailwind.config.ts` under `theme.extend.colors.brand`:
+- `components/ui`: the shadcn primitives the brand allows, restyled to the tokens: accordion, button, form, input, label, navigation-menu, select, sheet, textarea.
+- `components/brand`: Wordmark, Button (with LinkButton, TextLink), SectionHeading, StatBlock, Testimonial, OfferCard, LinkedCard.
+- `components/site`: SiteShell, Nav, Footer, Breadcrumbs, CTABand, ThemeToggle, Hero, ProblemCards, ComparisonTable, Steps, SectorTiles, AboutStrip, InsightCards, CaseStudyHeader, ArticleHeader, ContactForm, LeadMagnet, FAQ, Chart, JsonLd, DrawerGesture, PressFeedback, form-panel-styles.
 
-| Token              | Value                      | Usage                  |
-|--------------------|-----------------------------|------------------------|
-| `brand-dark`       | `#F3F0E8`                  | Page backgrounds (bone) |
-| `brand-surface`    | `#FFFFFF`                  | Card/section backgrounds |
-| `brand-surfaceHighlight` | `rgba(23, 21, 15, 0.05)` | Hover/active surfaces |
-| `brand-primary`    | `#BC4A2B`                  | Primary clay CTA/links |
-| `brand-accent`     | `#8A5A2B`                  | Accent ochre highlights |
-| `brand-text`       | `#17150F`                  | Body text (ink)        |
-| `brand-muted`      | `#6B6557`                  | Secondary/muted text   |
-| `brand-border`     | `rgba(23, 21, 15, 0.12)`   | Subtle borders         |
+GSAP is for the hero entrance and the mobile drawer only; no ScrollTrigger. Everything else is CSS transitions.
 
-Fonts: Hanken Grotesk (body, `font-sans`), Fraunces (display headings, `font-display`).
+## Content and SEO
 
-Brand assets (favicon, OG images) live in `public/`. After brand changes, regenerate the rasterised versions with `node scripts/generate-og.mjs` and `node scripts/generate-icons.mjs` (both require dev-only `sharp`).
+- `lib/content/site.ts`: nav, footer, contact details, homepage sections, offers and sectors. Kept light: the nav bundle imports it.
+- `lib/content/pages/*.ts`: each route's copy (offers, sectors, results, about, agency-or-in-house, contact, scorecard, privacy, terms, insights). `lib/content/insights-archive.ts` holds the moved /blog posts. `lib/content/types.ts` types it all.
+- Copy is verbatim from the plan. Where the plan writes nothing, the content holds a stub (`lib/content/stub.ts`): pages show "Content to follow" there, and a page that is mostly stubs is noindex. Never fill a stub with invented figures, client facts or testimonials. Drafts written for Dan to approve are marked as drafts in comments.
+- `lib/seo.ts`: the route registry (title tag, description, H1, robots, share image), `buildMetadata()` (title.absolute, canonical on https://www.atherstonedigital.com with no trailing slash, Open Graph, Twitter) and the JSON-LD builders: Organization (site-wide, in the root layout), Person, Service, FAQPage, BreadcrumbList, Article. No LocalBusiness and no geo meta tags.
 
-## Content Management
+## Public repo rule: client figures
 
-- **Blog posts**: Add entries to the `BLOG_POSTS` array in `lib/data.ts`
-- **Location pages**: Add entries to `LOCATIONS_DATA` in `lib/data.ts` — include unique `uniqueContent` per city to avoid duplicate content penalties
-- **Services**: Defined in `lib/data.ts` with dynamic routing via `app/services/[slug]/`
+Only figures already public on the live site may appear anywhere in code, content or comments: 16,193 product records, 120+ hours a month automated, £250k monthly revenue within six months (a home and interiors brand, via Ranch Creative), £115k+ incremental email revenue across partner accounts, and the three testimonials. Every other client figure in the plan (revenue, orders, sessions, conversion rates, ROAS, Search Console data, any Saverys, Canwell or JLR figure, ad account IDs, turnover bands) stays out until the client gives written permission. Share images carry no client figures at all.
 
-## SEO
+## Taste-skill rulings (owner approved)
 
-Every page exports `metadata` with unique title + description. JSON-LD structured data is added per page type (`LocalBusiness`, `FAQPage`, `BlogPosting`). Sitemap and robots.txt are auto-generated.
+The design-taste-frontend checks that conflict with the brand book are out of scope here: section-air (the hairline under every SectionHeading is the brand's structural device), no-visual, text-only and card-visual (no decorative visuals; only real photographs, screenshots and charts), visual-caption (source lines under charts and screenshots stay), moment-none and effect-kind (no dealt moments or effects), and phone-number (the real number is shown). No drag gesture on the FAQ accordion. Never invoke design-taste-frontend through the Skill tool: its Stop hook runs the gate against this repo.
 
-## Coding Conventions
+## Voice and copy rules
 
-- Use TypeScript strict mode
-- Use Tailwind utility classes; avoid inline styles
-- Use the `brand-*` color tokens from the Tailwind config — do not hardcode hex values
-- Components go in `components/`; page-level components stay in their `app/` route folder
-- Keep `lib/data.ts` as the single source of truth for content data
-- Static export only — no server-side features (no API routes, no SSR, no middleware)
-- All images in `public/` — use Next.js `<Image>` component with explicit dimensions
+Every page is written as Dan talking to a retailer who owns the building. These rules go into CLAUDE.md for the build so they hold across every Claude Code session.
+
+- **First person singular.** "I", never "we". There is one person; pretending otherwise undercuts the proposition.
+- **Buyer language.** "Showroom", "shop floor", "the website", "online", "your Google ads". Not "DTC", "omnichannel", "growth engine", "full stack" or "fractional" in body copy. "Fractional ecommerce director" appears only where it is the search term: the /ecommerce-director title tag, H1 variant and FAQ.
+- **Sector detail in every section.** If a paragraph could sit on any ecommerce consultant's site, rewrite it until it couldn't. Sofas, swatches, lead times, two-person delivery, square metres, Christmas peak.
+- **Specific over abstract.** A number, a client name, a dated event. "16,193 records" not "thousands of fixes". No "best-in-class", "cutting-edge", "seamless", "elevate", "leverage", "empower", "unlock", "tapestry", "delve".
+- **Lead with the uncomfortable point.** Each page and article opens with the thing the reader would rather not hear, then helps.
+- **One misconception corrected per piece.** "Shopify Plus pays for itself later than agencies say." "The showroom sale your site made doesn't show in GA4."
+- **British English, no em dashes.** Commas, full stops, colons. Sentences under 25 words where possible. Paragraphs of three sentences or fewer.
+- **No warm-ups.** No "In today's competitive landscape". No restating the heading in the first sentence.
+- **Honest about scope.** Where there is no named client for a sector, say so rather than imply one. "I haven't run a lighting retailer yet; here's the catalogue work that transfers."
+- **Design follows the same rules.** Type-led, minimal, one accent colour, Dan's face once on the homepage and once on About. No dashboard mock-ups, no capability badges, no automation theatre. Real screenshots of real catalogues and reports are the imagery.
+
+Also: sentence case for every heading and button, and no em dashes anywhere, comments and code strings included. Never write "three partners", "max 3" or any client count as a capacity claim: the roster is "a small roster", stated once.
+
+## Conventions
+
+- TypeScript strict; Tailwind utilities on the tokens; no inline styles except where a component computes a value.
+- Components in `components/`; page-only pieces stay in their route folder.
+- Images: real photographs and screenshots only, under 150kb, WebP, optimised before they ship (`images.unoptimized` is on), with descriptive alt text.
+- Python scripts that touch `.claude/skills` run with `python3 -I -B`, so no `__pycache__` lands in the repo.

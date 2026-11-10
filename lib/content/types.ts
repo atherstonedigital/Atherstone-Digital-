@@ -10,11 +10,26 @@ export interface Link {
 }
 
 export interface PageMeta {
-  /** The plan's title tag, written in full: use it with title.absolute so the layout template does not repeat the
-   *  brand suffix. */
+  /** The plan's title tag, written in full: lib/seo.ts sets it as title.absolute so the layout template does not
+   *  repeat the brand suffix. */
   title: string;
   description: string;
 }
+
+// ------------------------------------------------------------------ stubs
+
+/**
+ * A part of a page the plan does not write yet (Phase 3 decisions 3 and 4). Pages render STUB_LABEL from
+ * lib/content/stub.ts in its place, visibly, and a page that is mostly stubs is noindex. The note says what the plan
+ * asks for there; it is for the writer and is never rendered.
+ */
+export interface Stub {
+  stub: true;
+  note: string;
+}
+
+/** Written copy, or a stub until it is written. */
+export type Written<T> = T | Stub;
 
 // ------------------------------------------------------------------ navigation, footer, contact
 
@@ -202,6 +217,7 @@ export interface AboutSection extends SectionIntro {
   link: Link;
 }
 
+/** One of the plan's twelve planned articles (Content and distribution, first 90 days). None is written yet. */
 export interface Article {
   week: number;
   /** Proposed slug under /insights; the plan defines none. */
@@ -217,6 +233,8 @@ export interface Article {
   published?: string;
   /** Reading time in whole minutes (readingMinutes() in components/site/ArticleHeader.tsx). Set with published. */
   minutes?: number;
+  /** The insight cluster it will sit in on /insights. A Phase 3 assignment; the plan does not give one. */
+  cluster?: InsightClusterId;
 }
 
 // ------------------------------------------------------------------ case studies
@@ -233,11 +251,14 @@ export interface CaseStudy {
   title: string;
   /**
    * The business line: sector, showrooms, platform and what online was doing before, in one sentence. The turnover
-   * band only with the client's written permission.
+   * band only with the client's written permission. A stub until the plan or the client supplies it.
    */
-  business: string;
-  /** The headline number and its line. Only figures already public may appear in this repository. */
-  stat: Pick<ProofFigure, 'figure' | 'line'>;
+  business: Written<string>;
+  /**
+   * The headline number and its line. Only figures already public may appear in this repository. Left out where the
+   * plan's headline has no number (Saverys of Broadway, Licklibrary); CaseStudyHeader then sets no StatBlock.
+   */
+  stat?: Pick<ProofFigure, 'figure' | 'line'>;
   /** The sector tag. Clients outside the five sectors (wellness, digital) carry a label and no sector page. */
   sector: { label: string; slug?: SectorSlug };
   problems: ProblemTag[];
@@ -245,8 +266,11 @@ export interface CaseStudy {
   quoteBy?: string;
 }
 
+/** What an article card needs: the planned articles and the archive posts both carry it. */
+export type ArticleCard = Pick<Article, 'slug' | 'href' | 'title' | 'sectorTag'>;
+
 export interface InsightsSection extends SectionIntro {
-  articles: Article[];
+  articles: ArticleCard[];
 }
 
 // ------------------------------------------------------------------ forms
@@ -324,4 +348,291 @@ export interface Faq {
   /** The page the FAQ belongs to; it carries FAQPage schema there. */
   page: string;
   items: FaqItem[];
+}
+
+// ------------------------------------------------------------------ pages (lib/content/pages)
+
+/** The head of a page: its title tag and meta description, and the H1. */
+export interface PageHead {
+  meta: PageMeta;
+  h1: string;
+}
+
+/** A section with a heading and running copy: one string per paragraph. */
+export interface TextSection {
+  heading: string;
+  paragraphs: Written<string[]>;
+}
+
+/** A section with a heading and a list (dash bullets, brand book Iconography). */
+export interface ListSection {
+  heading: string;
+  /** A lead-in above the list. */
+  intro?: string;
+  items: Written<string[]>;
+}
+
+/** A section of titled items: a bold run-in title and its line or two. */
+export interface ItemsSection {
+  heading: string;
+  items: Written<Problem[]>;
+}
+
+/** A two-column ledger table. */
+export interface TableSection {
+  heading: string;
+  /** Screen-reader caption. */
+  caption: string;
+  columns: [string, string];
+  rows: [string, string][];
+}
+
+/** The FAQ block: the FAQ component's content, FAQPage schema made from the same items. */
+export interface FaqSection extends SectionIntro {
+  items: FaqItem[];
+}
+
+/** A question the plan names whose answer is not written. Shown with STUB_LABEL, kept out of FAQPage schema. */
+export interface FaqQuestionStub {
+  question: string;
+  answer: Stub;
+}
+
+/** The closing band on offer and sector pages (CTABand): book a call, or start with the Health Check. */
+export interface ClosingActions {
+  primary: Link;
+  secondary: Link;
+}
+
+/** The links an offer page owes the rest of the site (plan, Internal linking rules). */
+export interface OfferLinks {
+  /** The two other offers. */
+  offers: OfferId[];
+  /** The sector pages. */
+  sectors: SectorSlug[];
+  /** Two case studies, by slug. The plan does not name them; Phase 3 picks. */
+  caseStudies: [string, string];
+}
+
+/** Service JSON-LD inputs for an offer page (plan, Structured data: Service with price where stated). */
+export interface ServiceSchema {
+  name: string;
+  description: string;
+  /** Prices in GBP. A "from" price is a minimum; tiers are fixed prices. None where the plan states no price. */
+  price?: { from: number; unit?: 'MONTH' } | { tiers: { name: string; price: number }[] };
+}
+
+export interface EcommerceDirectorPage extends PageHead {
+  id: 'ecommerce-director';
+  path: '/ecommerce-director';
+  intro: string;
+  whoFor: TextSection;
+  whatIOwn: TableSection;
+  month: TextSection;
+  notIncluded: TextSection;
+  pricing: TextSection;
+  fit: { heading: string; good: { label: string; items: string[] }; notFit: { label: string; items: string[] } };
+  faq: FaqSection;
+  closing: ClosingActions;
+  links: OfferLinks;
+  service: ServiceSchema;
+}
+
+export interface PriceTier {
+  /** The catalogue size the tier covers, as the plan writes it. */
+  label: string;
+  price: string;
+  /** The tier the reader should choose: the one brass-300 band on the page. None is chosen by the plan. */
+  highlight?: boolean;
+}
+
+export interface StoreHealthCheckPage extends PageHead {
+  id: 'store-health-check';
+  path: '/store-health-check';
+  intro: string;
+  checked: { heading: string; items: Problem[] };
+  deliverables: TextSection;
+  pricing: {
+    heading: string;
+    intro: string;
+    tiers: PriceTier[];
+    note: string;
+    /** The tier table's caption (screen readers only), column heads, and the word on the highlighted tier. */
+    table: { caption: string; columns: [string, string]; highlightLabel: string };
+  };
+  faq: FaqSection;
+  closing: ClosingActions;
+  links: OfferLinks;
+  service: ServiceSchema;
+}
+
+export interface BuildsPage extends PageHead {
+  id: 'shopify-builds-and-migrations';
+  path: '/shopify-builds-and-migrations';
+  intro: string;
+  builtForTheSector: { heading: string; items: string[] };
+  migrations: TextSection;
+  howItRuns: TextSection;
+  pricing: TextSection;
+  faq: FaqSection;
+  closing: ClosingActions;
+  links: OfferLinks;
+  service: ServiceSchema;
+}
+
+/** A proof card on a sector page: the matching case study with its headline number and a quote. */
+export interface SectorProof {
+  /** The case study, by slug in lib/content/pages/results.ts. */
+  caseStudy: string;
+  /** The quoting person's name in proof.testimonials (lib/content/site.ts). */
+  quoteBy?: string;
+}
+
+export interface SectorPage extends PageHead {
+  slug: SectorSlug;
+  path: string;
+  /** Written: the furniture page. Every other sector page is noindex until its body is written (decision 3). */
+  written: boolean;
+  /** Three sentences: the sector's online reality, what the site should be doing, one line on who I am. */
+  intro: Written<string>;
+  /** Five problems specific to the sector, each with two lines. The plan names the other sectors' problems only. */
+  problems: { heading: string; items: { title: string; body: Written<string> }[] };
+  /** Five or six bullets drawn from the three offers, worded for the sector. */
+  differently: ListSection;
+  proof: { heading: string; cards: Written<SectorProof[]> };
+  /** Three articles from the sector's cluster, by slug in lib/content/insights-archive.ts or the planned list. */
+  articles: { heading: string; slugs: Written<string[]> };
+  /** Four questions the sector's owners ask, with FAQPage schema for the answered ones. */
+  faq: SectionIntro & { items: Written<(FaqItem | FaqQuestionStub)[]> };
+  closing: ClosingActions;
+  /** What the plan says about the page that is not copy: proof to feature, launch status. Never rendered. */
+  planNotes: string[];
+}
+
+/** One case study page (plan, Results: the case study template, parts 1 to 8). */
+export interface CaseStudyPage extends PageHead {
+  caseStudy: CaseStudy;
+  /** Mostly unwritten pages are noindex (decision 4). */
+  written: boolean;
+  /** Part 1: the one-line summary beside the headline number, from the plan's "Write these four first" table. */
+  summary: Written<string>;
+  /** Part 2 is the CaseStudyHeader business line. Parts 3 to 7: */
+  problem: TextSection;
+  whatIDid: ListSection;
+  result: TextSection;
+  /** Part 6: the testimonial, by name in proof.testimonials. */
+  quoteBy?: string;
+  whatsNext: TextSection;
+  /** Part 8: the offer it demonstrates, the sector page, two related articles. */
+  links: { offer: Written<OfferId>; sector?: SectorSlug; articles: Written<string[]> };
+  planNotes: string[];
+}
+
+export interface ResultsIndexPage extends PageHead {
+  intro: Written<string>;
+  /** The two filters (plan, /results). Labels for the problem values are problemTags in lib/content/site.ts. */
+  filters: { sector: string; problem: string; all: string };
+  /** Case-study slugs in the order the index lists them: the plan's "write these four first", then Licklibrary. */
+  order: string[];
+}
+
+export interface AgencyOrInHousePage extends PageHead {
+  /** The homepage comparison, which the page carries until the full cost table is written. */
+  comparisonHeading: string;
+  honestCase: TextSection;
+  fullCost: TextSection;
+  questions: ListSection;
+  directorFit: TextSection;
+  faq: SectionIntro & { items: Written<FaqItem[]> };
+  closing: ClosingActions;
+  planNotes: string[];
+}
+
+export interface AboutPage extends PageHead {
+  /** Each part in the plan's order: the interiors work first, the career, how I work, the band, credentials. */
+  interiors: TextSection;
+  career: TextSection;
+  howIWork: TextSection;
+  band: TextSection;
+  credentials: { heading: string; items: string[] };
+  portraitAlt: string;
+  closing: ClosingActions;
+}
+
+export interface ContactPage extends PageHead {
+  intro: string;
+  calendly: { heading: string; url: string; title: string };
+}
+
+export interface ThankYouPage extends PageHead {
+  body: string;
+  followUpLead: string;
+  links: Link[];
+}
+
+export interface ScorecardPage extends PageHead {
+  intro: string;
+  /** The scorecard document's seven numbers. Not written yet (plan, open decisions). */
+  document: Written<{ heading: string; items: Problem[] }>;
+}
+
+export interface LegalPage extends PageHead {
+  /** The text is the pre-rebuild page's (app/(legacy)/privacy and /terms), ported by the page builder. */
+  source: string;
+}
+
+export type InsightClusterId =
+  | 'catalogue-and-feeds'
+  | 'paid-media'
+  | 'email-and-samples'
+  | 'tracking-and-reporting'
+  | 'showroom-and-online'
+  | 'shopify-for-interiors'
+  | 'archive';
+
+export interface InsightCluster {
+  id: InsightClusterId;
+  /** The plan's cluster name; Archive is the Phase 3 home for posts that fit none (decision 8). */
+  label: string;
+}
+
+/** A post moved from the pre-rebuild /blog (lib/content/insights-archive.ts). */
+export interface ArchivePost {
+  slug: string;
+  href: string;
+  title: string;
+  excerpt: string;
+  /** ISO 8601 date, as published on /blog. */
+  published: string;
+  /** Whole minutes at 230 words a minute (readingMinutes()), from the body. */
+  minutes: number;
+  cluster: InsightClusterId;
+  /** The tag on its card and in its ArticleHeader: the sector where it is about one, else the cluster's label. */
+  sectorTag: string;
+  sector?: SectorSlug;
+  /** The /blog category it was filed under. */
+  legacyCategory: string;
+  /** The live page is a custom one with no Markdown body (ai-writing-tells). */
+  custom?: boolean;
+  /** Markdown. */
+  body: string;
+}
+
+export interface InsightsIndexPage extends PageHead {
+  intro: Written<string>;
+  clusters: InsightCluster[];
+}
+
+/** One 301 for netlify.toml (plan, Redirect map), in the order Netlify must read them: specific before splat. */
+export interface Redirect {
+  from: string;
+  to: string;
+  status: 301;
+  force: true;
+  /**
+   * Where the rule comes from: the plan's map, a Phase 3 decision, an existing netlify.toml rule, a proposal, or a
+   * removed pre-rebuild file pointed at its replacement.
+   */
+  source: 'plan' | 'decision' | 'existing' | 'proposed' | 'retired';
+  note?: string;
 }

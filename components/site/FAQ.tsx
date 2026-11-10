@@ -3,6 +3,7 @@ import * as React from 'react';
 import { SectionHeading } from '@/components/brand/SectionHeading';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import type { FaqItem } from '@/lib/content/types';
+import { faqPageJsonLd, serializeJsonLd } from '@/lib/structured-data';
 import { cn } from '@/lib/utils';
 
 // The FAQ block (plan: every offer and sector page, and SEO 6, "FAQ blocks with direct answers"): the Accordion with
@@ -27,23 +28,8 @@ export interface FAQProps extends Omit<React.HTMLAttributes<HTMLElement>, 'conte
   defaultOpen?: number[];
 }
 
-/** FAQPage structured data for a list of questions. Plain text in, plain text out. */
-export function faqPageSchema(items: FaqItem[]) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: items.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
-    })),
-  };
-}
-
-/** JSON for a script tag: "<" escaped so no answer can close the tag early. */
-function jsonForScript(value: unknown) {
-  return JSON.stringify(value).replace(/</g, '\\u003c');
-}
+/** FAQPage structured data for a list of questions (lib/structured-data.ts, shared with lib/seo.ts). */
+export const faqPageSchema = faqPageJsonLd;
 
 export function FAQ({
   content,
@@ -84,7 +70,7 @@ export function FAQ({
         ))}
       </Accordion>
       {schema ? (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonForScript(faqPageSchema(content.items)) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqPageJsonLd(content.items)) }} />
       ) : null}
     </Root>
   );

@@ -3,6 +3,7 @@ import NextLink from 'next/link';
 
 import { linkedCardClasses } from '@/components/brand/LinkedCard';
 import { SectionHeading } from '@/components/brand/SectionHeading';
+import { Stub } from '@/components/site/Screen';
 import type { Article, InsightsSection } from '@/lib/content/types';
 import { cn } from '@/lib/utils';
 
@@ -10,6 +11,10 @@ import { cn } from '@/lib/utils';
 // title in heading-2. The whole card is the link, so it answers the pointer as a linked card does (brand book, Motion):
 // a 2px lift on transform and a border that darkens to ink, no shadow. The lift waits for a fine pointer that can hover
 // and is dropped under reduced motion. No image, no date or reading time until the articles are written (Phase 1).
+//
+// placeholders (Phase 3 integrate, for the sector pages): where fewer articles are written than the row has places,
+// the empty places are bordered boxes on paper holding "Content to follow", so the row keeps its columns and the gap
+// shows. A placeholder is never a link.
 
 export type InsightCardsLayout = 'stack' | 'row';
 
@@ -35,6 +40,8 @@ export interface InsightCardsProps extends Omit<React.HTMLAttributes<HTMLElement
   headingLevel?: 'h2' | 'h3';
   /** The heading's id, for aria-labelledby. Generated when left out. */
   headingId?: string;
+  /** Empty places after the cards, each marked "Content to follow". None by default. */
+  placeholders?: number;
 }
 
 export function InsightCards({
@@ -43,6 +50,7 @@ export function InsightCards({
   withHeading = true,
   headingLevel = 'h2',
   headingId,
+  placeholders = 0,
   className,
   ...props
 }: InsightCardsProps) {
@@ -66,6 +74,11 @@ export function InsightCards({
               <span className="eyebrow text-ink-muted">{article.sectorTag}</span>
               <ItemHeading className="heading-2">{article.title}</ItemHeading>
             </NextLink>
+          </li>
+        ))}
+        {Array.from({ length: placeholders }, (_, index) => (
+          <li key={`to-follow-${index}`} className="rounded-radius-0 border border-rule bg-paper p-space-4">
+            <Stub />
           </li>
         ))}
       </ul>

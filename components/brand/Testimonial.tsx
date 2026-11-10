@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { TextLink } from '@/components/brand/Button';
 import type { Testimonial as TestimonialContent } from '@/lib/content/types';
 import { cn } from '@/lib/utils';
 
@@ -7,17 +8,32 @@ import { cn } from '@/lib/utils';
 // name and business, with the one-line result beneath. No quotation marks (the italic does the job), no decorative
 // quote glyph, no photo, logo or star rating, no coloured card, never centred. Only with written permission.
 //
-// The business is plain small text in ink-muted, as the README sets it, never a link: a page links to its case
-// studies on its own (the homepage's "All results").
+// The business is small text in ink-muted, as the README sets it. Where the page passes businessHref (the homepage, as
+// the Phase 1 reference set it), the business name is a text link to the client's case study, with the 44px hit area
+// a standalone link in small type takes; the middle dot before it stays ink-muted. Added at the Phase 3 integrate step.
 
 export interface TestimonialProps
   extends Omit<React.HTMLAttributes<HTMLElement>, 'children'>,
     Pick<TestimonialContent, 'quote' | 'name' | 'business' | 'result'> {
   /** The hairline across the top, with space-4 above the quote, matching the StatBlock. */
   rule?: boolean;
+  /** Links the business name to this page (the client's case study). Plain text when left out. */
+  businessHref?: string;
+  /** The link's accessible name, starting with the visible business name. The business name when left out. */
+  businessLinkLabel?: string;
 }
 
-export function Testimonial({ quote, name, business, result, rule = true, className, ...props }: TestimonialProps) {
+export function Testimonial({
+  quote,
+  name,
+  business,
+  result,
+  rule = true,
+  businessHref,
+  businessLinkLabel,
+  className,
+  ...props
+}: TestimonialProps) {
   return (
     <figure
       className={cn(
@@ -34,7 +50,13 @@ export function Testimonial({ quote, name, business, result, rule = true, classN
         <span className="font-semibold text-ink">{name}</span>{' '}
         <span className="text-ink-muted">
           {'· '}
-          {business}
+          {businessHref ? (
+            <TextLink href={businessHref} hitArea aria-label={businessLinkLabel}>
+              {business}
+            </TextLink>
+          ) : (
+            business
+          )}
         </span>
         {/* The result: its own line in small, weight 500, brass-600. Under 50 characters. */}
         {result ? <span className="mt-space-1 block font-medium text-brass-600">{result}</span> : null}

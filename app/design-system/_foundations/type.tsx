@@ -5,7 +5,7 @@ import { fontStacks } from '@/lib/design/tokens';
 import { typeDocs, type TypeDoc } from '@/lib/design/tokens.docs';
 import { cn } from '@/lib/utils';
 
-import { Ledger, ProposedMark, type LedgerRow } from './parts';
+import { Ledger, ApprovedMark, type LedgerRow } from './parts';
 
 // Every type style: its sample set in the style's own class (the classes in app/styles/tokens.css, named exactly as the
 // tokens), then its specs and usage note. Samples come from tokens.json, except where the public repo needs a public
@@ -17,7 +17,7 @@ function familyName(family: TypeDoc['family']) {
 }
 
 function sizeValue(doc: TypeDoc) {
-  const steps = doc.proposed?.steps;
+  const steps = doc.addition?.steps;
   if (!steps) return doc.fontSize;
   return steps
     .map((step) => (step.minWidth ? `${step.fontSize} from ${step.minWidth}px` : step.fontSize))
@@ -33,7 +33,7 @@ function specRows(doc: TypeDoc): LedgerRow[] {
   ];
   if (doc.letterSpacing) rows.push({ label: 'Tracking', value: doc.letterSpacing });
   if (doc.fontStyle) rows.push({ label: 'Style', value: doc.fontStyle });
-  const add = doc.proposed;
+  const add = doc.addition;
   if (add?.fontVariationSettings) rows.push({ label: 'Variation', value: add.fontVariationSettings });
   if (add?.fontVariantNumeric) rows.push({ label: 'Numerals', value: add.fontVariantNumeric });
   if (add?.textTransform) rows.push({ label: 'Transform', value: add.textTransform });
@@ -63,7 +63,7 @@ function TypeRow({ doc }: { doc: TypeDoc }) {
         <div className="grid gap-space-1">
           <p className="body font-semibold text-ink">{doc.name}</p>
           <p className="small text-ink">{doc.usage}</p>
-          {doc.proposed ? <ProposedMark /> : null}
+          {doc.addition ? <ApprovedMark /> : null}
         </div>
         <Ledger rows={specRows(doc)} />
       </div>

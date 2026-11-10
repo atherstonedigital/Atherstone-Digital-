@@ -1,7 +1,10 @@
-import type { Metadata } from 'next';
-import { Fraunces, Hanken_Grotesk, Newsreader, Schibsted_Grotesk } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
+import { Newsreader, Schibsted_Grotesk } from 'next/font/google';
 import Script from 'next/script';
-import { siteUrl } from '@/lib/content/site';
+
+import { JsonLd } from '@/components/site/JsonLd';
+import { colorValues } from '@/lib/design/tokens';
+import { defaultMetadata, organizationJsonLd } from '@/lib/seo';
 import { themeInitScript } from '@/lib/theme';
 import './globals.css';
 
@@ -31,34 +34,20 @@ const schibstedGrotesk = Schibsted_Grotesk({
   adjustFontFallback: true,
 });
 
-// The pre-rebuild families, still used by the pages in app/(legacy). Remove in Phase 3. Not preloaded: the brand
-// book allows two families, so pages on the new system must not download these. The @font-face rules stay, so a
-// legacy page still fetches them when it uses them.
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  variable: '--font-fraunces',
-  display: 'swap',
-  axes: ['opsz'],
-  preload: false,
-});
+const fontVariables = [newsreader, schibstedGrotesk].map((f) => f.variable).join(' ');
 
-const hankenGrotesk = Hanken_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-hanken-grotesk',
-  display: 'swap',
-  preload: false,
-});
+// Site-wide defaults from lib/seo.ts: metadataBase, the title template (for routes that set a plain title, such as
+// /design-system), the homepage description and the og-home share image. Every route in app/(site) overrides them
+// with buildMetadata(). The icons come from the file conventions (app/icon.svg, app/apple-icon.png, app/manifest.ts)
+// plus the two PNG links in <head> below.
+export const metadata: Metadata = defaultMetadata;
 
-const fontVariables = [newsreader, schibstedGrotesk, fraunces, hankenGrotesk].map((f) => f.variable).join(' ');
-
-// Site-wide metadata only. The pre-rebuild description, icons, share image and theme colour live in the
-// app/(legacy) layout; new routes set their own.
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: 'Atherstone Digital',
-    template: '%s | Atherstone Digital',
-  },
+// The browser bar follows the page ground in each theme, from the generated tokens, never a written hex.
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: colorValues.paper.light },
+    { media: '(prefers-color-scheme: dark)', color: colorValues.paper.dark },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -71,6 +60,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
         </Script>
         <link rel="alternate" type="text/markdown" href="/llms.txt" title="AI Context" />
+        {/* Google Search shows a favicon at a multiple of 48px (docs/brand Favicons README). */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+        {/* Organization, site-wide (plan, Structured data). */}
+        <JsonLd data={organizationJsonLd()} />
       </head>
       <body>{children}</body>
     </html>

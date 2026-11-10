@@ -5,34 +5,230 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Domain redirect (non-www → www) is handled by Netlify Domain Management.
+# Domain redirect (non-www to www) is handled by Netlify Domain Management.
 # Set www.atherstonedigital.com as the PRIMARY domain in:
-# Netlify Dashboard → Domain management → Set as primary domain
+# Netlify Dashboard, Domain management, Set as primary domain
 
-# Phase 1 re-anchor: 301 the retired term-carrying URLs to their Shopify-anchored slugs
+# Redirects: every rule is a 301 and mirrors lib/content/redirects.ts one for one, in the same order (that file says
+# why each exists). Netlify reads them top to bottom and the first match wins. Every target is a page or file the
+# static export builds, so no redirect leads to another redirect.
+
+# The plan's redirect map (Technical SEO, Redirect map).
+[[redirects]]
+  from = "/shopify-ecommerce-consultant"
+  to = "/ecommerce-director"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services"
+  to = "/ecommerce-director"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/shopify-plus-architecture"
+  to = "/shopify-builds-and-migrations"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/technical-development"
+  to = "/shopify-builds-and-migrations"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/conversion-rate-optimisation"
+  to = "/ecommerce-director"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/paid-media-growth"
+  to = "/ecommerce-director"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/retention-marketing"
+  to = "/ecommerce-director"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/ecommerce-automation"
+  to = "/ecommerce-director"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/ai-search-optimization"
+  to = "/ecommerce-director"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/google-feed-management"
+  to = "/store-health-check"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/shopify-catalogue-health"
+  to = "/store-health-check"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/why-not-an-agency"
+  to = "/agency-or-in-house"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ecommerce-agency-atherstone"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/shopify-expert-birmingham"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ecommerce-consultant-tamworth"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ecommerce-agency-leicester"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/shopify-agency-coventry"
+  to = "/"
+  status = 301
+  force = true
+
+
+# The blog moved to /insights with every slug (Phase 3 decision 8). The specific rules sit above /blog/:slug.
+[[redirects]]
+  from = "/blog"
+  to = "/insights"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/ai-writing-tells"
+  to = "/insights/ai-writing-tells"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/category/*"
+  to = "/insights"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/:slug"
+  to = "/insights/:slug"
+  status = 301
+  force = true
+
+
+# Earlier rules, repointed at their final pages so none is a chain.
 [[redirects]]
   from = "/fractional-ecommerce-director"
-  to = "/shopify-ecommerce-consultant"
+  to = "/ecommerce-director"
   status = 301
   force = true
 
 [[redirects]]
   from = "/why-fractional"
-  to = "/why-not-an-agency"
+  to = "/agency-or-in-house"
   status = 301
   force = true
 
-# Renamed founder image: 301 the old path in case it was ever linked or indexed
+[[redirects]]
+  from = "/locations/*"
+  to = "/"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/dan-le-gresley-speaker-fractional-ecommerce-director-shopify.png"
   to = "/dan-le-gresley-shopify-ecommerce-consultant.png"
   status = 301
   force = true
 
-# Redirect old /locations/ pages to homepage
+
+# Old pages the plan does not map: the operating-model page, the retired lead magnet (replaced by the scorecard) and the bare /sectors path.
 [[redirects]]
-  from = "/locations/*"
+  from = "/the-model"
+  to = "/ecommerce-director"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/atherstone-5-metrics.pdf"
+  to = "/scorecard"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sectors"
   to = "/"
+  status = 301
+  force = true
+
+
+# Removed pre-rebuild files: the old favicon, touch icon and share images.
+[[redirects]]
+  from = "/favicon-a-clay.svg"
+  to = "/icon.svg"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/apple-touch-icon.png"
+  to = "/apple-icon.png"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/og-image.jpg"
+  to = "/og/og-home.png"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/og-image.png"
+  to = "/og/og-home.png"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/og-image.svg"
+  to = "/og/og-home.png"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/og-ai-writing-tells.png"
+  to = "/og/insights/ai-writing-tells.png"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/og-ai-writing-tells.svg"
+  to = "/og/insights/ai-writing-tells.png"
   status = 301
   force = true
 
@@ -47,6 +243,22 @@
   [headers.values]
     Content-Type = "text/plain; charset=utf-8"
 
+# The plain-text descriptions for AI search carry a pound sign, so they declare UTF-8.
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
+[[headers]]
+  for = "/llm.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
+[[headers]]
+  for = "/ai.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
 [[headers]]
   for = "/*.js"
   [headers.values]
@@ -57,11 +269,5 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-[[headers]]
-  for = "/atherstone-5-metrics.pdf"
-  [headers.values]
-    Content-Type = "application/pdf"
-    Content-Disposition = "attachment; filename=\"atherstone-5-metrics.pdf\""
-    Cache-Control = "public, max-age=86400"
-
-# No SPA catch-all redirect needed — Next.js SSG generates real HTML files
+# No SPA catch-all redirect: the static export writes a real HTML file for every route, and out/404.html is the
+# not-found page.

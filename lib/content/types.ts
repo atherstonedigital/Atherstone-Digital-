@@ -319,6 +319,8 @@ export interface FormStatus {
 
 export interface LeadMagnet {
   heading: string;
+  /** The landing page the heading links to (/scorecard), so the homepage panel puts it one click from home. */
+  href?: string;
   description: string;
   netlifyFormName: string;
   field: FormField;
@@ -442,7 +444,7 @@ export interface PriceTier {
   /** The catalogue size the tier covers, as the plan writes it. */
   label: string;
   price: string;
-  /** The tier the reader should choose: the one brass-300 band on the page. None is chosen by the plan. */
+  /** The tier the reader should choose: the one brass-300 band on the page. None is chosen by the plan, so none is set. */
   highlight?: boolean;
 }
 
@@ -457,8 +459,11 @@ export interface StoreHealthCheckPage extends PageHead {
     intro: string;
     tiers: PriceTier[];
     note: string;
-    /** The tier table's caption (screen readers only), column heads, and the word on the highlighted tier. */
-    table: { caption: string; columns: [string, string]; highlightLabel: string };
+    /**
+     * The tier table's caption (screen readers only) and column heads, and the word on a highlighted tier, so the
+     * highlight is never carried by colour alone. Required when a tier is highlighted.
+     */
+    table: { caption: string; columns: [string, string]; highlightLabel?: string };
   };
   faq: FaqSection;
   closing: ClosingActions;
@@ -529,6 +534,8 @@ export interface CaseStudyPage extends PageHead {
 }
 
 export interface ResultsIndexPage extends PageHead {
+  /** The page's short name: the nav and breadcrumb label, and the heading over two case studies on an offer page. */
+  label: string;
   intro: Written<string>;
   /** The two filters (plan, /results). Labels for the problem values are problemTags in lib/content/site.ts. */
   filters: { sector: string; problem: string; all: string };

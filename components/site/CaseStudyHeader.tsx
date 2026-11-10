@@ -95,16 +95,18 @@ export function CaseStudyHeader({
         />
       ) : null}
 
-      {/* Ledger rows: the label in the eyebrow style on a fixed column, the value in body, each row closed by a rule. */}
+      {/* Ledger rows: the label in the eyebrow style on a fixed column, the value in body, each row closed by a rule.
+          Phase 3 review (a minimal extension): each row is at least a touch target plus space-2 tall, with space-3
+          above and below, so the tag links' 44px hit areas sit 8px apart instead of overlapping. */}
       <dl className="grid grid-cols-1 self-start min-[900px]:col-span-7 min-[900px]:col-start-1 min-[900px]:row-start-2">
-        <div className="flex items-baseline gap-x-space-6 border-b border-rule py-space-2">
+        <div className="flex items-baseline gap-x-space-6 border-b border-rule py-space-3 min-h-[calc(var(--touch-target)_+_var(--space-2))]">
           <dt className="eyebrow w-space-24 shrink-0 text-ink-muted">{labels.sector}</dt>
           <dd className="body min-w-0">
             <TagValue tag={sector} />
           </dd>
         </div>
         {problems.length ? (
-          <div className="flex items-baseline gap-x-space-6 border-b border-rule py-space-2">
+          <div className="flex items-baseline gap-x-space-6 border-b border-rule py-space-3 min-h-[calc(var(--touch-target)_+_var(--space-2))]">
             <dt className="eyebrow w-space-24 shrink-0 text-ink-muted">{labels.problem}</dt>
             <dd className="body min-w-0">
               <ul className="flex flex-wrap gap-x-space-2">

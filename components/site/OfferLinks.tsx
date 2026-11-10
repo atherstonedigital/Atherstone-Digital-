@@ -44,7 +44,7 @@ export function OtherOffers({ ids, headingId }: { ids: OfferId[]; headingId: str
 /**
  * Two case studies as linked cards (brand book, Motion: the hover layer), the way the Insights cards are set: the
  * sector in the eyebrow style, the client in heading-2, and the case study's one-line summary where it is written.
- * The heading is the Results page's H1, and the forward link under the cards is the homepage proof block's.
+ * The heading is the Results page's label, and the forward link under the cards is the homepage proof block's.
  */
 export function CaseStudyLinks({ slugs, headingId }: { slugs: readonly string[]; headingId: string }) {
   const items = slugs.map((slug) => {
@@ -54,7 +54,7 @@ export function CaseStudyLinks({ slugs, headingId }: { slugs: readonly string[];
   });
   return (
     <section aria-labelledby={headingId} className="min-w-0">
-      <SectionHeading heading={resultsIndexPage.h1} headingId={headingId} />
+      <SectionHeading heading={resultsIndexPage.label} headingId={headingId} />
       <ul className="grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-2 min-[720px]:gap-x-gutter">
         {items.map(({ caseStudy, summary }) => (
           <li key={caseStudy.slug} className="grid">

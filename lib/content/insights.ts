@@ -2,13 +2,15 @@
 // /blog posts in lib/content/insights-archive.ts (Phase 3 decision 8: same slugs, titles, dates and bodies), with the
 // index helpers in lib/content/pages/insights.ts. This file adds what the article pages need on top:
 //
-// 1. The voice-rule fixes are now made in insights-archive.ts itself (folded in at the Phase 3 integrate step). The
-//    posts keep their old voice otherwise ("we", "Shopify brands", "fractional" in body copy, Title Case titles):
-//    that is a rewrite, not a strip, and waits for Dan.
+// 1. The voice-rule fixes are made in insights-archive.ts itself (the integrate step's word strips, and the Phase 3
+//    review's mechanical "I, never we"). The posts keep their old positioning otherwise ("Shopify brands", "£500k–£5M",
+//    Title Case titles): that is a rewrite, not a strip, and waits for Dan.
 // 2. The body of the one custom post, ai-writing-tells, ported from app/(legacy)/blog/ai-writing-tells/page.tsx as
 //    Markdown, word for word, with its download from /downloads/ai-writing-tells.skill and its live meta description.
-// 3. The one offer link every article carries, and the one sector link where the post is about a sector (plan,
-//    Internal linking rules: every article links to one sector page and one offer page in the body).
+// 3. The one offer link every article carries, and the one sector link (plan, Internal linking rules: every article
+//    links to exactly one sector page and one offer page in the body). The four posts in the plan's clusters carry
+//    a sector; the Archive posts are the recorded exception (Phase 3 review): they sit in no plan cluster, they are
+//    pre-rebuild posts about Shopify brands in general, and they wait for Dan to rewrite or prune them.
 // 4. Related articles for the foot of each article, and the index's groups, every cluster in the plan's order.
 //
 // Server-side only: it imports every post body.
@@ -129,12 +131,15 @@ It is free. No email gate. Take it, use it, fork it, change it. The point is to 
 
 /**
  * The offer each post sends its reader to: the one whose work it describes. Phase 3 assignments, for Dan to check.
- * Every post must have one, so a new post cannot ship without its offer link.
+ * Every post must have one, so a new post cannot ship without its offer link. It is also the only offer page the
+ * post's body links to (plan: exactly one offer page per article). Phase 3 review: shopify-seo-guide-2025 and
+ * shopify-metrics-brands-track-wrong take the retainer their bodies link to; ai-search-shopify-2026 takes the Health
+ * Check its closing lines name, and its in-body retainer links were unlinked in insights-archive.ts.
  */
 const offerFor: Record<string, OfferId> = {
   'ai-writing-tells': 'ecommerce-director',
   'why-fractional-ecommerce-director-beats-agency': 'ecommerce-director',
-  'shopify-seo-guide-2025': 'store-health-check',
+  'shopify-seo-guide-2025': 'ecommerce-director',
   'n8n-shopify-automation-workflows': 'ecommerce-director',
   'fractional-ecommerce-director-vs-consultant': 'ecommerce-director',
   'how-to-hire-fractional-ecommerce-director': 'ecommerce-director',
@@ -144,15 +149,15 @@ const offerFor: Record<string, OfferId> = {
   'shopify-product-data-audit-guide': 'store-health-check',
   'shopify-taxonomy-guide-2025': 'store-health-check',
   'fractional-ecommerce-director-2026': 'ecommerce-director',
-  'ai-search-shopify-2026': 'ecommerce-director',
+  'ai-search-shopify-2026': 'store-health-check',
   'klaviyo-email-flows-shopify-brands': 'ecommerce-director',
   'ecommerce-automation-shopify-brands': 'ecommerce-director',
   'how-shopify-brands-should-use-ai': 'ecommerce-director',
-  'shopify-metrics-brands-track-wrong': 'store-health-check',
+  'shopify-metrics-brands-track-wrong': 'ecommerce-director',
 };
 
 export interface ArticleLinks {
-  /** The sector page, where the post is about one sector (its `sector` in insights-archive.ts). */
+  /** The sector page (its `sector` in insights-archive.ts): every clustered post has one; Archive posts have none. */
   sector?: Link;
   offer: Link;
 }

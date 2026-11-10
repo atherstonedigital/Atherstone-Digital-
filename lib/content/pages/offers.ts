@@ -169,21 +169,18 @@ export const storeHealthCheckPage: StoreHealthCheckPage = {
   pricing: {
     heading: 'Pricing',
     intro: 'By catalogue size, because the catalogue is where the time goes:',
-    // The plan writes the sizes in lower case inside a sentence; as table labels they take a capital. It names no
-    // tier for the brass-300 highlight. Phase 3 default, pending Dan's confirmation: the middle tier, the plan's buyer
-    // ("a catalogue in the thousands") and never the most expensive (OfferCard README). Move `highlight` to choose
-    // another.
+    // The plan writes the sizes in lower case inside a sentence; as table labels they take a capital. No tier is
+    // highlighted (Phase 3 review): the plan names none, and the catalogue size sets the tier, so no tier is one the
+    // reader chooses. To mark one, set `highlight` on it and give the table a highlightLabel Dan has approved.
     tiers: [
       { label: 'Under 1,000 products', price: '£1,500' },
-      { label: '1,000 to 5,000 products', price: '£3,000', highlight: true },
+      { label: '1,000 to 5,000 products', price: '£3,000' },
       { label: 'Over 5,000 products', price: '£5,000' },
     ],
-    // Phase 3 drafts, pending Dan's approval: the tier table's caption (screen readers only), its column heads, and
-    // the word that marks the highlighted tier, so the highlight is never carried by colour alone.
+    // Phase 3 drafts, pending Dan's approval: the tier table's caption (screen readers only) and its column heads.
     table: {
       caption: 'Store and Catalogue Health Check prices by catalogue size',
       columns: ['Catalogue size', 'Price'],
-      highlightLabel: 'Recommended',
     },
     note: 'Fixed, agreed up front. Credited in full against the first month if you go on to the retainer.',
   },

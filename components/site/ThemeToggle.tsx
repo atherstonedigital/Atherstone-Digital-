@@ -32,7 +32,11 @@ export function ThemeToggle({ className }: { className?: string }) {
       onClick={toggle}
       className={cn(
         'button inline-flex min-h-touch-target cursor-pointer items-center whitespace-nowrap bg-transparent p-0 font-medium text-ink',
-        'underline decoration-transparent decoration-1 underline-offset-[6px] transition-[text-decoration-color] duration-colour ease-out hover:decoration-current',
+        'underline decoration-transparent decoration-1 underline-offset-[6px] hover:decoration-current',
+        // The press, as the Button's link form (Phase 3 review): 0.98 over 80ms on pointer-down, at once under reduced
+        // motion, so a tap answers on touch, where there is no hover.
+        '[transition:text-decoration-color_var(--duration-colour)_ease-out,transform_var(--duration-press)_ease-out]',
+        'active:scale-[0.98] motion-reduce:transition-none [-webkit-tap-highlight-color:transparent]',
         className,
       )}
     >

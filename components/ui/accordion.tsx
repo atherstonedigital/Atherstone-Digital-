@@ -76,8 +76,10 @@ const AccordionTrigger = React.forwardRef<React.ElementRef<typeof AccordionPrimi
             className={cn(
               'heading-2 group/accordion-trigger flex min-h-touch-target flex-1 cursor-pointer items-center justify-between',
               'gap-space-4 py-space-4 text-left text-ink',
-              // The question's underline draws on hover, in the 150ms colour timing; the icon is not underlined.
-              'underline decoration-transparent decoration-1 underline-offset-[5px] hover:decoration-current',
+              // The question's underline draws on hover, in the 150ms colour timing; the icon is not underlined. It draws
+              // on press too, so a tap answers on touch (Phase 3 review). No scale: 0.98 on a full-width row would move
+              // its edges about 7px.
+              'underline decoration-transparent decoration-1 underline-offset-[5px] hover:decoration-current active:decoration-current',
               '[transition:text-decoration-color_var(--duration-colour)_ease-out] motion-reduce:transition-none',
               '[-webkit-tap-highlight-color:transparent]',
               className,

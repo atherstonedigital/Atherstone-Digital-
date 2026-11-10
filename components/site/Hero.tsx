@@ -15,15 +15,19 @@ import { cn } from '@/lib/utils';
 // its chart: the chart drew client figures that may not appear in this public repository.
 //
 // The entrance is the one thing on the page that moves on load (brand book, Motion): eyebrow, H1, sub-copy, then the
-// buttons with the fact line, 60ms apart, each from opacity 0 and 8px down over 200ms, once. GSAP runs it (useGSAP with
-// the hero as its scope, gsap.matchMedia for reduced motion). Under prefers-reduced-motion there is no entrance and
-// nothing is hidden at any point.
+// buttons with the fact line, 60ms apart, each from 1% opacity and 8px down over 200ms, once. GSAP runs it (useGSAP
+// with the hero as its scope, gsap.matchMedia for reduced motion). Under prefers-reduced-motion there is no entrance and
+// the copy is at rest from the first paint.
 //
-// Static export paints the HTML before React hydrates, so an entrance that only hid the copy on hydration would flash
-// it, hide it, then fade it in. A one-line script at the top of the section runs as the HTML is parsed, before the
-// copy below it paints: unless reduced motion is on, it marks the section pending, which hides the steps. Hydration
-// then hands them to GSAP. If the page's JavaScript is slow or fails, the script's own timer shows the copy after
-// REVEAL_FALLBACK_MS and the entrance is skipped, so nothing stays hidden. Without JavaScript nothing is hidden at all.
+// Static export paints the HTML before React hydrates, so an entrance that only held the copy back on hydration would
+// flash it, drop it, then fade it in. A one-line script at the top of the section runs as the HTML is parsed, before
+// the copy below it paints: unless reduced motion is on, it marks the section pending, which holds the steps at 1%
+// opacity. Hydration then hands them to GSAP. If the page's JavaScript is slow or fails, the script's own timer lets
+// the copy go after REVEAL_FALLBACK_MS and the entrance is skipped. Without JavaScript nothing is held back at all.
+//
+// Why 1% and not hidden (Phase 3 review): Chrome does not count invisible or fully transparent text as the largest
+// contentful paint, so hiding the steps put the homepage's LCP (the sub-copy) after all the JavaScript had run, and
+// Lighthouse mobile scored it 74 to 82. At 1% the first paint counts; it scored 97 to 99, with the same motion.
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(useGSAP, CustomEase);
@@ -33,10 +37,10 @@ if (typeof window !== 'undefined') {
 const ENTRANCE_SECONDS = 0.2;
 const STAGGER_SECONDS = 0.06;
 const ENTRANCE_Y = 8;
-/** How long the copy may stay hidden waiting for hydration before the inline script shows it without an entrance. */
+/** How long the copy may be held at 1% waiting for hydration before the inline script lets it go with no entrance. */
 const REVEAL_FALLBACK_MS = 1000;
 
-/** pending (set by the inline script, steps hidden), running (GSAP holds them), done (at rest, never animate again). */
+/** pending (set by the inline script, steps at 1%), running (GSAP holds them), done (at rest, never animate again). */
 const ATTR = 'data-hero-enter';
 
 const prehideScript = `(function(s){var h=s&&s.parentElement;if(!h)return;try{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return}catch(e){return}h.setAttribute('${ATTR}','pending');setTimeout(function(){if(h.getAttribute('${ATTR}')==='pending')h.setAttribute('${ATTR}','done')},${REVEAL_FALLBACK_MS})})(document.currentScript)`;
@@ -49,8 +53,13 @@ function getHeroEase(): gsap.EaseFunction {
   return heroEase;
 }
 
-/** A step of the entrance: hidden while the section is pending, then GSAP's until it comes to rest. */
-const step = 'group-data-[hero-enter=pending]/hero:invisible';
+/**
+ * A step of the entrance: held at 1% opacity while the section is pending, then GSAP's until it comes to rest. Not
+ * hidden and not 0: the first paint must count as the page's largest contentful paint (see the note at the top).
+ */
+const step = 'group-data-[hero-enter=pending]/hero:opacity-[0.01]';
+/** The step's starting opacity: the pending rule's, so the hand-over to GSAP never flashes. */
+const ENTRANCE_FROM_OPACITY = 0.01;
 
 export interface HeroProps extends Omit<React.HTMLAttributes<HTMLElement>, 'content' | 'children'> {
   /** The hero copy, hero from lib/content/site.ts on the homepage. */
@@ -124,10 +133,16 @@ export function Hero({
               root.setAttribute(ATTR, 'done');
             },
           });
+          // fromTo, not from: from() would read the pending rule's 1% as the end value and stop there.
           steps.forEach((group, index) => {
-            timeline.from(group, { autoAlpha: 0, y: ENTRANCE_Y }, index * STAGGER_SECONDS);
+            timeline.fromTo(
+              group,
+              { opacity: ENTRANCE_FROM_OPACITY, y: ENTRANCE_Y },
+              { opacity: 1, y: 0 },
+              index * STAGGER_SECONDS,
+            );
           });
-          // The from() tweens have already set the starting state inline, so the pending rule can let go without a
+          // The fromTo() tweens have already set the starting state inline, so the pending rule can let go without a
           // flash. A revert part-way (StrictMode's second mount, a reduced-motion change) leaves the copy at rest, and
           // the next run animates it again unless it finished.
           root.setAttribute(ATTR, 'running');

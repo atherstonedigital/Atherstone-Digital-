@@ -4,7 +4,8 @@
 // headings, the meta description and the portrait's alt text are DRAFTS for Dan to approve.
 //
 // Held back: the plan's career paragraph ends the Licklibrary line with a revenue growth figure. It is not on the live
-// site, so under the public repo rule it stays out until Dan clears it.
+// site, and Licklibrary is one of the plan's case studies, so under the public repo rule it stays out until Dan clears
+// it. It is on the Phase 3 substitution list for Dan to rule on before launch.
 
 import { closingActions, meetDan } from '../site';
 import type { AboutPage } from '../types';

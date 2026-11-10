@@ -60,7 +60,8 @@ NavigationMenuItem.displayName = NavigationMenuPrimitive.Item.displayName;
 const navigationMenuTriggerStyle = cva([
   'button inline-flex min-h-touch-target cursor-pointer items-center gap-space-1 whitespace-nowrap bg-transparent p-0 font-medium text-ink',
   'underline decoration-transparent decoration-1 underline-offset-[6px]',
-  'transition-[text-decoration-color] duration-colour ease-out hover:decoration-current motion-reduce:transition-none',
+  // The underline draws on hover and on press, so a tap answers on touch (Phase 3 review).
+  'transition-[text-decoration-color] duration-colour ease-out hover:decoration-current active:decoration-current motion-reduce:transition-none',
   'aria-[current=page]:decoration-brass-600 aria-[current=page]:decoration-2',
   'aria-[current=true]:decoration-brass-600 aria-[current=true]:decoration-2',
 ]);
@@ -104,7 +105,7 @@ const NavigationMenuLink = NavigationMenuPrimitive.Link;
 const navigationMenuPanelLinkStyle = cva([
   'body flex min-h-touch-target items-center whitespace-nowrap px-space-4 font-medium text-ink',
   'underline decoration-transparent decoration-1 underline-offset-4',
-  'transition-[text-decoration-color] duration-colour ease-out hover:decoration-current motion-reduce:transition-none',
+  'transition-[text-decoration-color] duration-colour ease-out hover:decoration-current active:decoration-current motion-reduce:transition-none',
   'aria-[current=page]:decoration-brass-600 aria-[current=page]:decoration-2',
 ]);
 

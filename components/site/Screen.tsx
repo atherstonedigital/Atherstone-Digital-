@@ -32,9 +32,10 @@ export interface ScreenProps extends Omit<React.HTMLAttributes<HTMLElement>, 'ch
   /** The first screen sits straight under the nav, with no rule above it. */
   first?: boolean;
   /**
-   * How many screens tall the section is below 720px, where its copy runs longer: 2 for a section that takes more than
-   * a screen and a half at 390 by 844, so the next section still opens at the top of a screen (Phase 1's --hm). One
-   * screen from 720px.
+   * 2 marks a section that runs longer than a screen and a half at 390 by 844 (Phase 1's --hm). Phase 3 review: below
+   * 720px it no longer holds a two-screen minimum, which left blank bands of 300 to 440px under the shorter ones; every
+   * screen is at least one screen tall there and grows with its content (the brand book fixes section heights at 1440
+   * only). The Phase 1 rule is kept in a comment below, to restore it. One screen from 720px.
    */
   phoneScreens?: 1 | 2;
   /** The last screen before the CTABand: as tall as its content, so the two share the final screen. */
@@ -48,7 +49,8 @@ export function Screen({
   as,
   labelledBy,
   first = false,
-  phoneScreens = 1,
+  // Taken out of the props, so it never reaches the DOM; it sets no class since the Phase 3 review (see above).
+  phoneScreens: _phoneScreens = 1,
   closing = false,
   className,
   innerClassName,
@@ -78,7 +80,9 @@ export function Screen({
               closing
                 ? null
                 : cn(
-                    phoneScreens === 2 ? '[--screens:2] min-[720px]:[--screens:1]' : '[--screens:1]',
+                    // A one-screen minimum at every width (Phase 3 review; see phoneScreens). The Phase 1 frame was
+                    // phoneScreens === 2 ? '[--screens:2] min-[720px]:[--screens:1]' : '[--screens:1]'.
+                    '[--screens:1]',
                     'min-h-[calc(var(--screens)*100vh)] supports-[height:100dvh]:min-h-[calc(var(--screens)*100dvh)]',
                   ),
             ),

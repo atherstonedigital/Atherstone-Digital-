@@ -65,10 +65,12 @@ export default function ContactPage() {
           <SectionHeading heading={page.calendly.heading} headingId="call-heading" />
           <LinkButton link={booking} className="w-full min-[720px]:w-auto" />
           {/* Direct lines as ledger rows: the label in the eyebrow style, the address beside it, a rule beneath. On a
-              320px screen the address is wider than the space beside the label, so the row wraps it beneath. */}
+              320px screen the address is wider than the space beside the label, so the row wraps it beneath. Each row
+              is at least a touch target plus space-2 tall, so the links' 44px hit areas sit 8px apart (Phase 3
+              review: at 41px they overlapped and the lower link took the overlap). */}
           <dl className="mt-space-8 grid grid-cols-1">
             {directLines.map(({ label, link }) => (
-              <div key={label} className="flex flex-wrap items-baseline gap-x-space-6 border-b border-rule py-space-2">
+              <div key={label} className="flex flex-wrap items-baseline gap-x-space-6 border-b border-rule py-space-3 min-h-[calc(var(--touch-target)_+_var(--space-2))]">
                 <dt className="eyebrow w-space-16 shrink-0 text-ink-muted">{label}</dt>
                 <dd className="body min-w-0">
                   <TextLink href={link.href} hitArea>

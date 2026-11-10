@@ -76,33 +76,41 @@ interface SheetContentProps
 
 const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Content>, SheetContentProps>(
   ({ side = 'right', className, children, showClose = true, closeLabel = 'Close', forceMount, ...props }, ref) => (
-    // forceMount reaches the portal and the overlay too, so a wrapper that keeps the sheet mounted through its own exit
-    // motion (DrawerGesture) keeps all three together.
-    <SheetPortal forceMount={forceMount}>
-      <SheetOverlay forceMount={forceMount} />
-      <SheetPrimitive.Content
-        ref={ref}
-        forceMount={forceMount}
-        className={cn(sheetVariants({ side }), className)}
-        {...props}
-      >
-        {showClose ? (
-          // First in the DOM, so it is the first thing focused when the sheet opens; drawn at the right of the header
-          // row, where the bar's menu toggle sits: the 44px secondary icon button, the gutter from the edge, centred in
-          // the nav height.
-          <SheetPrimitive.Close
-            className={cn(
-              buttonVariants({ variant: 'secondary', size: 'icon' }),
-              'absolute right-gutter top-[calc((var(--nav-height)_-_var(--touch-target))_/_2)]',
-            )}
-          >
-            <X size={20} strokeWidth={1.5} aria-hidden="true" />
-            <span className="sr-only">{closeLabel}</span>
-          </SheetPrimitive.Close>
-        ) : null}
-        {children}
-      </SheetPrimitive.Content>
-    </SheetPortal>
+    // forceMount reaches the panel's portal as well as the panel, so a wrapper that keeps the sheet mounted through its
+    // own exit motion (DrawerGesture) keeps both. Not the overlay (Phase 3 review): it is transparent, so it can unmount
+    // the moment the state closes, and its scroll lock and its pointer-events: auto cover over the page go with it. Kept
+    // through the exit, it swallowed taps on the page for about 320ms after the drawer had closed. It has a portal of
+    // its own, because Radix's overlay takes forceMount from the portal it sits in. Its portal comes first, so the
+    // panel lies above it.
+    <>
+      <SheetPortal>
+        <SheetOverlay />
+      </SheetPortal>
+      <SheetPortal forceMount={forceMount}>
+        <SheetPrimitive.Content
+          ref={ref}
+          forceMount={forceMount}
+          className={cn(sheetVariants({ side }), className)}
+          {...props}
+        >
+          {showClose ? (
+            // First in the DOM, so it is the first thing focused when the sheet opens; drawn at the right of the header
+            // row, where the bar's menu toggle sits: the 44px secondary icon button, the gutter from the edge, centred in
+            // the nav height.
+            <SheetPrimitive.Close
+              className={cn(
+                buttonVariants({ variant: 'secondary', size: 'icon' }),
+                'absolute right-gutter top-[calc((var(--nav-height)_-_var(--touch-target))_/_2)]',
+              )}
+            >
+              <X size={20} strokeWidth={1.5} aria-hidden="true" />
+              <span className="sr-only">{closeLabel}</span>
+            </SheetPrimitive.Close>
+          ) : null}
+          {children}
+        </SheetPrimitive.Content>
+      </SheetPortal>
+    </>
   ),
 );
 SheetContent.displayName = SheetPrimitive.Content.displayName;

@@ -259,13 +259,11 @@
   [headers.values]
     Content-Type = "text/plain; charset=utf-8"
 
+# Everything Next writes under /_next/static is content-hashed (JS, CSS and the self-hosted fonts), so it can be cached
+# for a year and never revalidated. Nothing else is: pages, /og images and public/ files keep Netlify's default, so a
+# change to them is seen at once (Phase 3 review; this replaces the /*.js and /*.css rules, which left the fonts out).
 [[headers]]
-  for = "/*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.css"
+  for = "/_next/static/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 

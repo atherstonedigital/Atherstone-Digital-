@@ -224,24 +224,29 @@ const lighting = variant({
   ],
 });
 
-const kitchensAndBathrooms = variant({
-  slug: 'kitchen-and-bathroom-showrooms',
-  name: 'kitchen and bathroom',
-  differentlyName: 'kitchens and bathrooms',
-  description:
-    'Websites for kitchen and bathroom showrooms that book design appointments: quote follow-up, showroom visit tracking, accessories online, local search.',
-  problems: [
-    'The website’s job is a design appointment, not a basket',
-    'Brochure requests and quote forms with no follow-up',
-    'Showroom visit tracking',
-    'Selling accessories and taps online while kitchens stay in-store',
-    'Local search for showrooms',
-  ],
-  planNotes: [
-    'Status: Hold until a KBB client or a kbbreview article exists.',
-    'Proof to feature: Saverys (three showrooms, director role); the kbbreview angle on "the second showroom that doesn’t need a lease".',
-  ],
-});
+// The plan's variants table names Saverys (three showrooms, director role) as this sector's proof, so the page shows
+// its card with Gary Postlethwaite's quote, as the homeware stub does (Phase 3 review). The rest stays a stub, noindex.
+const kitchensAndBathrooms: SectorPage = {
+  ...variant({
+    slug: 'kitchen-and-bathroom-showrooms',
+    name: 'kitchen and bathroom',
+    differentlyName: 'kitchens and bathrooms',
+    description:
+      'Websites for kitchen and bathroom showrooms that book design appointments: quote follow-up, showroom visit tracking, accessories online, local search.',
+    problems: [
+      'The website’s job is a design appointment, not a basket',
+      'Brochure requests and quote forms with no follow-up',
+      'Showroom visit tracking',
+      'Selling accessories and taps online while kitchens stay in-store',
+      'Local search for showrooms',
+    ],
+    planNotes: [
+      'Status: Hold until a KBB client or a kbbreview article exists.',
+      'Proof to feature: Saverys (three showrooms, director role); the kbbreview angle on "the second showroom that doesn’t need a lease".',
+    ],
+  }),
+  proof: { heading: 'Proof', cards: [{ caseStudy: 'saverys-of-broadway', quoteBy: 'Gary Postlethwaite' }] },
+};
 
 /** Every sector page, by slug, in the nav's order. */
 export const sectorPages: Record<SectorSlug, SectorPage> = {

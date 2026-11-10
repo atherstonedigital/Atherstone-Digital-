@@ -8,6 +8,13 @@
 
 /* ------------------------------------------------------------------ the base for every page */
 
+/* The quote's Newsreader italic is its own next/font family, so it is not preloaded on pages that never show a quote
+   (app/layout.tsx, Phase 3 review). The rest of .quote is the generated type style in tokens.css; this one rule,
+   after it, names the italic family, then the same fallbacks as --font-display. */
+.quote {
+  font-family: var(--font-newsreader-italic, "Newsreader"), "Newsreader fallback", "Iowan Old Style", Georgia, serif;
+}
+
 /* shadcn/ui variables mapped to the tokens once, as docs/brand/README.md specifies (Building it: shadcn and GSAP), so
    every primitive inherits the brand and shadcn's own look never shows. The values are references, so they follow
    the theme; the mapping is repeated for both theme forms so a subtree marked with data-theme resolves against its

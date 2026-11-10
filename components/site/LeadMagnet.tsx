@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 
+import { TextLink } from '@/components/brand/Button';
 import {
   Confirmation,
   FieldControl,
@@ -29,6 +30,9 @@ import { cn } from '@/lib/utils';
 // description in body at measure. As an h2 the heading takes heading-1. On /scorecard the page's H1 and intro are the
 // panel's heading and description word for word, so the page passes labelledBy (its H1's id): the panel then drops its
 // own heading and description and the form is named by the H1 (Phase 3 integrate step).
+//
+// Phase 3 review: where the content carries an href (leadMagnet.href, /scorecard) the heading is a text link to it, so
+// the homepage panel reaches the landing page in one click. No new copy: the link is the heading's own words.
 
 export interface LeadMagnetProps {
   /** leadMagnet from lib/content/site.ts by default. */
@@ -77,7 +81,15 @@ export function LeadMagnet({
       {labelledBy ? null : (
         <>
           <Heading id={titleId} className={cn(headingLevel === 2 ? 'heading-1' : 'heading-2', 'mb-space-3 text-ink')}>
-            {content.heading}
+            {/* With an href the heading is the way to the landing page: a text link that keeps the heading's weight
+                (heading-1 is 500, the link's own weight; heading-2 is 600). */}
+            {content.href ? (
+              <TextLink href={content.href} className={headingLevel === 2 ? undefined : 'font-semibold'}>
+                {content.heading}
+              </TextLink>
+            ) : (
+              content.heading
+            )}
           </Heading>
           <p className="body mb-space-6 max-w-measure text-ink">{content.description}</p>
         </>

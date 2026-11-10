@@ -64,11 +64,15 @@ const deskScreens = { 1: 'min-[720px]:[--screens:1]', 2: 'min-[720px]:[--screens
 
 /**
  * A group that fills the first screen's content area; whatever follows opens at the next screen's top padding, like
- * any other section (Phase 1's .scr-d and .scr-m). At every width, and on a phone only.
+ * any other section (Phase 1's .scr-d and .scr-m). Below 900px, from 900px, and on a phone only.
  */
-const firstScreen = cn(
-  'min-h-[calc(100vh_-_var(--pad-t)_-_var(--pad-b))] supports-[height:100dvh]:min-h-[calc(100dvh_-_var(--pad-t)_-_var(--pad-b))]',
-  'mb-[calc(var(--pad-t)_+_var(--pad-b))]',
+const screenBelow900 = cn(
+  'max-[899px]:min-h-[calc(100vh_-_var(--pad-t)_-_var(--pad-b))] max-[899px]:supports-[height:100dvh]:min-h-[calc(100dvh_-_var(--pad-t)_-_var(--pad-b))]',
+  'max-[899px]:mb-[calc(var(--pad-t)_+_var(--pad-b))]',
+);
+const screenFrom900 = cn(
+  'min-[900px]:min-h-[calc(100vh_-_var(--pad-t)_-_var(--pad-b))] min-[900px]:supports-[height:100dvh]:min-h-[calc(100dvh_-_var(--pad-t)_-_var(--pad-b))]',
+  'min-[900px]:mb-[calc(var(--pad-t)_+_var(--pad-b))]',
 );
 const firstScreenOnPhone = cn(
   'max-[719px]:min-h-[calc(100vh_-_var(--pad-t)_-_var(--pad-b))] max-[719px]:supports-[height:100dvh]:min-h-[calc(100dvh_-_var(--pad-t)_-_var(--pad-b))]',
@@ -147,6 +151,21 @@ const testimonials = proof.testimonials.map((testimonial) => {
   return { ...testimonial, href: testimonial.href, linkLabel: `${testimonial.business} case study` };
 });
 
+/** Gary first (he is the sector buyer): his quote shares the figures' screen from 900px; the other two follow. */
+const [leadTestimonial, ...otherTestimonials] = testimonials;
+if (!leadTestimonial) throw new Error('The proof block needs at least one testimonial in lib/content/site.ts.');
+
+/** A testimonial's props as the proof block sets them: the quote, the name, and the business linking its case study. */
+function testimonialProps(testimonial: (typeof testimonials)[number]) {
+  return {
+    quote: testimonial.quote,
+    name: testimonial.name,
+    business: testimonial.business,
+    businessHref: testimonial.href,
+    businessLinkLabel: testimonial.linkLabel,
+  };
+}
+
 /** The three articles (plan, Homepage 9), each checked against the written posts, so no card links to a 404. */
 const articles = insights.articles.map((article) => {
   if (!getInsightPost(article.slug)) {
@@ -163,30 +182,41 @@ export default function HomePage() {
       {/* 1 Hero: fills the first screen below the nav, its primary button and the fact line inside it. No chart. */}
       <Hero id="hero" content={hero} headingId="hero-heading" className={container} />
 
-      {/* 2 Proof, directly under the hero. Two screens from 720px: the heading and the figures, then the three
-          testimonials (Gary first, two columns from 900px), each business name linking its case study, and All results. Three on a phone: the figures, then Gary,
-          then Gemma, Luke and All results at the foot of the third. */}
+      {/* 2 Proof, directly under the hero. Two screens from 720px. From 900px: the heading, the figures and Gary's
+          quote across columns 1 to 7, then Gemma and Luke in two columns and All results (Phase 3 review: with the
+          quieter line gone, the figures alone left the first screen two thirds empty). From 720 to 899px: the heading
+          and the figures, then the three quotes stacked and All results. Three on a phone: the figures, then Gary,
+          then Gemma, Luke and All results at the foot of the third. Each business name links its case study. */}
       <Screen id="numbers" as="section" labelledBy="numbers-heading" phone={3} desk={2}>
-        <div className={firstScreen}>
-          <SectionHeading heading={proof.heading} headingId="numbers-heading" alignWithEyebrow />
-          {/* The row sits straight under the heading's hairline, which serves as its top rule. */}
-          <StatRow stats={toStatRow(proof.figures)} rule={false} />
+        {/* The first screen's group from 900px; below 900px it steps aside (display: contents), so the figures group
+            inside it fills the first screen and Gary opens the next, as the rest of the quotes do. */}
+        <div className={cn('max-[899px]:contents', screenFrom900)}>
+          <div className={screenBelow900}>
+            <SectionHeading heading={proof.heading} headingId="numbers-heading" alignWithEyebrow />
+            {/* The row sits straight under the heading's hairline, which serves as its top rule. */}
+            <StatRow stats={toStatRow(proof.figures)} rule={false} />
+          </div>
+          {/* Decision 7: no result line until the lines are signed off. */}
+          <Testimonial
+            {...testimonialProps(leadTestimonial)}
+            className={cn(
+              // Stacked from 720 to 899px, each quote runs to the container's right line, as in Phase 1.
+              'max-[899px]:mb-space-8 min-[720px]:max-[899px]:max-w-none',
+              // From 900px, under the figures across columns 1 to 7 of the twelve.
+              'min-[900px]:mt-space-12 min-[900px]:w-[calc((100%_-_11_*_var(--gutter))_*_7_/_12_+_6_*_var(--gutter))] min-[900px]:max-w-none',
+            )}
+          />
         </div>
         <div
           className={cn(
             'grid grid-cols-1 gap-space-8 min-[900px]:grid-cols-2 min-[900px]:gap-x-gutter',
-            'max-[719px]:flex max-[719px]:flex-[1_0_auto] max-[719px]:flex-col max-[719px]:[&>:nth-child(2)]:mt-auto',
+            'max-[719px]:flex max-[719px]:flex-[1_0_auto] max-[719px]:flex-col max-[719px]:[&>:first-child]:mt-auto',
           )}
         >
-          {/* Decision 7: no result line until the lines are signed off. */}
-          {testimonials.map((testimonial) => (
+          {otherTestimonials.map((testimonial) => (
             <Testimonial
               key={testimonial.name}
-              quote={testimonial.quote}
-              name={testimonial.name}
-              business={testimonial.business}
-              businessHref={testimonial.href}
-              businessLinkLabel={testimonial.linkLabel}
+              {...testimonialProps(testimonial)}
               // Stacked from 720 to 899px, each quote runs to the container's right line, as in Phase 1.
               className="min-[720px]:max-[899px]:max-w-none"
             />
@@ -253,8 +283,9 @@ export default function HomePage() {
           second (Phase 1). The strip's rows are heading and bio, credentials, portrait, link; the credentials row takes
           the spare height, and the strip is one screen plus the portrait (square, the container's width) plus the
           link (space-6 above a 44px target) tall, so the portrait starts one screen below the strip's top. Where the
-          bio and credentials need more than a screen, the row grows and the portrait follows them. */}
-      <Screen id="about" phone={2} desk={1}>
+          bio and credentials need more than a screen, the row grows and the portrait follows them. The section ends at
+          the link, not at a second full screen (Phase 3 review: that left a 429px gap before Insights at 390). */}
+      <Screen id="about" phone={1} desk={1}>
         <AboutStrip
           content={meetDan}
           headingId="about-heading"
@@ -267,8 +298,9 @@ export default function HomePage() {
       </Screen>
 
       {/* 9 Insights and 10 the scorecard: the articles on the left, the scorecard's raised panel on the right from
-          900px. On a phone the articles fill the first screen and the panel opens the second. */}
-      <Screen id="insights" as="section" labelledBy="insights-heading" phone={2} desk={1}>
+          900px. On a phone the articles fill the first screen and the panel opens the second; the section then ends
+          at the panel's foot, not at a second full screen (Phase 3 review: that left a 337px blank band at 390). */}
+      <Screen id="insights" as="section" labelledBy="insights-heading" phone={1} desk={1}>
         <div className={split}>
           <div className={cn('min-[900px]:col-span-6', firstScreenOnPhone)}>
             <SectionHeading eyebrow={insights.eyebrow} heading={insights.heading} headingId="insights-heading" />
@@ -279,8 +311,9 @@ export default function HomePage() {
       </Screen>
 
       {/* 11 Contact: the green band, the brief form on its raised panel. From 900 to 1199px the form takes seven
-          columns, so the three selects read "Choose one" in full (Phase 1). */}
-      <Screen id="contact" as="section" labelledBy="contact-heading" band phone={2} desk={1}>
+          columns, so the three selects read "Choose one" in full (Phase 1). On a phone it is as tall as the form
+          needs, at least one screen (Phase 3 review: a two-screen frame left a 313px blank band at 390). */}
+      <Screen id="contact" as="section" labelledBy="contact-heading" band phone={1} desk={1}>
         <div className={split}>
           <div className="min-[900px]:col-span-6 min-[900px]:max-[1199px]:col-span-5">
             <SectionHeading

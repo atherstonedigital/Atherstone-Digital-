@@ -95,7 +95,7 @@ export const staticRoutes = {
   '/results': route(
     '/results',
     resultsIndexPage,
-    generated('pages', 'results', { eyebrow: 'Results', headline: resultsIndexPage.h1 }),
+    generated('pages', 'results', { eyebrow: resultsIndexPage.label, headline: resultsIndexPage.h1 }),
   ),
   '/agency-or-in-house': route(
     '/agency-or-in-house',
@@ -349,7 +349,7 @@ const HOME_CRUMB: Crumb = { label: 'Home', href: '/' };
 /** The trails the plan asks BreadcrumbList for (sector, results and insights pages). There is no /sectors page. */
 export const crumbs = {
   sector: (slug: SectorSlug): Crumb[] => [HOME_CRUMB, { label: sectorLabel(slug), href: sectorPages[slug].path }],
-  results: (): Crumb[] => [HOME_CRUMB, { label: 'Results', href: '/results' }],
+  results: (): Crumb[] => [HOME_CRUMB, { label: resultsIndexPage.label, href: '/results' }],
   caseStudy: (slug: string): Crumb[] => [
     ...crumbs.results(),
     { label: caseStudyPages[slug]?.caseStudy.title ?? slug, href: `/results/${slug}` },

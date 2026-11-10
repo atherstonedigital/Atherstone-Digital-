@@ -21,10 +21,12 @@ import { cn } from '@/lib/utils';
 // motion runs from wherever the panel is on screen. A press on a moving panel stops it under the finger (Draggable kills
 // the running tween), so every transition is interruptible and nothing is ever left half open.
 //
-// Radix unmounts a closed sheet at once unless a CSS animation is running, so this component keeps the sheet mounted
+// Radix unmounts a closed sheet at once unless a CSS animation is running, so this component keeps the panel mounted
 // (forceMount) until the exit motion ends. Radix's own state still flips at once: the focus trap lets go, the trigger
-// reads aria-expanded false, and focus returns to the toggle as the sheet unmounts, as with shadcn's CSS exit.
-// Unmounting never waits on the tween alone: a timer backs it up.
+// reads aria-expanded false, and focus returns to the toggle as the sheet unmounts, as with shadcn's CSS exit. Input
+// does too: the transparent overlay unmounts and the body's pointer-events lock lets go as the state closes, so the
+// page takes a tap while the panel is still sliding away. Unmounting never waits on the tween alone: a timer backs it
+// up.
 
 if (typeof window !== 'undefined') {
   // Registered here, in the only client component that moves anything, and only in the browser.
@@ -267,6 +269,26 @@ export function DrawerGesture({
       draggable.tween?.kill();
     }
     settleRef.current?.(open);
+  }, [open, panel]);
+
+  // The page takes input again the moment the state closes, not when the exit motion ends (Phase 3 review). Radix's
+  // modal layer sets the body's pointer-events to none while the panel is mounted, and forceMount keeps it mounted
+  // through the exit, so without this a tap on the page in those 320ms was swallowed. Only the release is ours: Radix
+  // locks the body itself when the panel mounts, and records the value to restore at that moment, so setting it here
+  // first would make Radix restore "none" and leave the page dead. A reopen mid-exit, after a release, locks it again.
+  const releasedBody = React.useRef(false);
+  useIsomorphicLayoutEffect(() => {
+    if (!panel) {
+      releasedBody.current = false;
+      return;
+    }
+    if (!open) {
+      document.body.style.pointerEvents = '';
+      releasedBody.current = true;
+    } else if (releasedBody.current) {
+      document.body.style.pointerEvents = 'none';
+      releasedBody.current = false;
+    }
   }, [open, panel]);
 
   React.useEffect(() => () => window.clearTimeout(exitTimer.current), []);

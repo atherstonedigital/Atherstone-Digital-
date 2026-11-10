@@ -1,14 +1,25 @@
 // The blog posts the pre-rebuild site published under /blog, moved here from lib/data.ts (BLOG_POSTS) for
 // /insights/[slug] (Phase 3 decision 8). Slugs, titles, dates, excerpts and bodies are as published, with two
 // mechanical changes: every em dash is replaced (a colon after a bold label or a quotation, a comma elsewhere), and
-// links to retired pages point at the page each one redirects to. The posts keep their old voice ("we", "Shopify
-// brands"); they are the Archive until they are rewritten to the voice rules. Bodies are Markdown.
+// links to retired pages point at the page each one redirects to. The posts keep their old positioning ("Shopify
+// brands", "£500k–£5M", Title Case headings); they are the Archive until they are rewritten. Bodies are Markdown.
 //
 // Generated once from lib/data.ts. Edit here from now on.
 //
 // Phase 3 voice-rule strips, folded in from lib/content/insights.ts at the integrate step: only a word the voice rules
 // name was replaced, nothing else reworded. ecommerce-automation-roi-guide (excerpt and body), shopify-seo-guide-2025,
 // ecommerce-director-salary-uk-vs-fractional, fractional-ecommerce-director-2026 and ai-search-shopify-2026.
+//
+// Phase 3 review fixes, all mechanical:
+// - Voice: where the speaker is Atherstone, "we/our/us" became "I/my/me" and Atherstone's "partners" became "clients",
+//   in bodies and excerpts ("What We Found" is "What I Found", keeping the post's Title Case headings). "We" stays where
+//   it is the reader and Dan together ("the things we agree", "if we're a good match"), or a quoted brand or email.
+// - The retired offer name "Shopify Catalogue Health Audit & Fix" is the offer it links to, the Store and Catalogue
+//   Health Check.
+// - No client count as a capacity claim: "2–4 clients maximum" and "with 3 clients" became "a small roster".
+// - One offer page per article: an in-body link to a second offer page keeps its words and loses its link
+//   (shopify-product-data-audit-guide, shopify-taxonomy-guide-2025, ai-search-shopify-2026). The offer each post
+//   links to is offerFor in lib/content/insights.ts.
 
 import type { ArchivePost } from './types';
 
@@ -77,7 +88,7 @@ If that's you, [book a strategy call](/ecommerce-director). You can also [see wh
     slug: 'shopify-seo-guide-2025',
     href: '/insights/shopify-seo-guide-2025',
     title: 'The Shopify SEO Playbook for 2025: From Zero to Organic Revenue',
-    excerpt: 'Organic search remains one of the highest-ROI channels for Shopify brands, if you do it properly. Here\'s the complete playbook we use with our partners.',
+    excerpt: 'Organic search remains one of the highest-ROI channels for Shopify brands, if you do it properly. Here\'s the complete playbook I use with my clients.',
     published: '2025-04-02',
     minutes: 2,
     cluster: 'archive',
@@ -87,7 +98,7 @@ If that's you, [book a strategy call](/ecommerce-director). You can also [see wh
 
 Shopify has quirks that trip up most SEO guides written for WordPress. Duplicate content from collections, faceted navigation issues, and the platform's inflexibility around URL structures are all real problems that need specific solutions.
 
-This guide covers what we actually do for our Shopify partners, not generic advice.
+This guide covers what I actually do for my Shopify clients, not generic advice.
 
 ## Technical Foundation First
 
@@ -134,14 +145,14 @@ Track:
 - Average position for target keywords
 - Core Web Vitals pass rate
 
-We run monthly SEO reviews for all our [fractional partners](/ecommerce-director). [Get in touch](/contact) if you'd like us to audit your Shopify store's [conversion rate](/ecommerce-director) and organic visibility.
+I run monthly SEO reviews for all my [fractional clients](/ecommerce-director). [Get in touch](/contact) if you'd like me to audit your Shopify store's [conversion rate](/ecommerce-director) and organic visibility.
     `,
   },
   {
     slug: 'n8n-shopify-automation-workflows',
     href: '/insights/n8n-shopify-automation-workflows',
     title: '5 n8n Workflows Every Shopify Brand Should Be Running',
-    excerpt: 'Automation isn\'t just for enterprise. Here are five n8n workflows we build for every Shopify partner, saving hundreds of hours and eliminating manual errors.',
+    excerpt: 'Automation isn\'t just for enterprise. Here are five n8n workflows I build for every Shopify client, saving hundreds of hours and eliminating manual errors.',
     published: '2025-04-20',
     minutes: 2,
     cluster: 'archive',
@@ -151,7 +162,7 @@ We run monthly SEO reviews for all our [fractional partners](/ecommerce-director
 
 n8n is self-hostable, significantly cheaper at scale, and more powerful for complex conditional logic. For Shopify brands doing serious volume, the ability to run complex multi-branch workflows without paying per-operation is a game changer.
 
-We self-host n8n for all our automation work and connect it directly to Shopify's API.
+I self-host n8n for all my automation work and connect it directly to Shopify's API.
 
 ## Workflow 1: Daily P&L Dashboard to Slack
 
@@ -192,7 +203,7 @@ For brands with subscription products, n8n monitors upcoming renewals and, 7 day
 
 n8n has a cloud version if you don't want to self-host. The learning curve is real but manageable, the drag-and-drop interface is intuitive once you understand the node model.
 
-We build and manage all [automation infrastructure](/ecommerce-director) for our fractional partners. Pair these workflows with a solid [Klaviyo retention strategy](/ecommerce-director) for maximum impact. If you want these workflows running in your stack, [let's talk](/ecommerce-director).
+I build and manage all [automation infrastructure](/ecommerce-director) for my fractional clients. Pair these workflows with a solid [Klaviyo retention strategy](/ecommerce-director) for maximum impact. If you want these workflows running in your stack, [let's talk](/ecommerce-director).
     `,
   },
   {
@@ -310,7 +321,7 @@ Ask: *"What does your retainer include, and how do you handle scope changes?"*
 
 ### 5. Capacity Limits
 
-A genuine fractional director limits their client count. If someone is juggling 10+ clients, they're a freelancer with a fancy title. Look for operators who take on 2–4 clients maximum.
+A genuine fractional director limits their client count. If someone is juggling 10+ clients, they're a freelancer with a fancy title. Look for operators who keep a small roster.
 
 Ask: *"How many active clients do you work with at any one time?"*
 
@@ -357,7 +368,7 @@ If you're a Shopify brand doing £500k–£5M and this model resonates, [book a 
     legacyCategory: 'Strategy',
     body: `## The Headline Number
 
-According to Glassdoor, Indeed, and our own market research, the **average Ecommerce Director salary in the UK in 2025** sits between:
+According to Glassdoor, Indeed, and my own market research, the **average Ecommerce Director salary in the UK in 2025** sits between:
 
 - **£80,000–£120,000** base salary
 - **£100,000–£150,000** total cost to employer (NI, pension, benefits, equipment)
@@ -464,7 +475,7 @@ Agencies are accountable for **deliverables** (campaigns launched, pages built).
 
 ### 4. Speed and Agility
 
-Agency timescales are driven by their capacity across all clients. A fractional director with 3 clients can reprioritise your sprint within hours if something urgent emerges. No project management bureaucracy. No scope change forms.
+Agency timescales are driven by their capacity across all clients. A fractional director with a small roster can reprioritise your sprint within hours if something urgent emerges. No project management bureaucracy. No scope change forms.
 
 ## The Cost Reality
 
@@ -548,7 +559,7 @@ For a brand converting at 2% with 50,000 monthly visitors, a 0.2% conversion lif
 
 ## Why n8n Over Other Platforms
 
-We use n8n (self-hosted) for all our automation work. Here's why:
+I use n8n (self-hosted) for all my automation work. Here's why:
 
 ### Cost
 
@@ -568,7 +579,7 @@ Self-hosted n8n means your customer data never touches a third-party server. For
 
 ## The Five Workflows That Pay for Themselves
 
-These are the workflows we deploy first for every new partner:
+These are the workflows I deploy first for every new client:
 
 - **Daily P&L Dashboard to Slack**: Pulls revenue, ad spend, refunds, and calculates margin automatically. Team wakes up to the numbers every morning.
 - **VIP Customer Tagging**: Automatically identifies high-value customers based on order frequency and lifetime spend. Triggers personalised Klaviyo flows.
@@ -582,14 +593,14 @@ The investment to set up a core automation stack is typically **£2,000–£5,00
 
 Given the numbers above (£22k in time savings + £60k in error reduction + revenue uplift), most brands see **positive ROI within 30 days**.
 
-We build and manage all [automation infrastructure](/ecommerce-director) for our fractional partners. [Let's talk about automating your operations](/ecommerce-director).
+I build and manage all [automation infrastructure](/ecommerce-director) for my fractional clients. [Let's talk about automating your operations](/ecommerce-director).
     `,
   },
   {
     slug: 'shopify-product-data-audit-guide',
     href: '/insights/shopify-product-data-audit-guide',
     title: 'The Shopify Product Data Audit: Why 97% of Your Alt Text Might Be Wrong',
-    excerpt: 'We audited a Shopify furniture store with 16,000+ product images. 97% had the wrong brand in the alt text. Here\'s how to find and fix the same problem in your store.',
+    excerpt: 'I audited a Shopify furniture store with 16,000+ product images. 97% had the wrong brand in the alt text. Here\'s how to find and fix the same problem in your store.',
     published: '2025-10-14',
     minutes: 2,
     cluster: 'catalogue-and-feeds',
@@ -600,7 +611,7 @@ We build and manage all [automation infrastructure](/ecommerce-director) for our
 
 Alt text rarely gets audited. It's invisible to customers, so it doesn't trigger support tickets. It's set once during product upload and forgotten. If you use Matrixify, a third-party feed, or a manual import process, whatever value was in the supplier's data becomes your alt text, and stays there indefinitely.
 
-When we ran a full data audit on a UK furniture retailer's Shopify store earlier this year, we expected to find some issues. What we found was worse.
+When I ran a full data audit on a UK furniture retailer's Shopify store earlier this year, I expected to find some issues. What I found was worse.
 
 Out of 16,193 product image rows, 15,668, just under 97%, had the wrong brand name embedded in the alt text. The legal entity name of the holding company had been baked into every image's alt attribute when the product catalogue was originally set up, and no one had ever checked.
 
@@ -612,7 +623,7 @@ Export your Products sheet from Matrixify. The column you need is "Image Alt Tex
 
 **Step 2, Check the scale of the problem**
 
-In Excel or Python, count how many rows contain unexpected values. Our client's 97% figure sounds extreme, but we've seen 40–60% error rates in stores that have been running for 3+ years without an audit.
+In Excel or Python, count how many rows contain unexpected values. My client's 97% figure sounds extreme, but I've seen 40–60% error rates in stores that have been running for 3+ years without an audit.
 
 **Step 3, Build a remediation script**
 
@@ -620,26 +631,26 @@ Python + openpyxl works well here. The logic is straightforward: if the alt text
 
 **Step 4, Fix the Liquid template**
 
-Even after a bulk fix, your [Shopify theme's image rendering](/shopify-builds-and-migrations) Liquid may be pulling alt text from a field that gets overwritten on the next product sync. Check your product image Liquid and ensure it references image.alt with a sensible fallback.
+Even after a bulk fix, your Shopify theme's image rendering Liquid may be pulling alt text from a field that gets overwritten on the next product sync. Check your product image Liquid and ensure it references image.alt with a sensible fallback.
 
 ## What This Is Worth
 
 Image alt text is a genuine ranking signal for Google Image Search, especially for product photography. If your images are currently attributed to the wrong brand, you're invisible for brand + product searches that should be driving traffic.
 
-This kind of data remediation sits at the foundation of any [LLM search readiness](/ecommerce-director) strategy, AI models rely heavily on structured product data to surface recommendations.
+This kind of data remediation sits at the foundation of any LLM search readiness strategy, AI models rely heavily on structured product data to surface recommendations.
 
-For our client, fixing 16,193 rows took two days of scripting and one Matrixify import. That's a small investment against the visibility recovery.
+For my client, fixing 16,193 rows took two days of scripting and one Matrixify import. That's a small investment against the visibility recovery.
 
 ---
 
-If you'd like us to run a data audit on your Shopify store, [book a free 30-minute teardown](https://calendly.com/dan-atherstonedigital/30min). Or learn more about our [fixed-price Shopify Catalogue Health Audit & Fix](/store-health-check) service.
+If you'd like me to run a data audit on your Shopify store, [book a free 30-minute teardown](https://calendly.com/dan-atherstonedigital/30min). Or learn more about my [fixed-price Store and Catalogue Health Check](/store-health-check) service.
     `,
   },
   {
     slug: 'shopify-taxonomy-guide-2025',
     href: '/insights/shopify-taxonomy-guide-2025',
     title: 'Shopify Standard Taxonomy: How to Fix a Broken Product Catalogue',
-    excerpt: 'We found 1,373 products assigned to \'Address Signs\' and 889 to \'Finials\' on a UK furniture store. Here\'s how to audit and rebuild your Shopify taxonomy correctly.',
+    excerpt: 'I found 1,373 products assigned to \'Address Signs\' and 889 to \'Finials\' on a UK furniture store. Here\'s how to audit and rebuild your Shopify taxonomy correctly.',
     published: '2025-11-20',
     minutes: 2,
     cluster: 'catalogue-and-feeds',
@@ -652,9 +663,9 @@ Shopify introduced a standardised product taxonomy in 2023, with the goal of map
 
 The problem: most stores have never audited their taxonomy mapping. And when it goes wrong, it goes spectacularly wrong.
 
-## What We Found
+## What I Found
 
-On a recent client audit, we exported the full product catalogue and grouped products by their assigned Category Name. Here's a sample of what we found in a 6,337-product furniture and homeware store:
+On a recent client audit, I exported the full product catalogue and grouped products by their assigned Category Name. Here's a sample of what I found in a 6,337-product furniture and homeware store:
 
 - **Address Signs:** 1,373 products (should be sofas, beds, tables)
 - **Finials:** 889 products (should be curtain poles, accessories)
@@ -690,11 +701,11 @@ Write the corrected Category: ID and Category: Name columns using Python or Exce
 
 After import, spot-check 10–15 products across different types in Shopify admin. In Google Merchant Center, check your product feed for category mismatch disapprovals, these should clear within 2–3 feed refresh cycles.
 
-Getting your taxonomy right is a prerequisite for effective [paid media campaigns](/ecommerce-director): broken categories mean broken Shopping ads.
+Getting your taxonomy right is a prerequisite for effective paid media campaigns: broken categories mean broken Shopping ads.
 
 ---
 
-Need a taxonomy audit? [Book a free session](https://calendly.com/dan-atherstonedigital/30min). We also offer a [fixed-price Shopify Catalogue Health Audit & Fix](/store-health-check) that covers taxonomy, alt text, product types, and metadata in one engagement.
+Need a taxonomy audit? [Book a free session](https://calendly.com/dan-atherstonedigital/30min). I also offer a [fixed-price Store and Catalogue Health Check](/store-health-check) that covers taxonomy, alt text, product types, and metadata in one engagement.
     `,
   },
   {
@@ -754,7 +765,7 @@ The retainer-for-strategy model is being rejected. Founders who've been through 
 
 In 2024, "AI search" was a prediction. In 2026, it's a distribution channel.
 
-ChatGPT's shopping integration, Gemini's product recommendations, and Perplexity's commerce answers are now returning product results to real buyers. Early data from brands in our partner network suggests that AI-referred traffic is converting at rates comparable to Google Shopping, possibly higher, because the buyer has usually been pre-qualified by the AI's response.
+ChatGPT's shopping integration, Gemini's product recommendations, and Perplexity's commerce answers are now returning product results to real buyers. Early data from brands in my client network suggests that AI-referred traffic is converting at rates comparable to Google Shopping, possibly higher, because the buyer has usually been pre-qualified by the AI's response.
 
 AI search engines don't crawl your store the same way Google does. They rely on:
 
@@ -767,7 +778,7 @@ AI search engines don't crawl your store the same way Google does. They rely on:
 
 **Product schema**
 
-Is your Product JSON-LD present on every PDP? Does it include brand, offers (with priceCurrency, price, availability), description, and image? Run a sample PDP through Google's Rich Results Test. This is a core part of our [LLM search readiness](/ecommerce-director) service.
+Is your Product JSON-LD present on every PDP? Does it include brand, offers (with priceCurrency, price, availability), description, and image? Run a sample PDP through Google's Rich Results Test. This is a core part of my LLM search readiness service.
 
 **Brand consistency**
 
@@ -775,7 +786,7 @@ Is your brand name consistent between: your Shopify store name, your product ven
 
 **Description depth**
 
-Thin product descriptions (under 100 words, or templated) are a liability. AI models prefer to cite sources with rich, specific, accurate information. This ties directly into [CRO](/ecommerce-director): richer descriptions convert better too.
+Thin product descriptions (under 100 words, or templated) are a liability. AI models prefer to cite sources with rich, specific, accurate information. This ties directly into CRO: richer descriptions convert better too.
 
 **Q&A and FAQ content**
 
@@ -785,11 +796,11 @@ Product page FAQs, collection page guides, and blog content that answers real pr
 
 Most Shopify brands are not optimising for AI search yet. The brands that get their structured data right, their content rich, and their brand signal consistent in the next 6–12 months will have a durable advantage.
 
-Pair this with a solid [Klaviyo retention strategy](/ecommerce-director) and the gains compound.
+Pair this with a solid Klaviyo retention strategy and the gains compound.
 
 ---
 
-[Book a free teardown](https://calendly.com/dan-atherstonedigital/30min) to see where your Shopify store stands. If your product data needs immediate attention, check out our [Shopify Catalogue Health Audit & Fix](/store-health-check).
+[Book a free teardown](https://calendly.com/dan-atherstonedigital/30min) to see where your Shopify store stands. If your product data needs immediate attention, check out my [Store and Catalogue Health Check](/store-health-check).
     `,
   },
   {
@@ -801,6 +812,9 @@ Pair this with a solid [Klaviyo retention strategy](/ecommerce-director) and the
     minutes: 3,
     cluster: 'email-and-samples',
     sectorTag: 'Email and samples',
+    // The one sector page it links to (plan, Internal linking rules). Phase 3 default, for Dan to change: the furniture
+    // hub, as every planned article links it. The tag stays the cluster's: the post is not about one sector.
+    sector: 'furniture-retailers',
     legacyCategory: 'SEO',
     body: `## Email Is Your Highest-ROI Channel
 
@@ -905,7 +919,7 @@ This isn't a revenue flow, it's a deliverability flow. A bloated, unengaged list
 
 If your Klaviyo account has fewer than 5 active flows, or your email revenue is under 20% of total, there's significant upside to capture.
 
-We audit and rebuild [Klaviyo accounts](/ecommerce-director) as part of every [fractional engagement](/ecommerce-director). [Book a call to discuss your email strategy](/contact).
+I audit and rebuild [Klaviyo accounts](/ecommerce-director) as part of every [fractional engagement](/ecommerce-director). [Book a call to discuss your email strategy](/contact).
     `,
   },
   {
@@ -926,7 +940,7 @@ For Shopify brands doing £500k–£5M, the question isn't whether to automate. 
 
 ## Where Automation Actually Moves the Needle
 
-After building automation stacks for dozens of Shopify brands, we've found the highest-ROI automations consistently fall into three categories.
+After building automation stacks for dozens of Shopify brands, I've found the highest-ROI automations consistently fall into three categories.
 
 ### 1. Order and Fulfilment Workflows
 
@@ -963,13 +977,13 @@ After building automation stacks for dozens of Shopify brands, we've found the h
 
 ## What Doesn't Work (Yet)
 
-Not everything should be automated. Here's where we see brands waste time and money:
+Not everything should be automated. Here's where I see brands waste time and money:
 
 - **AI-generated product descriptions at scale**: the output is generic and often worse than what you already have. Fine for meta descriptions; bad for PDPs.
 - **Fully automated ad management**: tools like Smartly or Revealbot can handle bid adjustments, but creative strategy still needs a human. Automating spend without oversight is how you burn budget.
 - **Chatbot-first customer service**: unless your enquiry volume is 100+/day, a well-structured FAQ and a human inbox will outperform any chatbot in CSAT scores.
 
-## The Stack We Use
+## The Stack I Use
 
 For most Shopify brands in the £500k–£5M range, the automation stack looks like:
 
@@ -984,7 +998,7 @@ The total cost of this stack (excluding Klaviyo, which you're already paying for
 
 If you're doing this for the first time, start with the automation that saves the most human hours per week. For most brands, that's **order tagging and fulfilment routing**. It's low-risk, high-impact, and you'll see results within a week.
 
-We build and manage the full [automation stack](/ecommerce-director) for our fractional partners. If you want to stop paying humans to do what machines should handle, [book a strategy call](/ecommerce-director).
+I build and manage the full [automation stack](/ecommerce-director) for my fractional clients. If you want to stop paying humans to do what machines should handle, [book a strategy call](/ecommerce-director).
     `,
   },
   {
@@ -1011,7 +1025,7 @@ Here's where AI is genuinely useful for Shopify brands right now, and where it's
 
 **Yes:** using AI to categorise, prioritise, and draft responses for incoming tickets.
 
-The best implementation we've seen: an n8n workflow that reads incoming Gorgias or Zendesk tickets, classifies them (shipping enquiry, return request, product question, complaint), drafts a response using your brand voice guidelines, and routes it to the right agent with context pre-loaded.
+The best implementation I've seen: an n8n workflow that reads incoming Gorgias or Zendesk tickets, classifies them (shipping enquiry, return request, product question, complaint), drafts a response using your brand voice guidelines, and routes it to the right agent with context pre-loaded.
 
 **Result:** 40–60% reduction in first-response time. Agents spend time solving problems instead of reading and categorising.
 
@@ -1064,7 +1078,7 @@ The promise of "AI that predicts demand" requires clean historical data, consist
 
 ## A Practical AI Stack for Shopify Brands
 
-Here's what we recommend for brands in the £500k–£5M range:
+Here's what I recommend for brands in the £500k–£5M range:
 
 - **Claude or GPT-4 via API**: for product data enrichment, support triage drafts, and ad copy generation. Use the API, not the chat interface, it's cheaper and integrable.
 - **n8n**: to orchestrate AI workflows. Connect your Shopify data, pipe it through an LLM, push results back. No code required for most workflows.
@@ -1077,7 +1091,7 @@ Total additional cost: £100–£300/month for API usage and search tooling.
 
 AI is a tool, not a strategy. The brands getting results are the ones integrating it into [existing workflows and automations](/ecommerce-director), not the ones buying standalone AI products and hoping for magic.
 
-If you want help identifying where AI fits into your specific stack, [book a strategy call](/ecommerce-director). We'll map your current workflows and show you exactly where AI saves time and money.
+If you want help identifying where AI fits into your specific stack, [book a strategy call](/ecommerce-director). I'll map your current workflows and show you exactly where AI saves time and money.
     `,
   },
   {
@@ -1089,12 +1103,14 @@ If you want help identifying where AI fits into your specific stack, [book a str
     minutes: 4,
     cluster: 'tracking-and-reporting',
     sectorTag: 'Tracking and reporting',
+    // The one sector page it links to (Phase 3 review). The tag stays the cluster's: the post is not about one sector.
+    sector: 'furniture-retailers',
     legacyCategory: 'Strategy',
     body: `## Your Dashboard Is Lying to You
 
 Every Shopify brand has a dashboard. Most of them are tracking vanity metrics that feel good but don't drive decisions. Worse, some of the metrics they *are* tracking are calculated wrong, leading to strategic mistakes that compound over months.
 
-Here are the five metrics we see tracked incorrectly most often, and what to do about each one.
+Here are the five metrics I see tracked incorrectly most often, and what to do about each one.
 
 ## 1. Conversion Rate (Without Segmentation)
 
@@ -1174,7 +1190,7 @@ For brands doing £500k–£5M, you don't need a £2,000/month BI tool. Here's w
 - **Klaviyo analytics**: with tightened attribution windows
 - **A monthly P&L**: the single most important document in your business
 
-If you want help rebuilding your reporting stack or auditing the metrics you're currently tracking, [book a strategy call](/ecommerce-director). We build [measurement frameworks](/ecommerce-director) into every fractional engagement.
+If you want help rebuilding your reporting stack or auditing the metrics you're currently tracking, [book a strategy call](/ecommerce-director). I build [measurement frameworks](/ecommerce-director) into every fractional engagement.
     `,
   },
 ];

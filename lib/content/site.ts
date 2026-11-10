@@ -363,7 +363,8 @@ export const meetDan: AboutSection = {
   eyebrow: 'Meet Dan',
   heading: 'Dan Le Gresley',
   // The plan's Licklibrary sentence ends with a revenue growth figure. It is not on the live site, so it stays out of
-  // the public repo until Dan clears it; the sentence stops after the role.
+  // the public repo until Dan clears it; the sentence stops after the role. Licklibrary is one of the plan's case studies,
+  // so the figure is treated as a client figure; it is on the Phase 3 substitution list for Dan to rule on.
   bio: 'Twenty years in ecommerce and digital. Blue chip work for GSK, Amazon, Ecolab, Eli Lilly and The Economist. Seven years as Digital Director at Licklibrary. Now I run online for premium interiors retailers, from a 16,000-product furniture catalogue to a three-showroom group’s weekly trading report. I own the strategy, write the code, run the ads and ship the automations. One person, one invoice, everything connected.',
   credentials: [
     'Shopify Partner since 2014',
@@ -415,6 +416,9 @@ const caseStudyLinks: Link[] = [
 export const leadMagnet: LeadMagnet = {
   // The plan writes it in title case; headings are sentence case (brand book), as in Phase 1.
   heading: 'The showroom retailer’s online scorecard',
+  // The heading links to the landing page, so /scorecard is one click from the homepage (plan, Internal linking rules:
+  // no page more than two clicks from home). On /scorecard the panel drops its heading, so it never links to itself.
+  href: '/scorecard',
   description: 'The seven numbers to check every Monday morning, and what each one is telling you about the website. Two pages, no fluff, used by the retailers I work with.',
   netlifyFormName: 'scorecard',
   field: {

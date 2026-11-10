@@ -30,17 +30,19 @@ export interface Portrait {
 
 /**
  * The interim portrait: the photograph on the current site, a 1024 by 1536 stage shot, cropped square to Dan as Phase 1
- * cropped it. The crop is the 670px square at x 354, y 28, which keeps the Shopify logo on the left out of frame: the
- * image is 1024/670 of the frame's width, its right edge on the frame's, and it rises by 28/670 of the frame. Replace it
- * when the commissioned portrait arrives (plan, open decision on photography). The file is 1.8MB and images are
- * unoptimised in the static export, so it needs converting (about 150kB WebP) before launch (Phase 1 report).
+ * cropped it, the 670px square at x 354, y 28, which keeps the Shopify logo on the left out of frame. Images are
+ * unoptimised in the static export, so the crop is exported on its own as a 670px WebP at quality 80 (16KB, from the
+ * 1.8MB PNG; Phase 3 review): the frame only ever showed those 670 source pixels, so nothing loses sharpness. It is
+ * square, so it simply covers the frame. Regenerate it from the PNG, which stays in public/ as the old speaker image's
+ * redirect target, with sharp (dev-only, not installed): sharp(png).extract({ left: 354, top: 28, width: 670,
+ * height: 670 }).webp({ quality: 80 }). Replace it when the commissioned portrait arrives (plan, open decision on
+ * photography).
  */
 export const danPortrait: Portrait = {
-  src: '/dan-le-gresley-shopify-ecommerce-consultant.png',
-  width: 1024,
-  height: 1536,
+  src: '/dan-le-gresley-portrait.webp',
+  width: 670,
+  height: 670,
   alt: 'Dan Le Gresley',
-  cropClassName: 'absolute right-0 top-[-4.179%] h-auto w-[152.836%] max-w-none',
 };
 
 export interface AboutStripProps extends Omit<React.HTMLAttributes<HTMLElement>, 'content' | 'children'> {

@@ -29,23 +29,30 @@ const offerName = offers.offers.find((offer) => offer.id === page.id)?.name ?? p
 
 type TierTableContent = (typeof page)['pricing']['table'];
 
-/** The one tier on the brass-300 band: the tier the content marks (lib/content/pages/offers.ts). Exactly one. */
-function highlightedTier(tiers: PriceTier[]) {
+/**
+ * The tier on the brass-300 band, if the content marks one (lib/content/pages/offers.ts): at most one, and only with a
+ * label to say so in words. None today (Phase 3 review): the catalogue size sets the tier. -1 when there is none.
+ */
+function highlightedTier(tiers: PriceTier[], label: string | undefined) {
   const chosen = tiers.filter((tier) => tier.highlight);
-  if (chosen.length !== 1) {
-    throw new Error(`The Health Check pricing needs exactly one highlighted tier; lib/content has ${chosen.length}.`);
+  if (chosen.length > 1) {
+    throw new Error(`The Health Check pricing allows one highlighted tier at most; lib/content has ${chosen.length}.`);
   }
-  return tiers.indexOf(chosen[0]);
+  if (chosen.length === 1 && !label) {
+    throw new Error('A highlighted Health Check tier needs table.highlightLabel, so colour is not the only signal.');
+  }
+  return chosen.length === 1 ? tiers.indexOf(chosen[0]) : -1;
 }
 
 /**
  * The pricing table (brand book, Colour): raised to paper-raised with a rule border and no shadow, the column heads in
  * the eyebrow style over a rule-strong rule (a table header is a border that carries meaning), the tiers divided by rule
- * hairlines, and the one tier the reader should choose on the brass-300 band, text in ink. Prices are set as the
- * OfferCard sets a price: Newsreader 500 at 28px with tabular numerals. Everything is left aligned (brand book, Layout).
+ * hairlines, and a tier the reader should choose, if one is marked, on the brass-300 band, text in ink. Prices are set
+ * as the OfferCard sets a price: Newsreader 500 at 28px with tabular numerals. Everything is left aligned (brand book,
+ * Layout).
  */
 function TierTable({ tiers, table }: { tiers: PriceTier[]; table: TierTableContent }) {
-  const highlight = highlightedTier(tiers);
+  const highlight = highlightedTier(tiers, table.highlightLabel);
   const [sizeHead, priceHead] = table.columns;
   return (
     <div className="rounded-radius-0 border border-rule bg-paper-raised text-ink">

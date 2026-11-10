@@ -200,7 +200,11 @@ export const resultsIndexPage: ResultsIndexPage = {
     description:
       'Case studies from furniture and interiors retailers: what was wrong, what I did and what changed, with figures where the client has cleared them.',
   },
-  h1: 'Results',
+  // Phase 3 draft, pending Dan's approval: the plan writes no H1 for the index, and its title rule wants the H1 to
+  // match the title tag's intent ("Furniture & Interiors Ecommerce Case Studies", primary term "ecommerce case studies
+  // furniture"). "Results" stays the page's label in the nav, the breadcrumbs and the offer pages' case-study block.
+  h1: 'Case studies from furniture and interiors retailers',
+  label: 'Results',
   intro: stub('The plan gives the index a job (proof, filterable by sector and by problem) but no copy.'),
   // Sector and Problem are the Phase 2 tag labels (components/site/CaseStudyHeader.tsx); problem values are problemTags.
   filters: { sector: 'Sector', problem: 'Problem', all: 'All' },

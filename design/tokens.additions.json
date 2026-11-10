@@ -1,0 +1,182 @@
+{
+  "$comment": "Proposed additions to docs/brand/tokens.json, pending the brand owner's approval. scripts/build-tokens.mjs merges them after tokens.json, so the site uses them now and every generated line they produce is marked PROPOSED. On approval, move each entry into tokens.json and delete it here. Colour values are hex, a reference to another colour token as {name}, or a mix: {\"mix\": a, \"weight\": w, \"into\": b} is token a at weight w mixed into token b in sRGB, computed per theme at generation time.",
+  "basis": "docs/brand/tokens.json version 1",
+  "source": "Phase 1 report, section 5 (What the homepage needed that the system does not define), unless an entry says otherwise",
+  "color": {
+    "tokens": [
+      {
+        "name": "focus",
+        "status": "proposed",
+        "change": "replaces the light value",
+        "was": { "light": "#b8862b", "dark": "#d9b45e" },
+        "value": { "light": "#a57825", "dark": "#d9b45e" },
+        "usage": "Keyboard focus ring: 2px solid, 2px offset, on every interactive element. Light: 3.64:1 on paper, 3.95:1 on paper-raised, 3.17:1 on green-900. Dark: 9.32:1 on paper, 6.32:1 on band.",
+        "reason": "The light value #b8862b measures 2.99:1 on paper, not the 3.1:1 its usage note claims, so the ring fails WCAG 1.4.11 on the page ground. #a57825 keeps the brass hue and clears 3:1 on paper, paper-raised and the green band. The dark value is unchanged."
+      },
+      {
+        "name": "focus-on-highlight",
+        "status": "proposed",
+        "change": "new",
+        "value": { "light": "{brass-600}", "dark": "{focus}" },
+        "usage": "The focus ring on a control that sits on brass-300 (the highlighted Health Check card). Light: 3.79:1 on brass-300. Dark: 5.51:1 on brass-300.",
+        "reason": "Found while generating Phase 2 tokens, not in the Phase 1 report. The proposed light focus measures 2.82:1 on brass-300. No single ring colour can reach 3:1 on both brass-300 and green-900 in the light theme (their luminances leave no value between), so the highlight ground needs its own ring. Phase 1 drew the light ring in brass-600 everywhere for the same reason."
+      },
+      {
+        "name": "link-on-highlight",
+        "status": "proposed",
+        "change": "new",
+        "value": { "light": "{green-700}", "dark": "{ink}" },
+        "usage": "Text links on brass-300 (the Read more link on the highlighted Health Check card). Dark: ink, 9.32:1 on brass-300.",
+        "reason": "Phase 1 report, section 5, link colour on the highlighted card. In the dark theme green-700 on brass-300 measures 3.77:1 and fails AA for text; ink passes. The light theme keeps green-700. A token keeps the switch out of component code."
+      },
+      {
+        "name": "band",
+        "status": "proposed",
+        "change": "new",
+        "value": { "light": "{green-900}", "dark": { "mix": "green-900", "weight": 0.2, "into": "paper" } },
+        "usage": "The full-width contact band at the foot of each page. Text on it uses on-band.",
+        "reason": "The brand book makes the contact section a green-900 band with on-green text. In the dark theme green-900 is a light mint (#7fbf9e), right for a button fill but it turns a full-bleed band into a pale slab, while tokens.json calls it the dark band. The dark value mixes green-900 20% into paper (about #25382e), so the band stays a deep green: on-band (ink) measures 10.68:1 on it and ink-muted 5.78:1."
+      },
+      {
+        "name": "on-band",
+        "status": "proposed",
+        "change": "new",
+        "value": { "light": "{on-green}", "dark": "{ink}" },
+        "usage": "Text and icons on the band. Light: on-green, 11.55:1. Dark: ink, 10.68:1.",
+        "reason": "Pairs with band. on-green darkens in the dark theme for the mint button fill, which would put dark text on the deep green band; the band needs light text in both themes."
+      },
+      {
+        "name": "rule-on-band",
+        "status": "proposed",
+        "change": "new",
+        "value": { "light": { "mix": "on-band", "weight": 0.28, "into": "band" }, "dark": { "mix": "on-band", "weight": 0.28, "into": "band" } },
+        "usage": "The hairline under a section heading and any divider on the band. Decorative, like rule, so it may sit below 3:1.",
+        "reason": "rule is tuned for paper and vanishes on the green band. Phase 1 drew the band's hairline as on-band at 28% into the band; this makes that value a token."
+      },
+      {
+        "name": "button-on-band-hover",
+        "status": "proposed",
+        "change": "new",
+        "value": { "light": { "mix": "on-band", "weight": 0.85, "into": "band" }, "dark": { "mix": "on-band", "weight": 0.85, "into": "band" } },
+        "usage": "Hover and pressed fill of the primary button on the band, which inverts to an on-band fill with band text there. Band text measures 8.83:1 on it (light), 8.22:1 (dark).",
+        "reason": "Phase 2 navigation group (CTABand). In the light theme the primary's green-900 fill is the band's own colour, so on the band the primary inverts, as the monogram does; the brand gives no hover for the inverted fill. Built until now as color-mix() of the two tokens in components/site/CTABand.tsx."
+      },
+      {
+        "name": "rule-strong-on-band",
+        "status": "proposed",
+        "change": "new",
+        "value": { "light": { "mix": "on-band", "weight": 0.5, "into": "band" }, "dark": { "mix": "on-band", "weight": 0.5, "into": "band" } },
+        "usage": "Borders that carry meaning on the band: the secondary button's outline. 4.12:1 on band (light), 3.93:1 (dark).",
+        "reason": "Phase 2 navigation group (CTABand). Meaningful borders must meet 3:1; rule-on-band is decorative (about 2.3:1) and rule-strong is tuned for paper."
+      }
+    ]
+  },
+  "type": {
+    "fonts": [
+      {
+        "family": "Newsreader",
+        "status": "proposed",
+        "change": "new: metric-matched fallback face",
+        "fallback": {
+          "name": "Newsreader fallback",
+          "local": ["Times New Roman", "Liberation Serif"],
+          "sizeAdjust": "111.5%",
+          "ascentOverride": "65.9%",
+          "descentOverride": "23.8%",
+          "lineGapOverride": "0%"
+        },
+        "reason": "The brand book asks for size-adjust so nothing shifts when the fonts load, but type.fonts in tokens.json is empty. next/font computes a fallback for Schibsted Grotesk itself, but Next 14.2.5 has no metrics for Newsreader and emits none, so every Newsreader heading would reflow on swap. These are the Phase 1 values (report section 5); in Phase 2 they measured within 0.3% of Newsreader's width and within a pixel of its ascent and descent at 100px in Chromium, where unadjusted Times is 11% narrower."
+      }
+    ],
+    "styles": [
+      {
+        "name": "display-1",
+        "status": "proposed",
+        "change": "responsive size steps and the optical size",
+        "steps": [
+          { "fontSize": "34px" },
+          { "minWidth": "360px", "fontSize": "40px" },
+          { "minWidth": "720px", "fontSize": "52px" },
+          { "minWidth": "1024px", "fontSize": "64px" }
+        ],
+        "fontVariationSettings": "\"opsz\" 72",
+        "reason": "tokens.json has one size per style. At 390px a 64px H1 breaks mid-phrase, and at 320 by 640 the hero only fits with a 34px step. These are the steps the Phase 1 homepage used (34px below 360px, 40px to 719px, 52px to 1023px, 64px from 1024px). The optical size 72 is stated in the display-1 usage note; it is structured here so the generator can emit it."
+      },
+      {
+        "name": "figure",
+        "status": "proposed",
+        "change": "structured from the usage note",
+        "fontVariantNumeric": "tabular-nums",
+        "reason": "The figure usage note says tabular numerals on. Structured here so the generated .figure class sets them."
+      },
+      {
+        "name": "eyebrow",
+        "status": "proposed",
+        "change": "structured from the usage note",
+        "textTransform": "uppercase",
+        "reason": "The eyebrow usage note says set in uppercase in CSS, and the SectionHeading component takes sentence-case text and sets it uppercase. Structured here so the generated .eyebrow class does it."
+      }
+    ]
+  },
+  "layout": {
+    "tokens": [
+      {
+        "name": "nav-height",
+        "status": "proposed",
+        "value": "64px",
+        "usage": "Height of the fixed site nav. The body (or the page wrapper) is padded by it and scroll-padding-top uses it, so the nav never covers the first section or a focused control.",
+        "reason": "The brand book fixes the nav and pads the body by its height but gives no height. Phase 1 used 64px (space-16) at every width."
+      },
+      {
+        "name": "gutter",
+        "status": "proposed",
+        "steps": [
+          { "value": "16px" },
+          { "minWidth": "720px", "value": "24px" },
+          { "minWidth": "1200px", "value": "32px" }
+        ],
+        "usage": "Page side gutter outside the container, and the column gap of the 12-column grid.",
+        "reason": "Phase 1 report, section 5, layout tokens. The brand book gives space-4 on mobile and space-8 on desktop; Phase 1 needed a 24px step from 720px to 1199px so tablets do not run on phone gutters. Not in the Phase 2 task's list; proposed because every page container needs it."
+      },
+      {
+        "name": "measure-lg",
+        "status": "proposed",
+        "value": "60ch",
+        "usage": "Maximum width of body-lg copy: the hero sub-copy and the first paragraph of a page.",
+        "reason": "The brand book sets body-lg at 60ch and the body-lg usage note says max 60 characters a line, but tokens.json only defines measure (68ch). Not in the Phase 2 task's list; proposed so components do not write 60ch by hand."
+      },
+      {
+        "name": "touch-target",
+        "status": "proposed",
+        "value": "44px",
+        "usage": "Minimum height (and width for icon-only controls) of every interactive element on touch screens.",
+        "reason": "The brand book requires 44px touch targets and the Button and Forms specs set a 44px minimum height, but no token holds the number. Not in the Phase 2 task's list; proposed so buttons, fields, nav links and the drawer controls share one value."
+      },
+      {
+        "name": "sheet-width",
+        "status": "proposed",
+        "value": "420px",
+        "usage": "Maximum width of the mobile nav drawer (the Sheet). Below it the drawer is full width.",
+        "reason": "Phase 1's drawer width, kept by the Phase 2 navigation group. The brand book puts the drawer on paper-raised with a rule edge but gives it no width."
+      }
+    ]
+  },
+  "zIndex": {
+    "tokens": [
+      { "name": "content", "status": "proposed", "value": 0, "reason": "Page content. Part of the z-index scale from the Phase 1 report (the ui-ux-pro-max rule: one token scale, never z-[9999]); the brand defines none." },
+      { "name": "nav", "status": "proposed", "value": 40, "reason": "The fixed site nav sits above content. Part of the same scale." },
+      { "name": "dropdown", "status": "proposed", "value": 50, "reason": "The Services and Sectors dropdown panels open over the nav's neighbours. Part of the same scale." },
+      { "name": "sheet-overlay", "status": "proposed", "value": 90, "reason": "The scrim behind the mobile nav sheet. Part of the same scale." },
+      { "name": "sheet", "status": "proposed", "value": 100, "reason": "The mobile nav sheet itself. Part of the same scale." },
+      { "name": "skip-link", "status": "proposed", "value": 1000, "reason": "The skip link must stay above everything, including an open sheet. Part of the same scale." }
+    ]
+  },
+  "motion": {
+    "tokens": [
+      { "name": "duration-colour", "status": "proposed", "value": "150ms", "reason": "Brand book, Motion: transitions on colour and underline thickness run 150ms, ease-out. Made a token so CSS and GSAP share it." },
+      { "name": "duration-press", "status": "proposed", "value": "80ms", "reason": "Brand book, Motion: buttons scale to 0.98 on pointer-down over 80ms. Made a token so CSS and GSAP share it." },
+      { "name": "duration-drawer", "status": "proposed", "value": "320ms", "reason": "Brand book, Motion: drawers and accordions settle over 300 to 350ms. Phase 1 used 320ms for the drawer." },
+      { "name": "ease-drawer", "status": "proposed", "value": "cubic-bezier(0.2, 0.8, 0.2, 1)", "reason": "The curve the Phase 1 drawer used: it settles without overshoot, as the brand book asks of the drawer spring (no more than 2px). Used by the CSS fallback and the reduced-motion path. Not in the Phase 2 task's list; proposed with the durations." }
+    ]
+  }
+}

@@ -1,0 +1,334 @@
+/* generated from docs/brand/tokens.json, do not edit. */
+/* Merged with design/tokens.additions.json: every line marked PROPOSED comes from it and is pending the brand owner's
+   approval. Regenerate with `npm run tokens` (needs docs/brand/tokens.json locally; the build never reads it). */
+
+/* ------------------------------------------------------------------ colour */
+/* Light: the default, and any subtree marked data-theme="light". */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  /* Page ground. Every page starts here; it is a cool chalk, never cream. */
+  --paper: #f5f6f3;
+  /* Forms, pull-quotes and the Health Check pricing table. Separated from paper by a rule, never a shadow. */
+  --paper-raised: #ffffff;
+  /* All headings and body copy on paper and paper-raised. 15.9:1 on paper (light), 15.3:1 (dark). */
+  --ink: #121b16;
+  /* Eyebrows, captions, chart axes, the quieter line under a stat. 6.8:1 on paper (light), 9.1:1 (dark). Never for body copy. */
+  --ink-muted: #4f5a54;
+  /* The hairline. Section dividers, table rows, the line under a heading. Decorative only: it carries no meaning, so it may sit below 3:1. */
+  --rule: #cfd4ce;
+  /* Borders that carry meaning: form fields, the secondary button outline, table header rule. 3.6:1 on paper (light), 4.6:1 (dark). */
+  --rule-strong: #78837c;
+  /* The brand colour. Primary button fill, the wordmark on light ground, the dark band behind the contact section. Text on it uses on-green. */
+  --green-900: #163a2c;
+  /* Primary button hover and pressed. Links in body copy (7.2:1 on paper, light; 7.0:1 dark). */
+  --green-700: #1f5c44;
+  /* Text and icons on green-900 and green-700 fills. 11.4:1 on green-900 (light), 9.6:1 (dark). */
+  --on-green: #f5f6f3;
+  /* The one accent. The marker beside a figure, the active nav item, the chart series the title is about, the eyebrow on the homepage hero. 5.2:1 on paper (light), 9.3:1 (dark). Never as a button fill. */
+  --brass-600: #8a6520;
+  /* Highlight band behind a quoted figure or a key sentence; the Health Check tier the reader should pick. Text on it is ink. */
+  --brass-300: #e9d9ae;
+  /* Reports and charts only: a number that moved the right way. Always paired with the word or arrow that says so. */
+  --signal-good: #2f7d4f;
+  /* Reports, charts and form errors only: a number that moved the wrong way, a field that failed. Always paired with text. */
+  --signal-critical: #a3342b;
+  /* Keyboard focus ring: 2px solid, 2px offset, on every interactive element. Light: 3.64:1 on paper, 3.95:1 on paper-raised, 3.17:1 on green-900. Dark: 9.32:1 on paper, 6.32:1 on band. */
+  /* PROPOSED, pending approval: see design/tokens.additions.json. Was #b8862b (light), #d9b45e (dark). */
+  --focus: #a57825;
+  /* The focus ring on a control that sits on brass-300 (the highlighted Health Check card). Light: 3.79:1 on brass-300. Dark: 5.51:1 on brass-300. */
+  /* PROPOSED, pending approval: see design/tokens.additions.json. */
+  --focus-on-highlight: var(--brass-600);
+  /* Text links on brass-300 (the Read more link on the highlighted Health Check card). Dark: ink, 9.32:1 on brass-300. */
+  /* PROPOSED, pending approval: see design/tokens.additions.json. */
+  --link-on-highlight: var(--green-700);
+  /* The full-width contact band at the foot of each page. Text on it uses on-band. */
+  /* PROPOSED, pending approval: see design/tokens.additions.json. */
+  --band: var(--green-900);
+  /* Text and icons on the band. Light: on-green, 11.55:1. Dark: ink, 10.68:1. */
+  /* PROPOSED, pending approval: see design/tokens.additions.json. */
+  --on-band: var(--on-green);
+  /* The hairline under a section heading and any divider on the band. Decorative, like rule, so it may sit below 3:1. */
+  /* PROPOSED, pending approval: see design/tokens.additions.json. */
+  --rule-on-band: #546f64; /* on-band at 28% into band */
+  /* Hover and pressed fill of the primary button on the band, which inverts to an on-band fill with band text there. Band text measures 8.83:1 on it (light), 8.22:1 (dark). */
+  /* PROPOSED, pending approval: see design/tokens.additions.json. */
+  --button-on-band-hover: #d4dad5; /* on-band at 85% into band */
+  /* Borders that carry meaning on the band: the secondary button's outline. 4.12:1 on band (light), 3.93:1 (dark). */
+  /* PROPOSED, pending approval: see design/tokens.additions.json. */
+  --rule-strong-on-band: #869890; /* on-band at 50% into band */
+}
+
+/* Dark: chosen with the theme toggle, on <html> or a subtree. */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0e1612;
+  --paper-raised: #16211b;
+  --ink: #eceeea;
+  --ink-muted: #a9b3ac;
+  --rule: #2a3630;
+  --rule-strong: #8a958e;
+  --green-900: #7fbf9e;
+  --green-700: #5fa683;
+  --on-green: #0e1612;
+  --brass-600: #d9b45e;
+  --brass-300: #4a3b18;
+  --signal-good: #7fd19a;
+  --signal-critical: #f08a80;
+  /* focus: PROPOSED, pending approval: see design/tokens.additions.json. */
+  --focus: #d9b45e;
+  /* focus-on-highlight: PROPOSED, pending approval: see design/tokens.additions.json. */
+  --focus-on-highlight: var(--focus);
+  /* link-on-highlight: PROPOSED, pending approval: see design/tokens.additions.json. */
+  --link-on-highlight: var(--ink);
+  /* band: PROPOSED, pending approval: see design/tokens.additions.json. */
+  --band: #25382e; /* green-900 at 20% into paper */
+  /* on-band: PROPOSED, pending approval: see design/tokens.additions.json. */
+  --on-band: var(--ink);
+  /* rule-on-band: PROPOSED, pending approval: see design/tokens.additions.json. */
+  --rule-on-band: #5d6b63; /* on-band at 28% into band */
+  /* button-on-band-hover: PROPOSED, pending approval: see design/tokens.additions.json. */
+  --button-on-band-hover: #ced3ce; /* on-band at 85% into band */
+  /* rule-strong-on-band: PROPOSED, pending approval: see design/tokens.additions.json. */
+  --rule-strong-on-band: #89938c; /* on-band at 50% into band */
+}
+
+/* Dark: the system setting, until the visitor chooses light. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0e1612;
+    --paper-raised: #16211b;
+    --ink: #eceeea;
+    --ink-muted: #a9b3ac;
+    --rule: #2a3630;
+    --rule-strong: #8a958e;
+    --green-900: #7fbf9e;
+    --green-700: #5fa683;
+    --on-green: #0e1612;
+    --brass-600: #d9b45e;
+    --brass-300: #4a3b18;
+    --signal-good: #7fd19a;
+    --signal-critical: #f08a80;
+    /* focus: PROPOSED, pending approval: see design/tokens.additions.json. */
+    --focus: #d9b45e;
+    /* focus-on-highlight: PROPOSED, pending approval: see design/tokens.additions.json. */
+    --focus-on-highlight: var(--focus);
+    /* link-on-highlight: PROPOSED, pending approval: see design/tokens.additions.json. */
+    --link-on-highlight: var(--ink);
+    /* band: PROPOSED, pending approval: see design/tokens.additions.json. */
+    --band: #25382e; /* green-900 at 20% into paper */
+    /* on-band: PROPOSED, pending approval: see design/tokens.additions.json. */
+    --on-band: var(--ink);
+    /* rule-on-band: PROPOSED, pending approval: see design/tokens.additions.json. */
+    --rule-on-band: #5d6b63; /* on-band at 28% into band */
+    /* button-on-band-hover: PROPOSED, pending approval: see design/tokens.additions.json. */
+    --button-on-band-hover: #ced3ce; /* on-band at 85% into band */
+    /* rule-strong-on-band: PROPOSED, pending approval: see design/tokens.additions.json. */
+    --rule-strong-on-band: #89938c; /* on-band at 50% into band */
+  }
+}
+
+/* ------------------------------------------------------------------ fallback faces
+   Local fonts scaled to the web font's metrics, so text does not reflow when the web font swaps in. */
+/* Newsreader: PROPOSED, pending approval: see design/tokens.additions.json. */
+@font-face {
+  font-family: "Newsreader fallback";
+  src: local("Times New Roman"), local("Liberation Serif");
+  size-adjust: 111.5%;
+  ascent-override: 65.9%;
+  descent-override: 23.8%;
+  line-gap-override: 0%;
+}
+
+/* ------------------------------------------------------------------ type, spacing, radius, layout, z-index, motion */
+:root {
+  /* Families: the next/font face first (set on <html> by app/layout.tsx), then any metric-matched fallback
+     face, then the brand's fallbacks. */
+  --font-display: var(--font-newsreader, "Newsreader"), "Newsreader fallback", "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-schibsted-grotesk, "Schibsted Grotesk"), "Helvetica Neue", Arial, sans-serif;
+
+  /* Type style properties, read by the type classes below. */
+  --display-1-font-size: 34px; /* PROPOSED: responsive steps, tokens.json size applies from the widest step */
+  --display-1-line-height: 1.0;
+  --display-1-font-weight: 500;
+  --display-1-letter-spacing: -0.015em;
+  --display-2-font-size: 44px;
+  --display-2-line-height: 1.05;
+  --display-2-font-weight: 500;
+  --display-2-letter-spacing: -0.01em;
+  --figure-font-size: 72px;
+  --figure-line-height: 1.0;
+  --figure-font-weight: 500;
+  --figure-letter-spacing: -0.02em;
+  --heading-1-font-size: 32px;
+  --heading-1-line-height: 1.15;
+  --heading-1-font-weight: 500;
+  --quote-font-size: 24px;
+  --quote-line-height: 1.35;
+  --quote-font-weight: 400;
+  --heading-2-font-size: 22px;
+  --heading-2-line-height: 1.3;
+  --heading-2-font-weight: 600;
+  --eyebrow-font-size: 12px;
+  --eyebrow-line-height: 1.2;
+  --eyebrow-font-weight: 600;
+  --eyebrow-letter-spacing: 0.08em;
+  --body-lg-font-size: 19px;
+  --body-lg-line-height: 1.5;
+  --body-lg-font-weight: 400;
+  --body-font-size: 16px;
+  --body-line-height: 1.55;
+  --body-font-weight: 400;
+  --small-font-size: 14px;
+  --small-line-height: 1.5;
+  --small-font-weight: 400;
+  --button-font-size: 15px;
+  --button-line-height: 1.0;
+  --button-font-weight: 600;
+
+  /* Spacing */
+  --space-1: 4px; /* Icon to label gap, hairline offsets. */
+  --space-2: 8px; /* Between eyebrow and heading; between a figure and its line. */
+  --space-3: 12px; /* Button vertical padding; list item gap. */
+  --space-4: 16px; /* Card and form field padding; paragraph gap; page side gutter on mobile. */
+  --space-6: 24px; /* Button horizontal padding; gap between cards. */
+  --space-8: 32px; /* Between a heading block and its content. */
+  --space-12: 48px; /* Between sections on mobile. */
+  --space-16: 64px; /* Between sections on desktop. The cover's baseline pitch. */
+  --space-24: 96px; /* Above and below the hero. */
+  --measure: 68ch; /* Maximum width of a column of body copy. */
+  --container: 1200px; /* Maximum page width, with space-4 gutters at 390px rising to space-8 at 1200px. */
+
+  /* Radius */
+  --radius-0: 0px; /* Cards, tables, images, bands, the cover blocks. The default: this is a square system. */
+  --radius-sm: 2px; /* Form fields and the secondary button outline. */
+  --radius-md: 4px; /* Primary button, the monogram favicon. Nothing rounder exists. */
+
+  /* Layout: PROPOSED, pending approval: see design/tokens.additions.json. */
+  --nav-height: 64px; /* Height of the fixed site nav. The body (or the page wrapper) is padded by it and scroll-padding-top uses it, so the nav never covers the first section or a focused control. */
+  --gutter: 16px; /* Page side gutter outside the container, and the column gap of the 12-column grid. */
+  --measure-lg: 60ch; /* Maximum width of body-lg copy: the hero sub-copy and the first paragraph of a page. */
+  --touch-target: 44px; /* Minimum height (and width for icon-only controls) of every interactive element on touch screens. */
+  --sheet-width: 420px; /* Maximum width of the mobile nav drawer (the Sheet). Below it the drawer is full width. */
+
+  /* z-index scale: PROPOSED, pending approval: see design/tokens.additions.json. */
+  --z-content: 0;
+  --z-nav: 40;
+  --z-dropdown: 50;
+  --z-sheet-overlay: 90;
+  --z-sheet: 100;
+  --z-skip-link: 1000;
+
+  /* Motion: PROPOSED, pending approval: see design/tokens.additions.json. */
+  --duration-colour: 150ms;
+  --duration-press: 80ms;
+  --duration-drawer: 320ms;
+  --ease-drawer: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Responsive steps (PROPOSED), mobile first. */
+@media (min-width: 360px) {
+  :root {
+    --display-1-font-size: 40px; /* PROPOSED */
+  }
+}
+@media (min-width: 720px) {
+  :root {
+    --display-1-font-size: 52px; /* PROPOSED */
+    --gutter: 24px; /* PROPOSED */
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --display-1-font-size: 64px; /* PROPOSED */
+  }
+}
+@media (min-width: 1200px) {
+  :root {
+    --gutter: 32px; /* PROPOSED */
+  }
+}
+
+/* ------------------------------------------------------------------ type styles
+   One class per tokens.json style, named exactly as the token. Newsreader styles set optical sizing to auto so the
+   large cuts stay sharp and the italic stays readable (brand book, Type). Colour is not part of a type style. */
+.display-1 {
+  font-family: var(--font-display);
+  font-size: var(--display-1-font-size);
+  line-height: var(--display-1-line-height);
+  font-weight: var(--display-1-font-weight);
+  letter-spacing: var(--display-1-letter-spacing);
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 72; /* PROPOSED */
+}
+.display-2 {
+  font-family: var(--font-display);
+  font-size: var(--display-2-font-size);
+  line-height: var(--display-2-line-height);
+  font-weight: var(--display-2-font-weight);
+  letter-spacing: var(--display-2-letter-spacing);
+  font-optical-sizing: auto;
+}
+.figure {
+  font-family: var(--font-display);
+  font-size: var(--figure-font-size);
+  line-height: var(--figure-line-height);
+  font-weight: var(--figure-font-weight);
+  letter-spacing: var(--figure-letter-spacing);
+  font-optical-sizing: auto;
+  font-variant-numeric: tabular-nums; /* PROPOSED */
+}
+.heading-1 {
+  font-family: var(--font-display);
+  font-size: var(--heading-1-font-size);
+  line-height: var(--heading-1-line-height);
+  font-weight: var(--heading-1-font-weight);
+  font-optical-sizing: auto;
+}
+.quote {
+  font-family: var(--font-display);
+  font-size: var(--quote-font-size);
+  line-height: var(--quote-line-height);
+  font-weight: var(--quote-font-weight);
+  font-style: italic;
+  font-optical-sizing: auto;
+}
+.heading-2 {
+  font-family: var(--font-sans);
+  font-size: var(--heading-2-font-size);
+  line-height: var(--heading-2-line-height);
+  font-weight: var(--heading-2-font-weight);
+}
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--eyebrow-font-size);
+  line-height: var(--eyebrow-line-height);
+  font-weight: var(--eyebrow-font-weight);
+  letter-spacing: var(--eyebrow-letter-spacing);
+  text-transform: uppercase; /* PROPOSED */
+}
+.body-lg {
+  font-family: var(--font-sans);
+  font-size: var(--body-lg-font-size);
+  line-height: var(--body-lg-line-height);
+  font-weight: var(--body-lg-font-weight);
+}
+.body {
+  font-family: var(--font-sans);
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  font-weight: var(--body-font-weight);
+}
+.small {
+  font-family: var(--font-sans);
+  font-size: var(--small-font-size);
+  line-height: var(--small-line-height);
+  font-weight: var(--small-font-weight);
+}
+.button {
+  font-family: var(--font-sans);
+  font-size: var(--button-font-size);
+  line-height: var(--button-line-height);
+  font-weight: var(--button-font-weight);
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>Form definitions</title>
+</head>
+<body>
+<!--
+  Netlify Forms detection for the static export. Netlify finds forms by reading the deployed HTML at deploy time, and
+  the site's forms are rendered by React (components/site/ContactForm.tsx and components/site/LeadMagnet.tsx), so this
+  file lists every field each form posts. Netlify keeps only fields it has seen here: when a field is added to or
+  renamed in lib/content/site.ts, change it here too. Form detection must be on in the Netlify site settings.
+  The forms post with fetch to "/" as application/x-www-form-urlencoded, with form-name and the honeypot.
+-->
+
+<!-- The brief form: contactSection.netlifyFormName in lib/content/site.ts -->
+<form name="brief" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name">
+  <input type="email" name="email">
+  <input type="text" name="business">
+  <input type="url" name="website">
+  <select name="showrooms">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2 to 3">2 to 3</option>
+    <option value="4+">4+</option>
+  </select>
+  <select name="platform">
+    <option value="Shopify">Shopify</option>
+    <option value="WooCommerce">WooCommerce</option>
+    <option value="Magento">Magento</option>
+    <option value="Other">Other</option>
+    <option value="Not sure">Not sure</option>
+  </select>
+  <select name="turnover">
+    <option value="Under £1M">Under £1M</option>
+    <option value="£1M to £3M">£1M to £3M</option>
+    <option value="£3M to £10M">£3M to £10M</option>
+    <option value="£10M+">£10M+</option>
+  </select>
+  <textarea name="first"></textarea>
+  <input type="text" name="bot-field">
+</form>
+
+<!-- The scorecard form: leadMagnet.netlifyFormName in lib/content/site.ts -->
+<form name="scorecard" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="email" name="email">
+  <input type="text" name="bot-field">
+</form>
+</body>
+</html>

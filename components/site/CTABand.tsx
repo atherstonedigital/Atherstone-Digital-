@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { LinkButton } from '@/components/brand/Button';
 import { SectionHeading } from '@/components/brand/SectionHeading';
+import { formPanelClasses } from '@/components/site/form-panel-styles';
 import { nav, offers } from '@/lib/content/site';
 import type { Link as SiteLink } from '@/lib/content/types';
 import { cn } from '@/lib/utils';
@@ -11,22 +12,11 @@ import { cn } from '@/lib/utils';
 // on the band tokens: band fill and on-band text, a deep green in both themes, with the SectionHeading's band ground
 // (eyebrow at 80%, rule-on-band hairline).
 //
-// The buttons take the Button component's band tone (components/ui/button.tsx), which inverts them, as the monogram
-// inverts on the band:
-//   primary    on-band fill, band text (11.55:1 light, 10.68:1 dark); hover and press button-on-band-hover (8.83:1)
-//   secondary  transparent, on-band text, a rule-strong-on-band border (4.12:1 light, 3.93:1 dark, over 3:1 as a
-//              meaningful border); hover: the border becomes on-band, as the secondary's becomes ink on paper
-// Both tokens are proposed (design/tokens.additions.json). The focus ring keeps the focus token: 3.17:1 on the band in
-// light, 6.32:1 in dark.
-
-/**
- * What hover and press apply to the band forms, for the design-system page's held states (pass with variant and
- * tone="band"). On a page, use CTABand or tone="band".
- */
-export const bandButtonClasses = {
-  primaryHover: 'bg-button-on-band-hover',
-  secondaryHover: 'border-on-band',
-} as const;
+// The buttons never sit straight on the band. In the light theme the primary's green-900 fill is the band's own
+// colour, and the Button README rules out a white fill ("Don't fill a button brass or white"). So the band seats its
+// actions on the same raised panel the contact band seats its form on (formPanelClasses('band'): paper-raised, no
+// hairline against the band), and the standard primary and secondary apply there unchanged. From 720px the panel is
+// as wide as its two buttons; below it, full width with the buttons stacked full width, as Phase 1's hero buttons.
 
 const healthCheck = offers.offers.find((offer) => offer.id === 'store-health-check');
 
@@ -77,12 +67,9 @@ export function CTABand({
       <div className="mx-auto w-[min(100%_-_2_*_var(--gutter),var(--container))]">
         <SectionHeading ground="band" eyebrow={eyebrow} heading={heading} headingId={headingId} />
         {body ? <p className="body-lg max-w-measure-lg">{body}</p> : null}
-        <div className="mt-space-8 flex flex-wrap items-center gap-space-3">
-          {/* Full width below 720px, as Phase 1's hero and form buttons. */}
-          <LinkButton link={primary} tone="band" className="w-full min-[720px]:w-auto" />
-          {secondary ? (
-            <LinkButton link={secondary} variant="secondary" tone="band" className="w-full min-[720px]:w-auto" />
-          ) : null}
+        <div className={cn(formPanelClasses('band'), 'mt-space-8 flex flex-wrap items-center gap-space-3 min-[720px]:w-fit')}>
+          <LinkButton link={primary} className="w-full min-[720px]:w-auto" />
+          {secondary ? <LinkButton link={secondary} variant="secondary" className="w-full min-[720px]:w-auto" /> : null}
         </div>
       </div>
     </section>

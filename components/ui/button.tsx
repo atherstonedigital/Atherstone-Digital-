@@ -54,38 +54,12 @@ const buttonVariants = cva(
         // A 44px square for the functional icons (menu, close), as Phase 1's menu toggle: use with secondary.
         icon: 'size-touch-target p-0',
       },
-      // The ground the button sits on. paper (and paper-raised) is the default. band is the green contact band, where
-      // the primary's green-900 fill would vanish in the light theme (it is the band's own colour), so the forms invert
-      // there, as the monogram does: see the compound variants below. The focus ring keeps the focus token, which
-      // clears 3:1 on the band in both themes (3.17:1 light, 6.32:1 dark).
-      tone: {
-        paper: '',
-        band: '',
-      },
     },
+    // There is no band form. On the green band the primary's green-900 fill is the band's own colour in the light
+    // theme, and the Button README rules out the alternative, a white fill. So a button never sits straight on the
+    // band: the band seats its actions on a paper-raised panel (formPanelClasses('band'), see CTABand), where the
+    // standard forms apply, as Phase 1's contact band seats its form.
     compoundVariants: [
-      // Primary on the band: on-band fill and band text (11.55:1 light, 10.68:1 dark); hover and pressed
-      // button-on-band-hover (8.83:1 and 8.22:1 with band text). Never while disabled.
-      {
-        variant: 'primary',
-        tone: 'band',
-        className: [
-          'bg-on-band text-band hover:bg-button-on-band-hover active:bg-button-on-band-hover',
-          'disabled:bg-on-band aria-disabled:bg-on-band',
-        ],
-      },
-      // Secondary on the band: on-band text and a rule-strong-on-band outline (4.12:1 light, 3.93:1 dark, a border that
-      // carries meaning); hover: the border becomes on-band, as the secondary's becomes ink on paper.
-      {
-        variant: 'secondary',
-        tone: 'band',
-        className: [
-          'border-rule-strong-on-band text-on-band hover:border-on-band',
-          'disabled:border-rule-strong-on-band aria-disabled:border-rule-strong-on-band',
-        ],
-      },
-      // The text link on the band: on-band, so it keeps 4.5:1 where green-700 would not.
-      { variant: 'link', tone: 'band', className: 'text-on-band' },
       // The text link has no box: no padding and no minimum height, so it sits on the line like the preview. A
       // 44px-tall hit area is drawn by ::after instead, so the target meets 44px without changing the layout.
       {
@@ -97,7 +71,6 @@ const buttonVariants = cva(
     defaultVariants: {
       variant: 'primary',
       size: 'default',
-      tone: 'paper',
     },
   },
 );
@@ -110,9 +83,9 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, tone, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button';
-    return <Comp className={cn(buttonVariants({ variant, size, tone, className }))} ref={ref} {...props} />;
+    return <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />;
   },
 );
 Button.displayName = 'Button';

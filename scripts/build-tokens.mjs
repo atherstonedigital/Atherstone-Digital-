@@ -47,8 +47,6 @@ const CONTRAST_PAIRS = [
   ['focus', 'paper-raised', 3],
   ['focus', 'band', 3],
   ['focus-on-highlight', 'brass-300', 3],
-  ['band', 'button-on-band-hover', 4.5],
-  ['rule-strong-on-band', 'band', 3],
 ];
 
 // Type samples the public repo cannot carry as tokens.json writes them. The figure sample there is a client figure

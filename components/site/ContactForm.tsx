@@ -7,6 +7,7 @@ import { useForm, type FieldErrors, type UseFormReturn } from 'react-hook-form';
 import { z } from 'zod';
 
 import { ForwardLink, TextLink } from '@/components/brand/Button';
+import { formPanelClasses } from '@/components/site/form-panel-styles';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -347,7 +348,8 @@ export function Honeypot({ inputRef }: { inputRef: React.RefObject<HTMLInputElem
 }
 
 /**
- * What replaces the form on success: the check icon in signal-good beside the words that say the same, what happens
+ * What replaces the form on success: the check icon beside the words that say the same, in the ink of the line it sits
+ * on (brand book, Iconography: functional icons in ink or on-green; Icons README: currentColor), what happens
  * next (with the address the visitor gave), and two case studies, so the wait is not dead time. The first line takes
  * focus, so a screen reader reads the confirmation where the form was. It is a paragraph, not a heading: an icon never
  * sits beside a heading (Icons README), and heading-2 would make a thank-you louder than the form it replaces.
@@ -370,7 +372,7 @@ export function Confirmation({
         // A focus target for screen readers, not a control: it carries no ring.
         className="body flex items-center gap-space-2 font-semibold focus-visible:outline-none"
       >
-        <Check aria-hidden="true" size={20} strokeWidth={1.5} className="shrink-0 text-signal-good" />
+        <Check aria-hidden="true" size={20} strokeWidth={1.5} className="shrink-0" />
         <span>{content.heading}</span>
       </p>
       <p className="body max-w-measure">
@@ -472,19 +474,8 @@ export function FieldControl({
   );
 }
 
-/**
- * The raised panel the forms sit in: paper-raised, a rule border, radius-0, space-6 padding, no shadow (brand book,
- * Colour). On the green band its border takes paper-raised, so no hairline shows against the band (Phase 1).
- * Short screens from 900px wide (1024x768, 1280x800) tighten its block padding, as Phase 1 did to keep the contact
- * section to one screen.
- */
-export function formPanelClasses(ground: 'paper' | 'band' = 'paper') {
-  return cn(
-    'rounded-radius-0 border bg-paper-raised p-space-6 text-ink',
-    '[@media(min-width:900px)_and_(max-height:860px)]:py-space-4',
-    ground === 'band' ? 'border-paper-raised' : 'border-rule',
-  );
-}
+/** The raised panel (components/site/form-panel-styles.ts), re-exported for components/site/LeadMagnet.tsx. */
+export { formPanelClasses };
 
 // ------------------------------------------------------------------ the brief form
 

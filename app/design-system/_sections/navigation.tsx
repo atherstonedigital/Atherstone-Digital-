@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Menu, X } from 'lucide-react';
 
 import { Breadcrumbs, breadcrumbListJsonLd, type Crumb } from '@/components/site/Breadcrumbs';
-import { CTABand, bandButtonClasses, ctaBandDraft } from '@/components/site/CTABand';
+import { CTABand, ctaBandDraft } from '@/components/site/CTABand';
 import { Footer } from '@/components/site/Footer';
 import { Nav, NavDrawer, NavDrawerBody, NavLockup, NavMenu } from '@/components/site/Nav';
 import { Button } from '@/components/ui/button';
@@ -261,8 +261,10 @@ export default function NavigationSection() {
       {/* ------------------------------------------------------------ CTA band */}
       <Group title="CTABand">
         <p className="body max-w-measure text-ink">
-          The green band that closes an offer or sector page, on the band tokens. Its copy is a Phase 2 draft pending
-          Dan&rsquo;s approval: &ldquo;{ctaBandDraft.heading}&rdquo;, from the plan&rsquo;s wording.
+          The green band that closes an offer or sector page. Its copy is a Phase 2 draft pending Dan&rsquo;s
+          approval: &ldquo;{ctaBandDraft.heading}&rdquo;, from the plan&rsquo;s wording. The actions sit on a
+          paper-raised panel, as the contact band&rsquo;s form does: the primary&rsquo;s fill is the band&rsquo;s own
+          green, and the Button README rules out a white one.
         </p>
         <Sample label="CTABand, default: primary and secondary (draft copy)">
           <CTABand headingId="sample-cta-band-1" />
@@ -275,25 +277,6 @@ export default function NavigationSection() {
             body={contactSection.intro}
             secondary={null}
           />
-        </Sample>
-        <Sample label="Band buttons: primary at rest and hover, secondary at rest and hover, focus (held)">
-          <div className="flex flex-wrap items-center gap-space-4 bg-band p-space-6 text-on-band">
-            <Button asChild tone="band">
-              <span aria-hidden="true">{nav.cta.label}</span>
-            </Button>
-            <Button asChild tone="band" className={bandButtonClasses.primaryHover}>
-              <span aria-hidden="true">{nav.cta.label}</span>
-            </Button>
-            <Button asChild variant="secondary" tone="band">
-              <span aria-hidden="true">{ctaBandDraft.secondary.label}</span>
-            </Button>
-            <Button asChild variant="secondary" tone="band" className={bandButtonClasses.secondaryHover}>
-              <span aria-hidden="true">{ctaBandDraft.secondary.label}</span>
-            </Button>
-            <Button asChild tone="band" className={focusRing}>
-              <span aria-hidden="true">{nav.cta.label}</span>
-            </Button>
-          </div>
         </Sample>
       </Group>
     </div>

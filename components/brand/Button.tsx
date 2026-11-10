@@ -32,7 +32,7 @@ export interface LinkButtonProps extends AnchorProps, VariantProps<typeof button
 
 /** A primary, secondary or text-link button that navigates. No icon: the brand puts none on buttons. */
 export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
-  ({ link, children, variant, size, tone, announceExternal = true, className, ...props }, ref) => {
+  ({ link, children, variant, size, announceExternal = true, className, ...props }, ref) => {
     const label = children ?? link.label;
     const content = (
       <>
@@ -41,7 +41,7 @@ export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
       </>
     );
     return (
-      <Button asChild variant={variant} size={size} tone={tone} className={className}>
+      <Button asChild variant={variant} size={size} className={className}>
         {isInternal(link.href, link.external) ? (
           <NextLink ref={ref} href={link.href} {...props}>
             {content}
@@ -112,12 +112,6 @@ export const TextLink = React.forwardRef<HTMLAnchorElement, TextLinkProps>(
 );
 TextLink.displayName = 'TextLink';
 
-/** The arrow's nudge on hover: space-1 to the right, for fine pointers that hover and only where motion is allowed. */
-const forwardArrowClasses = cn(
-  'transition-transform duration-colour ease-out motion-reduce:transition-none',
-  '[@media(hover:hover)_and_(pointer:fine)_and_(prefers-reduced-motion:no-preference)]:group-hover/forward:translate-x-space-1',
-);
-
 export interface ForwardLinkProps extends Omit<TextLinkProps, 'href' | 'external' | 'children' | 'hitArea'> {
   link: SiteLink;
   /**
@@ -131,12 +125,13 @@ export interface ForwardLinkProps extends Omit<TextLinkProps, 'href' | 'external
 
 /**
  * A forward link: a TextLink ending in the lucide ArrowRight at 20px and stroke 1.5, which "ends a forward link" (Icons
- * README: 'Read more', 'All results', 'The full comparison'). The arrow moves space-1 on hover where motion is allowed.
+ * README: 'Read more', 'All results', 'The full comparison'). The arrow stays still: the underline thickening is the
+ * hover answer, because the brand book animates colour, underline thickness and press, and nothing else.
  */
 export const ForwardLink = React.forwardRef<HTMLAnchorElement, ForwardLinkProps>(
   ({ link, layout = 'block', className, ...props }, ref) => {
     const arrow = (extra?: string) => (
-      <ArrowRight aria-hidden="true" size={20} strokeWidth={1.5} className={cn(forwardArrowClasses, extra)} />
+      <ArrowRight aria-hidden="true" size={20} strokeWidth={1.5} className={cn('shrink-0', extra)} />
     );
     if (layout === 'wrap') {
       const cut = link.label.lastIndexOf(' ');
@@ -148,7 +143,7 @@ export const ForwardLink = React.forwardRef<HTMLAnchorElement, ForwardLinkProps>
           href={link.href}
           external={link.external}
           hitArea
-          className={cn('group/forward', className)}
+          className={className}
           {...props}
         >
           {lead}
@@ -164,7 +159,7 @@ export const ForwardLink = React.forwardRef<HTMLAnchorElement, ForwardLinkProps>
         ref={ref}
         href={link.href}
         external={link.external}
-        className={cn('group/forward inline-flex min-h-touch-target items-center gap-space-1', className)}
+        className={cn('inline-flex min-h-touch-target items-center gap-space-1', className)}
         {...props}
       >
         {link.label}

@@ -13,12 +13,14 @@ import { cn } from '@/lib/utils';
 //
 // Trigger   the Input's field classes (paper-raised, rule-strong border, radius-sm, 44px), the value in ink and the
 //           placeholder ("Choose one") in ink-muted, and the chevron-down icon at 20px, 1.5 stroke, in ink. The
-//           chevron turns over while the list is open, on the 80ms press timing; nothing turns under reduced motion.
+//           chevron is turned over while the list is open, at once, as the NavigationMenu trigger's is: the brand
+//           book animates colour, underline thickness, the press and the drawer, and nothing else.
 // List      an opaque paper-raised panel with a 1px rule-strong edge, radius-0, no shadow, no blur: the brand's
 //           surfaces are opaque. The edge is rule-strong rather than rule because it is the only thing separating
 //           the list from the fields it covers. It opens below the trigger at the trigger's width, on the dropdown
 //           layer, and opens and closes at once (shadcn's tailwindcss-animate keyframes are not used here).
-// Options   44px rows in body and ink. The option under the pointer or the keyboard carries the focus ring inset
+// Options   44px rows in body and ink, space-2 apart (brand book: 8px or more between neighbouring touch targets on
+//           mobile). The option under the pointer or the keyboard carries the focus ring inset
 //           (2px solid focus), the brand's one way of saying "this one"; the chosen option carries the check icon.
 // The scroll buttons only appear on a list taller than the screen; they use the chevron-down icon, turned for "up",
 // because the brand's six functional icons have no chevron-up.
@@ -52,10 +54,7 @@ const SelectTrigger = React.forwardRef<
         aria-hidden="true"
         size={20}
         strokeWidth={1.5}
-        className={cn(
-          'shrink-0 text-ink group-data-[state=open]/select-trigger:rotate-180',
-          'transition-transform duration-press ease-out motion-reduce:transition-none',
-        )}
+        className={cn('shrink-0 text-ink group-data-[state=open]/select-trigger:rotate-180')}
       />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
@@ -104,7 +103,7 @@ const SelectContent = React.forwardRef<
       <SelectScrollUpButton />
       <SelectPrimitive.Viewport
         className={cn(
-          'p-space-1',
+          'grid gap-space-2 p-space-1',
           position === 'popper' && 'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]',
         )}
       >

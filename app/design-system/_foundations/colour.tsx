@@ -31,8 +31,6 @@ const swatchFill: Record<ColorToken, string> = {
   band: 'bg-band',
   'on-band': 'bg-on-band',
   'rule-on-band': 'bg-rule-on-band',
-  'button-on-band-hover': 'bg-button-on-band-hover',
-  'rule-strong-on-band': 'bg-rule-strong-on-band',
 };
 
 function Swatch({ doc, theme }: { doc: ColourDoc; theme: 'light' | 'dark' }) {

@@ -46,9 +46,12 @@ export function Monogram({ ground = 'paper', decorative = false, className, ...p
       aria-hidden={decorative ? true : undefined}
       className={cn(
         'inline-grid size-[1em] shrink-0 select-none place-items-center rounded-radius-md text-[40px]',
-        'font-display font-medium leading-none',
+        'font-display font-medium',
         ground === 'band' ? 'bg-on-band text-band' : 'bg-green-900 text-on-green',
         className,
+        // Last, after className: tailwind-merge reads a text-[...] size as conflicting with leading-*, so a resize
+        // passed in className would otherwise drop it and the mark would take the body's 1.55.
+        'leading-none',
       )}
       {...props}
     >
@@ -91,10 +94,12 @@ export function Wordmark({ variant = 'full', ground = 'paper', className, ...pro
     <span
       className={cn(
         // Optical size 72 at every size, as the brand book and the outlined wordmark-ink.svg set it.
-        'inline-block whitespace-nowrap font-display text-[40px] font-medium leading-none tracking-[-0.015em]',
+        'inline-block whitespace-nowrap font-display text-[40px] font-medium tracking-[-0.015em]',
         '[font-variation-settings:"opsz"_72]',
         markText[ground],
         className,
+        // Last, as in the Monogram: a text-[...] resize in className must never remove the line-height of 1.
+        'leading-none',
       )}
       {...props}
     >

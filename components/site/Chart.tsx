@@ -20,9 +20,9 @@ import { cn } from '@/lib/utils';
 // their width with vector-effect: non-scaling-stroke). The chart fills any width from 280px up and its labels stay
 // 14px. Fixed heights in pixels mean nothing moves on load.
 //
-// Opacity of the grey. Bars are 50%: large marks with their values printed on them and listed in the table, so they
-// may sit below 3:1 (2.23:1 light, 3.05:1 dark on paper). A line is a thin stroke whose shape carries the data, so
-// grey lines are 70%, which keeps 3:1 on paper (3.31:1 light, 4.77:1 dark).
+// Opacity of the grey. Bars and lines are 70%, which keeps 3:1 on paper (3.32:1 light, 4.75:1 dark): with more than
+// eight bars, and on a phone, the grey values are not printed, so the marks carry the data. One rule for every grey
+// mark, the horizontal bars included, though they always print their values.
 
 export interface ChartPoint {
   /** The category: a month, a store, an option. */
@@ -296,7 +296,7 @@ function VerticalBars({ props, ids }: { props: BarChartProps; ids: { title: stri
                 y={top}
                 width={pct(barWidth)}
                 height={Math.max(y(0) - top, 0)}
-                className={point.emphasis ? toneFill[tone] : 'fill-ink-muted opacity-50'}
+                className={point.emphasis ? toneFill[tone] : 'fill-ink-muted opacity-70'}
               />
               {printed ? (
                 <text
@@ -365,7 +365,7 @@ function HorizontalBars({ props, ids }: { props: BarChartProps; ids: { title: st
               y={top + ROW + 4}
               width={pct((Math.max(point.value, 0) / max) * 100)}
               height={BAR}
-              className={point.emphasis ? toneFill[tone] : 'fill-ink-muted opacity-50'}
+              className={point.emphasis ? toneFill[tone] : 'fill-ink-muted opacity-70'}
             />
           </g>
         );

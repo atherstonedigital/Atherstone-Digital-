@@ -72,12 +72,15 @@ export interface FooterProps extends Omit<React.HTMLAttributes<HTMLElement>, 'ch
   contact?: ContactDetails;
   /** Prefix for the column label ids, unique on the page (a second footer on a design-system page). */
   idPrefix?: string;
+  /** The link columns' nav landmark name, unique on the page. Default: Footer. */
+  navLabel?: string;
 }
 
 export function Footer({
   content = siteFooter,
   contact = siteContact,
   idPrefix = 'footer',
+  navLabel = 'Footer',
   className,
   ...props
 }: FooterProps) {
@@ -111,7 +114,7 @@ export function Footer({
             <Wordmark className="text-[min(40px,10.5vw)]" />
           </p>
           <nav
-            aria-label="Footer"
+            aria-label={navLabel}
             className="grid grid-cols-2 gap-x-gutter gap-y-space-8 min-[720px]:grid-cols-3"
           >
             {content.columns.map((column, index) => (

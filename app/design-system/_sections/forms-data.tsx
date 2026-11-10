@@ -296,7 +296,7 @@ export default function FormsDataSection() {
                 <span>{platformField.options?.[0]}</span>
                 <ChevronDown size={20} strokeWidth={1.5} className="shrink-0 rotate-180 text-ink" />
               </span>
-              <span className={cn(selectContentClasses, 'block p-space-1')}>
+              <span className={cn(selectContentClasses, 'grid gap-space-2 p-space-1')}>
                 {platformField.options?.map((option, index) => (
                   <span
                     key={option}

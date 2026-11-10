@@ -24,8 +24,6 @@ export const colors = {
   band: 'var(--band)',
   'on-band': 'var(--on-band)',
   'rule-on-band': 'var(--rule-on-band)',
-  'button-on-band-hover': 'var(--button-on-band-hover)',
-  'rule-strong-on-band': 'var(--rule-strong-on-band)',
 } as const;
 
 export type ColorToken = keyof typeof colors;
@@ -51,8 +49,6 @@ export const colorValues = {
   band: { light: '#163a2c', dark: '#25382e' },
   'on-band': { light: '#f5f6f3', dark: '#eceeea' },
   'rule-on-band': { light: '#546f64', dark: '#5d6b63' },
-  'button-on-band-hover': { light: '#d4dad5', dark: '#ced3ce' },
-  'rule-strong-on-band': { light: '#869890', dark: '#89938c' },
 } as const;
 
 /** Spacing scale plus the measure, container and layout tokens. */
@@ -169,8 +165,6 @@ export const proposed = [
   'colour band',
   'colour on-band',
   'colour rule-on-band',
-  'colour button-on-band-hover',
-  'colour rule-strong-on-band',
   'font Newsreader fallback',
   'type display-1',
   'type figure',

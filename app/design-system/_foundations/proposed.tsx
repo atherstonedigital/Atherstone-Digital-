@@ -33,7 +33,8 @@ function EntryList({ entries, label }: { entries: Entry[]; label: string }) {
           </div>
           <Ledger rows={entry.rows} />
           {entry.usage ? <p className="small max-w-measure text-ink">{entry.usage}</p> : null}
-          <p className="small max-w-measure text-ink-muted">{entry.reason}</p>
+          {/* Running text, so ink: the brand book keeps ink-muted off body copy. */}
+          <p className="small max-w-measure text-ink">{entry.reason}</p>
         </li>
       ))}
     </ul>

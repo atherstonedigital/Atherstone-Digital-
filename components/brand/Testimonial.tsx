@@ -1,21 +1,23 @@
 import * as React from 'react';
 
-import { TextLink } from '@/components/brand/Button';
 import type { Testimonial as TestimonialContent } from '@/lib/content/types';
 import { cn } from '@/lib/utils';
 
 // The Testimonial component (docs/brand/components/Testimonial): a client's words in Newsreader italic, attributed by
 // name and business, with the one-line result beneath. No quotation marks (the italic does the job), no decorative
 // quote glyph, no photo, logo or star rating, no coloured card, never centred. Only with written permission.
+//
+// The business is plain small text in ink-muted, as the README sets it, never a link: a page links to its case
+// studies on its own (the homepage's "All results").
 
 export interface TestimonialProps
   extends Omit<React.HTMLAttributes<HTMLElement>, 'children'>,
-    Pick<TestimonialContent, 'quote' | 'name' | 'business' | 'href' | 'result'> {
+    Pick<TestimonialContent, 'quote' | 'name' | 'business' | 'result'> {
   /** The hairline across the top, with space-4 above the quote, matching the StatBlock. */
   rule?: boolean;
 }
 
-export function Testimonial({ quote, name, business, href, result, rule = true, className, ...props }: TestimonialProps) {
+export function Testimonial({ quote, name, business, result, rule = true, className, ...props }: TestimonialProps) {
   return (
     <figure
       className={cn(
@@ -32,14 +34,7 @@ export function Testimonial({ quote, name, business, href, result, rule = true, 
         <span className="font-semibold text-ink">{name}</span>{' '}
         <span className="text-ink-muted">
           {'· '}
-          {href ? (
-            // The business name links to its case study (Phase 1), with a 44px hit area in the small type.
-            <TextLink href={href} hitArea>
-              {business}
-            </TextLink>
-          ) : (
-            business
-          )}
+          {business}
         </span>
         {/* The result: its own line in small, weight 500, brass-600. Under 50 characters. */}
         {result ? <span className="mt-space-1 block font-medium text-brass-600">{result}</span> : null}

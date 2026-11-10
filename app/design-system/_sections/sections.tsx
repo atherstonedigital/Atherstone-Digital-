@@ -24,8 +24,8 @@ import {
 } from '@/lib/content/site';
 import { cn } from '@/lib/utils';
 
-// The sections group on the design-system page: Hero, ProblemCards, ComparisonTable, Steps, SectorTiles, AboutStrip,
-// InsightCards, CaseStudyHeader and ArticleHeader, each variant and state under a label, with content from
+// The sections group on the design-system page: Hero, ProblemCards, ComparisonTable, Steps, the dash list,
+// SectorTiles, AboutStrip, InsightCards, CaseStudyHeader and ArticleHeader, each variant and state under a label, with content from
 // lib/content/site.ts. The page supplies the container and the theme switch.
 //
 // Layouts follow the window width: resize to walk 320, 390, 720, 900 and 1200 (the comparison table stacks below 720px,
@@ -83,6 +83,20 @@ const caseStudyDraft = {
   problems: (['catalogue', 'feeds'] as const).map((tag) => ({ label: problemTags[tag] })),
 };
 
+/**
+ * The plan's "A good fit" list for the ecommerce director page, verbatim, as the list sample. The page is a Phase 3
+ * template, so the list is not in lib/content/site.ts yet; it moves there with the page.
+ */
+const goodFitSample = {
+  lead: 'A good fit:',
+  items: [
+    'you have a showroom and a website and want them to work as one business',
+    'you’re spending on ads and can’t see what they return',
+    'your catalogue is in the thousands and you know some of it is wrong',
+    'you want one accountable person, not a roster of suppliers',
+  ],
+};
+
 /** Sample values: no article is written yet. The plan's articles run 900 to 1,400 words. */
 const articleSample = { published: '2026-11-16', minutes: readingMinutes(1150) };
 
@@ -136,6 +150,18 @@ export default function SectionsSection() {
       <Group title="Steps">
         <Sample label="Steps, How it works (no eyebrow: the heading lines up with eyebrowed ones)">
           <Steps content={howItWorks} headingLevel="h3" />
+        </Sample>
+      </Group>
+
+      {/* ------------------------------------------------------------------ List */}
+      <Group title="List">
+        <Sample label="List, dash bullets (the list-dash class: a 1px rule dash, not a disc)">
+          <p className="body mb-space-3 max-w-measure text-ink">{goodFitSample.lead}</p>
+          <ul className="list-dash body max-w-measure text-ink">
+            {goodFitSample.items.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
         </Sample>
       </Group>
 

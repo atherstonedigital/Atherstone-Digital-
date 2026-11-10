@@ -71,6 +71,8 @@ export interface DrawerGestureProps {
   className?: string;
   /** The drawer body. It scrolls on its own below the header when it is taller than the screen. */
   children: React.ReactNode;
+  /** Radix's close focus handler: call event.preventDefault() to send focus somewhere other than the trigger. */
+  onCloseAutoFocus?: (event: Event) => void;
 }
 
 /**
@@ -78,7 +80,15 @@ export interface DrawerGestureProps {
  * Under prefers-reduced-motion it opens and closes instantly and a release snaps at once; the drag itself still
  * follows the finger, because that is direct manipulation, not animation.
  */
-export function DrawerGesture({ open, onOpenChange, title, closeLabel, className, children }: DrawerGestureProps) {
+export function DrawerGesture({
+  open,
+  onOpenChange,
+  title,
+  closeLabel,
+  className,
+  children,
+  onCloseAutoFocus,
+}: DrawerGestureProps) {
   // Mounted while open and while the exit runs. Adjusted during render (React's pattern for state derived from a
   // prop), so the sheet mounts in the same render that opens it.
   const [exiting, setExiting] = React.useState(false);
@@ -269,6 +279,7 @@ export function DrawerGesture({ open, onOpenChange, title, closeLabel, className
       ref={panelRef}
       side="right"
       closeLabel={closeLabel}
+      onCloseAutoFocus={onCloseAutoFocus}
       // The title names the dialog; there is no separate description.
       aria-describedby={undefined}
       // will-change on the drawer only (brand book, GSAP rules).
@@ -277,7 +288,9 @@ export function DrawerGesture({ open, onOpenChange, title, closeLabel, className
       <SheetHeader>
         <SheetTitle className="eyebrow text-ink-muted">{title}</SheetTitle>
       </SheetHeader>
-      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">{children}</div>
+      {/* scroll-py-space-2: a link tabbed to at the foot of a short screen stops 8px from the edge, so the scroller
+          never clips the lower part of its focus ring (2px wide, 2px out). */}
+      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain scroll-py-space-2">{children}</div>
     </SheetContent>
   );
 }

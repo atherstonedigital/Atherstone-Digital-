@@ -1,0 +1,22 @@
+[
+  {
+    "check": "moment-none",
+    "target": "(the page)",
+    "reason": "The brand book (Motion) allows one hero entrance, hover and press on a page, with nothing scroll-driven, nothing that reveals on scroll and nothing that loops, so no dealt moment belongs on any page of this site."
+  },
+  {
+    "check": "effect-kind",
+    "target": "(the page)",
+    "reason": "The only hit is the word ScrollTrigger inside gsap core's own plugin hook in the shared chunk that carries the nav drawer. The ScrollTrigger plugin is not bundled and nothing moves with scroll; the brand book bans ScrollTrigger and the site obeys."
+  },
+  {
+    "check": "phone-number",
+    "target": "07810 838 129",
+    "reason": "The client's real public business number: the plan's footer gives it and the live site already shows it. The check targets invented numbers, and the brief gives this one."
+  },
+  {
+    "check": "phone-number",
+    "target": "tel:+447810838129",
+    "reason": "The tel: link for the client's real public business number, which the plan's footer gives and the live site already carries. Not an invented number."
+  }
+]

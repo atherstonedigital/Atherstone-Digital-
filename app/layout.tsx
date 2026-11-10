@@ -31,18 +31,22 @@ const schibstedGrotesk = Schibsted_Grotesk({
   adjustFontFallback: true,
 });
 
-// The pre-rebuild families, still used by the pages in app/(legacy). Remove in Phase 3.
+// The pre-rebuild families, still used by the pages in app/(legacy). Remove in Phase 3. Not preloaded: the brand
+// book allows two families, so pages on the new system must not download these. The @font-face rules stay, so a
+// legacy page still fetches them when it uses them.
 const fraunces = Fraunces({
   subsets: ['latin'],
   variable: '--font-fraunces',
   display: 'swap',
   axes: ['opsz'],
+  preload: false,
 });
 
 const hankenGrotesk = Hanken_Grotesk({
   subsets: ['latin'],
   variable: '--font-hanken-grotesk',
   display: 'swap',
+  preload: false,
 });
 
 const fontVariables = [newsreader, schibstedGrotesk, fraunces, hankenGrotesk].map((f) => f.variable).join(' ');

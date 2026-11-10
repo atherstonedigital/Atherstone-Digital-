@@ -81,3 +81,22 @@ body {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
 }
+
+/* Bulleted lists (brand book, Iconography): the bullet is a 1px rule-coloured dash drawn in CSS, not a disc, set
+   space-4 wide with space-2 before the text, at the middle of the item's first line. Items sit space-3 apart, the list
+   item gap. Preflight strips list markers, so a list without this class has none. */
+.list-dash > li {
+  position: relative;
+  padding-left: calc(var(--space-4) + var(--space-2));
+}
+.list-dash > li + li {
+  margin-top: var(--space-3);
+}
+.list-dash > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(var(--body-line-height) * 0.5em);
+  width: var(--space-4);
+  border-top: 1px solid var(--rule);
+}

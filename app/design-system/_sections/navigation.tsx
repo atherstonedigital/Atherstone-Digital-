@@ -234,7 +234,7 @@ export default function NavigationSection() {
           site, so it carries the external-link icon and says so to screen readers.
         </p>
         <Sample label="Footer: three columns, descriptor, email, phone, LinkedIn, company number">
-          <Footer idPrefix="sample-footer" className="border-x border-b border-rule min-[720px]:min-h-0" />
+          <Footer idPrefix="sample-footer" navLabel="Footer, sample" className="border-x border-b border-rule min-[720px]:min-h-0" />
         </Sample>
       </Group>
 

@@ -96,7 +96,7 @@ const parts: Part[] = [
     id: 'sections',
     eyebrow: 'Components',
     heading: 'Page sections',
-    intro: 'The homepage blocks, then the case study and article headers.',
+    intro: 'The homepage blocks, the dash list, then the case study and article headers.',
     content: <SectionsSection />,
   },
   {
@@ -129,7 +129,9 @@ export default function DesignSystemPage() {
           <ul aria-labelledby="design-system-contents" className="flex flex-wrap gap-x-space-6 gap-y-space-2">
             {parts.map((part) => (
               <li key={part.id} className="flex min-h-touch-target items-center">
-                <TextLink href={`#${part.id}`}>{part.heading}</TextLink>
+                <TextLink href={`#${part.id}`} hitArea>
+                  {part.heading}
+                </TextLink>
               </li>
             ))}
           </ul>

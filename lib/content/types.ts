@@ -92,7 +92,7 @@ export interface Testimonial {
   quote: string;
   name: string;
   business: string;
-  /** The case study the business name links to. */
+  /** The client's case study, for breadcrumbs and case-study links. The Testimonial component never links the name. */
   href?: string;
   /** The Testimonial component's one-line result (under 50 characters). None is approved yet. */
   result?: string;

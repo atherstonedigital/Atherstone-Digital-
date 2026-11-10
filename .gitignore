@@ -20,3 +20,7 @@ npm-debug.log*
 
 # package lock
 package-lock.json
+
+# taste-skill gate state: only the waivers are kept
+.taste-skill/*
+!.taste-skill/waivers.json

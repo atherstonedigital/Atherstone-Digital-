@@ -51,12 +51,6 @@
   /* The hairline under a section heading and any divider on the band. Decorative, like rule, so it may sit below 3:1. */
   /* PROPOSED, pending approval: see design/tokens.additions.json. */
   --rule-on-band: #546f64; /* on-band at 28% into band */
-  /* Hover and pressed fill of the primary button on the band, which inverts to an on-band fill with band text there. Band text measures 8.83:1 on it (light), 8.22:1 (dark). */
-  /* PROPOSED, pending approval: see design/tokens.additions.json. */
-  --button-on-band-hover: #d4dad5; /* on-band at 85% into band */
-  /* Borders that carry meaning on the band: the secondary button's outline. 4.12:1 on band (light), 3.93:1 (dark). */
-  /* PROPOSED, pending approval: see design/tokens.additions.json. */
-  --rule-strong-on-band: #869890; /* on-band at 50% into band */
 }
 
 /* Dark: chosen with the theme toggle, on <html> or a subtree. */
@@ -87,10 +81,6 @@
   --on-band: var(--ink);
   /* rule-on-band: PROPOSED, pending approval: see design/tokens.additions.json. */
   --rule-on-band: #5d6b63; /* on-band at 28% into band */
-  /* button-on-band-hover: PROPOSED, pending approval: see design/tokens.additions.json. */
-  --button-on-band-hover: #ced3ce; /* on-band at 85% into band */
-  /* rule-strong-on-band: PROPOSED, pending approval: see design/tokens.additions.json. */
-  --rule-strong-on-band: #89938c; /* on-band at 50% into band */
 }
 
 /* Dark: the system setting, until the visitor chooses light. */
@@ -122,10 +112,6 @@
     --on-band: var(--ink);
     /* rule-on-band: PROPOSED, pending approval: see design/tokens.additions.json. */
     --rule-on-band: #5d6b63; /* on-band at 28% into band */
-    /* button-on-band-hover: PROPOSED, pending approval: see design/tokens.additions.json. */
-    --button-on-band-hover: #ced3ce; /* on-band at 85% into band */
-    /* rule-strong-on-band: PROPOSED, pending approval: see design/tokens.additions.json. */
-    --rule-strong-on-band: #89938c; /* on-band at 50% into band */
   }
 }
 

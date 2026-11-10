@@ -280,11 +280,11 @@ export default function BrandSection() {
           <Sample label="Testimonial, result line (Phase 1 draft)">
             <Testimonial quote={gary.quote} name={gary.name} business={gary.business} result={garyResultDraft} />
           </Sample>
-          <Sample label="Testimonial, business linked to its case study">
-            <Testimonial {...gemma} />
+          <Sample label={`Testimonial, ${gemma.business}`}>
+            <Testimonial quote={gemma.quote} name={gemma.name} business={gemma.business} />
           </Sample>
-          <Sample label="Testimonial, business linked to its case study">
-            <Testimonial {...luke} />
+          <Sample label={`Testimonial, ${luke.business}`}>
+            <Testimonial quote={luke.quote} name={luke.name} business={luke.business} />
           </Sample>
         </div>
       </Group>

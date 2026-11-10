@@ -285,7 +285,8 @@ export interface NavDrawerProps {
 
 /**
  * The drawer and its trigger: a shadcn Sheet moved by DrawerGesture. Radix traps focus in the open drawer, closes it on
- * Escape or a press outside, and returns focus to the trigger when it closes. A chosen link or a route change closes it.
+ * Escape or a press outside, and returns focus to the trigger when it closes, or to the bar's first control when the
+ * trigger is hidden at the new width. A chosen link or a route change closes it.
  */
 export function NavDrawer({
   content = siteNav,
@@ -297,6 +298,20 @@ export function NavDrawer({
   label = 'Main, mobile',
 }: NavDrawerProps) {
   const [open, setOpen] = React.useState(false);
+  const triggerRef = React.useRef<HTMLButtonElement>(null);
+
+  // Radix returns focus to the trigger when the drawer closes. When it closed because the window widened past
+  // closeAtMinWidth (or a zoom crossed the breakpoint), the trigger is display:none there and focus would fall to the
+  // body, so it goes to the bar's first control instead: the Services dropdown trigger.
+  const onCloseAutoFocus = React.useCallback((event: Event) => {
+    const trigger = triggerRef.current;
+    if (!trigger || trigger.getClientRects().length > 0) return;
+    const fallback = trigger.closest('header')?.querySelector<HTMLElement>('nav button, nav a');
+    if (fallback && fallback.getClientRects().length > 0) {
+      event.preventDefault();
+      fallback.focus();
+    }
+  }, []);
 
   // A route change closes it: the back button, or any navigation that did not start from a drawer link.
   React.useEffect(() => {
@@ -315,14 +330,20 @@ export function NavDrawer({
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
+      <SheetTrigger asChild ref={triggerRef}>
         {trigger ?? (
           <Button variant="secondary" size="icon" aria-label={LABELS.openMenu} className={triggerClassName}>
             <Menu size={20} strokeWidth={1.5} aria-hidden="true" />
           </Button>
         )}
       </SheetTrigger>
-      <DrawerGesture open={open} onOpenChange={setOpen} title={LABELS.drawerTitle} closeLabel={LABELS.closeMenu}>
+      <DrawerGesture
+        open={open}
+        onOpenChange={setOpen}
+        title={LABELS.drawerTitle}
+        closeLabel={LABELS.closeMenu}
+        onCloseAutoFocus={onCloseAutoFocus}
+      >
         <NavDrawerBody
           content={content}
           currentPath={currentPath}

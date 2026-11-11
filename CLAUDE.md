@@ -35,11 +35,13 @@ Layout rules the components carry (Phase 2.4 and 2.5; the owner's brief override
 
 - `Screen` is every section's frame: a `<section>` holding one `.wrap` (the exported `container` classes), its content plus space-16 above and below (space-12 below 720px), at least 60dvh, no maximum. Never a fixed screen height. Props: `first` (the page head: no rule above, space-24 from 1200px), `ground` (`paper` or `band`, the full-bleed green band), `rule` (the full-width rule above; on by default except on `first` and the band), `closing` (no minimum, before a CTABand), `labelledBy`, `innerClassName`. `as` and `phoneScreens` only remain for old call sites.
 - The homepage hero is `Hero`: 100dvh less the nav, the copy centred above the fact line docked at its foot.
-- Every two-column split is two halves 24px apart (`gap-x-space-6`), so the right column starts on the page's one split line (x 732 at 1440).
+- Every two-column split is two halves 24px apart (`gap-x-space-6`), so the right column starts on the page's one split line (x 732 at 1440). Two columns of text that are not a split (the footer row, the ecommerce-director fit lists) stand a gutter apart (`gap-x-gutter`), on the 12-column grid's columns. The taste kit's two checkers disagree at 1200px and up: `consistency.mjs` puts the split line at k*(w+24)/12 (x 732), while the layout check reads the grid from `--gutter` (32px, approved), so it reports every split's right column as off its columns. That is an open conflict, not something to chase by hand.
+- Running text in a split stays a column of text (`Paragraphs` stacks with `space-y`, `DirectLines` is a plain `dl`): a `.grid` inside a column makes the gate's edge checks treat it as a box that must end on a column line.
 - `SectionHeading` sets the space-8 between its hairline and the content; do not add padding under it.
 - `ProblemCards` `variant`: `paper` (default; sector pages, Health Check) or `band` (homepage). Both are a two-column ruled list on the split line.
 - `Steps` `aside`: a second column beside the steps from 900px (the homepage's Canwell photograph).
-- `SectorTiles` `layout`: `list` (default) or `row` (homepage: five tall tiles from 1200px, three then two from 720px).
+- `SectorTiles` `layout`: `list` (default; a case study's one tile) or `row` (the homepage and the offer pages' sector links: five across from 1200px, three then two from 720px). Tiles are as tall as their words, never padded to fill a section; the frame centres the row (`className="flex flex-col justify-center"` on its `Screen`).
+- `DirectLines`: Dan's email and phone as ledger rows (`ground` `paper` on /contact, `band` in the homepage contact band).
 - `Chart` `axis="inline"` sets the value labels on the plot above their gridlines, so the plot runs line to line; `titleStyle="heading-2"` sets the title as a section's chart title. Grey bars are ink-muted at 70%.
 - `Photograph` renders a client photograph outside the homepage (getImageProps, the generated srcset, blur placeholder, rule border, radius-0, no caption); `splitSizes` and `fiveColumnSizes` are its `sizes` lists.
 

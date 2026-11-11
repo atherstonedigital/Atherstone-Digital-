@@ -6,12 +6,14 @@ import { PressFeedback } from '@/components/site/PressFeedback';
 import { cn } from '@/lib/utils';
 
 // The page shell for routes built on the new system: the fixed Nav, the page's <main>, the Footer. It does what Nav
-// asks of the page (brand book, Layout and States): the content is padded by --nav-height so the fixed bar never
-// covers the first section, and <main> carries id="main" and tabindex="-1" so the skip link lands on it. It also adds
-// the touchstart listener iOS Safari needs before it shows the buttons' press.
+// asks of the page (brand book, Layout and States): <main> is padded by --nav-height so the fixed bar never covers the
+// first section, and carries id="main" and tabindex="-1" so the skip link lands on it. It also adds the touchstart
+// listener iOS Safari needs before it shows the buttons' press.
 //
-// The padding sits on this wrapper, not on <body>, so the shell carries everything the fixed Nav asks of a page.
-// app/(site)/layout.tsx, app/not-found.tsx and app/design-system/page.tsx render it.
+// The page is the taste kit's shell (design-taste-frontend, system.md; the gate's container-edges, SR-6): header.nav,
+// main, then footer.closing, each straight inside <body> with no wrapper round them. The padding sits on <main>, not
+// on <body>, so the shell carries everything the fixed Nav asks of a page. app/(site)/layout.tsx, app/not-found.tsx
+// and app/design-system/page.tsx render it.
 
 export interface SiteShellProps {
   children: React.ReactNode;
@@ -28,12 +30,10 @@ export function SiteShell({ children, currentPath, nav, footer, className }: Sit
     <>
       <PressFeedback />
       <Nav currentPath={currentPath} {...nav} />
-      <div className="pt-nav-height">
-        <main id="main" tabIndex={-1} className={cn('focus:outline-none', className)}>
-          {children}
-        </main>
-        <Footer {...footer} />
-      </div>
+      <main id="main" tabIndex={-1} className={cn('pt-nav-height focus:outline-none', className)}>
+        {children}
+      </main>
+      <Footer {...footer} />
     </>
   );
 }

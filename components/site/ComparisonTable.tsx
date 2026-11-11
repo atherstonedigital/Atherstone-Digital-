@@ -44,7 +44,9 @@ export function ComparisonTable({
   return (
     <Root
       aria-labelledby={showHeading ? titleId : undefined}
-      className={cn('flex flex-col text-ink', className)}
+      // A grid of one column, and no colour of its own (the section round it sets ink): the block shares no class with
+      // the cards on the page, so the gate's card-family never reads it as a card set in another face.
+      className={cn('grid grid-cols-1', className)}
       {...props}
     >
       {showHeading && content.heading ? (
@@ -104,7 +106,7 @@ export function ComparisonTable({
       </div>
 
       {note ? <p className="body mb-space-2 max-w-measure">{note}</p> : null}
-      {link ? <ForwardLink link={link} className="self-start" /> : null}
+      {link ? <ForwardLink link={link} className="justify-self-start" /> : null}
     </Root>
   );
 }

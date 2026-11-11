@@ -124,10 +124,10 @@ export default function SectionsSection() {
 
       {/* ------------------------------------------------------------------ ProblemCards */}
       <Group title="ProblemCards">
-        <Sample label="ProblemCards, with its SectionHeading (title on columns 1 to 5 of the card from 900px)">
+        <Sample label="ProblemCards on paper, with its SectionHeading (title and copy on the split line from 900px)">
           <ProblemCards content={problems} headingLevel="h3" />
         </Sample>
-        <Sample label="ProblemCards, cards only (a page that sets its own heading)">
+        <Sample label="ProblemCards, the list only (a page that sets its own heading)">
           <ProblemCards content={{ items: problems.items.slice(0, 2) }} withHeading={false} headingLevel="h3" />
         </Sample>
       </Group>

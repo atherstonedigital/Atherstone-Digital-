@@ -2,7 +2,7 @@ import * as React from 'react';
 import Image from 'next/image';
 
 import { danPortrait } from '@/components/site/AboutStrip';
-import { Photograph, splitSizes } from '@/components/site/CaseStudyHeader';
+import { Photograph, splitSizes } from '@/components/site/Photograph';
 import { CTABand } from '@/components/site/CTABand';
 import { JsonLd } from '@/components/site/JsonLd';
 import { TextBlock } from '@/components/site/PageBlocks';

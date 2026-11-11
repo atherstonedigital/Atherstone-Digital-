@@ -4,6 +4,11 @@ import { cn } from '@/lib/utils';
 
 // The SectionHeading component (docs/brand/components/SectionHeading): an eyebrow, a Newsreader heading, a hairline,
 // then the first paragraph. Every section opens with one; never stacked, never centred, no icon beside the eyebrow.
+//
+// Phase 2.4 (ui-ux-pro-max, spacing; Phase 2.5 step 7): the heading block is followed by space-8 before the content,
+// set here once, as the hairline's own bottom margin, so every section that opens with one gets the same gap. On paper
+// the block takes its colour from the section round it and carries no colour class of its own, so it never shares a
+// class with the cards below it (the gate's card-family reads a shared class as one card part).
 
 export interface SectionHeadingProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /** A few words, sentence case; the eyebrow style sets it uppercase. */
@@ -44,7 +49,7 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   const onBand = ground === 'band';
   return (
-    <div className={cn(onBand ? 'text-on-band' : 'text-ink', className)} {...props}>
+    <div className={cn(onBand && 'text-on-band', className)} {...props}>
       {eyebrow ? (
         <p
           className={cn(
@@ -64,8 +69,9 @@ export function SectionHeading({
       >
         {heading}
       </Heading>
-      {/* The hairline: a full-width rule with space-4 above and below. Decorative, so it is hidden from screen readers. */}
-      <hr aria-hidden="true" className={cn('mb-space-4 border-0 border-t', onBand ? 'border-rule-on-band' : 'border-rule')} />
+      {/* The hairline: a full-width rule with space-4 above it and space-8 below, the gap to the content. Decorative, so
+          it is hidden from screen readers. */}
+      <hr aria-hidden="true" className={cn('mb-space-8 border-0 border-t', onBand ? 'border-rule-on-band' : 'border-rule')} />
       {children ? <p className="body max-w-measure">{children}</p> : null}
     </div>
   );

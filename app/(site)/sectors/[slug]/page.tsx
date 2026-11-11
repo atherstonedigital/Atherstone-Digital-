@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { Breadcrumbs } from '@/components/site/Breadcrumbs';
-import { Photograph, splitSizes } from '@/components/site/CaseStudyHeader';
+import { Photograph, splitSizes } from '@/components/site/Photograph';
 import { CTABand } from '@/components/site/CTABand';
 import { FaqBlock, ListBlock, PageHeader } from '@/components/site/PageBlocks';
 import { ProblemCards } from '@/components/site/ProblemCards';

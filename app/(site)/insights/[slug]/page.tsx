@@ -45,8 +45,8 @@ import { renderArticleBody } from './_body';
 // layout's. Screens (brand book, one section per screen): the article is one section, as long as its body needs; the
 // related articles and the closing band share the last screen.
 
-export const dynamicParams = false;
-
+// No `dynamicParams = false`: with output: 'export' only the slugs below are written anyway, and Next 14.2's dev server
+// reads that flag as "no static params" and answers every article with a 500. An unknown slug still 404s (notFound).
 export function generateStaticParams(): { slug: string }[] {
   return insightSlugs.map((slug) => ({ slug }));
 }

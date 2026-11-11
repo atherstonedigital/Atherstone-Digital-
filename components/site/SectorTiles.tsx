@@ -78,8 +78,6 @@ export function SectorTiles({
           eyebrow={content.eyebrow}
           heading={content.heading}
           headingId={titleId}
-          // Heading block to content: space-8 (the hairline's own space-4, then space-4 of padding).
-          className="pb-space-4"
         />
       ) : null}
       <ul

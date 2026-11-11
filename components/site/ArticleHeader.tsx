@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { TextLink } from '@/components/brand/Button';
-import { cn } from '@/lib/utils';
 
 // The top of an article (plan, /insights/[slug]: byline, date, reading time, sector tag): the sector tag in the eyebrow
 // style, the title as the page's H1 in display-2, then the byline in small (Dan's name, the date, the reading time) and
@@ -53,7 +52,7 @@ export function ArticleHeader({
   ...props
 }: ArticleHeaderProps) {
   return (
-    <header className={cn('text-ink', className)} {...props}>
+    <header className={className} {...props}>
       <p className="eyebrow mb-space-2 text-ink-muted">{sectorTag}</p>
       <Heading className="display-2 mb-space-4">{title}</Heading>
       <p className="small text-ink-muted">

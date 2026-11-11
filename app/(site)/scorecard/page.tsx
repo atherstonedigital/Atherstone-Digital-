@@ -31,7 +31,7 @@ export default function ScorecardPage() {
   return (
     <>
       <Screen first as="div">
-        <div className="grid grid-cols-1 gap-y-space-12 min-[900px]:grid-cols-12 min-[900px]:items-start min-[900px]:gap-x-gutter">
+        <div className="grid grid-cols-1 gap-y-space-12 min-[900px]:grid-cols-12 min-[900px]:items-start min-[900px]:gap-x-space-6">
           <div className="grid grid-cols-1 gap-y-space-8 min-[900px]:col-span-6">
             <header>
               <p className="eyebrow mb-space-2 text-ink-muted">{scorecardDraft.eyebrow}</p>

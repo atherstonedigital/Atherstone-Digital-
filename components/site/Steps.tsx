@@ -71,7 +71,8 @@ export function Steps({
         <li
           key={item.number}
           className={cn(
-            'grid grid-cols-1 gap-y-space-2 border-b border-rule py-space-4',
+            // The first row sits space-8 under the SectionHeading's hairline, its top rule (the hairline's own gap).
+            'grid grid-cols-1 gap-y-space-2 border-b border-rule py-space-4 first:pt-0',
             'min-[900px]:grid-cols-12 min-[900px]:items-baseline min-[900px]:gap-x-gutter',
           )}
         >
@@ -108,9 +109,6 @@ export function Steps({
           // Wide, the heading lines up with eyebrowed ones on a shared screen (Phase 1); beside an aside the section
           // stands alone and its heading opens at the frame's padding.
           alignWithEyebrow={!split}
-          // With an aside, space-8 from the hairline to the steps and the photograph (the hairline's own space-4, then
-          // space-4 of padding). Without one, the hairline is the first row's top rule.
-          className={split ? 'pb-space-4' : undefined}
         />
       ) : null}
       {split ? (

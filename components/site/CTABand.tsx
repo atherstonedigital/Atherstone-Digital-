@@ -3,6 +3,7 @@ import * as React from 'react';
 import { LinkButton } from '@/components/brand/Button';
 import { SectionHeading } from '@/components/brand/SectionHeading';
 import { formPanelClasses } from '@/components/site/form-panel-styles';
+import { container } from '@/components/site/Screen';
 import { nav, offers } from '@/lib/content/site';
 import type { Link as SiteLink } from '@/lib/content/types';
 import { cn } from '@/lib/utils';
@@ -60,11 +61,11 @@ export function CTABand({
     <section
       aria-labelledby={headingId}
       // Sections sit space-12 apart on a phone and space-16 from 1200px (brand book, Layout). The band is full width;
-      // its content keeps the container's lines.
+      // its content keeps the container's lines in the one .wrap every section holds (the taste kit's shell, SR-6).
       className={cn('bg-band py-space-12 text-on-band min-[1200px]:py-space-16', className)}
       {...props}
     >
-      <div className="mx-auto w-[min(100%_-_2_*_var(--gutter),var(--container))]">
+      <div className={container}>
         <SectionHeading ground="band" eyebrow={eyebrow} heading={heading} headingId={headingId} />
         {body ? <p className="body-lg max-w-measure-lg">{body}</p> : null}
         <div className={cn(formPanelClasses('band'), 'mt-space-8 flex flex-wrap items-center gap-space-3 min-[720px]:w-fit')}>

@@ -11,16 +11,30 @@ import { cn } from '@/lib/utils';
 // descriptor line, email, phone and LinkedIn, and the company number on its own rule. No local service area: the plan
 // kills that column.
 //
-// From 720px the footer fills one screen, as Phase 1's did (brand book, Layout: one section per screen): the wordmark
-// and columns at the top, the contact block and the legal row at the foot. On a phone nothing follows it, so it is as
-// tall as its content. A short page can opt out with className="min-[720px]:min-h-0".
+// Phase 2.4 (design-taste-frontend's shell, SR-6, with the owner's brief on heights): the taste kit's footer.closing,
+// straight inside <body> after <main>, holding one .wrap on the container's lines with exactly two children: the
+// footer proper (wordmark, link columns, descriptor and contact links), then the legal row on its own rule. It is as
+// tall as its content plus space-12 above and below (space-16 from 1200px), as every section is since the owner's
+// brief took the fixed screen heights out (Phase 2.5, step 2): the one-screen footer of Phases 1 to 3 added 900px to
+// every page, and the homepage's target is under 8,000px at 1440.
+//
+// Below 1200px the wordmark, the three link columns, then the descriptor and the contact links, which sit on the link
+// columns' grid from 900px (each starts on a column's line and the row runs line to line: the gate's row-lines, SR-7).
+// From 1200px the taste kit's footer row: the wordmark across the top, then four columns 24px apart, the descriptor and
+// contact links in the first and the three link columns in the other three, one row running line to line, so the
+// footer is one row deep.
 
 /** Screen-reader text after a link that leaves the site (the same words as the brand group's LinkButton). */
 const LEAVES_SITE = '(leaves this site)';
 
-/** Ink, underline drawn on hover, a 44px target: the footer's links read as a list, not as running copy. */
+/**
+ * Ink, underline drawn on hover, a 44px target: the footer's links read as a list, not as running copy. From 1200px with
+ * a mouse (a fine pointer that hovers) the rows close up to 32px, 8px apart (brand book: 44px targets are for touch);
+ * a touch screen keeps 44px at every width.
+ */
 const footerLinkStyle = cn(
   'inline-flex min-h-touch-target items-center gap-space-2 text-ink',
+  '[@media(min-width:1200px)_and_(hover:hover)_and_(pointer:fine)]:min-h-space-8',
   'underline decoration-transparent decoration-1 underline-offset-4',
   'transition-[text-decoration-color] duration-colour ease-out hover:decoration-current motion-reduce:transition-none',
 );
@@ -93,49 +107,55 @@ export function Footer({
   return (
     <footer
       className={cn(
-        'flex flex-col border-t border-rule bg-paper text-ink',
-        // Section padding, as every screen-tall section has it: the nav's height plus space-12 above on a phone
-        // (space-16 from 1200px), so the wordmark clears the fixed bar when the footer is scrolled to the top.
-        'pb-space-12 pt-[calc(var(--nav-height)_+_var(--space-12))]',
-        'min-[1200px]:pb-space-16 min-[1200px]:pt-[calc(var(--nav-height)_+_var(--space-16))]',
-        'min-[720px]:min-h-[100dvh]',
+        'closing border-t border-rule bg-paper text-ink',
+        // A section's padding: space-12 above and below, space-16 from 1200px (brand book, Layout and spacing).
+        'py-space-12 min-[1200px]:py-space-16',
         className,
       )}
       {...props}
     >
-      <div
-        className={cn(
-          'mx-auto flex w-[min(100%_-_2_*_var(--gutter),var(--container))] flex-1 flex-col justify-between gap-space-12',
-        )}
-      >
-        <div className="grid gap-space-8">
+      <div className="wrap mx-auto grid w-[min(100%_-_2_*_var(--gutter),var(--container))] gap-space-12">
+        {/* 1: the footer proper: the wordmark, then the link columns and the descriptor with the contact links, all in
+            the one Footer navigation. DOM order is the plan's (columns, then descriptor and contact); from 1200px the
+            grid places the descriptor and contact in the first of four columns. */}
+        <div className="grid gap-y-space-8">
           <p>
             {/* The full wordmark at 40px, narrowed only where a 320px screen cannot hold it (Phase 1). */}
             <Wordmark className="text-[min(40px,10.5vw)]" />
           </p>
           <nav
             aria-label={navLabel}
-            className="grid grid-cols-2 gap-x-gutter gap-y-space-8 min-[720px]:grid-cols-3"
+            className={cn(
+              'grid grid-cols-2 gap-x-gutter gap-y-space-8 min-[720px]:grid-cols-3',
+              'min-[1200px]:grid-cols-4 min-[1200px]:gap-x-space-6',
+            )}
           >
             {content.columns.map((column, index) => (
               <Column key={column.label} column={column} id={`${idPrefix}-column-${index}`} />
             ))}
+            <div
+              className={cn(
+                'col-span-full mt-space-4 grid content-start gap-space-2',
+                'min-[1200px]:col-span-1 min-[1200px]:col-start-1 min-[1200px]:row-start-1 min-[1200px]:mt-0',
+              )}
+            >
+              <p className="small max-w-measure-lg text-ink">{content.descriptor}</p>
+              {/* From 900 to 1199px on the link columns' grid, the row running line to line; one column otherwise:
+                  below 900px a third of the container is narrower than the email address, and from 1200px the links
+                  stack in the first column. */}
+              <ul className="grid grid-cols-1 gap-y-space-2 min-[900px]:max-[1199px]:grid-cols-3 min-[900px]:max-[1199px]:gap-x-gutter">
+                {contactLinks.map((link) => (
+                  <li key={link.href} className="min-w-0">
+                    <FooterLink link={link} />
+                  </li>
+                ))}
+              </ul>
+            </div>
           </nav>
         </div>
 
-        <div className="grid gap-space-6">
-          <div className="grid gap-space-2">
-            <p className="small max-w-measure-lg text-ink">{content.descriptor}</p>
-            <ul className="grid gap-space-2 min-[720px]:flex min-[720px]:flex-wrap min-[720px]:gap-x-space-8 min-[720px]:gap-y-0">
-              {contactLinks.map((link) => (
-                <li key={link.href}>
-                  <FooterLink link={link} />
-                </li>
-              ))}
-            </ul>
-          </div>
-          <p className="small border-t border-rule pt-space-4 text-ink-muted">{content.legal}</p>
-        </div>
+        {/* 2: the legal row, on its own rule. */}
+        <p className="small border-t border-rule pt-space-4 text-ink-muted">{content.legal}</p>
       </div>
     </footer>
   );

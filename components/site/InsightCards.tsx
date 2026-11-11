@@ -62,7 +62,7 @@ export function InsightCards({
   const ItemHeading = headingLevel === 'h2' ? 'h3' : 'h4';
 
   return (
-    <Root aria-labelledby={showHeading ? titleId : undefined} className={cn('text-ink', className)} {...props}>
+    <Root aria-labelledby={showHeading ? titleId : undefined} className={className} {...props}>
       {showHeading && content.heading ? (
         <SectionHeading as={headingLevel} eyebrow={content.eyebrow} heading={content.heading} headingId={titleId} />
       ) : null}

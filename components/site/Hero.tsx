@@ -9,8 +9,14 @@ import type { Hero as HeroContent } from '@/lib/content/types';
 import { cn } from '@/lib/utils';
 
 // The homepage hero (plan, Homepage 1): the brass eyebrow, the H1 in display-1, the sub-copy in body-lg, the primary and
-// secondary buttons, and the one fact line on its own hairline at the foot of the first screen. Phase 1's layout, without
-// its chart: the chart drew client figures that may not appear in this public repository.
+// secondary buttons, and the one fact line on its own hairline. Phase 1's layout, without its chart: the chart drew
+// client figures that may not appear in this public repository.
+//
+// Phase 2.4 (design-taste-frontend's hole check, within the brief's hero: 100dvh less the nav, its own copy and
+// buttons, no decoration): the copy, the buttons and the fact line are one composed group, set in the middle of the
+// first screen, the fact line space-12 under the buttons. Phase 1 docked the fact line at the foot of the screen, which
+// left an empty band of about 340px between the buttons and the line at 1440 by 900 (38% of the screen), the hero read
+// as two pieces with a hole between them. Centred, the free space falls above and below the group instead.
 //
 // The entrance (Phase 2.4 step 11, gsap-react and gsap-core) is the one thing on the page that moves on load: eyebrow,
 // H1, sub-copy, then the buttons with the fact line, 60ms apart, each from 1% opacity and 8px down to rest over 400ms
@@ -64,8 +70,9 @@ export interface HeroProps extends Omit<React.HTMLAttributes<HTMLElement>, 'cont
   /** h1 on the homepage. h2 only where the hero is shown inside another page, as on the design-system page. */
   headingLevel?: 'h1' | 'h2';
   /**
-   * Fill the first screen below the fixed nav, with the fact line at its foot (brand book, Layout: the hero fills the
-   * first screen alone with its primary button inside it). Off, the hero is as tall as its copy.
+   * Fill the first screen below the fixed nav, the copy and the fact line centred in it as one group (brand book,
+   * Layout: the hero fills the first screen alone with its primary button inside it). Off, the hero is as tall as its
+   * copy.
    */
   fill?: boolean;
   /** Run the entrance. Off, the copy is at rest from the first paint. */
@@ -186,15 +193,16 @@ export function Hero({
       {...props}
     >
       {/* The taste kit's hero shape (system.css: section.hero > .wrap > .hero-text plus one strip): the box the page
-          gives its container classes (wrapClassName), holding the composition and, at its foot, the fact line as the
-          one docked strip. A column at every width, so the strip sits at the foot of the first screen. */}
-      <div className={cn('flex flex-1 flex-col', wrapClassName)}>
+          gives its container classes (wrapClassName), holding the composition and, under it, the fact line as the one
+          strip. A column at every width, the two centred together in the first screen as one group. */}
+      <div className={cn('flex flex-1 flex-col justify-center', wrapClassName)}>
         {/* The composition. A column below 900px; from 900px Phase 1's grid: eyebrow and H1 across all 12 columns,
             sub-copy and buttons on 1 to 7, the aside on 8 to 12 beside them. */}
         <div
           className={cn(
             'hero-text flex flex-col',
-            'min-[900px]:mb-space-8 min-[900px]:grid min-[900px]:grid-cols-12 min-[900px]:items-start min-[900px]:gap-x-gutter',
+            // 24px between columns, so the aside starts on a line of the page's 24px grid (x 834 at 1440).
+            'min-[900px]:grid min-[900px]:grid-cols-12 min-[900px]:items-start min-[900px]:gap-x-space-6',
           )}
         >
           {/* The one brass eyebrow on the site (brand book, Type). */}
@@ -240,7 +248,7 @@ export function Hero({
             data-hero-step="3"
             className={cn(
               held,
-              'mb-space-4 flex w-full flex-wrap items-center gap-space-3 max-[359px]:mb-space-2 min-[900px]:col-span-7',
+              'flex w-full flex-wrap items-center gap-space-3 min-[900px]:col-span-7',
             )}
           >
             <LinkButton link={primary} className="w-full min-[720px]:w-auto" />
@@ -261,11 +269,14 @@ export function Hero({
           ) : null}
         </div>
 
-        {/* The fact line, the hero's one strip: copy, so it is ink, in small, on its own hairline at the foot of the
-            first screen. It enters with the buttons. */}
+        {/* The fact line, the hero's one strip: copy, so it is ink, in small, on its own hairline space-12 under the
+            buttons (space-6 below 360px), closing the group. It enters with the buttons. */}
         <p
           data-hero-step="3"
-          className={cn(held, 'hero-strip small mt-auto border-t border-rule pt-space-4 text-ink max-[359px]:pt-space-3')}
+          className={cn(
+            held,
+            'hero-strip small mt-space-12 border-t border-rule pt-space-4 text-ink max-[359px]:mt-space-6 max-[359px]:pt-space-3',
+          )}
         >
           {fact}
         </p>

@@ -6,7 +6,7 @@ import { OfferCard } from '@/components/brand/OfferCard';
 import { SectionHeading } from '@/components/brand/SectionHeading';
 import { StatBlock } from '@/components/brand/StatBlock';
 import { Testimonial } from '@/components/brand/Testimonial';
-import { fiveColumnSizes, Photograph } from '@/components/site/CaseStudyHeader';
+import { fiveColumnSizes, Photograph } from '@/components/site/Photograph';
 import { InsightCards } from '@/components/site/InsightCards';
 import { Stub } from '@/components/site/Screen';
 import { getInsightPost } from '@/lib/content/pages/insights';

@@ -49,7 +49,7 @@ export function FAQ({
   const values = content.items.map((_, index) => `question-${index + 1}`);
 
   return (
-    <Root aria-labelledby={showHeading ? titleId : undefined} className={cn('text-ink', className)} {...props}>
+    <Root aria-labelledby={showHeading ? titleId : undefined} className={className} {...props}>
       {showHeading && content.heading ? (
         <SectionHeading as={headingLevel} eyebrow={content.eyebrow} heading={content.heading} headingId={titleId} />
       ) : null}

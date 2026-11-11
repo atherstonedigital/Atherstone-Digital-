@@ -76,7 +76,9 @@ const AccordionTrigger = React.forwardRef<React.ElementRef<typeof AccordionPrimi
             id={triggerId}
             aria-controls={contentId}
             className={cn(
-              'heading-2 group/accordion-trigger flex min-h-touch-target flex-1 cursor-pointer items-center justify-between',
+              // items-start: the chevron sits level with the question's first line, not between its lines, so a
+              // question that wraps reads straight down (the gate's stagger reads a centred icon as a zigzag).
+              'heading-2 group/accordion-trigger flex min-h-touch-target flex-1 cursor-pointer items-start justify-between',
               'gap-space-4 py-space-4 text-left text-ink',
               // The question's underline draws on hover, in the 150ms colour timing; the icon is not underlined. It draws
               // on press too, so a tap answers on touch (Phase 3 review). No scale: 0.98 on a full-width row would move
@@ -94,6 +96,8 @@ const AccordionTrigger = React.forwardRef<React.ElementRef<typeof AccordionPrimi
               size={20}
               strokeWidth={1.5}
               className={cn(
+                // Centred on the first line: half of the line's height less the icon's 20px.
+                'mt-[calc((var(--heading-2-font-size)*var(--heading-2-line-height)_-_20px)/2)]',
                 'shrink-0 text-ink group-data-[state=open]/accordion-trigger:rotate-180',
                 '[transition:transform_var(--motion-spring-duration)_var(--motion-spring)] motion-reduce:transition-none',
               )}

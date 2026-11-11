@@ -8,6 +8,7 @@ import { contactPage as page } from '@/lib/content/pages/contact';
 import { contact, contactSection } from '@/lib/content/site';
 import type { Link as SiteLink } from '@/lib/content/types';
 import { buildMetadata } from '@/lib/seo';
+import { cn } from '@/lib/utils';
 
 // /contact (plan: "Same form as the homepage, plus the Calendly embed"; title tag "Contact Atherstone Digital | Book a
 // 30-minute call"). The H1 and intro are the homepage form's heading and intro, verbatim (lib/content/pages/contact.ts),
@@ -24,8 +25,11 @@ import { buildMetadata } from '@/lib/seo';
 // confirmation in place (brand book, Forms); without it, the browser lands on the thank-you page the plan describes,
 // instead of Netlify's generic success page. Netlify Forms accepts a post to any static path.
 //
-// Layout: one screen. From 900px the H1, intro and the call booking take columns 1 to 5 and the form 6 to 12, its top
-// level with the H1's eyebrow; below 900px the heading and intro, the form, then the call booking.
+// Layout: from 900px a split on the page's one split line, as the homepage's contact band (Phase 2.4, design-taste-
+// frontend's split-pair and container-edges): the H1, intro and the call booking on the left half, the form on the
+// right half, two halves 24px apart (the form at x 732 at 1440), its top level with the H1's eyebrow. From 900 to
+// 1199px the form takes seven twelfths, so its selects read "Choose one" in full. Below 900px the heading and intro,
+// the form, then the call booking.
 
 export const metadata = buildMetadata('/contact');
 
@@ -46,8 +50,13 @@ const directLines: { label: string; link: SiteLink }[] = [
 export default function ContactPage() {
   return (
     <Screen first as="div">
-      <div className="grid grid-cols-1 gap-y-space-12 min-[900px]:grid-cols-12 min-[900px]:items-start min-[900px]:gap-x-gutter">
-        <header className="min-[900px]:col-span-5 min-[900px]:row-start-1">
+      <div
+        className={cn(
+          'grid grid-cols-1 gap-y-space-12',
+          'min-[900px]:grid-cols-2 min-[900px]:items-start min-[900px]:gap-x-space-6 min-[900px]:max-[1199px]:grid-cols-[5fr_7fr]',
+        )}
+      >
+        <header className="min-[900px]:col-start-1 min-[900px]:row-start-1">
           <p className="eyebrow mb-space-2 text-ink-muted">{contactSection.eyebrow}</p>
           <h1 id="page-heading" className="display-2 mb-space-6 max-w-[24em] text-balance">
             {page.h1}
@@ -58,10 +67,10 @@ export default function ContactPage() {
         <ContactForm
           labelledBy="page-heading"
           endpoint="/contact/thank-you"
-          className="min-w-0 min-[900px]:col-span-7 min-[900px]:col-start-6 min-[900px]:row-span-2 min-[900px]:row-start-1"
+          className="min-w-0 min-[900px]:col-start-2 min-[900px]:row-span-2 min-[900px]:row-start-1"
         />
 
-        <section aria-labelledby="call-heading" className="min-w-0 min-[900px]:col-span-5 min-[900px]:row-start-2">
+        <section aria-labelledby="call-heading" className="min-w-0 min-[900px]:col-start-1 min-[900px]:row-start-2">
           <SectionHeading heading={page.calendly.heading} headingId="call-heading" />
           <LinkButton link={booking} className="w-full min-[720px]:w-auto" />
           {/* Direct lines as ledger rows: the label in the eyebrow style, the address beside it, a rule beneath. On a

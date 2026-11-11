@@ -75,9 +75,6 @@ const flow = 'gap-0 min-[720px]:gap-0';
  */
 const split = 'grid grid-cols-1 gap-space-8 min-[900px]:grid-cols-2 min-[900px]:items-start min-[900px]:gap-x-space-6';
 
-/** Heading block to content: space-8, the SectionHeading hairline's own space-4 and space-4 of padding. */
-const headingGap = 'pb-space-4';
-
 // ------------------------------------------------------------------ content checks, at build time
 
 /**
@@ -139,7 +136,7 @@ export default function HomePage() {
           last two only where the data has them), then Gary beside the catalogue screenshot, Gemma and Luke in two
           columns, and All results. Each business name links its case study. */}
       <Screen id="numbers" labelledBy="numbers-heading" innerClassName={flow}>
-        <SectionHeading heading={proof.heading} headingId="numbers-heading" className={headingGap} />
+        <SectionHeading heading={proof.heading} headingId="numbers-heading" />
         {/* The row sits straight under the heading's hairline, which serves as its top rule. */}
         <StatRow stats={figures} rule={false} />
         {/* The quieter line (brand book, Colour: ink-muted, in small): the small print under the figures. */}
@@ -206,7 +203,6 @@ export default function HomePage() {
           eyebrow={offers.eyebrow}
           heading={offers.heading}
           headingId="services-heading"
-          className={headingGap}
         />
         <ul className="grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-3">
           {offers.offers.map((offer) => (
@@ -252,7 +248,6 @@ export default function HomePage() {
               eyebrow={insights.eyebrow}
               heading={insights.heading}
               headingId="insights-heading"
-              className={headingGap}
             />
             <InsightCards content={{ articles }} withHeading={false} headingLevel="h2" />
           </div>

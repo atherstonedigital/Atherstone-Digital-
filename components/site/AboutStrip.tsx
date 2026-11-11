@@ -79,7 +79,7 @@ export function AboutStrip({
     <section
       aria-labelledby={titleId}
       className={cn(
-        'grid grid-cols-1 items-start text-ink',
+        'grid grid-cols-1 items-start',
         // The two columns 24px apart, so from 900px the portrait starts on the page's one split line (x 732 at 1440),
         // as every split on the site does (design-taste-frontend, split-pair).
         'min-[720px]:grid-cols-12 min-[720px]:grid-rows-[auto_auto_1fr] min-[720px]:gap-x-space-6',

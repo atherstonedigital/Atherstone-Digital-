@@ -105,6 +105,21 @@ body {
   width: var(--space-4);
   border-top: 1px solid var(--rule);
 }
+/* An item that is one run of text (DashList, from the plan's lists) sets the dash as its first flex box instead, the
+   words a box of their own beside it: the same look, and the item's box, dash first, starts on the container's left
+   line, as the taste kit builds a marked list (its .checks; the gate's off-grid measures a marked item by its box). An
+   item holding links or emphasis keeps the dash above, since a flex row would split its words into boxes. */
+.list-dash > li:not(:has(> *)) {
+  display: flex;
+  gap: var(--space-2);
+  padding-left: 0;
+}
+.list-dash > li:not(:has(> *))::before {
+  position: static;
+  flex: none;
+  align-self: flex-start;
+  margin-top: calc(var(--body-line-height) * 0.5em);
+}
 
 /* ------------------------------------------------------------------ the hover layer and motion rules */
 /* The interaction group's section (Phase 2.4 steps 10, 11, 12 and 14). The hover layer itself lives with the

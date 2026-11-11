@@ -1,8 +1,18 @@
 // The image pipeline (Phase 2.6): every original in assets/photos/ becomes graded, cropped WebP renditions in
 // public/images/ plus a 24px blurred placeholder, and lib/images.ts is rewritten as the manifest components import.
-// The originals sit outside public/, so the static export never deploys them; only the renditions ship.
+// The originals sit outside public/, so the static export never deploys them; only the renditions ship. The originals
+// are kept locally and are not in git (.gitignore, assets/photos/): this script needs them to regenerate the committed
+// renditions, and without them it leaves the photographs and lib/images.ts as they are.
 //
-//   node scripts/images.mjs
+// Screenshots (the Xshowhome catalogue screenshot beside Gary's testimonial): Dan saves the PNG as
+// public/images/xshowhome-catalogue.png, as the brief asks, or straight into assets/screenshots/. The script moves a PNG
+// it finds in public/images/ into assets/screenshots/, so the raw file never ships, then writes WebP renditions at 800,
+// 1200 and 1600 wide (no grade, no crop, the same 150kb budget) and the manifest lib/screenshots.private.json, which
+// app/(site)/_home/CatalogueScreenshot.tsx reads at build. The screenshot waits on the client's written permission, so
+// the original, its renditions and that manifest are all gitignored: a build from git (Netlify) shows the stand-in, a
+// local build shows the screenshot.
+//
+//   node scripts/images.mjs   (npm run images)
 //
 // Rules it enforces:
 //   - Only the client's own photographs, listed in SOURCES below with their crops and alt text. A file in assets/photos/
@@ -26,11 +36,15 @@ import sharp from 'sharp';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const sourceDir = path.join(root, 'assets', 'photos');
+const screenshotDir = path.join(root, 'assets', 'screenshots');
 const outDir = path.join(root, 'public', 'images');
 const manifestFile = path.join(root, 'lib', 'images.ts');
+const screenshotManifestFile = path.join(root, 'lib', 'screenshots.private.json');
 const publicBase = '/images';
 
 const WIDTHS = [800, 1200, 1600, 2400];
+/** Screenshots: the brief asks for 1600 wide; nothing is served wider. */
+const SCREENSHOT_WIDTHS = [800, 1200, 1600];
 const BUDGET_BYTES = 150_000;
 const PLACEHOLDER_WIDTH = 24;
 const QUALITY = { start: 80, step: 4, floor: 44 };
@@ -74,6 +88,19 @@ const SOURCES = {
   ],
 };
 
+/**
+ * The screenshots, each rendered at its own ratio. The key names it in lib/screenshots.private.json. The alt text is a
+ * draft for Dan to approve against the screenshot when it lands (the brief asks for the products list filtered to a
+ * corrected Xshowhome range, or one product record before and after): it must say what the screenshot shows.
+ */
+const SCREENSHOTS = {
+  'xshowhome-catalogue.png': {
+    key: 'xshowhomeCatalogue',
+    name: 'xshowhome-catalogue',
+    alt: 'The Shopify admin for xshowhome.com, showing furniture product records after the data remediation',
+  },
+};
+
 // ------------------------------------------------------------------ geometry
 
 /** The largest ratio rectangle inside the original, centred on the focus point and clamped to the frame. */
@@ -91,9 +118,9 @@ function cropFor({ width, height }, [rw, rh], focus) {
 }
 
 /** The rendition widths for a crop: the targets, capped at the crop's width, each more than 10% wider than the last. */
-function renditionWidths(cropWidth) {
+function renditionWidths(cropWidth, targets = WIDTHS) {
   const widths = [];
-  for (const target of WIDTHS) {
+  for (const target of targets) {
     const width = Math.min(target, cropWidth);
     const last = widths[widths.length - 1];
     if (last === undefined || width > last * 1.1) widths.push(width);
@@ -124,9 +151,11 @@ async function gradedCrop(file, crop) {
 
 /** Widths up to this must fit the budget; wider renditions are optional. */
 const REQUIRED_UP_TO = 1600;
+/** A screenshot is set at most about 590px wide, so its 1200 rendition covers a 2x screen; 1600 is optional. */
+const SCREENSHOT_REQUIRED_UP_TO = 1200;
 
 /** One WebP rendition under the budget, the quality stepping down until it fits; null for an optional width that cannot. */
-async function rendition(graded, width) {
+async function rendition(graded, width, requiredUpTo = REQUIRED_UP_TO) {
   let smallest = Infinity;
   for (let quality = QUALITY.start; quality >= QUALITY.floor; quality -= QUALITY.step) {
     const { data, info } = await sharp(graded.data, { raw: graded.raw })
@@ -137,7 +166,7 @@ async function rendition(graded, width) {
     smallest = Math.min(smallest, data.length);
   }
   const why = `${(smallest / 1000).toFixed(1)} kB at q${QUALITY.floor}, over the ${BUDGET_BYTES / 1000} kB budget`;
-  if (width <= REQUIRED_UP_TO) throw new Error(`The ${width}px rendition cannot fit: ${why}.`);
+  if (width <= requiredUpTo) throw new Error(`The ${width}px rendition cannot fit: ${why}.`);
   return { skipped: true, width, why };
 }
 
@@ -228,7 +257,38 @@ export function photoLoader({ src, width }: { src: string; width: number }): str
 
 // ------------------------------------------------------------------ run
 
-async function main() {
+/** The renditions and placeholder for one prepared image, written to public/images/, and their log lines. */
+async function writeRenditions(spec, graded, width, targets, requiredUpTo) {
+  clearOld(spec.name);
+  const renditions = [];
+  const skipped = [];
+  for (const target of renditionWidths(width, targets)) {
+    const out = await rendition(graded, target, requiredUpTo);
+    if (out.skipped) {
+      skipped.push(out);
+      continue;
+    }
+    const fileName = `${spec.name}-${out.width}.webp`;
+    fs.writeFileSync(path.join(outDir, fileName), out.data);
+    renditions.push({ src: `${publicBase}/${fileName}`, width: out.width, height: out.height, bytes: out.data.length, quality: out.quality });
+  }
+  const blur = await placeholder(graded);
+  const placeholderName = `${spec.name}-placeholder.webp`;
+  fs.writeFileSync(path.join(outDir, placeholderName), blur.data);
+  for (const r of renditions) {
+    console.log(`  ${r.src}  ${r.width}x${r.height}  ${(r.bytes / 1000).toFixed(1)} kB  q${r.quality}`);
+  }
+  for (const out of skipped) console.log(`  left out: ${out.width}px (${out.why})`);
+  console.log(`  ${publicBase}/${placeholderName}  ${blur.width}x${blur.height}  ${blur.data.length} B`);
+  return { renditions, placeholder: blur };
+}
+
+/** The client photographs: graded, cropped renditions and lib/images.ts. Skipped when the originals are not here. */
+async function photographs() {
+  if (!fs.existsSync(sourceDir)) {
+    console.log('assets/photos/ is not here (the originals are kept locally, not in git): photographs left as they are.');
+    return;
+  }
   const originals = fs.readdirSync(sourceDir).filter((file) => !file.startsWith('.'));
   const unlisted = originals.filter((file) => !SOURCES[file]);
   if (unlisted.length) {
@@ -247,38 +307,75 @@ async function main() {
     for (const spec of SOURCES[file]) {
       const crop = cropFor({ width: meta.width, height: meta.height }, spec.ratio, spec.focus);
       const graded = await gradedCrop(input, crop);
-      clearOld(spec.name);
-
-      const renditions = [];
-      const skipped = [];
-      for (const width of renditionWidths(crop.width)) {
-        const out = await rendition(graded, width);
-        if (out.skipped) {
-          skipped.push(out);
-          continue;
-        }
-        const fileName = `${spec.name}-${out.width}.webp`;
-        fs.writeFileSync(path.join(outDir, fileName), out.data);
-        renditions.push({ src: `${publicBase}/${fileName}`, width: out.width, height: out.height, bytes: out.data.length, quality: out.quality });
-      }
-      const blur = await placeholder(graded);
-      const placeholderName = `${spec.name}-placeholder.webp`;
-      fs.writeFileSync(path.join(outDir, placeholderName), blur.data);
-
-      entries.push({ ...spec, crop, renditions, placeholder: blur });
       console.log(
         `${file} -> ${spec.name} (${spec.ratio.join(':')}, crop ${crop.width}x${crop.height} at ${crop.left},${crop.top})`,
       );
-      for (const r of renditions) {
-        console.log(`  ${r.src}  ${r.width}x${r.height}  ${(r.bytes / 1000).toFixed(1)} kB  q${r.quality}`);
-      }
-      for (const out of skipped) console.log(`  left out: ${out.width}px (${out.why})`);
-      console.log(`  ${publicBase}/${placeholderName}  ${blur.width}x${blur.height}  ${blur.data.length} B`);
+      const out = await writeRenditions(spec, graded, crop.width, WIDTHS, REQUIRED_UP_TO);
+      entries.push({ ...spec, crop, ...out });
     }
   }
 
   fs.writeFileSync(manifestFile, manifest(entries));
   console.log(`wrote ${path.relative(root, manifestFile)} (${entries.length} photographs)`);
+}
+
+/** A screenshot at its own size, as raw pixels on white (a PNG's transparency would show the page through). */
+async function flatScreenshot(file) {
+  const { data, info } = await sharp(file)
+    .flatten({ background: { r: 255, g: 255, b: 255 } })
+    .toColourspace('srgb')
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  return { data, raw: { width: info.width, height: info.height, channels: info.channels } };
+}
+
+/**
+ * The screenshots: a PNG dropped in public/images/ moves to assets/screenshots/ (so it never ships raw), then each
+ * listed screenshot becomes WebP renditions and an entry in lib/screenshots.private.json. A screenshot that is not
+ * there loses its renditions and its entry, so the page falls back to the stand-in.
+ */
+async function screenshots() {
+  const entries = {};
+  for (const [file, spec] of Object.entries(SCREENSHOTS)) {
+    const dropped = path.join(outDir, file);
+    const input = path.join(screenshotDir, file);
+    if (fs.existsSync(dropped)) {
+      fs.mkdirSync(screenshotDir, { recursive: true });
+      fs.renameSync(dropped, input);
+      console.log(`moved public/images/${file} to assets/screenshots/${file}, so the raw PNG never ships`);
+    }
+    if (!fs.existsSync(input)) {
+      clearOld(spec.name);
+      console.log(`${file}: not in assets/screenshots/, so the page shows its stand-in`);
+      continue;
+    }
+    const meta = await sharp(input).metadata();
+    const flat = await flatScreenshot(input);
+    console.log(`${file} -> ${spec.name} (${meta.width}x${meta.height}, its own ratio, no grade, no crop)`);
+    const out = await writeRenditions(spec, flat, meta.width, SCREENSHOT_WIDTHS, SCREENSHOT_REQUIRED_UP_TO);
+    const largest = out.renditions[out.renditions.length - 1];
+    entries[spec.key] = {
+      src: largest.src,
+      srcSet: out.renditions.map((r) => `${r.src} ${r.width}w`).join(', '),
+      widths: out.renditions.map((r) => r.width),
+      width: largest.width,
+      height: largest.height,
+      blurDataURL: out.placeholder.dataUrl,
+      alt: spec.alt,
+    };
+  }
+  if (Object.keys(entries).length) {
+    fs.writeFileSync(screenshotManifestFile, `${JSON.stringify(entries, null, 2)}\n`);
+    console.log(`wrote ${path.relative(root, screenshotManifestFile)} (gitignored: the screenshot waits on permission)`);
+  } else if (fs.existsSync(screenshotManifestFile)) {
+    fs.rmSync(screenshotManifestFile);
+    console.log(`removed ${path.relative(root, screenshotManifestFile)}`);
+  }
+}
+
+async function main() {
+  await photographs();
+  await screenshots();
 }
 
 main().catch((error) => {

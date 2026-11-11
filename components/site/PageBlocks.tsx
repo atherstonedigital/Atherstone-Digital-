@@ -53,7 +53,7 @@ export function OfferHeader({ eyebrow, h1, intro, actions, headingId, children }
         <p className="eyebrow mb-space-2 text-ink-muted">{eyebrow}</p>
         {/* display-2 is the H1 on every page but the homepage. Balanced, and held to 24em so a one-sentence H1 breaks
             into two even lines rather than running the width of the container. */}
-        <h1 id={headingId} className="display-2 mb-space-6 max-w-[24em] text-balance">
+        <h1 id={headingId} className="display-2 mb-space-6 max-w-[24em]">
           {lines.map((line, index) => (
             <React.Fragment key={line}>
               {index > 0 ? ' ' : null}
@@ -93,7 +93,7 @@ export function PageHeader({ h1, headingId, eyebrow, above, intro, actions }: Pa
       {above}
       {eyebrow ? <p className="eyebrow mb-space-2 text-ink-muted">{eyebrow}</p> : null}
       {/* Balanced and held to 24em, so a one-sentence H1 breaks into even lines rather than running the full width. */}
-      <h1 id={headingId} className="display-2 max-w-[24em] text-balance">
+      <h1 id={headingId} className="display-2 max-w-[24em]">
         {h1}
       </h1>
       {intro === undefined ? null : isStub(intro) ? (
@@ -179,13 +179,14 @@ export function ListBlock({ section, headingId, id, eyebrow }: BlockProps & { se
 // ------------------------------------------------------------------ the ledger table
 
 /**
- * A two-column table, set as the ComparisonTable sets its three columns (components/site/ComparisonTable.tsx, which is
- * typed for three): the column heads in heading-2 over a rule-strong rule, the rows divided by rule hairlines, no fills,
- * no shadows. The first column holds row headers in body, weight 600. From 720px the columns are two halves, the words
- * 24px apart, so the second column's words start on the page's one split line (x 732 at 1440), as the problem list and
- * every split do, and neither column is a box over half the container. Below 720px each row stacks, the area above
- * its line, and the column heads stay for screen readers only; the ARIA table roles are set explicitly because the
- * stacked layout drops a table's native semantics in some browsers.
+ * A two-column table set as the problem list sets its rows (components/site/ProblemCards.tsx), so the ledger joins that
+ * family and never reads as a spreadsheet (Polish review): each row's label in heading-2, its detail in body at measure,
+ * the rows divided by rule hairlines with space-4 inside them, no fills, no shadows. The column heads are in the eyebrow
+ * style, ink-muted, over a rule-strong line (brand book: a table header's border is rule-strong). From 720px the
+ * columns are two halves, the words 24px apart, so the second column's words start on the page's one split line (x 732
+ * at 1440), as the problem list and every split do, and neither column is a box over half the container. Below 720px
+ * each row stacks, the area above its line, and the column heads stay for screen readers only; the ARIA table roles are
+ * set explicitly because the stacked layout drops a table's native semantics in some browsers.
  */
 export function LedgerTable({ table, className }: { table: TableSection; className?: string }) {
   const [areaHead, detailHead] = table.columns;
@@ -201,14 +202,14 @@ export function LedgerTable({ table, className }: { table: TableSection; classNa
           <th
             scope="col"
             role="columnheader"
-            className="heading-2 border-b border-rule-strong pb-space-4 pr-space-3 text-left align-bottom max-[719px]:sr-only"
+            className="eyebrow border-b border-rule-strong pb-space-3 pr-space-3 text-left align-bottom text-ink-muted max-[719px]:sr-only"
           >
             {areaHead}
           </th>
           <th
             scope="col"
             role="columnheader"
-            className="heading-2 border-b border-rule-strong pb-space-4 pl-space-3 text-left align-bottom max-[719px]:sr-only"
+            className="eyebrow border-b border-rule-strong pb-space-3 pl-space-3 text-left align-bottom text-ink-muted max-[719px]:sr-only"
           >
             {detailHead}
           </th>
@@ -224,7 +225,7 @@ export function LedgerTable({ table, className }: { table: TableSection; classNa
             <th
               scope="row"
               role="rowheader"
-              className="body block pb-space-1 text-left align-top font-semibold min-[720px]:table-cell min-[720px]:py-space-4 min-[720px]:pr-space-3"
+              className="heading-2 block pb-space-2 text-left align-top min-[720px]:table-cell min-[720px]:py-space-4 min-[720px]:pr-space-3"
             >
               {area}
             </th>

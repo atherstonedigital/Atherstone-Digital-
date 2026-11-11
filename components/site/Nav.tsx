@@ -43,7 +43,8 @@ import { cn } from '@/lib/utils';
 
 /** Interface labels, in Phase 1's wording. Not page copy, so they live with the component. */
 const LABELS = {
-  home: 'Atherstone Digital, home',
+  /** Added after the visible wordmark for screen readers, so the link's name starts with the words it shows. */
+  home: ', home',
   skip: 'Skip to content',
   openMenu: 'Open menu',
   closeMenu: 'Close menu',
@@ -78,12 +79,16 @@ export interface NavLockupProps {
   className?: string;
 }
 
-/** The home link: the Wordmark component, compact (monogram and 22px wordmark) or full (40px). */
+/**
+ * The home link: the Wordmark component, compact (monogram and 22px wordmark) or full (40px). The link has no
+ * aria-label: its name is the visible wordmark (the compact monogram is decorative, aria-hidden) plus a hidden ", home",
+ * so the name contains the label a speech user reads off the screen (WCAG 2.5.3, Label in Name; axe-core's
+ * label-content-name-mismatch flagged the old aria-label below 900px).
+ */
 export function NavLockup({ variant = 'responsive', className }: NavLockupProps) {
   return (
     <NextLink
       href="/"
-      aria-label={LABELS.home}
       className={cn('inline-flex min-h-touch-target shrink-0 cursor-pointer items-center text-ink no-underline', className)}
     >
       {variant !== 'full' ? (
@@ -92,6 +97,7 @@ export function NavLockup({ variant = 'responsive', className }: NavLockupProps)
       {variant !== 'compact' ? (
         <Wordmark variant="full" className={variant === 'responsive' ? 'hidden min-[900px]:inline-block' : undefined} />
       ) : null}
+      <span className="sr-only">{LABELS.home}</span>
     </NextLink>
   );
 }

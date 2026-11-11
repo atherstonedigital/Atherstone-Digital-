@@ -1,7 +1,7 @@
 // /about (plan, Results, About, Insights, Contact > /about): the title tag and H1 are the plan's. The plan gives the
 // page's structure and facts, not its copy, so the body is written here from those facts in the voice rules (Phase 3
 // decision 5). Sentences taken word for word from the plan say so in a comment; every other sentence, the section
-// headings, the meta description and the portrait's alt text are DRAFTS for Dan to approve.
+// headings and the meta description are DRAFTS for Dan to approve.
 //
 // Held back: the plan's career paragraph ends the Licklibrary line with a revenue growth figure. It is not on the live
 // site, and Licklibrary is one of the plan's case studies, so under the public repo rule it stays out until Dan clears
@@ -59,8 +59,6 @@ export const aboutPage: AboutPage = {
   },
   // Credentials row: the plan's wording, as on the homepage (decision 6).
   credentials: { heading: 'Credentials', items: meetDan.credentials },
-  // Draft.
-  portraitAlt: 'Dan Le Gresley',
   closing: closingActions,
 };
 

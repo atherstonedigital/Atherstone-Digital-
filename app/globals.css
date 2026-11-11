@@ -80,6 +80,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Line breaks (Polish review, finished type): headings and the display and heading styles balance their lines, so a
+   heading never ends on one word alone; running text uses pretty, which avoids a one-word last line without
+   rebalancing the paragraph. In the base layer, so a text-wrap utility on an element still wins. */
+@layer base {
+  h1,
+  h2,
+  h3,
+  .display-1,
+  .display-2,
+  .heading-1,
+  .heading-2 {
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd,
+  figcaption,
+  blockquote {
+    text-wrap: pretty;
+  }
+}
+
 /* Every interactive element shows the focus ring: 2px solid, 2px offset, the focus token. Never remove it.
    On brass-300 use focus-visible:outline-focus-on-highlight. */
 :focus-visible {

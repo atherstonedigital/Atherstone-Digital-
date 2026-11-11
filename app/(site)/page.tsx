@@ -161,21 +161,22 @@ export default function HomePage() {
             className="mt-space-12"
           />
         ) : null}
-        {/* Gary's quote on seven columns, the screenshot on the last five (x 834 at 1440), each under its own hairline,
-            tops level and the two one height, line to line: a row of two figures. Seven columns give the quote about 63
-            characters a line, and keep the 4:3 frame to 365px tall. Stacked below 900px, the quote first. */}
+        {/* Gary's quote on the left half, the screenshot on the right half, on the page's one split line (x 732 at 1440),
+            as Luke's quote below it and every split on the page (Polish review: on seven and five columns the
+            screenshot started 102px right of Luke's quote). The quote opens on its hairline; from 900px the frame's own
+            rule border is its top edge, level with that hairline. Stacked below 900px, the quote first. */}
         <div
           className={cn(
             'mt-space-12 grid grid-cols-1 gap-space-8',
-            'min-[900px]:grid-cols-12 min-[900px]:items-stretch min-[900px]:gap-x-space-6',
+            'min-[900px]:grid-cols-12 min-[900px]:items-start min-[900px]:gap-x-space-6',
           )}
         >
           <Testimonial
             {...testimonialProps(leadTestimonial)}
             // Stacked below 900px, the quote runs to the container's right line, as in Phase 1.
-            className="max-w-none min-[900px]:col-span-7"
+            className="max-w-none min-[900px]:col-span-6"
           />
-          <CatalogueScreenshot className="min-[900px]:col-span-5 min-[900px]:col-start-8" />
+          <CatalogueScreenshot className="min-[900px]:col-span-6 min-[900px]:col-start-7" />
         </div>
         <div className="mt-space-8 grid grid-cols-1 gap-space-8 min-[900px]:grid-cols-2 min-[900px]:gap-x-space-6">
           {otherTestimonials.map((testimonial) => (

@@ -598,7 +598,6 @@ export interface AboutPage extends PageHead {
   howIWork: TextSection;
   band: TextSection;
   credentials: { heading: string; items: string[] };
-  portraitAlt: string;
   closing: ClosingActions;
 }
 

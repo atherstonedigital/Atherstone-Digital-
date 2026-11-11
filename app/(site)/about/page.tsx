@@ -42,8 +42,10 @@ export default function AboutPage() {
       <JsonLd data={personJsonLd()} />
 
       <Screen first as="div">
-        {/* From 900px the H1 sits on the portrait's top line and the interiors work ends on its bottom line: the second
-            row takes the height the portrait leaves, and the section sits at its foot. */}
+        {/* From 900px the H1 sits on the portrait's top line and the interiors work follows it at the grid's space-12
+            gap. The second row takes the height the portrait leaves, and what is left falls below the text, beside the
+            lower part of the portrait, where a ragged foot reads naturally (Polish review: pinned to the portrait's foot,
+            the section left about 220px of empty paper under the H1). */}
         <div className="grid grid-cols-1 gap-y-space-8 min-[900px]:grid-cols-12 min-[900px]:grid-rows-[auto_1fr] min-[900px]:gap-x-space-6 min-[900px]:gap-y-space-12">
           <header className="min-[900px]:col-span-6 min-[900px]:row-start-1">
             {/* The plan's Meet Dan heading, his name, as the eyebrow: the H1 says what, the eyebrow says who. */}
@@ -63,7 +65,7 @@ export default function AboutPage() {
               src={danPortrait.src}
               width={danPortrait.width}
               height={danPortrait.height}
-              alt={page.portraitAlt}
+              alt={danPortrait.alt}
               placeholder={danPortrait.blurDataURL ? 'blur' : 'empty'}
               blurDataURL={danPortrait.blurDataURL}
               // Above the fold at every width, so it loads first.
@@ -77,7 +79,7 @@ export default function AboutPage() {
           <TextBlock
             section={page.interiors}
             headingId="interiors-heading"
-            className="min-[900px]:col-span-6 min-[900px]:row-start-2 min-[900px]:self-end"
+            className="min-[900px]:col-span-6 min-[900px]:row-start-2"
           />
         </div>
       </Screen>

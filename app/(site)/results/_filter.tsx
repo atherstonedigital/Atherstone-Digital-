@@ -148,7 +148,7 @@ export function ResultsFilter({ cards, sectors, problems, labels, params, classN
       </p>
 
       {shown.length ? (
-        <ul className="grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-2 min-[720px]:gap-x-gutter">
+        <ul className="grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-2 min-[720px]:gap-x-space-6">
           {shown.map((card) => (
             <li key={card.slug} className="grid">
               <CaseStudyCard card={card} />

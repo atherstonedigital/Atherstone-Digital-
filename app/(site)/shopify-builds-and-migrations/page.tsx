@@ -43,7 +43,7 @@ export default function ShopifyBuildsAndMigrationsPage() {
       <Screen as="div">
         {/* From 900px how it runs and pricing sit side by side, their hairlines level; the FAQ follows across the
             container. One column below, in the plan's order. */}
-        <div className="grid grid-cols-1 gap-x-gutter gap-y-space-12 min-[900px]:grid-cols-2">
+        <div className="grid grid-cols-1 gap-x-space-6 gap-y-space-12 min-[900px]:grid-cols-2">
           <TextBlock section={page.howItRuns} headingId="how-it-runs-heading" id="how-it-runs" />
           <TextBlock section={page.pricing} headingId="pricing-heading" id="pricing" />
         </div>

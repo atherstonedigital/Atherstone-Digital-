@@ -16,9 +16,14 @@ import { cn } from '@/lib/utils';
 // The buttons never sit straight on the band. In the light theme the primary's green-900 fill is the band's own
 // colour, and the Button README rules out a white fill ("Don't fill a button brass or white"). So the band seats its
 // actions on the same raised panel the contact band seats its form on (formPanelClasses('band'): paper-raised, no
-// hairline against the band), and the standard primary and secondary apply there unchanged. From 720px the panel is
-// as wide as its buttons (side by side from 1200px, one above the other below it); below 720px, full width with the
-// buttons stacked full width, as Phase 1's hero buttons.
+// hairline against the band), and the standard primary and secondary apply there unchanged.
+//
+// Layout (Polish review: the panel hugging the bottom left left the band's right half empty, a widget bolted on). From
+// 900px the content under the heading is two halves 24px apart, as the homepage contact band seats its form: the body
+// in the left half at measure, the action panel in the right half on the page's one split line (x 732 at 1440), its
+// top level with the body's first line. The panel stays as wide as its buttons, side by side from 1200px and one above
+// the other below it. From 720 to 899px the panel follows the body, as wide as its buttons; below 720px, full width with
+// the buttons stacked full width, as Phase 1's hero buttons.
 
 const healthCheck = offers.offers.find((offer) => offer.id === 'store-health-check');
 
@@ -68,20 +73,23 @@ export function CTABand({
     >
       <div className={container}>
         <SectionHeading ground="band" eyebrow={eyebrow} heading={heading} headingId={headingId} />
-        {body ? <p className="body-lg max-w-measure-lg">{body}</p> : null}
-        {/* As wide as its buttons from 720px: side by side from 1200px; from 720 to 1199px one above the other, one
-            width, so the panel stays under half the container (side by side, the buttons and the panel's padding come
-            to just over half at 768 and 1024, a box the gate's container-edges asks to run line to line, SR-6). Below
-            720px full width, the buttons stacked full width. */}
-        <div
-          className={cn(
-            formPanelClasses('band'),
-            'mt-space-8 flex flex-wrap items-center gap-space-3 min-[720px]:w-fit',
-            'max-[1199px]:flex-col max-[1199px]:items-stretch',
-          )}
-        >
-          <LinkButton link={primary} className="w-full min-[1200px]:w-auto" />
-          {secondary ? <LinkButton link={secondary} variant="secondary" className="w-full min-[1200px]:w-auto" /> : null}
+        <div className="grid grid-cols-1 gap-y-space-8 min-[900px]:grid-cols-2 min-[900px]:items-start min-[900px]:gap-x-space-6">
+          {body ? <p className="body-lg max-w-measure">{body}</p> : null}
+          {/* As wide as its buttons from 720px: side by side from 1200px; from 720 to 1199px one above the other, one
+              width, so the panel stays under half the container (side by side, the buttons and the panel's padding come
+              to just over half at 768 and 1024, a box the gate's container-edges asks to run line to line, SR-6). From
+              900px it starts the right half. Below 720px full width, the buttons stacked full width. */}
+          <div
+            className={cn(
+              formPanelClasses('band'),
+              'flex flex-wrap items-center gap-space-3 min-[720px]:w-fit',
+              'max-[1199px]:flex-col max-[1199px]:items-stretch',
+              'min-[900px]:col-start-2 min-[900px]:self-start min-[900px]:justify-self-start',
+            )}
+          >
+            <LinkButton link={primary} className="w-full min-[1200px]:w-auto" />
+            {secondary ? <LinkButton link={secondary} variant="secondary" className="w-full min-[1200px]:w-auto" /> : null}
+          </div>
         </div>
       </div>
     </section>

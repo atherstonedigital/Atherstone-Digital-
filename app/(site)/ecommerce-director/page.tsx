@@ -24,6 +24,9 @@ export const metadata = buildMetadata('/ecommerce-director');
 
 const offerName = offers.offers.find((offer) => offer.id === page.id)?.name ?? page.h1;
 
+/** From 1200px, the raised pricing panel's padding and 1px border above a block beside it, so the row's headings level. */
+const rowOfThreeLevel = 'min-[1200px]:pt-[calc(var(--space-4)_+_1px)]';
+
 export default function EcommerceDirectorPage() {
   const actions = { primary: page.closing.primary, secondary: secondaryAction(page.closing, page.path) };
   return (
@@ -41,17 +44,38 @@ export default function EcommerceDirectorPage() {
         </div>
       </Screen>
 
-      <Screen as="div">
-        <TextBlock section={page.month} headingId="month-heading" id="a-month" />
-        <TextBlock section={page.notIncluded} headingId="not-included-heading" id="what-you-dont-get" />
-        <TextBlock section={page.pricing} headingId="pricing-heading" id="pricing" />
+      {/* From 1200px the month, what you don't get and pricing stand as one ruled row of three, in the plan's order, each
+          keeping its SectionHeading (Polish review: stacked at half width they left the right half empty all the way
+          down). Pricing is raised to paper-raised with a rule border, no shadow (brand book, Colour: raise the pricing
+          to paper-raised); the other two take the panel's padding and border above, so the three headings and
+          hairlines stay level. Below 1200px they stack as before, pricing on paper: a full-width raised box would set
+          its words inside the container's line. */}
+      <Screen as="div" innerClassName="min-[1200px]:grid-cols-3 min-[1200px]:items-start min-[1200px]:gap-x-space-6">
+        <TextBlock
+          section={page.month}
+          headingId="month-heading"
+          id="a-month"
+          className={rowOfThreeLevel}
+        />
+        <TextBlock
+          section={page.notIncluded}
+          headingId="not-included-heading"
+          id="what-you-dont-get"
+          className={rowOfThreeLevel}
+        />
+        <TextBlock
+          section={page.pricing}
+          headingId="pricing-heading"
+          id="pricing"
+          className="min-[1200px]:rounded-radius-0 min-[1200px]:border min-[1200px]:border-rule min-[1200px]:bg-paper-raised min-[1200px]:p-space-4"
+        />
       </Screen>
 
       <Screen as="div" phoneScreens={2}>
         <section aria-labelledby="fit-heading" id="fit" className="min-w-0">
           <SectionHeading heading={page.fit.heading} headingId="fit-heading" />
           {/* The plan's two lists side by side, from 720px; stacked in the same order below. */}
-          <div className="grid grid-cols-1 gap-x-gutter gap-y-space-8 min-[720px]:grid-cols-2">
+          <div className="grid grid-cols-1 gap-x-space-6 gap-y-space-8 min-[720px]:grid-cols-2">
             {[page.fit.good, page.fit.notFit].map((list) => (
               <div key={list.label} className="min-w-0">
                 <h3 className="heading-2 mb-space-3">{list.label}</h3>

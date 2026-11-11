@@ -13,12 +13,17 @@ import { cn } from '@/lib/utils';
 // sector's tile label, sentence case.
 //
 // Two layouts:
-//   - list (the default; the offer pages and a case study): one column, space-4 apart, each tile a full-width row.
-//   - row (the homepage, Phase 2.4 step 7 and Phase 2.5 step 3): one row of five from 1200px, two rows from 720px
+//   - list (the default; a case study's one sector tile): one column, space-4 apart, each tile a full-width row.
+//   - row (the homepage, Phase 2.4 step 7 and Phase 2.5 step 3, and the offer pages' sector links, so the same
+//     eyebrow, heading and tiles look the same wherever they appear): one row of five from 1200px, two rows from 720px
 //     (three tiles, then two, each row running line to line on a six-column grid), one column below 720px. Each tile is
 //     the sector name in heading-2 and, where given, its one line in small beneath: the first clause of the plan's
-//     "Sector-specific problems to name". From 1200px the five stand as tall cards, the name at the top and the line at
-//     the foot, so the row reads as a set and the section is not left half empty.
+//     "Sector-specific problems to name". Each tile is as tall as its words: the line sits space-2 under the name, and
+//     the grid's stretch keeps a row one height. No min-height fills the section's 60dvh floor (Polish review, ruling A:
+//     five tall boxes with 150px of nothing inside read as a template); the homepage frame centres the row instead, so
+//     the slack falls above and below it, never inside the cards.
+//
+// A hyphenated compound in a tile line ("400-option") is kept on one line, so the line never breaks at its hyphen.
 
 /** A tile: the sector, and optionally its one line (lib/content/site.ts, sectorTileLines). */
 export type SectorTile = Pick<Sector, 'slug' | 'href' | 'tileLabel'> & { tileLine?: string };
@@ -41,6 +46,21 @@ export interface SectorTilesProps extends Omit<React.HTMLAttributes<HTMLElement>
    * section and is labelled by the heading (the homepage).
    */
   as?: 'section' | 'div';
+}
+
+/** The tile line with each hyphenated compound in a no-wrap span, so "400-option" never splits across two lines. */
+function keepCompounds(line: string): React.ReactNode {
+  const parts = line.split(/(\S+-\S+)/);
+  if (parts.length === 1) return line;
+  return parts.map((part, index) =>
+    index % 2 === 1 ? (
+      <span key={index} className="whitespace-nowrap">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
 }
 
 /** In the row layout from 720 to 1199px: the first three tiles take two of six columns, the last two take three. */
@@ -96,9 +116,8 @@ export function SectorTiles({
                 linkedCardClasses,
                 'flex w-full flex-col gap-space-2',
                 row
-                  ? // A tall card from 1200px, 280px (four space-16 and a space-6), the line held to the foot: at 1440 by
-                    // 900 the section's 60dvh floor then leaves no more than a fifth of it empty below the row.
-                    'min-[1200px]:min-h-[calc(var(--space-16)*4_+_var(--space-6))] min-[1200px]:justify-between'
+                  ? // As tall as its words; the row's grid stretch keeps the five one height.
+                    undefined
                   : // 72px tall (space-16 plus space-2), the label centred on the row's height; 128px (two space-16)
                     // on portrait tablets, so the five fill the screen (Phase 1).
                     cn(
@@ -108,7 +127,7 @@ export function SectorTiles({
               )}
             >
               <span className="heading-2">{sector.tileLabel}</span>
-              {sector.tileLine ? <span className="small text-ink">{sector.tileLine}</span> : null}
+              {sector.tileLine ? <span className="small text-ink">{keepCompounds(sector.tileLine)}</span> : null}
             </NextLink>
           </li>
         ))}

@@ -32,7 +32,7 @@ export function OtherOffers({ ids, headingId }: { ids: OfferId[]; headingId: str
   return (
     <section aria-labelledby={headingId} className="min-w-0">
       <SectionHeading eyebrow={otherOffersDraft.eyebrow} heading={otherOffersDraft.heading} headingId={headingId} />
-      <ul className="grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-2 min-[720px]:gap-x-gutter">
+      <ul className="grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-2 min-[720px]:gap-x-space-6">
         {items.map((offer) => (
           <OfferCard key={offer.id} as="li" offer={offer} headingLevel="h3" />
         ))}
@@ -55,7 +55,7 @@ export function CaseStudyLinks({ slugs, headingId }: { slugs: readonly string[];
   return (
     <section aria-labelledby={headingId} className="min-w-0">
       <SectionHeading heading={resultsIndexPage.label} headingId={headingId} />
-      <ul className="grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-2 min-[720px]:gap-x-gutter">
+      <ul className="grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-2 min-[720px]:gap-x-space-6">
         {items.map(({ caseStudy, summary }) => (
           <li key={caseStudy.slug} className="grid">
             <NextLink href={caseStudy.href} className={cn(linkedCardClasses, 'grid content-start gap-y-space-2')}>
@@ -72,8 +72,8 @@ export function CaseStudyLinks({ slugs, headingId }: { slugs: readonly string[];
 }
 
 /**
- * The sector pages as the homepage's tiles, with its eyebrow and heading, in the order the offer page lists them, each
- * with its one line (sectorTileLines, verbatim from the plan), so a tile reads as a card about the sector and never as a
+ * The sector pages as the homepage's row of tiles (Polish review: the same eyebrow, heading and tiles as the homepage,
+ * never the stacked list the brief replaced), in the order the offer page lists them, each with its one line (sectorTileLines, verbatim from the plan), so a tile reads as a card about the sector and never as a
  * bare button (the gate's button-styles read a one-word bordered row as a third button style).
  */
 export function SectorLinks({ slugs, headingId }: { slugs: readonly SectorSlug[]; headingId: string }) {
@@ -82,7 +82,7 @@ export function SectorLinks({ slugs, headingId }: { slugs: readonly SectorSlug[]
     if (!found) throw new Error(`No sector ${slug} in lib/content/site.ts`);
     return { ...found, tileLine: sectorTileLines[slug] };
   });
-  return <SectorTiles content={{ ...sectors, sectors: items }} headingId={headingId} />;
+  return <SectorTiles layout="row" content={{ ...sectors, sectors: items }} headingId={headingId} />;
 }
 
 /**

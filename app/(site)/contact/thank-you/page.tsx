@@ -34,7 +34,7 @@ export default function ThankYouPage() {
       </header>
       <div>
         <p className="body mb-space-6 max-w-measure">{page.followUpLead}</p>
-        <ul className="grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-2 min-[720px]:gap-x-gutter">
+        <ul className="grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-2 min-[720px]:gap-x-space-6">
           {cards.map((card) => (
             <li key={card.slug} className="grid">
               <CaseStudyCard card={card} />

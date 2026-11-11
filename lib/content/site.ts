@@ -507,7 +507,6 @@ export const contactSection: ContactSection = {
       label: 'Number of showrooms',
       type: 'select',
       required: false,
-      placeholder: 'Choose one',
       options: ['0', '1', '2 to 3', '4+'],
     },
     {
@@ -515,7 +514,6 @@ export const contactSection: ContactSection = {
       label: 'Platform',
       type: 'select',
       required: false,
-      placeholder: 'Choose one',
       options: ['Shopify', 'WooCommerce', 'Magento', 'Other', 'Not sure'],
     },
     {
@@ -523,7 +521,6 @@ export const contactSection: ContactSection = {
       label: 'Approximate annual turnover',
       type: 'select',
       required: false,
-      placeholder: 'Choose one',
       options: ['Under £1M', '£1M to £3M', '£3M to £10M', '£10M+'],
     },
     {

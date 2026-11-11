@@ -257,7 +257,7 @@ export default function HomePage() {
 
       {/* 11 Contact: the green band, the brief form on its raised panel on the right half from 900px, on the page's one
           split line as every split is. In a half below 1200px the form sets its fields one under another (its own
-          container queries), so the selects still read "Choose one" in full. */}
+          container queries), so no select is squeezed. */}
       <Screen id="contact" labelledBy="contact-heading" ground="band" innerClassName={flow}>
         <div className={split}>
           <div>

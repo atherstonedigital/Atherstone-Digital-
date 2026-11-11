@@ -9,7 +9,7 @@ import { z } from 'zod';
 import { ForwardLink, TextLink } from '@/components/brand/Button';
 import { formPanelClasses } from '@/components/site/form-panel-styles';
 import { Button } from '@/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, useFormField } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
@@ -414,6 +414,20 @@ export function Confirmation({
   );
 }
 
+/**
+ * The Select's trigger, named by its field's label through aria-labelledby as well as the label's for. The trigger is a
+ * button with role combobox and no placeholder text (the plan gives the selects none), so its name must come from the
+ * label in every screen reader (the taste gate's a11y-name does not read a label's for on a button).
+ */
+const LabelledSelectTrigger = React.forwardRef<
+  React.ElementRef<typeof SelectTrigger>,
+  React.ComponentPropsWithoutRef<typeof SelectTrigger>
+>((props, ref) => {
+  const { formLabelId } = useFormField();
+  return <SelectTrigger ref={ref} aria-labelledby={formLabelId} {...props} />;
+});
+LabelledSelectTrigger.displayName = 'LabelledSelectTrigger';
+
 /** One field from lib/content/site.ts as label, control and message, wired to the form. */
 export function FieldControl({
   field: def,
@@ -440,14 +454,14 @@ export function FieldControl({
               onValueChange={(value) => handle.onFieldChange(def, value, field.onChange)}
             >
               <FormControl>
-                <SelectTrigger
+                <LabelledSelectTrigger
                   ref={field.ref}
                   aria-required={def.required || undefined}
                   className={controlClassName}
                   onBlur={() => handle.onFieldBlur(def, field.value, field.onBlur)}
                 >
                   <SelectValue placeholder={def.placeholder} />
-                </SelectTrigger>
+                </LabelledSelectTrigger>
               </FormControl>
               <SelectContent>
                 {(def.options ?? []).map((option) => (
@@ -511,7 +525,7 @@ type Row =
  * Phase 1's rows, from the field list: text fields in pairs, the selects three to a row, a fieldset with its two
  * inputs side by side, the long answer on its own. Rows follow the form's own width (a container query), so the form
  * lays out the same in the homepage's half column and on a full-width /contact page. Pairs split from 28rem; the
- * selects go three across from 30rem, where each still reads "Choose one" in full.
+ * selects go three across from 30rem, where each still reads its longest option in full.
  *
  * Phase 2.4 (design-taste-frontend, row-lines: every item in a row one height, the row on its column's lines): once a
  * row splits, it is three tracks (label, control, message) and every field in it spans all three on a subgrid. Each

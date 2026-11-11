@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 // and platform fields, so they work by keyboard and screen reader without extra work (brand book, Forms).
 //
 // Trigger   the Input's field classes (paper-raised, rule-strong border, radius-sm, 44px), the value in ink and the
-//           placeholder ("Choose one") in ink-muted, and the chevron-down icon at 20px, 1.5 stroke, in ink. The
+//           placeholder, where a field has one, in ink-muted, and the chevron-down icon at 20px, 1.5 stroke, in ink. The
 //           chevron is turned over while the list is open, at once, as the NavigationMenu trigger's is: the brand
 //           book animates colour, underline thickness, the press and the drawer, and nothing else.
 // List      an opaque paper-raised panel with a 1px rule-strong edge, radius-0, no shadow, no blur: the brand's
@@ -39,7 +39,7 @@ const SelectTrigger = React.forwardRef<
     ref={ref}
     className={cn(
       fieldClasses,
-      // The chevron sits space-3 from the edge with space-1 before it, as Phase 1's select, so "Choose one" reads in
+      // The chevron sits space-3 from the edge with space-1 before it, as Phase 1's select, so a placeholder reads in
       // full in a third of the brief form from 30rem.
       'group/select-trigger flex cursor-pointer items-center justify-between gap-space-1 pr-space-3 text-left',
       'data-[placeholder]:text-ink-muted disabled:cursor-default',

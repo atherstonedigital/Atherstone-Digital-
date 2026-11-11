@@ -79,6 +79,9 @@ const useFormField = () => {
     id,
     name: fieldContext.name,
     formItemId: `${id}-form-item`,
+    // The label's own id, so a control that is a button (the Select trigger) can name itself with aria-labelledby as
+    // well as through the label's for: every screen reader and checker then reads the label as its name.
+    formLabelId: `${id}-form-item-label`,
     formDescriptionId: `${id}-form-item-description`,
     formMessageId: `${id}-form-item-message`,
     hasDescription,
@@ -102,8 +105,10 @@ FormItem.displayName = 'FormItem';
 
 const FormLabel = React.forwardRef<React.ElementRef<typeof LabelPrimitive.Root>, LabelProps>(
   ({ className, ...props }, ref) => {
-    const { formItemId } = useFormField();
-    return <Label ref={ref} className={cn('mb-space-2 self-end', className)} htmlFor={formItemId} {...props} />;
+    const { formItemId, formLabelId } = useFormField();
+    return (
+      <Label ref={ref} id={formLabelId} className={cn('mb-space-2 self-end', className)} htmlFor={formItemId} {...props} />
+    );
   },
 );
 FormLabel.displayName = 'FormLabel';

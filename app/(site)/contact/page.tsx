@@ -26,9 +26,11 @@ import { buildMetadata } from '@/lib/seo';
 //
 // Layout: from 900px a split on the page's one split line, as the homepage's contact band (Phase 2.4, design-taste-
 // frontend's split-pair and container-edges): the H1, intro and the call booking on the left half, the form on the
-// right half, two halves 24px apart (the form at x 732 at 1440), its top level with the H1's eyebrow. In a half below
-// 1200px the form sets its fields one under another (its own container queries), so its selects read "Choose one" in
-// full. Below 900px the heading and intro, the form, then the call booking.
+// right half, two halves 24px apart (the form at x 732 at 1440), its top level with the H1's eyebrow. The split has
+// exactly two columns, the left one holding the heading and the call booking, so the form's field rows are measured
+// in their own column (the gate's row-lines). In a half below 1200px the form sets its fields one under another (its
+// own container queries). Below 900px one column in the same order as the markup, so what is read and tabbed through
+// matches what is seen: the heading and intro, the call booking, then the form.
 
 export const metadata = buildMetadata('/contact');
 
@@ -50,40 +52,38 @@ export default function ContactPage() {
   return (
     <Screen first as="div">
       <div className="grid grid-cols-1 gap-y-space-12 min-[900px]:grid-cols-2 min-[900px]:items-start min-[900px]:gap-x-space-6">
-        <header className="min-[900px]:col-start-1 min-[900px]:row-start-1">
-          <p className="eyebrow mb-space-2 text-ink-muted">{contactSection.eyebrow}</p>
-          <h1 id="page-heading" className="display-2 mb-space-6 max-w-[24em] text-balance">
-            {page.h1}
-          </h1>
-          <p className="body-lg max-w-measure-lg">{page.intro}</p>
-        </header>
+        <div className="grid grid-cols-1 gap-y-space-12">
+          <header>
+            <p className="eyebrow mb-space-2 text-ink-muted">{contactSection.eyebrow}</p>
+            <h1 id="page-heading" className="display-2 mb-space-6 max-w-[24em] text-balance">
+              {page.h1}
+            </h1>
+            <p className="body-lg max-w-measure-lg">{page.intro}</p>
+          </header>
 
-        <ContactForm
-          labelledBy="page-heading"
-          endpoint="/contact/thank-you"
-          className="min-w-0 min-[900px]:col-start-2 min-[900px]:row-span-2 min-[900px]:row-start-1"
-        />
+          <section aria-labelledby="call-heading" className="min-w-0">
+            <SectionHeading heading={page.calendly.heading} headingId="call-heading" />
+            <LinkButton link={booking} className="w-full min-[720px]:w-auto" />
+            {/* Direct lines as ledger rows: the label in the eyebrow style, the address beside it, a rule beneath. On a
+                320px screen the address is wider than the space beside the label, so the row wraps it beneath. Each row
+                is at least a touch target plus space-2 tall, so the links' 44px hit areas sit 8px apart (Phase 3
+                review: at 41px they overlapped and the lower link took the overlap). */}
+            <dl className="mt-space-8 grid grid-cols-1">
+              {directLines.map(({ label, link }) => (
+                <div key={label} className="flex flex-wrap items-baseline gap-x-space-6 border-b border-rule py-space-3 min-h-[calc(var(--touch-target)_+_var(--space-2))]">
+                  <dt className="eyebrow w-space-16 shrink-0 text-ink-muted">{label}</dt>
+                  <dd className="body min-w-0">
+                    <TextLink href={link.href} hitArea>
+                      {link.label}
+                    </TextLink>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        </div>
 
-        <section aria-labelledby="call-heading" className="min-w-0 min-[900px]:col-start-1 min-[900px]:row-start-2">
-          <SectionHeading heading={page.calendly.heading} headingId="call-heading" />
-          <LinkButton link={booking} className="w-full min-[720px]:w-auto" />
-          {/* Direct lines as ledger rows: the label in the eyebrow style, the address beside it, a rule beneath. On a
-              320px screen the address is wider than the space beside the label, so the row wraps it beneath. Each row
-              is at least a touch target plus space-2 tall, so the links' 44px hit areas sit 8px apart (Phase 3
-              review: at 41px they overlapped and the lower link took the overlap). */}
-          <dl className="mt-space-8 grid grid-cols-1">
-            {directLines.map(({ label, link }) => (
-              <div key={label} className="flex flex-wrap items-baseline gap-x-space-6 border-b border-rule py-space-3 min-h-[calc(var(--touch-target)_+_var(--space-2))]">
-                <dt className="eyebrow w-space-16 shrink-0 text-ink-muted">{label}</dt>
-                <dd className="body min-w-0">
-                  <TextLink href={link.href} hitArea>
-                    {link.label}
-                  </TextLink>
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </section>
+        <ContactForm labelledBy="page-heading" endpoint="/contact/thank-you" className="min-w-0" />
       </div>
     </Screen>
   );

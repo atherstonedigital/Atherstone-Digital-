@@ -24,3 +24,6 @@ package-lock.json
 # taste-skill gate state: only the waivers are kept
 .taste-skill/*
 !.taste-skill/waivers.json
+
+# Permission-gated client figures: local builds only, never committed until the client signs off
+lib/content/*.private.ts

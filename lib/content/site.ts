@@ -23,6 +23,7 @@ import type {
   ProblemsSection,
   ProofFigure,
   ProofSection,
+  SectorSlug,
   SectorsSection,
   SiteFooter,
   SiteNav,
@@ -176,6 +177,19 @@ export const sectors: SectorsSection = {
       status: 'launch',
     },
   ],
+};
+
+/**
+ * The one line under each homepage sector tile (Phase 2.5, step 3, verbatim): the first clause of the plan's
+ * "Sector-specific problems to name", as the owner's brief sets it. Kept beside the sectors rather than on each one, so
+ * the nav and footer, which read sectors, carry nothing they do not show.
+ */
+export const sectorTileLines: Record<SectorSlug, string> = {
+  'furniture-retailers': 'Fabric, finish and size variants without a 400-option dropdown',
+  'lighting-retailers': 'Thousands of SKUs with technical attributes',
+  'kitchen-and-bathroom-showrooms': 'The website’s job is a design appointment, not a basket',
+  'flooring-and-tile-retailers': 'Selling by the square metre and by box; samples as the real conversion',
+  'homeware-and-gift-retailers': 'Hundreds of small suppliers and no clean feed; Christmas is 40% of the year',
 };
 
 // ------------------------------------------------------------------ navigation and footer

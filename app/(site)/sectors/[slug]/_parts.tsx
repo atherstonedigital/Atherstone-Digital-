@@ -1,10 +1,12 @@
 import * as React from 'react';
 
 import { ForwardLink } from '@/components/brand/Button';
+import { linkedCardHover } from '@/components/brand/LinkedCard';
 import { OfferCard } from '@/components/brand/OfferCard';
 import { SectionHeading } from '@/components/brand/SectionHeading';
 import { StatBlock } from '@/components/brand/StatBlock';
 import { Testimonial } from '@/components/brand/Testimonial';
+import { fiveColumnSizes, Photograph } from '@/components/site/CaseStudyHeader';
 import { InsightCards } from '@/components/site/InsightCards';
 import { Stub } from '@/components/site/Screen';
 import { getInsightPost } from '@/lib/content/pages/insights';
@@ -12,6 +14,7 @@ import { caseStudyPages } from '@/lib/content/pages/results';
 import { offers, proof as proofSection } from '@/lib/content/site';
 import { isStub } from '@/lib/content/stub';
 import type { SectorProof, Written } from '@/lib/content/types';
+import type { Photo } from '@/lib/images';
 import { cn } from '@/lib/utils';
 
 // The sector template's own blocks (plan, Sector pages: parts 4 to 6): the three offers, the proof cards and the three
@@ -63,54 +66,86 @@ function proofCard(card: SectorProof) {
  * bordered on paper (brand book, Layout: case-study cards), and holds the StatBlock where the case study has a number
  * (its brass marker the screen's one brass use), or its one-line summary in heading-2 where it has none; then the
  * Testimonial, without the one-line result (decision 7); then a forward link to the case study, named as the homepage
- * names its case-study links. The cards cannot be whole-card links, because each holds a quote. Two across from 900px.
+ * names its case-study links. Two across from 900px, 24px apart, so the second starts on the page's split line (x 732 at
+ * 1440).
+ *
+ * Phase 2.4 (design-taste-frontend and apple-design, the hover layer): each card is a case-study card, so it answers the
+ * pointer as every linked card does, a 2px lift and its border to ink over 150ms. The quote cannot sit inside an <a>, so
+ * the forward link is stretched over the card by ::after, as the OfferCard's is: the whole card is one target, the link
+ * keeps its own name, and its underline thickens while the card is hovered.
+ *
+ * Phase 2.6: with a photograph (the sector's, lib/content/pages/sectors.ts) and one card, the client's photograph sits
+ * beside the card that names it from 720px: the card on seven columns, the photograph on the last five (x 834 at 1440,
+ * the page's one split), the card at least as tall as the photograph so the two read as one spread, its link on the
+ * foot. Below 720px the card, then the photograph across the column. It is lazy: the proof is far below the first
+ * screen.
+ *
  * The homepage proof block's "All results" closes the section, so a sector with no proof yet still reaches /results.
  */
 export function ProofBlock({
   section,
   headingId,
   id,
-}: BlockProps & { section: { heading: string; cards: Written<SectorProof[]> } }) {
+  photo,
+}: BlockProps & { section: { heading: string; cards: Written<SectorProof[]> }; photo?: Photo }) {
   const { heading, cards } = section;
+  const beside = photo && !isStub(cards) && cards.length === 1 ? photo : undefined;
+  const list = isStub(cards) ? null : (
+    <ul
+      className={cn(
+        'grid grid-cols-1 gap-space-6',
+        beside ? 'min-[720px]:col-span-7' : 'min-[900px]:grid-cols-2 min-[900px]:gap-x-space-6',
+      )}
+    >
+      {cards.map(proofCard).map(({ page, testimonial }) => {
+        const { caseStudy, summary } = page;
+        return (
+          <li
+            key={caseStudy.slug}
+            className={cn(
+              'group relative flex flex-col gap-space-6 rounded-radius-0 border border-rule bg-paper p-space-4',
+              linkedCardHover,
+            )}
+          >
+            {caseStudy.stat ? (
+              // The card's border is the figure's top rule.
+              <StatBlock figure={caseStudy.stat.figure} line={caseStudy.stat.line} rule={false} />
+            ) : !isStub(summary) ? (
+              <p className="heading-2 max-w-measure">{summary}</p>
+            ) : null}
+            {testimonial ? (
+              <Testimonial
+                quote={testimonial.quote}
+                name={testimonial.name}
+                business={testimonial.business}
+                // Stacked from 720 to 899px, the quote runs to the card's right edge, as on the homepage.
+                className="min-[720px]:max-[899px]:max-w-none"
+              />
+            ) : null}
+            {/* Phase 3 draft, pending Dan's approval: the accessible name, as the homepage's case-study links. */}
+            <ForwardLink
+              link={{ label: caseStudy.title, href: caseStudy.href }}
+              aria-label={`${caseStudy.title} case study`}
+              className="mt-auto self-start after:absolute after:inset-0 group-hover:decoration-2"
+            />
+          </li>
+        );
+      })}
+    </ul>
+  );
   return (
     <section aria-labelledby={headingId} id={id} className="min-w-0">
       <SectionHeading heading={heading} headingId={headingId} />
-      {isStub(cards) ? (
+      {list === null ? (
         <Stub />
+      ) : beside ? (
+        // The list is one grid item, so its single card stretches to the photograph's height.
+        <div className="grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-12">
+          {list}
+          <Photograph photo={beside} sizes={fiveColumnSizes} className="min-[720px]:col-span-5 min-[720px]:col-start-8" />
+        </div>
       ) : (
-        <ul className="grid grid-cols-1 gap-space-6 min-[900px]:grid-cols-2 min-[900px]:gap-x-gutter">
-          {cards.map(proofCard).map(({ page, testimonial }) => {
-            const { caseStudy, summary } = page;
-            return (
-              <li
-                key={caseStudy.slug}
-                className="flex flex-col gap-space-6 rounded-radius-0 border border-rule bg-paper p-space-4"
-              >
-                {caseStudy.stat ? (
-                  // The card's border is the figure's top rule.
-                  <StatBlock figure={caseStudy.stat.figure} line={caseStudy.stat.line} rule={false} />
-                ) : !isStub(summary) ? (
-                  <p className="heading-2 max-w-measure">{summary}</p>
-                ) : null}
-                {testimonial ? (
-                  <Testimonial
-                    quote={testimonial.quote}
-                    name={testimonial.name}
-                    business={testimonial.business}
-                    // Stacked from 720 to 899px, the quote runs to the card's right edge, as on the homepage.
-                    className="min-[720px]:max-[899px]:max-w-none"
-                  />
-                ) : null}
-                {/* Phase 3 draft, pending Dan's approval: the accessible name, as the homepage's case-study links. */}
-                <ForwardLink
-                  link={{ label: caseStudy.title, href: caseStudy.href }}
-                  aria-label={`${caseStudy.title} case study`}
-                  className="mt-auto self-start"
-                />
-              </li>
-            );
-          })}
-        </ul>
+        list
       )}
       <ForwardLink link={proofSection.link} className="mt-space-4" />
     </section>

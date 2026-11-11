@@ -12,13 +12,15 @@ import { cn } from '@/lib/utils';
 //        FAQ question), ink, at least 44px tall, with the chevron-down icon at 20px, 1.5 stroke, on the right. The
 //        answer is body copy at measure. Hover draws the question's underline, as links do; focus is the brand ring.
 //
-// Motion state changes set their final state at once (brand book, States): the answer's space opens and closes
-//        immediately, so a fast double tap never leaves an item half open, and nothing waits on transitionend. On
-//        opening, the answer fades in and settles 8px over the drawer timing (320ms, no overshoot) and the chevron
-//        turns over the same 320ms, on opacity and transform only. Under reduced motion both are instant. The fade
-//        uses @starting-style; a browser without it opens at once, which is the reduced-motion behaviour anyway.
-//        The brand book also asks for the accordion to follow a dragging finger; that gesture is not built (GSAP is
-//        kept to the drawer and the hero entrance, as the book's Building it section allows).
+// Motion state changes set their final state at once (brand book, States; Phase 2.4 step 14): the answer's space opens
+//        and closes immediately, so a fast double tap never leaves an item half open, and nothing waits on
+//        transitionend. On opening, the answer fades in and settles 8px into place on a 300ms spring, and the chevron
+//        turns on the same spring, on opacity and transform only (brand book: never a layout property). The spring is
+//        --motion-spring in app/globals.css, a critically damped spring written as a CSS linear() curve: it leaves
+//        from rest and comes to rest without passing its mark, as apple-design asks of motion nothing threw. Closing
+//        hides the answer at once, which cancels any fade still running; reopening starts it again from its
+//        @starting-style. Under reduced motion both are instant. A browser without @starting-style opens at once,
+//        which is the reduced-motion behaviour anyway. No drag gesture (CLAUDE.md, the owner's ruling).
 //
 // One change from the shadcn source, for the FAQ's job: the answer stays in the page while its item is closed,
 // hidden with display: none, instead of being removed as Radix's AccordionContent removes it. The static export then
@@ -93,7 +95,7 @@ const AccordionTrigger = React.forwardRef<React.ElementRef<typeof AccordionPrimi
               strokeWidth={1.5}
               className={cn(
                 'shrink-0 text-ink group-data-[state=open]/accordion-trigger:rotate-180',
-                'transition-transform duration-drawer ease-drawer motion-reduce:transition-none',
+                '[transition:transform_var(--motion-spring-duration)_var(--motion-spring)] motion-reduce:transition-none',
               )}
             />
           </AccordionPrimitive.Trigger>
@@ -115,7 +117,7 @@ const AccordionContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<H
         aria-labelledby={triggerId}
         className={cn(
           'group-data-[state=closed]/accordion-item:hidden',
-          '[transition:opacity_var(--duration-drawer)_var(--ease-drawer),transform_var(--duration-drawer)_var(--ease-drawer)]',
+          '[transition:opacity_var(--motion-spring-duration)_var(--motion-spring),transform_var(--motion-spring-duration)_var(--motion-spring)]',
           '[@starting-style]:-translate-y-space-2 [@starting-style]:opacity-0 motion-reduce:transition-none',
         )}
         {...props}

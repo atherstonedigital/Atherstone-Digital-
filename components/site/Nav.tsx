@@ -25,18 +25,21 @@ import { nav as siteNav } from '@/lib/content/site';
 import type { Link as SiteLink, NavGroup, SiteNav } from '@/lib/content/types';
 import { cn } from '@/lib/utils';
 
-// The site nav: a fixed 64px bar on paper with a rule beneath. What the bar holds depends on the width, as Phase 1
-// settled it at 320, 390, 720, 1024, 1200 and 1440:
+// The site nav: a fixed 64px bar on paper with a rule beneath. What the bar holds depends on the width (Phase 2.4
+// step 12 and Phase 2.5 step 6: nothing from the desktop nav below 900px, and a bar that never squashes):
 //
-//   below 720    monogram and compact wordmark, menu toggle
-//   720 to 1023  full wordmark, Book a 30-minute call, menu toggle
-//   1024 to 1199 full wordmark, theme toggle, Book a 30-minute call, menu toggle
+//   below 900    monogram and compact wordmark, menu toggle; nothing else
+//   900 to 1199  full wordmark, Book a 30-minute call, menu toggle
 //   from 1200    full wordmark, Services and Sectors dropdowns, Results, Insights, About, theme toggle, the button
 //
-// Below 1200 the links live in the drawer (a Sheet on paper-raised with a rule edge), which also carries the theme
-// toggle below 1024 and the button below 720. The current page is marked with aria-current and a 2px brass-600
-// underline. The page pads its body by --nav-height (the bar is fixed) and gives its <main> id="main" and tabindex="-1"
-// for the skip link.
+// 900 to 1199 is the decision the brief left open: the full wordmark (327px), the primary button (207px) and the 44px
+// toggle need about 610px with their gaps, so the bar holds them with 240px to spare in the 852px container at 900px
+// and the links never crowd it. The theme toggle waits for 1200px with the links, since the drawer carries it below.
+//
+// Below 1200 the links live in the drawer (a Sheet from the right on paper-raised with a rule edge): Services (three),
+// Sectors (five), Results, Insights, About, the primary button and the theme toggle. The current page is marked with
+// aria-current and a 2px brass-600 underline. The page pads its body by --nav-height (the bar is fixed) and gives its
+// <main> id="main" and tabindex="-1" for the skip link. The header is the taste kit's header.nav.
 
 /** Interface labels, in Phase 1's wording. Not page copy, so they live with the component. */
 const LABELS = {
@@ -47,7 +50,10 @@ const LABELS = {
   drawerTitle: 'Menu',
 } as const;
 
-/** From this width the bar holds every link and the drawer is not offered. */
+/**
+ * From this width the bar holds every link and the drawer is not offered. The classes below write the two widths out
+ * (min-[900px], min-[1200px]), because Tailwind reads them from the source.
+ */
 const DRAWER_HIDDEN_FROM = 1200;
 
 /** The page container: at most the container token wide, inside a gutter on each side. */
@@ -67,7 +73,7 @@ function groupValue(group: NavGroup) {
 // ------------------------------------------------------------------ lockup
 
 export interface NavLockupProps {
-  /** responsive: compact below 720px, full from 720px (the bar). full or compact: one form at every width. */
+  /** responsive: compact below 900px, full from 900px (the bar). full or compact: one form at every width. */
   variant?: 'responsive' | 'full' | 'compact';
   className?: string;
 }
@@ -78,13 +84,13 @@ export function NavLockup({ variant = 'responsive', className }: NavLockupProps)
     <NextLink
       href="/"
       aria-label={LABELS.home}
-      className={cn('inline-flex min-h-touch-target shrink-0 items-center text-ink no-underline', className)}
+      className={cn('inline-flex min-h-touch-target shrink-0 cursor-pointer items-center text-ink no-underline', className)}
     >
       {variant !== 'full' ? (
-        <Wordmark variant="compact" className={variant === 'responsive' ? 'min-[720px]:hidden' : undefined} />
+        <Wordmark variant="compact" className={variant === 'responsive' ? 'min-[900px]:hidden' : undefined} />
       ) : null}
       {variant !== 'compact' ? (
-        <Wordmark variant="full" className={variant === 'responsive' ? 'hidden min-[720px]:inline-block' : undefined} />
+        <Wordmark variant="full" className={variant === 'responsive' ? 'hidden min-[900px]:inline-block' : undefined} />
       ) : null}
     </NextLink>
   );
@@ -191,7 +197,9 @@ export function NavMenu({ content = siteNav, currentPath, label = 'Main', value,
 
 /** A drawer row: a 44px link in body at weight 500, with the same underline and current-page marking as the bar. */
 const drawerLinkStyle = cn(
-  'body flex min-h-touch-target items-center font-medium text-ink',
+  'body flex min-h-touch-target cursor-pointer items-center font-medium text-ink',
+  // The underline draws on press too, so a tap answers on touch before the page changes.
+  'active:decoration-current',
   'underline decoration-transparent decoration-1 underline-offset-4',
   'transition-[text-decoration-color] duration-colour ease-out hover:decoration-current motion-reduce:transition-none',
   'aria-[current=page]:decoration-brass-600 aria-[current=page]:decoration-2',
@@ -214,8 +222,8 @@ export interface NavDrawerBodyProps {
   content?: SiteNav;
   currentPath: string;
   /**
-   * responsive: the theme toggle shows below 1024px and the button below 720px, where the bar has no room for them
-   * (the site). always: both show at every width (a static render).
+   * responsive: the button and the theme toggle show below 1200px, wherever the drawer is offered (the site); from
+   * 1200px the bar has them. always: both show at every width (a static render).
    */
   extras?: 'responsive' | 'always';
   /** The nav landmark's name. */
@@ -225,7 +233,10 @@ export interface NavDrawerBodyProps {
   className?: string;
 }
 
-/** The drawer's contents: the Services and Sectors groups, Results, Insights and About, then the extras. */
+/**
+ * The drawer's contents, in the brief's order: the Services and Sectors groups, Results, Insights and About, the
+ * primary button, then the theme toggle at the foot.
+ */
 export function NavDrawerBody({
   content = siteNav,
   currentPath,
@@ -258,13 +269,13 @@ export function NavDrawerBody({
           </li>
         ))}
       </ul>
-      <ThemeToggle className={cn('justify-self-start', extras === 'responsive' && 'min-[1024px]:hidden')} />
       <LinkButton
         link={content.cta}
         size="block"
         onClick={onNavigate}
-        className={cn(extras === 'responsive' && 'min-[720px]:hidden')}
+        className={cn(extras === 'responsive' && 'min-[1200px]:hidden')}
       />
+      <ThemeToggle className={cn('justify-self-start', extras === 'responsive' && 'min-[1200px]:hidden')} />
     </nav>
   );
 }
@@ -385,7 +396,8 @@ export function Nav({
   return (
     <header
       className={cn(
-        'h-nav-height border-b border-rule bg-paper text-ink',
+        // nav: the taste kit's header.nav, the page shell's first part (layout check SR-6).
+        'nav h-nav-height border-b border-rule bg-paper text-ink',
         // right-scroll-bar-position: while the open drawer locks the page's scroll, Radix's scroll lock moves a
         // fixed element with this class in by the scrollbar's width, so the bar does not shift when the scrollbar goes.
         position === 'fixed' ? 'right-scroll-bar-position fixed inset-x-0 top-0 z-nav' : 'relative',
@@ -410,8 +422,8 @@ export function Nav({
         <NavMenu content={content} currentPath={path} label={label} className="hidden min-[1200px]:flex" />
 
         <div className="flex items-center gap-space-4">
-          <ThemeToggle className="hidden min-[1024px]:inline-flex" />
-          <LinkButton link={content.cta} className="hidden min-[720px]:inline-flex" />
+          <ThemeToggle className="hidden min-[1200px]:inline-flex" />
+          <LinkButton link={content.cta} className="hidden min-[900px]:inline-flex" />
           <NavDrawer
             content={content}
             currentPath={path}

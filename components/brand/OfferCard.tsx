@@ -2,12 +2,18 @@ import * as React from 'react';
 import NextLink from 'next/link';
 
 import { textLinkVariants } from '@/components/brand/Button';
+import { linkedCardHover } from '@/components/brand/LinkedCard';
 import type { Offer, Price } from '@/lib/content/types';
 import { cn } from '@/lib/utils';
 
 // The OfferCard component (docs/brand/components/OfferCard): a bordered card for one offer with an eyebrow, the offer
-// name, the copy, the price and a text link. No icon, no shadow, no hover lift, no tick list and no button inside
-// (the row has one primary button beneath it). At most one card in a row is highlighted, never the most expensive.
+// name, the copy, the price and a text link. No icon, no shadow, no tick list and no button inside (the row has one
+// primary button beneath it). At most one card in a row is highlighted, never the most expensive.
+//
+// The whole card is the link (its text link is stretched over it), so it answers the pointer as every linked card
+// does (Phase 2.4 step 10, which the owner's brief applies to the OfferCard where its README had no lift): it rises 2px
+// on transform, its border goes to ink over 150ms and the link's underline thickens to 2px. Reduced motion keeps the
+// border and the underline and drops the lift.
 
 export type OfferCardContent = Pick<
   Offer,
@@ -44,9 +50,9 @@ export function OfferCard({ offer, headingLevel: Heading = 'h3', as: Tag = 'div'
       className={cn(
         // 1px rule border, radius-0, space-4 padding, space-3 between elements, paper fill.
         'group relative flex flex-col gap-space-3 rounded-radius-0 border border-rule bg-paper p-space-4 text-ink',
-        // The whole card takes its link's click and answers hover with its border, never a lift (Phase 1).
-        '[transition:border-color_var(--duration-colour)_ease-out] hover:border-ink motion-reduce:transition-none',
-        // The highlight: brass-300 fill and border; the text stays ink.
+        // The linked card's hover layer: the 2px lift and the ink border, over 150ms.
+        linkedCardHover,
+        // The highlight: brass-300 fill and border; the text stays ink. Hover still takes the border to ink.
         highlight && 'border-brass-300 bg-brass-300',
         className,
       )}
@@ -60,8 +66,9 @@ export function OfferCard({ offer, headingLevel: Heading = 'h3', as: Tag = 'div'
         href={href}
         className={cn(
           textLinkVariants({ tone: highlight ? 'highlight' : 'default' }),
-          // Stretched over the card by ::after, so the card is one target; the underline thickens on card hover.
-          'self-start after:absolute after:inset-0 group-hover:decoration-2',
+          // A 44px row of its own (WCAG 2.5.8, brand book: touch targets), and stretched over the card by ::after, so
+          // the card is one target; the underline thickens on card hover.
+          'inline-flex min-h-touch-target items-center self-start after:absolute after:inset-0 group-hover:decoration-2',
         )}
       >
         {readMore}

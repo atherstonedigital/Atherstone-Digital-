@@ -105,3 +105,43 @@ body {
   width: var(--space-4);
   border-top: 1px solid var(--rule);
 }
+
+/* ------------------------------------------------------------------ the hover layer and motion rules */
+/* The interaction group's section (Phase 2.4 steps 10, 11, 12 and 14). The hover layer itself lives with the
+   components that answer: the linked card's lift, border and photo zoom in components/brand/LinkedCard.tsx, the
+   buttons' 0.98 press in components/ui/button.tsx, the text link's 1px to 2px underline in components/brand/Button.tsx,
+   the hero's entrance in components/site/Hero.tsx and the drawer's spring in components/site/DrawerGesture.tsx. What
+   is page-wide sits here. */
+
+/* Cursor pointer on everything clickable (brand book, the hover layer). :where() keeps it at no specificity, so a
+   component's own cursor-default (a disabled or sending button) still wins. Links with an href already have it. */
+:where(
+    button:not(:disabled),
+    [role="button"]:not([aria-disabled="true"]),
+    summary,
+    select:not(:disabled),
+    input[type="submit"]:not(:disabled),
+    input[type="checkbox"]:not(:disabled),
+    input[type="radio"]:not(:disabled),
+    label:has(> input[type="checkbox"], > input[type="radio"])
+  ) {
+  cursor: pointer;
+}
+
+/* The spring on accordions (brand book, Motion: "300 to 350ms spring on drawers and accordions"; Phase 2.4 step 14:
+   300ms). A critically damped spring, x(t) = 1 - (1 + wt) e^(-wt) with w = 9.23 so it has settled at the end, sampled
+   at 21 points as a linear() curve: it leaves from rest and comes to rest without passing its mark. A browser without
+   linear() falls back to the drawer token's curve, which also never overshoots. Not a generated token: it is the
+   accordion's motion, defined once for components/ui/accordion.tsx. */
+:root {
+  --motion-spring-duration: 300ms;
+  --motion-spring: var(--ease-drawer);
+}
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --motion-spring: linear(
+      0, 0.079, 0.236, 0.403, 0.551, 0.672, 0.765, 0.834, 0.884, 0.92, 0.945, 0.963, 0.975, 0.984, 0.989, 0.993,
+      0.996, 0.998, 0.999, 0.999, 1
+    );
+  }
+}

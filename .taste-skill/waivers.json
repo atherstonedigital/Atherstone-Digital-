@@ -18,5 +18,10 @@
     "check": "phone-number",
     "target": "tel:+447810838129",
     "reason": "The tel: link for the client's real public business number, which the plan's footer gives and the live site already carries. Not an invented number."
+  },
+  {
+    "check": "visual-caption",
+    "target": "source-line",
+    "reason": "source lines under charts and screenshots are the proof"
   }
 ]

@@ -22,6 +22,11 @@ export interface Portrait {
   height: number;
   alt: string;
   /**
+   * A 24px blurred copy as a data URL, shown while the photograph loads (Phase 2.6, step 4: placeholder="blur"), made as
+   * scripts/images.mjs makes the client photographs' (resize to 24px, blur 0.6, WebP at quality 50).
+   */
+  blurDataURL?: string;
+  /**
    * Classes that place the image inside the square frame, for a source that is not square. Leave out for a square
    * source, which simply covers the frame.
    */
@@ -43,6 +48,8 @@ export const danPortrait: Portrait = {
   width: 670,
   height: 670,
   alt: 'Dan Le Gresley',
+  blurDataURL:
+    'data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAAAQBQCdASoYABgAPtFco0yoJaMiMBgIAQAaCWUAs4APY/qjKgshBedP/KWRKn5r3FaoAP73glq1SAHtaLh+s4mwFX/E3s9+nhocdrSvSQhSlG/kl9arQARN7Fj6Lk3vTu5t+Zl881isQgN/h5ULBLXdUwpddh0B/7kUyXJoAAA=',
 };
 
 export interface AboutStripProps extends Omit<React.HTMLAttributes<HTMLElement>, 'content' | 'children'> {
@@ -73,7 +80,9 @@ export function AboutStrip({
       aria-labelledby={titleId}
       className={cn(
         'grid grid-cols-1 items-start text-ink',
-        'min-[720px]:grid-cols-12 min-[720px]:grid-rows-[auto_auto_1fr] min-[720px]:gap-x-gutter',
+        // The two columns 24px apart, so from 900px the portrait starts on the page's one split line (x 732 at 1440),
+        // as every split on the site does (design-taste-frontend, split-pair).
+        'min-[720px]:grid-cols-12 min-[720px]:grid-rows-[auto_auto_1fr] min-[720px]:gap-x-space-6',
         className,
       )}
       {...props}
@@ -110,6 +119,8 @@ export function AboutStrip({
           width={portrait.width}
           height={portrait.height}
           alt={portrait.alt}
+          placeholder={portrait.blurDataURL ? 'blur' : 'empty'}
+          blurDataURL={portrait.blurDataURL}
           // The frame is the full column below 720px, seven twelfths from 720 and half the container from 900.
           sizes="(min-width: 1200px) 588px, (min-width: 900px) 50vw, (min-width: 720px) 58vw, 100vw"
           className={portrait.cropClassName ?? 'absolute inset-0 size-full object-cover'}

@@ -121,6 +121,42 @@ export interface ProofSection {
   link: Link;
 }
 
+/** A proof figure as the StatRow sets it: the figure and its one line. */
+export type ProofStat = Pick<ProofFigure, 'figure' | 'line'>;
+
+/** One month of the proof chart. Structurally a ChartPoint (components/site/Chart.tsx), so it passes straight in. */
+export interface ProofChartPoint {
+  /** The month as the axis prints it: 'Nov 24'. */
+  label: string;
+  /** Pounds, unrounded. */
+  value: number;
+  /** One of the two months the title is about: drawn in brass-600 with its value printed. */
+  emphasis?: boolean;
+}
+
+/** The proof chart under the figures: the finding as its title, the source line beneath, one bar a month. */
+export interface ProofChart {
+  title: string;
+  /** The source line, set in small with the class source-line. */
+  source: string;
+  data: ProofChartPoint[];
+}
+
+/**
+ * The homepage proof block's figures, quieter line and chart. Two modules export it as `proofData`: the committed
+ * lib/content/proof-data.ts (the public version) and the gitignored lib/content/proof-data.private.ts (the full proof,
+ * pending the client's written permission), which next.config.mjs swaps in at build when it exists. Both type-check
+ * against this one shape.
+ */
+export interface ProofData {
+  /** Exactly three: the StatRow's figures, in order. */
+  figures: [ProofStat, ProofStat, ProofStat];
+  /** The one quieter line beneath the figures, in small; null where the version has none. */
+  quieterLine: string | null;
+  /** The revenue chart under the figures; null where the version has none. */
+  chart: ProofChart | null;
+}
+
 export interface Problem {
   title: string;
   body: string;

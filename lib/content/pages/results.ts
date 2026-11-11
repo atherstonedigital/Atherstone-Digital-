@@ -11,6 +11,7 @@
 // Drafts, pending Dan's approval: every case study title tag and meta description, the index's title tag, meta
 // description and H1, the filter's "All" label, Xshowhome's business line, and the slugs (the plan defines none).
 
+import type { PhotoName } from '../../images';
 import { problemTags } from '../site';
 import { stub } from '../stub';
 import type { CaseStudyPage, ResultsIndexPage } from '../types';
@@ -193,6 +194,16 @@ export const caseStudyPages: Record<string, CaseStudyPage> = {
 
 /** For generateStaticParams in app/(site)/results/[slug]. */
 export const caseStudySlugs = Object.keys(caseStudyPages);
+
+/**
+ * The CaseStudyHeader photograph, by slug (Phase 2.6, step 3: "Xshowhome and Saverys each take their matching
+ * photograph"). Only the client's own: Saverys takes its fabric library at 3:2. Xshowhome has no photograph of its own
+ * yet (the Canwell showroom is another business), so its header keeps the StatBlock alone until Dan's shoot supplies
+ * one (brief, "After this pass"). The others have none.
+ */
+export const caseStudyPhotos: Partial<Record<string, PhotoName>> = {
+  'saverys-of-broadway': 'saverysFabricLibrary',
+};
 
 export const resultsIndexPage: ResultsIndexPage = {
   meta: {

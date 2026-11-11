@@ -16,13 +16,19 @@ import { Label, type LabelProps } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 
 // The shadcn/ui Form (new-york, on react-hook-form), restyled to the brand book's Forms rules:
-//   - FormItem stacks label, control and message with space-2 between them, the Phase 1 field rhythm.
+//   - FormItem stacks label, control and message space-2 apart, the Phase 1 field rhythm. The space is the label's
+//     margin below and the message's margin above, not a grid gap, so an item can join a row's subgrid (three tracks:
+//     label, control, message) and an empty message track adds nothing. In such a row the labels sit on their controls
+//     (self-end), so a label that wraps to two lines never pushes its control out of line with its neighbours'.
 //   - FormLabel stays ink when the field fails. Only the message and the field's border turn signal-critical.
 //   - FormMessage sits directly below its field in small, signal-critical, and is linked to the control with
 //     aria-describedby. Its text says what to do ("Enter your name."), never just "Invalid".
 //   - FormDescription, when used, is small and ink-muted (a caption), and is linked the same way.
-// One change from the shadcn source: aria-describedby lists only ids that exist on the page (the description once it
-// is rendered, the message only while there is one), so a screen reader is never pointed at a missing element.
+// Two changes from the shadcn source, both for screen readers (ui-ux-pro-max, Forms: errors are announced and linked):
+//   - aria-describedby lists only ids that exist on the page (the description once it is rendered, the message only
+//     while there is one), so a screen reader is never pointed at a missing element;
+//   - FormMessage is always in the page as a polite live region, empty until the field fails, so an error found on
+//     blur is read out after the next field's name, not only when the visitor comes back to the field.
 
 const Form = FormProvider;
 
@@ -87,7 +93,7 @@ const FormItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
     const value = React.useMemo(() => ({ id, hasDescription, setHasDescription }), [id, hasDescription]);
     return (
       <FormItemContext.Provider value={value}>
-        <div ref={ref} className={cn('grid min-w-0 content-start gap-space-2', className)} {...props} />
+        <div ref={ref} className={cn('grid min-w-0 content-start', className)} {...props} />
       </FormItemContext.Provider>
     );
   },
@@ -97,7 +103,7 @@ FormItem.displayName = 'FormItem';
 const FormLabel = React.forwardRef<React.ElementRef<typeof LabelPrimitive.Root>, LabelProps>(
   ({ className, ...props }, ref) => {
     const { formItemId } = useFormField();
-    return <Label ref={ref} className={className} htmlFor={formItemId} {...props} />;
+    return <Label ref={ref} className={cn('mb-space-2 self-end', className)} htmlFor={formItemId} {...props} />;
   },
 );
 FormLabel.displayName = 'FormLabel';
@@ -130,7 +136,7 @@ const FormDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttribu
       setHasDescription?.(true);
       return () => setHasDescription?.(false);
     }, [setHasDescription]);
-    return <p ref={ref} id={formDescriptionId} className={cn('small text-ink-muted', className)} {...props} />;
+    return <p ref={ref} id={formDescriptionId} className={cn('small mt-space-2 text-ink-muted', className)} {...props} />;
   },
 );
 FormDescription.displayName = 'FormDescription';
@@ -140,13 +146,16 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<
     const { error, formMessageId } = useFormField();
     const body = error ? String(error.message ?? '') : children;
 
-    if (!body) {
-      return null;
-    }
-
+    // Always rendered, so the live region exists before its words change; empty, it takes no space at all.
     return (
-      <p ref={ref} id={formMessageId} className={cn('small text-signal-critical', className)} {...props}>
-        {body}
+      <p
+        ref={ref}
+        id={formMessageId}
+        aria-live="polite"
+        className={cn('small mt-space-2 text-signal-critical empty:mt-0', className)}
+        {...props}
+      >
+        {body || null}
       </p>
     );
   },

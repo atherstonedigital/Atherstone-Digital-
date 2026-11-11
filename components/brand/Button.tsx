@@ -59,11 +59,13 @@ LinkButton.displayName = 'LinkButton';
 
 /**
  * The text link in running copy: green-700, weight 500, underlined at 1px with a 3px offset, thickening to 2px on
- * hover. The colour never changes, visited included. It stays inline so it wraps with the sentence around it.
+ * hover over 150ms, and on press so a tap answers on touch (the hover layer, Phase 2.4 step 10). The colour never
+ * changes, visited included. Under reduced motion the underline still thickens, at once. It stays inline so it wraps
+ * with the sentence around it.
  */
 export const textLinkVariants = cva(
   [
-    'font-medium underline decoration-1 underline-offset-[3px] hover:decoration-2',
+    'cursor-pointer font-medium underline decoration-1 underline-offset-[3px] hover:decoration-2 active:decoration-2',
     '[transition:text-decoration-thickness_var(--duration-colour)_ease-out] motion-reduce:transition-none',
   ],
   {

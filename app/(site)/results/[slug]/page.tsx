@@ -12,10 +12,11 @@ import { DashList, Paragraphs } from '@/components/site/PageBlocks';
 import { Screen } from '@/components/site/Screen';
 import { SectorTiles } from '@/components/site/SectorTiles';
 import { getInsightPost } from '@/lib/content/pages/insights';
-import { caseStudyPages, caseStudySlugs } from '@/lib/content/pages/results';
+import { caseStudyPages, caseStudyPhotos, caseStudySlugs } from '@/lib/content/pages/results';
 import { insights, offers, problemTags, proof, sectors } from '@/lib/content/site';
 import { isStub, STUB_LABEL } from '@/lib/content/stub';
 import type { ArticleCard, CaseStudyPage, ListSection, TextSection } from '@/lib/content/types';
+import { photos } from '@/lib/images';
 import { buildMetadata, caseStudyRoute, crumbs } from '@/lib/seo';
 import { cn } from '@/lib/utils';
 
@@ -39,13 +40,18 @@ import { filteredResultsHref, sectorValue } from '../_cards';
 //
 // Layout (brand book, one section per screen). The header alone leaves most of a screen empty, and so does part 8, so
 // the brand book's rule merges them with the story between: one frame from the top of the page, 1.5 to 2.5 screens
-// tall at 1440 by 900 while the parts are stubs. From 900px the story runs down columns 1 to 7 with the quote beside it
-// on 9 to 12, level with the first part; with no quote the story takes the container. Part 8 sets the offer and the
-// sector on 1 to 6 beside the articles on 7 to 12. Then the closing band. Once a case study is written and runs longer,
+// tall at 1440 by 900 while the parts are stubs. Then the closing band. Once a case study is written and runs longer,
 // split the frame after "What I did" so each part of it fills a screen.
+//
+// Phase 2.4 and 2.6 (design-taste-frontend: one pair of split lines a page; frontend-design): every split on the page
+// is two halves 24px apart, so each right column starts on the same line (x 732 at 1440, as the homepage's). The
+// header sets the client's own photograph in its right half where there is one (caseStudyPhotos: Saverys of Broadway;
+// Xshowhome has none yet), the StatBlock under it; the story runs down the left half with the quote in the right,
+// level with the first part (with no quote the story keeps the left half, at measure); part 8 sets the offer and the
+// sector beside the articles.
 
-export const dynamicParams = false;
-
+// No `dynamicParams = false`: with output: 'export' only the slugs below are written anyway, and Next 14.2's dev server
+// reads that flag as "no static params" and answers every case study with a 500. An unknown slug still 404s below.
 export function generateStaticParams() {
   return caseStudySlugs.map((slug) => ({ slug }));
 }
@@ -149,17 +155,14 @@ export default function CaseStudyPage({ params }: Params) {
   }));
 
   const { offer, sector, articles } = partEight(page);
+  const photoName = caseStudyPhotos[caseStudy.slug];
+  const photo = photoName ? photos[photoName] : undefined;
 
   // The story, parts 2 (when apart) to 7, in the plan's order. From 900px the quote sits beside the parts.
   const storyCount = (businessApart ? 1 : 0) + 4;
-  const main = testimonial ? 'min-[900px]:col-span-7 min-[900px]:col-start-1' : undefined;
+  const main = 'min-[900px]:col-span-6 min-[900px]:col-start-1';
   const story = (
-    <div
-      className={cn(
-        'grid grid-cols-1 gap-y-space-12',
-        testimonial && 'min-[900px]:grid-cols-12 min-[900px]:gap-x-gutter',
-      )}
-    >
+    <div className="grid grid-cols-1 gap-y-space-12 min-[900px]:grid-cols-12 min-[900px]:gap-x-space-6">
       {businessApart ? (
         <Part id="business-heading" heading={BUSINESS_HEADING} className={main}>
           <p className="body max-w-measure">{business}</p>
@@ -174,7 +177,7 @@ export default function CaseStudyPage({ params }: Params) {
           name={testimonial.name}
           business={testimonial.business}
           className={cn(
-            'self-start min-[900px]:col-span-4 min-[900px]:col-start-9 min-[900px]:row-start-1',
+            'self-start min-[900px]:col-span-6 min-[900px]:col-start-7 min-[900px]:row-start-1',
             quoteRows[storyCount],
           )}
         />
@@ -185,7 +188,7 @@ export default function CaseStudyPage({ params }: Params) {
 
   // Part 8.
   const links = (
-    <div className="grid grid-cols-1 gap-y-space-12 min-[900px]:grid-cols-12 min-[900px]:gap-x-gutter">
+    <div className="grid grid-cols-1 gap-y-space-12 min-[900px]:grid-cols-12 min-[900px]:gap-x-space-6">
       <section aria-labelledby="fits-heading" className="min-w-0 min-[900px]:col-span-6">
         <SectionHeading eyebrow={fitsDraft.eyebrow} heading={fitsDraft.heading} headingId="fits-heading" />
         <div className="grid grid-cols-1 gap-space-6">
@@ -220,6 +223,7 @@ export default function CaseStudyPage({ params }: Params) {
             stat={caseStudy.stat}
             sector={sectorTag}
             problems={problemTagLinks}
+            photo={photo}
           />
         </div>
         {story}

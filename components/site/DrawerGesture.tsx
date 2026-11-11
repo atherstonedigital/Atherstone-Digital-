@@ -11,15 +11,24 @@ import { SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { durationMs, easing } from '@/lib/design/tokens';
 import { cn } from '@/lib/utils';
 
-// The mobile nav drawer's motion, one of the two jobs the brand gives GSAP (brand book, Building it). The drawer is a
-// shadcn Sheet (Radix Dialog) that enters and leaves from the right on the same path. While open it follows the finger
-// or pointer 1:1 (Draggable), and on release it settles open or closed with the release velocity (InertiaPlugin),
-// finishing in the direction of travel. Only x, a transform, is animated.
+// The mobile nav drawer's motion, one of the two jobs the brand gives GSAP (brand book, Building it; Phase 2.4 step 12:
+// shadcn, gsap-plugins and apple-design). The drawer is a shadcn Sheet (Radix Dialog) that enters and leaves from the
+// right on the same path. While open it follows the finger or pointer 1:1 (Draggable). InertiaPlugin tracks the
+// panel's velocity, and on release the panel settles open or closed with a spring that starts at the finger's own
+// speed, so there is no seam between the drag and the motion (apple-design: velocity handoff), and that overshoots its
+// rest by 2px at most (brand book: "damping high enough that nothing overshoots more than 2px"). A release finishes in
+// the direction of travel; a slow one goes to the state nearest the point the release projects to. Only x, a
+// transform, is animated.
+//
+// A tap on the toggle, the close button, Escape, a press outside or a link opens or closes it on the drawer token
+// (duration-drawer, ease-drawer: 320ms, no overshoot), the critically damped spring apple-design asks of motion that
+// no gesture threw. Under reduced motion every open, close and release is instant; the drag itself still follows the
+// finger, because that is direct manipulation, not animation.
 //
 // State and motion are kept apart, as the brand book's States rule asks: the open state is set at once by whatever
-// closes or opens the drawer (the toggle, the close button, Escape, a press outside, a link, a release), and the
-// motion runs from wherever the panel is on screen. A press on a moving panel stops it under the finger (Draggable kills
-// the running tween), so every transition is interruptible and nothing is ever left half open.
+// closes or opens the drawer, and the motion runs from wherever the panel is on screen. A press on a moving panel stops
+// it under the finger (Draggable kills the running tween), so every transition is interruptible and nothing is ever
+// left half open.
 //
 // Radix unmounts a closed sheet at once unless a CSS animation is running, so this component keeps the panel mounted
 // (forceMount) until the exit motion ends. Radix's own state still flips at once: the focus trap lets go, the trigger
@@ -29,21 +38,23 @@ import { cn } from '@/lib/utils';
 // up.
 
 if (typeof window !== 'undefined') {
-  // Registered here, in the only client component that moves anything, and only in the browser.
+  // Registered here, in the only client component that moves anything after load, and only in the browser.
   gsap.registerPlugin(useGSAP, Draggable, InertiaPlugin, CustomEase);
 }
 
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
-/** A thrown release settles in 300 to 350ms with no overshoot (brand book, Motion: carry velocity). */
-const THROW_SECONDS = { min: 0.3, max: 0.35 } as const;
 /** Opening and closing without a gesture (the toggle, Escape, a link): the duration-drawer token. */
 const SETTLE_SECONDS = durationMs.drawer / 1000;
-/** Releases slower than this go to the nearer state; faster ones finish in the direction of travel (px/s). */
+/** A release settles in 300 to 350ms (brand book, Motion: carry velocity), the longer the further it has to go. */
+const RELEASE_SECONDS = { min: 0.3, max: 0.35 } as const;
+/** The furthest a release may carry the panel past its rest (px). The brand book allows 2px; this keeps inside it. */
+const MAX_OVERSHOOT = 1.9;
+/** A release faster than this finishes in its direction of travel; a slower one goes to the nearer state (px/s). */
 const DIRECTION_SPEED = 50;
-/** A velocity sample older than this means the finger stopped before it let go (ms). */
-const VELOCITY_STALE_MS = 100;
-/** Movement before a press becomes a drag (px), so a tap on a link stays a tap: the Apple skill's hysteresis. */
+/** apple-design's projection: where a release would come to rest under normal scroll deceleration. */
+const DECELERATION_RATE = 0.998;
+/** Movement before a press becomes a drag (px), so a tap on a link stays a tap: apple-design's hysteresis. */
 const DRAG_THRESHOLD = 8;
 /** Past the open edge the panel follows at this resistance, so the bound gives softly instead of stopping dead. */
 const EDGE_RESISTANCE = 0.85;
@@ -59,6 +70,46 @@ let drawerEase: gsap.EaseFunction | undefined;
 function getDrawerEase(): gsap.EaseFunction {
   drawerEase ??= CustomEase.create('drawer', easing.drawer.replace(/cubic-bezier\(|\)|\s/g, '')) as gsap.EaseFunction;
   return drawerEase;
+}
+
+/** How far a release would carry on by itself (px), from its velocity (px/s): apple-design's project(). */
+function project(velocity: number) {
+  return ((velocity / 1000) * DECELERATION_RATE) / (1 - DECELERATION_RATE);
+}
+
+// ------------------------------------------------------------------ the release spring
+//
+// The settle is one curve from a family shaped like a damped spring: f(t) = 1 - (1 - t)^3 (1 + c t). It starts at the
+// release's own speed, f'(0) = 3 - c (the speed as a share of the distance per duration), and lands with no speed and
+// no acceleration, f'(1) = f''(1) = 0, so it comes to rest instead of stopping. Up to a starting speed of 4 it never
+// passes its rest; a faster start (c < -1) overshoots once and comes back, by (1 - t*)^3 (|c| t* - 1) of the distance
+// at t* = (3 + |c|) / (4 |c|), which works out as 27 (|c| - 1)^4 / (256 |c|^3). The speed is capped where that
+// overshoot would pass MAX_OVERSHOOT for the distance at hand, so the 2px limit holds at every drawer width.
+
+/** The overshoot, as a share of the distance, of the curve that starts at this speed. */
+function overshootShare(speed: number) {
+  const a = speed - 3;
+  return a <= 1 ? 0 : (27 * (a - 1) ** 4) / (256 * a ** 3);
+}
+
+/** The fastest start whose overshoot stays within MAX_OVERSHOOT over this distance (px). */
+function maxSpeedFor(distance: number) {
+  const limit = MAX_OVERSHOOT / Math.max(distance, 1);
+  let low = 4;
+  let high = 4;
+  while (overshootShare(high) < limit && high < 1e4) high *= 2;
+  for (let i = 0; i < 30; i += 1) {
+    const mid = (low + high) / 2;
+    if (overshootShare(mid) <= limit) low = mid;
+    else high = mid;
+  }
+  return low;
+}
+
+/** The settle curve for a release: speed is the finger's velocity as a share of the distance per duration. */
+function springEase(speed: number): gsap.EaseFunction {
+  const c = 3 - speed;
+  return (t) => (t >= 1 ? 1 : 1 - (1 - t) ** 3 * (1 + c * t));
 }
 
 export interface DrawerGestureProps {
@@ -114,11 +165,13 @@ export function DrawerGesture({
   const onOpenChangeRef = React.useRef(onOpenChange);
   const draggableRef = React.useRef<Draggable | null>(null);
   const tweenRef = React.useRef<gsap.core.Tween | null>(null);
+  /** The state the running tween is heading for, so the open-state effect never restarts a release's spring. */
+  const headingOpenRef = React.useRef<boolean | null>(null);
   const exitTimer = React.useRef<number | undefined>(undefined);
-  const settleRef = React.useRef<((toOpen: boolean) => void) | null>(null);
-  const durationRef = React.useRef(SETTLE_SECONDS);
-  // The last few pointer samples, for the release velocity: x, time, and a smoothed px/s.
-  const track = React.useRef({ x: 0, t: 0, v: 0 });
+  const settleRef = React.useRef<((toOpen: boolean, velocity?: number) => void) | null>(null);
+  const reduceRef = React.useRef(false);
+  /** Whether the press now under way has moved the panel: a press that only caught it decides nothing. */
+  const draggedRef = React.useRef(false);
 
   useIsomorphicLayoutEffect(() => {
     onOpenChangeRef.current = onOpenChange;
@@ -139,36 +192,47 @@ export function DrawerGesture({
 
       const finishExit = () => {
         clearExitTimer();
-        const draggable = draggableRef.current;
-        // A finger on the panel, a throw in flight or a reopen all keep it mounted.
-        if (openRef.current || draggable?.isPressed || draggable?.isThrowing) return;
+        // A finger on the panel or a reopen keeps it mounted.
+        if (openRef.current || draggableRef.current?.isPressed) return;
         setExiting(false);
       };
 
-      // Moves the panel to open or closed from wherever it is now. contextSafe: tweens made later, from effects and
-      // Draggable callbacks, still belong to this context and are reverted with it.
-      const settle = contextSafe((toOpen: boolean) => {
+      // Moves the panel to open or closed from wherever it is now. Without a velocity (a tap, a key, a link) it runs
+      // on the drawer token; with one (a release) it runs the spring that starts at that speed. contextSafe: tweens
+      // made later, from effects and Draggable callbacks, still belong to this context and are reverted with it.
+      const settle = contextSafe((toOpen: boolean, velocity?: number) => {
         clearExitTimer();
         tweenRef.current?.kill();
+        tweenRef.current = null;
+        headingOpenRef.current = null;
         const target = toOpen ? 0 : closedX();
-        const duration = durationRef.current;
         const current = Number(gsap.getProperty(el, 'x'));
-        if (duration === 0 || Math.abs(current - target) < 0.5) {
-          gsap.set(el, { x: target });
+        const distance = target - current;
+        const done = () => {
+          tweenRef.current = null;
+          headingOpenRef.current = null;
           sync();
           if (!toOpen) finishExit();
+        };
+        if (reduceRef.current || Math.abs(distance) < 0.5) {
+          gsap.set(el, { x: target });
+          done();
           return;
         }
-        tweenRef.current = gsap.to(el, {
-          x: target,
-          duration,
-          ease: getDrawerEase(),
-          overwrite: 'auto',
-          onComplete: () => {
-            sync();
-            if (!toOpen) finishExit();
-          },
-        });
+
+        let duration = SETTLE_SECONDS;
+        let ease: gsap.EaseFunction = getDrawerEase();
+        if (velocity !== undefined) {
+          const share = Math.min(1, Math.abs(distance) / Math.max(closedX(), 1));
+          duration = RELEASE_SECONDS.min + (RELEASE_SECONDS.max - RELEASE_SECONDS.min) * share;
+          // The finger's speed as a share of the distance per duration; a release moving away from its target (only
+          // a slow one goes to the nearer state against its motion) starts from rest instead of backing off first.
+          const speed = Math.max(0, (velocity * duration) / distance);
+          ease = springEase(Math.min(speed, maxSpeedFor(Math.abs(distance))));
+        }
+
+        headingOpenRef.current = toOpen;
+        tweenRef.current = gsap.to(el, { x: target, duration, ease, overwrite: 'auto', onComplete: done });
         if (!toOpen) exitTimer.current = window.setTimeout(finishExit, duration * 1000 + EXIT_GRACE_MS);
       });
       settleRef.current = settle;
@@ -176,34 +240,20 @@ export function DrawerGesture({
       // A new panel starts closed, off the edge it enters from, before the first paint; the open effect below then
       // brings it in.
       gsap.set(el, { x: closedX() });
+      // InertiaPlugin's velocity tracker reads the panel's x about 20 times a second while it is mounted, so a release
+      // knows how fast the finger was moving, and reads 0 once the finger has rested for 200ms.
+      InertiaPlugin.track(el, 'x');
 
       const mm = gsap.matchMedia();
       mm.add({ reduce: REDUCED_MOTION, full: FULL_MOTION }, (context) => {
-        const reduce = Boolean(context.conditions?.reduce);
-        durationRef.current = reduce ? 0 : SETTLE_SECONDS;
-
-        const velocity = () =>
-          performance.now() - track.current.t > VELOCITY_STALE_MS ? 0 : track.current.v;
-
-        // Where a release goes: in the direction of travel when the finger was moving, otherwise to the nearer state.
-        // Positive velocity is towards closed (the panel leaves to the right).
-        const decide = (position: number, speed: number) => {
-          const closed = closedX();
-          if (Math.abs(speed) >= DIRECTION_SPEED) return speed > 0 ? closed : 0;
-          return position >= closed / 2 ? closed : 0;
-        };
+        reduceRef.current = Boolean(context.conditions?.reduce);
 
         const [draggable] = Draggable.create(el, {
           type: 'x',
           bounds: { minX: 0, maxX: closedX() },
           edgeResistance: EDGE_RESISTANCE,
-          // InertiaPlugin carries the release velocity into the settle, so there is no seam between finger and motion,
-          // and lands exactly on the state the snap function picks from the projected end point.
-          inertia: !reduce,
-          snap: { x: (end: number) => decide(end, velocity()) },
-          minDuration: THROW_SECONDS.min,
-          maxDuration: THROW_SECONDS.max,
-          overshootTolerance: 0,
+          // The release is ours (settle, above), so the spring can start at the finger's speed and hold the 2px limit.
+          inertia: false,
           // The drawer is mostly links, so a drag may start on one; Draggable swallows the click after a real drag.
           dragClickables: true,
           minimumMovement: DRAG_THRESHOLD,
@@ -217,30 +267,33 @@ export function DrawerGesture({
             // Before Draggable records where the press started: read the panel where a tween left it, so the grab
             // keeps the offset from where the finger landed. Draggable then kills the tween, freezing the panel.
             clearExitTimer();
+            draggedRef.current = false;
             this.applyBounds({ minX: 0, maxX: closedX() });
             this.update();
-            track.current = { x: this.x, t: performance.now(), v: 0 };
           },
-          onDrag(this: Draggable) {
-            const now = performance.now();
-            const elapsed = now - track.current.t;
-            if (elapsed > 0) {
-              const instant = ((this.x - track.current.x) / elapsed) * 1000;
-              track.current = { x: this.x, t: now, v: track.current.v * 0.3 + instant * 0.7 };
-            }
+          onPress() {
+            // Draggable has killed the running tween: the panel rests under the finger.
+            tweenRef.current = null;
+            headingOpenRef.current = null;
+          },
+          onDragStart() {
+            draggedRef.current = true;
           },
           onRelease(this: Draggable) {
-            // The state is decided now, at release, not when the motion lands.
+            // A press that caught a moving panel, or a tap on a link, and let go without dragging: the panel carries
+            // on to the state already set, from rest, so a tap never flips the drawer.
+            if (!draggedRef.current) {
+              settle(openRef.current, 0);
+              return;
+            }
+            // The state is decided now, at release, not when the motion lands, and under reduced motion too: only the
+            // settle is instant there, the throw still decides where it goes.
             const closed = closedX();
-            const target = this.isThrowing ? this.endX : decide(this.x, velocity());
-            const toOpen = target < closed / 2;
-            // No throw (reduced motion, or a press that stopped a tween and let go without dragging): settle here.
-            if (!this.isThrowing) settle(toOpen);
+            const velocity = InertiaPlugin.getVelocity(el, 'x') || 0;
+            const toOpen =
+              Math.abs(velocity) >= DIRECTION_SPEED ? velocity < 0 : this.x + project(velocity) < closed / 2;
+            settle(toOpen, velocity);
             if (toOpen !== openRef.current) onOpenChangeRef.current(toOpen);
-          },
-          onThrowComplete() {
-            sync();
-            if (!openRef.current) finishExit();
           },
         });
         draggableRef.current = draggable;
@@ -250,6 +303,13 @@ export function DrawerGesture({
           draggableRef.current = null;
         };
       });
+
+      return () => {
+        InertiaPlugin.untrack(el, 'x');
+        // The context's revert has killed any tween it made.
+        tweenRef.current = null;
+        headingOpenRef.current = null;
+      };
     },
     { dependencies: [panel], scope, revertOnUpdate: true },
   );
@@ -258,16 +318,12 @@ export function DrawerGesture({
   useIsomorphicLayoutEffect(() => {
     openRef.current = open;
     if (!panel) return;
-    const draggable = draggableRef.current;
     // A finger is on the panel: its release decides.
-    if (draggable?.isPressed) return;
-    if (draggable?.isThrowing) {
-      // A throw already heading for this state lands by itself; one heading the other way is overruled (say, Escape
-      // during a throw back open).
-      const landsOpen = draggable.endX < panel.offsetWidth / 2;
-      if (landsOpen === open) return;
-      draggable.tween?.kill();
-    }
+    if (draggableRef.current?.isPressed) return;
+    // A release's spring already heading for this state lands by itself; one heading the other way is overruled
+    // from where the panel is (say, Escape during a release back open). tweenRef holds a tween only while it runs (a
+    // new tween is not yet isActive() before its first frame, which is when a release's state change arrives here).
+    if (tweenRef.current && headingOpenRef.current === open) return;
     settleRef.current?.(open);
   }, [open, panel]);
 

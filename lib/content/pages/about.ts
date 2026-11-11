@@ -7,6 +7,7 @@
 // site, and Licklibrary is one of the plan's case studies, so under the public repo rule it stays out until Dan clears
 // it. It is on the Phase 3 substitution list for Dan to rule on before launch.
 
+import type { PhotoName } from '../../images';
 import { closingActions, meetDan } from '../site';
 import type { AboutPage } from '../types';
 
@@ -62,3 +63,10 @@ export const aboutPage: AboutPage = {
   portraitAlt: 'Dan Le Gresley',
   closing: closingActions,
 };
+
+/**
+ * The page's second image, after Dan's portrait (Phase 2.6, step 3): the Saverys of Broadway fabric library at 3:2, a
+ * client's own photograph, on the second screen's right half. Its alt text is lib/images.ts's, which says what the
+ * picture shows (the fabric library and desk), not the brief's "upholstery workshop".
+ */
+export const aboutPhoto: PhotoName = 'saverysFabricLibrary';

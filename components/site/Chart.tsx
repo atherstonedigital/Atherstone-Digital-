@@ -23,6 +23,12 @@ import { cn } from '@/lib/utils';
 // Opacity of the grey. Bars and lines are 70%, which keeps 3:1 on paper (3.32:1 light, 4.75:1 dark): with more than
 // eight bars, and on a phone, the grey values are not printed, so the marks carry the data. One rule for every grey
 // mark, the horizontal bars included, though they always print their values.
+//
+// Phase 2.4 (brand book, Charts and figures; the homepage proof chart): the title may be set in heading-2 where the
+// chart heads its own part of a page; the source line carries the class source-line, the one caption the brand keeps
+// and the taste gate's visual-caption waiver names; a negative value is written with its sign before the prefix
+// (minus £143, not £-143) and its bar rests on the zero line, since bars start at zero; and category labels thin out at
+// every width, not only on a phone, so 24 months never collide.
 
 export interface ChartPoint {
   /** The category: a month, a store, an option. */
@@ -71,6 +77,8 @@ interface ChartBaseProps {
   plotHeight?: number;
   /** The title's element: a paragraph, or h3 or h4 where the chart heads its own part of a page. */
   titleAs?: 'p' | 'h3' | 'h4';
+  /** The title's type: body in weight 500 (the default), or heading-2 where the chart heads its own part of a page. */
+  titleStyle?: 'body' | 'heading-2';
   className?: string;
 }
 
@@ -83,6 +91,12 @@ export interface BarChartProps extends ChartBaseProps {
   valueLabel?: string;
   /** Print every value, or only the emphasised ones. Default: every value up to eight columns, else emphasis. */
   values?: 'all' | 'emphasis';
+  /**
+   * Vertical bars only. outside (the default): the value labels in a narrow column left of the plot. inline: each
+   * label sits on the plot's left edge just above its gridline, so the plot runs the container's full width, line to
+   * line; a label an early bar would cover is left out (the zero line, ink-muted, needs none).
+   */
+  axis?: 'outside' | 'inline';
 }
 
 export interface LineChartProps extends ChartBaseProps {
@@ -106,16 +120,21 @@ const LABEL_ROOM = 28;
 /** The y-axis labels' baseline offset, so a 14px label sits centred on its gridline. */
 const MIDLINE = 5;
 
+/** The minus sign (U+2212), as a set figure writes it; screen readers read it as minus. */
+const MINUS = '\u2212';
+
 function formatNumber(value: number, format: ChartFormat = {}) {
   const { prefix = '', suffix = '', notation = 'full', maximumFractionDigits = 1 } = format;
   const number = (n: number, digits = maximumFractionDigits) =>
     new Intl.NumberFormat('en-GB', { maximumFractionDigits: digits }).format(n);
   let body: string;
   const size = Math.abs(value);
-  if (notation === 'short' && size >= 1_000_000) body = `${number(value / 1_000_000)}M`;
-  else if (notation === 'short' && size >= 1_000) body = `${number(value / 1_000)}k`;
-  else body = number(value);
-  return `${prefix}${body}${suffix}`;
+  if (notation === 'short' && size >= 1_000_000) body = `${number(size / 1_000_000)}M`;
+  else if (notation === 'short' && size >= 1_000) body = `${number(size / 1_000)}k`;
+  else body = number(size);
+  // The sign leads the prefix: minus £143, never £-143. A value that rounds to zero takes no sign.
+  const sign = value < 0 && body !== '0' ? MINUS : '';
+  return `${sign}${prefix}${body}${suffix}`;
 }
 
 function shown(point: ChartPoint, format?: ChartFormat) {
@@ -147,6 +166,7 @@ const pct = (n: number) => `${Number(n.toFixed(4))}%`;
 function Frame({
   title,
   titleAs: TitleTag = 'p',
+  titleStyle = 'body',
   titleId,
   source,
   className,
@@ -154,18 +174,23 @@ function Frame({
 }: {
   title: string;
   titleAs?: 'p' | 'h3' | 'h4';
+  titleStyle?: 'body' | 'heading-2';
   titleId: string;
   source: string;
   className?: string;
   children: React.ReactNode;
 }) {
   return (
-    <figure aria-labelledby={titleId} className={cn('m-0 grid min-w-0 gap-space-3 text-ink', className)}>
-      <TitleTag id={titleId} className="body max-w-measure font-medium text-ink">
+    <figure aria-labelledby={titleId} className={cn('m-0 grid min-w-0 gap-space-3', className)}>
+      <TitleTag
+        id={titleId}
+        className={cn('max-w-measure text-ink', titleStyle === 'heading-2' ? 'heading-2' : 'body font-medium')}
+      >
         {title}
       </TitleTag>
       {children}
-      <figcaption className="small max-w-measure text-ink-muted">{source}</figcaption>
+      {/* The source line: what the reader is looking at, whose data it is and the date (brand book, Imagery). */}
+      <figcaption className="source-line small max-w-measure text-ink-muted">{source}</figcaption>
     </figure>
   );
 }
@@ -226,6 +251,41 @@ function YAxis({ ticks, y, height, format }: { ticks: number[]; y: (v: number) =
   );
 }
 
+/**
+ * The value labels of an inline axis: on the plot's left edge, 6px above their gridlines. A label is left out where one
+ * of the bars beneath it could reach it at the narrowest plot (288px, a 320 screen), since bars are drawn first and the
+ * label would sit on a mark.
+ */
+function InlineTicks({
+  ticks,
+  y,
+  data,
+  format,
+}: {
+  ticks: number[];
+  y: (v: number) => number;
+  data: ChartPoint[];
+  format?: ChartFormat;
+}) {
+  const NARROWEST = 288;
+  const slot = NARROWEST / Math.max(data.length, 1);
+  return (
+    <g aria-hidden="true">
+      {ticks.map((tick) => {
+        const label = formatNumber(tick, format);
+        const under = data.slice(0, Math.ceil((labelWidth(label) + 4) / slot));
+        // The label's foot is 3px above its gridline's: a bar whose top passes that line would cut it.
+        if (under.some((point) => y(point.value) < y(tick) - 3)) return null;
+        return (
+          <text key={tick} x="0" y={y(tick) - 6} className="small fill-ink-muted">
+            {label}
+          </text>
+        );
+      })}
+    </g>
+  );
+}
+
 function Gridlines({ ticks, y, floor }: { ticks: number[]; y: (v: number) => number; floor: number }) {
   return (
     <g aria-hidden="true">
@@ -247,12 +307,31 @@ function Gridlines({ ticks, y, floor }: { ticks: number[]; y: (v: number) => num
 }
 
 /**
- * Category labels thin out on a phone when they would not fit side by side in about 280px: every other one is hidden
- * below 720px, counted back from the last, so the latest category always keeps its label and the gaps stay even.
+ * The plot each width band can count on (the container less the y-axis), in pixels: 320 to 719, 720 to 1199, and
+ * 1200 up. A band's labels must fit side by side in it at labelWidth's generous estimate; the phone's 264 is 244px at
+ * 320 wide, where four month labels of about 44px still stand 17px apart.
  */
-function thinOnPhones(index: number, labels: string[]) {
-  const needed = labels.length * (Math.max(...labels.map(labelWidth)) + 12);
-  return needed > 280 && (labels.length - 1 - index) % 2 === 1 ? 'max-[719px]:hidden' : undefined;
+const PLOT_WIDTHS = [
+  { width: 264, hide: 'max-[719px]:hidden' },
+  { width: 620, hide: 'min-[720px]:max-[1199px]:hidden' },
+  { width: 1080, hide: 'min-[1200px]:hidden' },
+] as const;
+const LABEL_STEPS = [1, 2, 3, 4, 6, 12, 24] as const;
+
+/**
+ * Category labels thin out where they would not fit side by side: in each width band, every nth label shows, counted
+ * back from the last, so the latest category always keeps its label and the gaps stay even. A label the title is
+ * about (an emphasised point) always shows. 24 months print every second label from 1200px, every third from 720px
+ * and every sixth on a phone; each step divides 12, so the same month a year apart always shows.
+ */
+function labelClass(index: number, labels: string[], emphasis = false) {
+  if (emphasis) return undefined;
+  const pitch = Math.max(...labels.map(labelWidth)) + 12;
+  const hidden = PLOT_WIDTHS.filter(({ width }) => {
+    const step = LABEL_STEPS.find((s) => Math.ceil(labels.length / s) * pitch <= width) ?? labels.length;
+    return (labels.length - 1 - index) % step !== 0;
+  });
+  return hidden.length ? hidden.map((band) => band.hide).join(' ') : undefined;
 }
 
 // ------------------------------------------------------------------ bar charts
@@ -272,9 +351,11 @@ function VerticalBars({ props, ids }: { props: BarChartProps; ids: { title: stri
   const labelAnchor = (index: number) =>
     edgeHeld && index === 0 ? 'start' : edgeHeld && index === data.length - 1 ? 'end' : 'middle';
 
+  const inline = props.axis === 'inline';
+
   return (
     <div className="flex min-w-0">
-      <YAxis ticks={scale.ticks} y={y} height={height} format={format} />
+      {inline ? null : <YAxis ticks={scale.ticks} y={y} height={height} format={format} />}
       <svg
         role="img"
         aria-labelledby={`${ids.title} ${ids.desc}`}
@@ -285,6 +366,7 @@ function VerticalBars({ props, ids }: { props: BarChartProps; ids: { title: stri
         <title id={ids.title}>{props.title}</title>
         <desc id={ids.desc}>{props.description ?? describe('Bar chart', data.map((d) => d.label))}</desc>
         <Gridlines ticks={scale.ticks} y={y} floor={scale.min} />
+        {inline ? <InlineTicks ticks={scale.ticks} y={y} data={data} format={format} /> : null}
         {data.map((point, index) => {
           const top = y(point.value);
           const x = index * slot + (slot - barWidth) / 2;
@@ -317,7 +399,7 @@ function VerticalBars({ props, ids }: { props: BarChartProps; ids: { title: stri
                 x={pct(labelX(index, x))}
                 y={height - 8}
                 textAnchor={labelAnchor(index)}
-                className={cn('small fill-ink-muted', thinOnPhones(index, data.map((d) => d.label)))}
+                className={cn('small fill-ink-muted', labelClass(index, data.map((d) => d.label), point.emphasis))}
               >
                 {point.label}
               </text>
@@ -472,7 +554,10 @@ function Lines({ props, ids }: { props: LineChartProps; ids: { title: string; de
               x={pct(xAt(index))}
               y={height - 8}
               textAnchor={anchorAt(index)}
-              className={cn('small fill-ink-muted', thinOnPhones(index, labels))}
+              className={cn(
+                'small fill-ink-muted',
+                labelClass(index, labels, series.some((s) => s.points[index]?.emphasis)),
+              )}
             >
               {label}
             </text>
@@ -526,7 +611,14 @@ export function Chart(props: ChartProps) {
   }
 
   return (
-    <Frame title={props.title} titleAs={props.titleAs} titleId={titleId} source={props.source} className={props.className}>
+    <Frame
+      title={props.title}
+      titleAs={props.titleAs}
+      titleStyle={props.titleStyle}
+      titleId={titleId}
+      source={props.source}
+      className={props.className}
+    >
       {plot}
       {table}
     </Frame>

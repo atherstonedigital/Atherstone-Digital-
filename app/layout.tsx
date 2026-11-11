@@ -51,6 +51,14 @@ const schibstedGrotesk = Schibsted_Grotesk({
 
 const fontVariables = [newsreader, newsreaderItalic, schibstedGrotesk].map((f) => f.variable).join(' ');
 
+// The taste kit's entrance line (design-taste-frontend, motion.md: the hero's entrance), in <head> so it runs before
+// the body parses: m-enter holds the hero's copy at 1% (components/site/Hero.tsx) until GSAP takes it on hydration;
+// m-enter-done lets it go. The timer is the fallback for slow or failed JavaScript: after 1000ms the copy stands with
+// no entrance. 1000ms is the hero's earlier fallback, kept over the kit's 700ms so a slower phone still hydrates in
+// time to see the entrance.
+const heroEnterScript =
+  "document.documentElement.classList.add('m-enter');setTimeout(function(){document.documentElement.classList.add('m-enter-done')},1000)";
+
 // Site-wide defaults from lib/seo.ts: metadataBase, the title template (for routes that set a plain title, such as
 // /design-system), the homepage description and the og-home share image. Every route in app/(site) overrides them
 // with buildMetadata(). The icons come from the file conventions (app/icon.svg, app/apple-icon.png, app/manifest.ts)
@@ -70,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en-GB" className={fontVariables} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: heroEnterScript }} />
         {/* lazyOnload (Phase 3 review): injected at idle after the load event, with no preload in the head, so gtag.js
             never competes with the fonts, the CSS or the largest paint. The trade: a visit that leaves before the
             page has loaded and gone idle is not counted. */}

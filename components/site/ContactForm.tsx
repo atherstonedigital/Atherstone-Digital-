@@ -29,7 +29,7 @@ import { cn } from '@/lib/utils';
 //   - one zod schema made from the same field list, validated on blur once a field has been typed in (so tabbing
 //     past a field never scolds), re-checked as the visitor types once it has failed, and checked in full on submit;
 //   - errors directly below their field in small, signal-critical, the border signal-critical, linked to the field
-//     with aria-describedby (FormControl), each saying what to do;
+//     with aria-describedby (FormControl), each saying what to do, and read out politely as it appears (FormMessage);
 //   - a failed submit moves focus to the first field that needs an answer and the status line counts them;
 //   - while sending, the button reads "Sending" and is aria-disabled (so it keeps keyboard focus) and a second submit
 //     is ignored; on success the confirmation replaces the form, says what happens next, links two case studies and
@@ -257,11 +257,33 @@ export function useNetlifyForm({ formName, fields, endpoint = NETLIFY_ENDPOINT, 
     if (failed[0]) form.setFocus(failed[0].name);
   };
 
+  /**
+   * Takes in any value the page holds that never reached the form's state: a browser's autofill or a password manager
+   * that writes a field without an input event (ui-ux-pro-max, Forms: autofill support). In normal use every control
+   * already matches its state, so nothing changes.
+   */
+  const takeUnseenValues = (element: HTMLFormElement) => {
+    for (const field of fields) {
+      const control = element.elements.namedItem(field.name);
+      if (
+        !(
+          control instanceof HTMLInputElement ||
+          control instanceof HTMLTextAreaElement ||
+          control instanceof HTMLSelectElement
+        )
+      ) {
+        continue;
+      }
+      if (control.value !== form.getValues(field.name)) form.setValue(field.name, control.value);
+    }
+  };
+
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     if (sending.current) {
       event.preventDefault();
       return;
     }
+    takeUnseenValues(event.currentTarget);
     void form.handleSubmit(onValid, onInvalid)(event);
   };
 
@@ -490,6 +512,12 @@ type Row =
  * inputs side by side, the long answer on its own. Rows follow the form's own width (a container query), so the form
  * lays out the same in the homepage's half column and on a full-width /contact page. Pairs split from 28rem; the
  * selects go three across from 30rem, where each still reads "Choose one" in full.
+ *
+ * Phase 2.4 (design-taste-frontend, row-lines: every item in a row one height, the row on its column's lines): once a
+ * row splits, it is three tracks (label, control, message) and every field in it spans all three on a subgrid. Each
+ * field is then the row's full height, the controls share one line however the labels wrap ("Approximate annual
+ * turnover" takes two lines in a third of the homepage form), and the messages share the line beneath. Before, the
+ * selects aligned on their foot (items-end), which left the three fields three different heights.
  */
 function rowsFor(items: (FieldDef | FieldGroup)[]): Row[] {
   const rows: Row[] = [];
@@ -510,7 +538,19 @@ function rowsFor(items: (FieldDef | FieldGroup)[]): Row[] {
   return rows;
 }
 
-const pairRow = 'grid grid-cols-1 items-start gap-space-4 [@container_(min-width:28rem)]:grid-cols-2';
+/** A pair of fields: stacked space-4 apart, then side by side from 28rem on one subgrid of three tracks. */
+const pairRow = cn(
+  'grid grid-cols-1 gap-space-4',
+  '[@container_(min-width:28rem)]:grid-cols-2 [@container_(min-width:28rem)]:grid-rows-[auto_auto_auto] [@container_(min-width:28rem)]:gap-y-0',
+);
+const pairItem = '[@container_(min-width:28rem)]:row-span-3 [@container_(min-width:28rem)]:grid-rows-subgrid';
+
+/** The selects: stacked space-4 apart, then two or three across from 30rem on one subgrid of three tracks. */
+const choiceRow = cn(
+  'grid grid-cols-1 gap-space-4',
+  '[@container_(min-width:30rem)]:grid-rows-[auto_auto_auto] [@container_(min-width:30rem)]:gap-y-0',
+);
+const choiceItem = '[@container_(min-width:30rem)]:row-span-3 [@container_(min-width:30rem)]:grid-rows-subgrid';
 const choiceColumns: Record<number, string> = {
   1: '',
   2: '[@container_(min-width:30rem)]:grid-cols-2',
@@ -576,20 +616,20 @@ export function ContactForm({
                   return (
                     <div key={row.fields[0].name} className={pairRow}>
                       {row.fields.map((field) => (
-                        <FieldControl key={field.name} field={field} handle={handle} />
+                        <FieldControl key={field.name} field={field} handle={handle} className={pairItem} />
                       ))}
                     </div>
                   );
                 case 'choices':
                   return (
-                    // Labels of different lengths wrap differently in three columns, so the controls align on
-                    // their foot (Phase 1).
+                    // Labels of different lengths wrap differently in three columns: the subgrid keeps the controls
+                    // on one line and each label sits on its control (see rowsFor).
                     <div
                       key={row.fields[0].name}
-                      className={cn('grid grid-cols-1 items-end gap-space-4', choiceColumns[Math.min(row.fields.length, 3)])}
+                      className={cn(choiceRow, choiceColumns[Math.min(row.fields.length, 3)])}
                     >
                       {row.fields.map((field) => (
-                        <FieldControl key={field.name} field={field} handle={handle} />
+                        <FieldControl key={field.name} field={field} handle={handle} className={choiceItem} />
                       ))}
                     </div>
                   );
@@ -601,7 +641,7 @@ export function ContactForm({
                       <legend className="small mb-space-2 p-0 font-medium text-ink">{row.group.legend}</legend>
                       <div className={pairRow}>
                         {row.group.fields.map((field) => (
-                          <FieldControl key={field.name} field={field} handle={handle} />
+                          <FieldControl key={field.name} field={field} handle={handle} className={pairItem} />
                         ))}
                       </div>
                     </fieldset>

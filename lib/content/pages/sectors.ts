@@ -7,6 +7,7 @@
 // ("Five problems specific to [sector]", "Proof", "Thinking for [sector] retailers", the shared FAQ heading); and list
 // items set with a capital first letter, because each now stands as its own bullet.
 
+import type { PhotoName } from '../../images';
 import { closingActions, faqHeading, sectors } from '../site';
 import { stub } from '../stub';
 import type { Sector, SectorPage, SectorSlug } from '../types';
@@ -259,3 +260,22 @@ export const sectorPages: Record<SectorSlug, SectorPage> = {
 
 /** For generateStaticParams in app/(site)/sectors/[slug]. */
 export const sectorSlugs = Object.keys(sectorPages) as SectorSlug[];
+
+/** Where a sector page sets its photograph: beside the page header, or beside the proof card of the same client. */
+export interface SectorPhoto {
+  photo: PhotoName;
+  place: 'header' | 'proof';
+}
+
+/**
+ * Each sector page's one photograph (Phase 2.6, step 3; brand book, Imagery: one photograph of a real showroom in the
+ * sector where one exists). Furniture takes the Canwell Interiors showroom at 3:2 beside its page header. Homeware and
+ * gifts and kitchens and bathrooms take the Saverys fabric library at 4:5 beside the Saverys proof card, the client it
+ * shows (their headers are mostly "Content to follow", too short to sit beside a tall portrait). Lighting and flooring
+ * have no client photograph, so they run on type and screenshots, never a stand-in.
+ */
+export const sectorPhotos: Partial<Record<SectorSlug, SectorPhoto>> = {
+  'furniture-retailers': { photo: 'canwellShowroom', place: 'header' },
+  'homeware-and-gift-retailers': { photo: 'saverysFabricLibraryPortrait', place: 'proof' },
+  'kitchen-and-bathroom-showrooms': { photo: 'saverysFabricLibraryPortrait', place: 'proof' },
+};

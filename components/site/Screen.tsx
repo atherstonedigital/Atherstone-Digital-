@@ -4,42 +4,60 @@ import { SectionHeading } from '@/components/brand/SectionHeading';
 import { STUB_LABEL } from '@/lib/content/stub';
 import { cn } from '@/lib/utils';
 
-// The frame every inner page sits on (brand book, Layout and spacing: one section per screen), and the visible stub.
-// Folded at the Phase 3 integrate step from the three route-local copies the offer, sector and insights pages each
-// wrote class for class; the homepage keeps its own frame in app/(site)/page.tsx, because its sections are measured
-// to exact screen counts.
+// The frame every section of the site sits on, the homepage included, and the visible stub.
 //
-// The first screen fills the viewport below the fixed nav; every other screen is at least the viewport tall, so a
-// screen scrolled to its top shows that section alone. A section too short to fill a screen shares it with its
-// neighbour in the plan's order, each keeping its own SectionHeading. Screens are separated by a full-width rule and
-// space-12 (space-16 from 1200px); the content keeps the container's lines. The one exception is a closing screen,
-// which takes its content's height: with the CTABand after it, the two fill the last screen together.
+// Phase 2.4, step 7 (design-taste-frontend, layout rhythm; the owner's brief overrides the skill's one-screen rule): a
+// section is its content plus space-16 above and below (space-12 below 720px), at least 60dvh tall and with no maximum.
+// The fixed screen heights of Phases 1 to 3 are gone: a section never pads itself out to a whole viewport, so no section
+// is left with a blank band below its last element. The page's first section (the page head) takes space-24 above and
+// below from 1200px (brand book, Layout: the hero), the same minimum, and sits straight under the nav. The homepage hero
+// is its own component and fills 100dvh minus the nav.
+//
+// Every frame is a <section> with exactly one child, the container (class wrap), so <main> is made of sections only and
+// each section holds one wrap on the container's lines (the gate's one-section and container-edges). A frame that holds
+// several sections, each with its own SectionHeading, is still a <section>: it is unnamed, so it is no landmark, and the
+// sections inside keep their own labels. Frames are divided by a full-width rule (brand book, Rules), except where the
+// ground changes: the green band needs no rule, nor does the frame after it.
+//
+// Height in dvh, never vh (brand book, Layout; Phase 2.4, step 15). Anchor jumps land below the fixed nav through the
+// root's scroll-padding-top, so a frame's top padding no longer carries the nav's height.
 
 /** The page container: at most the container token wide, inside a gutter on each side (as Nav, Footer, CTABand). */
-export const container = 'mx-auto w-[min(100%_-_2_*_var(--gutter),var(--container))]';
+export const container = 'wrap mx-auto w-[min(100%_-_2_*_var(--gutter),var(--container))]';
 
-/** The space between sections that share a screen, as between sections. */
-const sectionGap = 'gap-space-12 min-[1200px]:gap-space-16';
+/** A section's padding: space-12 below 720px, space-16 from 720px (brand book, Layout and spacing). */
+export const sectionPadding = 'py-space-12 min-[720px]:py-space-16';
+
+/** The page head's padding: as a section's, then space-24 from 1200px (brand book, Layout: the hero). */
+const firstPadding = 'py-space-12 min-[720px]:py-space-16 min-[1200px]:py-space-24';
+
+/** The space between sections that share a frame, as between frames. */
+const sectionGap = 'gap-space-12 min-[720px]:gap-space-16';
 
 export interface ScreenProps extends Omit<React.HTMLAttributes<HTMLElement>, 'children'> {
   /**
-   * section when the screen is one section, labelled by its heading; div when it holds several, each its own section.
-   * A section when labelledBy is given, a div otherwise.
+   * Kept for the pages that pass it. Every frame now renders a <section>: div used to mark a frame holding several
+   * sections, and still means the frame takes no label of its own.
    */
   as?: 'section' | 'div';
   /** The id of the heading that labels the section. */
   labelledBy?: string;
-  /** The first screen sits straight under the nav, with no rule above it. */
+  /** The page head: straight under the nav, with no rule above it and space-24 above and below from 1200px. */
   first?: boolean;
   /**
-   * 2 marks a section that runs longer than a screen and a half at 390 by 844 (Phase 1's --hm). Phase 3 review: below
-   * 720px it no longer holds a two-screen minimum, which left blank bands of 300 to 440px under the shorter ones; every
-   * screen is at least one screen tall there and grows with its content (the brand book fixes section heights at 1440
-   * only). The Phase 1 rule is kept in a comment below, to restore it. One screen from 720px.
+   * Phase 1's phone screen count. Taken out of the props so it never reaches the DOM; it sets nothing since sections
+   * took their content's height (Phase 2.4).
    */
   phoneScreens?: 1 | 2;
-  /** The last screen before the CTABand: as tall as its content, so the two share the final screen. */
+  /** The last frame before the CTABand: as tall as its content, with no minimum, so the two read as one close. */
   closing?: boolean;
+  /**
+   * paper (the default), or band: the full-bleed green-900 ground with on-green text (brand book, Colour; the band
+   * token, which is green-900 and on-green in the light theme and the contact band's colours in the dark one).
+   */
+  ground?: 'paper' | 'band';
+  /** The full-width rule above the frame. Default: on, except on the first frame and on the band. */
+  rule?: boolean;
   /** Classes for the inner container. */
   innerClassName?: string;
   children: React.ReactNode;
@@ -49,49 +67,32 @@ export function Screen({
   as,
   labelledBy,
   first = false,
-  // Taken out of the props, so it never reaches the DOM; it sets no class since the Phase 3 review (see above).
-  phoneScreens: _phoneScreens = 1,
+  phoneScreens: _phoneScreens,
   closing = false,
+  ground = 'paper',
+  rule,
   className,
   innerClassName,
   children,
   ...props
 }: ScreenProps) {
-  const Tag = as ?? (labelledBy ? 'section' : 'div');
+  const band = ground === 'band';
+  const showRule = rule ?? (!first && !band);
   return (
-    <Tag
-      aria-labelledby={Tag === 'section' ? labelledBy : undefined}
+    <section
+      aria-labelledby={as === 'div' ? undefined : labelledBy}
       className={cn(
-        'flex flex-col text-ink',
-        first
-          ? // The first screen sits under the nav (the shell pads the page by its height) and fills the rest of the
-            // viewport, as the homepage hero does: space-12 above and below on a phone, space-24 from 1200px.
-            cn(
-              'py-space-12 min-[1200px]:py-space-24',
-              'min-h-[calc(100vh-var(--nav-height))] supports-[height:100dvh]:min-h-[calc(100dvh-var(--nav-height))]',
-            )
-          : // Every other screen is at least the viewport tall, its top padding the nav's height plus the section gap,
-            // because the fixed nav covers the top of each screen as the page scrolls (Phase 1, and the homepage).
-            // Divided from the one above by a full-width rule.
-            cn(
-              'border-t border-rule',
-              'pb-space-12 pt-[calc(var(--nav-height)_+_var(--space-12))]',
-              'min-[1200px]:pb-space-16 min-[1200px]:pt-[calc(var(--nav-height)_+_var(--space-16))]',
-              closing
-                ? null
-                : cn(
-                    // A one-screen minimum at every width (Phase 3 review; see phoneScreens). The Phase 1 frame was
-                    // phoneScreens === 2 ? '[--screens:2] min-[720px]:[--screens:1]' : '[--screens:1]'.
-                    '[--screens:1]',
-                    'min-h-[calc(var(--screens)*100vh)] supports-[height:100dvh]:min-h-[calc(var(--screens)*100dvh)]',
-                  ),
-            ),
+        band ? 'bg-band text-on-band' : 'text-ink',
+        showRule && 'border-t border-rule',
+        first ? firstPadding : sectionPadding,
+        // At least 60% of the screen, never a fixed height: the frame grows with what it holds.
+        !closing && 'min-h-[60dvh]',
         className,
       )}
       {...props}
     >
       <div className={cn(container, 'grid grid-cols-1 content-start', sectionGap, innerClassName)}>{children}</div>
-    </Tag>
+    </section>
   );
 }
 

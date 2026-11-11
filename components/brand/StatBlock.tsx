@@ -42,10 +42,21 @@ export type StatRowItems =
   | [Pick<ProofFigure, 'figure' | 'line'>, Pick<ProofFigure, 'figure' | 'line'>]
   | [Pick<ProofFigure, 'figure' | 'line'>, Pick<ProofFigure, 'figure' | 'line'>, Pick<ProofFigure, 'figure' | 'line'>];
 
+/**
+ * Side by side from 720px for two figures, from 900px for three: a 72px figure such as "16,193" is about 232px wide, wider
+ * than a third of the container below 900px (224px at 768), where it would run past the container's right line.
+ */
 const columns: Record<StatRowItems['length'], string> = {
   1: '',
   2: 'min-[720px]:grid-cols-2',
-  3: 'min-[720px]:grid-cols-3',
+  3: 'min-[900px]:grid-cols-3',
+};
+
+/** The top rule a stacked figure keeps under a row with rule off, dropped once the row stands side by side. */
+const stackedRule: Record<StatRowItems['length'], string> = {
+  1: '',
+  2: 'border-t border-rule pt-space-4 min-[720px]:border-t-0 min-[720px]:pt-0',
+  3: 'border-t border-rule pt-space-4 min-[900px]:border-t-0 min-[900px]:pt-0',
 };
 
 export interface StatRowProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -55,10 +66,10 @@ export interface StatRowProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * A row of StatBlocks with space-6 between them: one column below 720px, then side by side in the same order. The
- * markers in a row count as one brass use (proposed ruling, Phase 1 report section 5).
+ * A row of StatBlocks with space-6 between them: one column, then side by side in the same order (from 720px for two,
+ * from 900px for three). The markers in a row count as one brass use (proposed ruling, Phase 1 report section 5).
  *
- * With rule off, the first figure sits on the SectionHeading's hairline. Below 720px the others stack beneath it, so
+ * With rule off, the first figure sits on the SectionHeading's hairline. While stacked the others sit beneath it, so
  * they keep their own top rule there and drop it only once the row stands side by side.
  */
 export function StatRow({ stats, rule = true, className, ...props }: StatRowProps) {
@@ -70,9 +81,7 @@ export function StatRow({ stats, rule = true, className, ...props }: StatRowProp
           figure={stat.figure}
           line={stat.line}
           rule={rule}
-          className={
-            !rule && index > 0 ? 'border-t border-rule pt-space-4 min-[720px]:border-t-0 min-[720px]:pt-0' : undefined
-          }
+          className={!rule && index > 0 ? stackedRule[stats.length] : undefined}
         />
       ))}
     </div>

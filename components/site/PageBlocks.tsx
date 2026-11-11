@@ -181,10 +181,11 @@ export function ListBlock({ section, headingId, id, eyebrow }: BlockProps & { se
 /**
  * A two-column table, set as the ComparisonTable sets its three columns (components/site/ComparisonTable.tsx, which is
  * typed for three): the column heads in heading-2 over a rule-strong rule, the rows divided by rule hairlines, no fills,
- * no shadows. The first column holds row headers in body, weight 600. From 720px the columns take 5 and 7 of the
- * grid's 12, as the problem cards and the steps divide a row. Below 720px each row stacks, the area above its line,
- * and the column heads stay for screen readers only; the ARIA table roles are set explicitly because the stacked
- * layout drops a table's native semantics in some browsers.
+ * no shadows. The first column holds row headers in body, weight 600. From 720px the columns are two halves, the words
+ * 24px apart, so the second column's words start on the page's one split line (x 732 at 1440), as the problem list and
+ * every split do, and neither column is a box over half the container. Below 720px each row stacks, the area above
+ * its line, and the column heads stay for screen readers only; the ARIA table roles are set explicitly because the
+ * stacked layout drops a table's native semantics in some browsers.
  */
 export function LedgerTable({ table, className }: { table: TableSection; className?: string }) {
   const [areaHead, detailHead] = table.columns;
@@ -192,22 +193,22 @@ export function LedgerTable({ table, className }: { table: TableSection; classNa
     <table role="table" className={cn('block w-full min-[720px]:table min-[720px]:table-fixed min-[720px]:border-collapse', className)}>
       <caption className="sr-only">{table.caption}</caption>
       <colgroup className="hidden min-[720px]:table-column-group">
-        <col className="w-[41.6667%]" />
-        <col />
+        <col className="w-1/2" />
+        <col className="w-1/2" />
       </colgroup>
       <thead role="rowgroup" className="block min-[720px]:table-header-group">
         <tr role="row" className="block min-[720px]:table-row">
           <th
             scope="col"
             role="columnheader"
-            className="heading-2 border-b border-rule-strong pb-space-4 pr-space-6 text-left align-bottom max-[719px]:sr-only"
+            className="heading-2 border-b border-rule-strong pb-space-4 pr-space-3 text-left align-bottom max-[719px]:sr-only"
           >
             {areaHead}
           </th>
           <th
             scope="col"
             role="columnheader"
-            className="heading-2 border-b border-rule-strong pb-space-4 text-left align-bottom max-[719px]:sr-only"
+            className="heading-2 border-b border-rule-strong pb-space-4 pl-space-3 text-left align-bottom max-[719px]:sr-only"
           >
             {detailHead}
           </th>
@@ -223,11 +224,11 @@ export function LedgerTable({ table, className }: { table: TableSection; classNa
             <th
               scope="row"
               role="rowheader"
-              className="body block pb-space-1 text-left align-top font-semibold min-[720px]:table-cell min-[720px]:py-space-4 min-[720px]:pr-space-6"
+              className="body block pb-space-1 text-left align-top font-semibold min-[720px]:table-cell min-[720px]:py-space-4 min-[720px]:pr-space-3"
             >
               {area}
             </th>
-            <td role="cell" className="body block max-w-measure align-top min-[720px]:table-cell min-[720px]:py-space-4">
+            <td role="cell" className="body block max-w-measure align-top min-[720px]:table-cell min-[720px]:py-space-4 min-[720px]:pl-space-3">
               {detail}
             </td>
           </tr>

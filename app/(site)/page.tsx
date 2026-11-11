@@ -255,10 +255,11 @@ export default function HomePage() {
         </div>
       </Screen>
 
-      {/* 11 Contact: the green band, the brief form on its raised panel on the right half. From 900 to 1199px the form
-          takes seven twelfths, so the three selects read "Choose one" in full (Phase 1). */}
+      {/* 11 Contact: the green band, the brief form on its raised panel on the right half from 900px, on the page's one
+          split line as every split is. In a half below 1200px the form sets its fields one under another (its own
+          container queries), so the selects still read "Choose one" in full. */}
       <Screen id="contact" labelledBy="contact-heading" ground="band" innerClassName={flow}>
-        <div className={cn(split, 'min-[900px]:max-[1199px]:grid-cols-[5fr_7fr]')}>
+        <div className={split}>
           <div>
             <SectionHeading
               ground="band"

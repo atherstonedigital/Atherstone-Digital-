@@ -7,7 +7,7 @@ import { OfferCard } from '@/components/brand/OfferCard';
 import { SectionHeading } from '@/components/brand/SectionHeading';
 import { SectorTiles } from '@/components/site/SectorTiles';
 import { caseStudyPages, resultsIndexPage } from '@/lib/content/pages/results';
-import { offers, proof, sectors } from '@/lib/content/site';
+import { offers, proof, sectorTileLines, sectors } from '@/lib/content/site';
 import { isStub } from '@/lib/content/stub';
 import type { ClosingActions, Link as SiteLink, OfferId, SectorSlug } from '@/lib/content/types';
 import { cn } from '@/lib/utils';
@@ -71,12 +71,16 @@ export function CaseStudyLinks({ slugs, headingId }: { slugs: readonly string[];
   );
 }
 
-/** The sector pages as the homepage's tiles, with its eyebrow and heading, in the order the offer page lists them. */
+/**
+ * The sector pages as the homepage's tiles, with its eyebrow and heading, in the order the offer page lists them, each
+ * with its one line (sectorTileLines, verbatim from the plan), so a tile reads as a card about the sector and never as a
+ * bare button (the gate's button-styles read a one-word bordered row as a third button style).
+ */
 export function SectorLinks({ slugs, headingId }: { slugs: readonly SectorSlug[]; headingId: string }) {
   const items = slugs.map((slug) => {
     const found = sectors.sectors.find((sector) => sector.slug === slug);
     if (!found) throw new Error(`No sector ${slug} in lib/content/site.ts`);
-    return found;
+    return { ...found, tileLine: sectorTileLines[slug] };
   });
   return <SectorTiles content={{ ...sectors, sectors: items }} headingId={headingId} />;
 }

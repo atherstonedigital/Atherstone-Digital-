@@ -13,7 +13,7 @@ import { Screen } from '@/components/site/Screen';
 import { SectorTiles } from '@/components/site/SectorTiles';
 import { getInsightPost } from '@/lib/content/pages/insights';
 import { caseStudyPages, caseStudyPhotos, caseStudySlugs } from '@/lib/content/pages/results';
-import { insights, offers, problemTags, proof, sectors } from '@/lib/content/site';
+import { insights, offers, problemTags, proof, sectorTileLines, sectors } from '@/lib/content/site';
 import { isStub, STUB_LABEL } from '@/lib/content/stub';
 import type { ArticleCard, CaseStudyPage, ListSection, TextSection } from '@/lib/content/types';
 import { photos } from '@/lib/images';
@@ -193,7 +193,12 @@ export default function CaseStudyPage({ params }: Params) {
         <SectionHeading eyebrow={fitsDraft.eyebrow} heading={fitsDraft.heading} headingId="fits-heading" />
         <div className="grid grid-cols-1 gap-space-6">
           {offer ? <OfferCard offer={offer} headingLevel="h3" /> : <p className="body max-w-measure">{STUB_LABEL}</p>}
-          {sector ? <SectorTiles content={{ sectors: [sector] }} withHeading={false} /> : null}
+          {sector ? (
+            <SectorTiles
+              content={{ sectors: [{ ...sector, tileLine: sectorTileLines[sector.slug] }] }}
+              withHeading={false}
+            />
+          ) : null}
         </div>
       </section>
       {articles ? (

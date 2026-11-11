@@ -11,8 +11,10 @@ import { cn } from '@/lib/utils';
 // radius-0, never a circle, never tilted, no caption.
 //
 // Layout (Phase 1). From 900px: the heading, bio, credentials and link on columns 1 to 6, the portrait on 7 to 12 beside
-// all of them. From 720 to 899px: the heading and bio across the container, then the credentials and link on 1 to 5
-// beside the portrait on 6 to 12. Below 720px one column: heading, bio, credentials, portrait, link.
+// all of them. From 720 to 899px: the heading and bio across the container, then the credentials and link on 1 to 6
+// beside the portrait on 7 to 12: two halves on the page's split line, so the portrait is never a box over half the
+// container that stops short of its left line (Phase 2.4, the gate's container-edges). Below 720px one column:
+// heading, bio, credentials, portrait, link.
 
 export interface Portrait {
   /** A file in public/, as next/image takes it. */
@@ -97,7 +99,7 @@ export function AboutStrip({
       <ul
         className={cn(
           'mb-space-6 grid grid-cols-1',
-          'min-[720px]:col-span-5 min-[720px]:row-start-2 min-[900px]:col-span-6',
+          'min-[720px]:col-span-6 min-[720px]:row-start-2',
         )}
       >
         {credentials.map((credential) => (
@@ -110,8 +112,8 @@ export function AboutStrip({
       <div
         className={cn(
           'relative aspect-square w-full overflow-hidden rounded-radius-0 border border-rule bg-paper',
-          'min-[720px]:col-span-7 min-[720px]:col-start-6 min-[720px]:row-span-2 min-[720px]:row-start-2',
-          'min-[900px]:col-span-6 min-[900px]:col-start-7 min-[900px]:row-span-3 min-[900px]:row-start-1',
+          'min-[720px]:col-span-6 min-[720px]:col-start-7 min-[720px]:row-span-2 min-[720px]:row-start-2',
+          'min-[900px]:row-span-3 min-[900px]:row-start-1',
         )}
       >
         <Image
@@ -121,8 +123,8 @@ export function AboutStrip({
           alt={portrait.alt}
           placeholder={portrait.blurDataURL ? 'blur' : 'empty'}
           blurDataURL={portrait.blurDataURL}
-          // The frame is the full column below 720px, seven twelfths from 720 and half the container from 900.
-          sizes="(min-width: 1200px) 588px, (min-width: 900px) 50vw, (min-width: 720px) 58vw, 100vw"
+          // The frame is the full column below 720px and half the container from 720.
+          sizes="(min-width: 1200px) 588px, (min-width: 720px) 50vw, 100vw"
           className={portrait.cropClassName ?? 'absolute inset-0 size-full object-cover'}
         />
       </div>
@@ -131,8 +133,7 @@ export function AboutStrip({
         link={link}
         className={cn(
           'mt-space-6 justify-self-start',
-          'min-[720px]:col-span-5 min-[720px]:row-start-3 min-[720px]:mt-0',
-          'min-[900px]:col-span-6',
+          'min-[720px]:col-span-6 min-[720px]:row-start-3 min-[720px]:mt-0',
         )}
       />
     </section>

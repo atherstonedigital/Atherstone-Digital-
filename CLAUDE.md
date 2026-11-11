@@ -15,8 +15,7 @@ Static export only: no API routes, server actions, middleware, SSR or `next.conf
 
 ## Where things live
 
-- `app/(site)/`: the rebuilt site. Its `layout.tsx` renders the Nav, `<main>` and Footer (`components/site/SiteShell.tsx`); a page file renders only its sections and exports `metadata` from `buildMetadata()`.
-- `app/(legacy)/`: the pre-rebuild routes, kept until the integrate step removes them with `lib/data.ts`, `lib/siteConfig.ts`, `components/*.tsx` at the top level, the Fraunces and Hanken Grotesk fonts, and the old favicon and `og-image.*` files.
+- `app/(site)/`: the site. Its `layout.tsx` renders `components/site/SiteShell.tsx`: `header.nav`, `<main>` (padded by the nav's height) and `footer.closing`, straight inside `<body>` (the taste kit's shell). A page file renders only its sections and exports `metadata` from `buildMetadata()`. `app/(site)/_home/` holds the homepage-only pieces: `ShowroomPhoto` and `CatalogueScreenshot` (a paper-raised stand-in reading "Screenshot to follow" until `public/images/xshowhome-catalogue.png` exists; the build then reads the file and renders it).
 - `app/design-system/`: every token and component in both themes. Keep it; it is noindex.
 - `app/og/[group]/[image]/route.tsx`: share images rendered at build for routes without a hand-made one (`lib/og/share-card.tsx`, fonts in `assets/fonts`). Hand-made ones are in `public/og`.
 - Icons: `app/icon.svg`, `app/apple-icon.png`, `app/manifest.ts`, `public/favicon-32.png`, `public/favicon-48.png`, `public/icon-192.png`, `public/icon-512.png`.
@@ -30,7 +29,19 @@ Static export only: no API routes, server actions, middleware, SSR or `next.conf
 
 - `components/ui`: the shadcn primitives the brand allows, restyled to the tokens: accordion, button, form, input, label, navigation-menu, select, sheet, textarea.
 - `components/brand`: Wordmark, Button (with LinkButton, TextLink), SectionHeading, StatBlock, Testimonial, OfferCard, LinkedCard.
-- `components/site`: SiteShell, Nav, Footer, Breadcrumbs, CTABand, ThemeToggle, Hero, ProblemCards, ComparisonTable, Steps, SectorTiles, AboutStrip, InsightCards, CaseStudyHeader, ArticleHeader, ContactForm, LeadMagnet, FAQ, Chart, JsonLd, DrawerGesture, PressFeedback, form-panel-styles.
+- `components/site`: SiteShell, Nav, Footer, Breadcrumbs, CTABand, ThemeToggle, Hero, Screen, ProblemCards, ComparisonTable, Steps, SectorTiles, AboutStrip, InsightCards, CaseStudyHeader, ArticleHeader, Photograph, PageBlocks, OfferLinks, ContactForm, LeadMagnet, FAQ, Chart, JsonLd, DrawerGesture, PressFeedback, form-panel-styles.
+
+Layout rules the components carry (Phase 2.4 and 2.5; the owner's brief overrides the taste skill's one-section-per-screen rule):
+
+- `Screen` is every section's frame: a `<section>` holding one `.wrap` (the exported `container` classes), its content plus space-16 above and below (space-12 below 720px), at least 60dvh, no maximum. Never a fixed screen height. Props: `first` (the page head: no rule above, space-24 from 1200px), `ground` (`paper` or `band`, the full-bleed green band), `rule` (the full-width rule above; on by default except on `first` and the band), `closing` (no minimum, before a CTABand), `labelledBy`, `innerClassName`. `as` and `phoneScreens` only remain for old call sites.
+- The homepage hero is `Hero`: 100dvh less the nav, the copy centred above the fact line docked at its foot.
+- Every two-column split is two halves 24px apart (`gap-x-space-6`), so the right column starts on the page's one split line (x 732 at 1440).
+- `SectionHeading` sets the space-8 between its hairline and the content; do not add padding under it.
+- `ProblemCards` `variant`: `paper` (default; sector pages, Health Check) or `band` (homepage). Both are a two-column ruled list on the split line.
+- `Steps` `aside`: a second column beside the steps from 900px (the homepage's Canwell photograph).
+- `SectorTiles` `layout`: `list` (default) or `row` (homepage: five tall tiles from 1200px, three then two from 720px).
+- `Chart` `axis="inline"` sets the value labels on the plot above their gridlines, so the plot runs line to line; `titleStyle="heading-2"` sets the title as a section's chart title. Grey bars are ink-muted at 70%.
+- `Photograph` renders a client photograph outside the homepage (getImageProps, the generated srcset, blur placeholder, rule border, radius-0, no caption); `splitSizes` and `fiveColumnSizes` are its `sizes` lists.
 
 GSAP is for the hero entrance and the mobile drawer only; no ScrollTrigger. Everything else is CSS transitions.
 
@@ -71,4 +82,6 @@ Also: sentence case for every heading and button, and no em dashes anywhere, com
 - TypeScript strict; Tailwind utilities on the tokens; no inline styles except where a component computes a value.
 - Components in `components/`; page-only pieces stay in their route folder.
 - Images: real photographs and screenshots only, under 150kb, WebP, optimised before they ship (`images.unoptimized` is on), with descriptive alt text.
+- Client photographs: the originals live in `assets/photos/`, outside `public/`, so they never deploy. `node scripts/images.mjs` (`npm run images`) grades and crops them into the WebP renditions in `public/images/` and writes `lib/images.ts`, which is generated: change crops and alt text in the script, never in the output. Source URLs and dates are in `public/images/CREDITS.md`; permission status is in `docs/permissions.md` (local only).
+- Proof figures: `lib/content/proof-data.ts` is committed and holds the public figures only. `lib/content/*.private.ts` is gitignored; when `lib/content/proof-data.private.ts` exists, `next.config.mjs` swaps it in at build (restart `next dev` after adding or removing it). Both export the same `ProofData` type, so both builds type-check. A build from git, as Netlify runs it, shows the public version.
 - Python scripts that touch `.claude/skills` run with `python3 -I -B`, so no `__pycache__` lands in the repo.

@@ -14,9 +14,10 @@ import { cn } from '@/lib/utils';
 // is its own component and fills 100dvh minus the nav.
 //
 // Every frame is a <section> with exactly one child, the container (class wrap), so <main> is made of sections only and
-// each section holds one wrap on the container's lines (the gate's one-section and container-edges). A frame that holds
-// several sections, each with its own SectionHeading, is still a <section>: it is unnamed, so it is no landmark, and the
-// sections inside keep their own labels. Frames are divided by a full-width rule (brand book, Rules), except where the
+// each section holds one wrap on the container's lines (the gate's one-section and container-edges). The page head's
+// wrap holds one .hero-text, as the kit's hero does. A frame that holds several sections, each with its own
+// SectionHeading, is still a <section>: it is unnamed, so it is no landmark, and the sections inside keep their own
+// labels. Frames are divided by a full-width rule (brand book, Rules), except where the
 // ground changes: the green band needs no rule, nor does the frame after it.
 //
 // Height in dvh, never vh (brand book, Layout; Phase 2.4, step 15). Anchor jumps land below the fixed nav through the
@@ -91,7 +92,15 @@ export function Screen({
       )}
       {...props}
     >
-      <div className={cn(container, 'grid grid-cols-1 content-start', sectionGap, innerClassName)}>{children}</div>
+      {first ? (
+        // The page head is the page's hero to the taste kit (its first section): one .hero-text inside the .wrap
+        // holds its content (system.css: section.hero > .wrap > .hero-text; the gate's container-edges, SR-6).
+        <div className={container}>
+          <div className={cn('hero-text grid grid-cols-1 content-start', sectionGap, innerClassName)}>{children}</div>
+        </div>
+      ) : (
+        <div className={cn(container, 'grid grid-cols-1 content-start', sectionGap, innerClassName)}>{children}</div>
+      )}
     </section>
   );
 }

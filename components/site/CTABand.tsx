@@ -17,7 +17,8 @@ import { cn } from '@/lib/utils';
 // colour, and the Button README rules out a white fill ("Don't fill a button brass or white"). So the band seats its
 // actions on the same raised panel the contact band seats its form on (formPanelClasses('band'): paper-raised, no
 // hairline against the band), and the standard primary and secondary apply there unchanged. From 720px the panel is
-// as wide as its two buttons; below it, full width with the buttons stacked full width, as Phase 1's hero buttons.
+// as wide as its buttons (side by side from 1200px, one above the other below it); below 720px, full width with the
+// buttons stacked full width, as Phase 1's hero buttons.
 
 const healthCheck = offers.offers.find((offer) => offer.id === 'store-health-check');
 
@@ -68,9 +69,19 @@ export function CTABand({
       <div className={container}>
         <SectionHeading ground="band" eyebrow={eyebrow} heading={heading} headingId={headingId} />
         {body ? <p className="body-lg max-w-measure-lg">{body}</p> : null}
-        <div className={cn(formPanelClasses('band'), 'mt-space-8 flex flex-wrap items-center gap-space-3 min-[720px]:w-fit')}>
-          <LinkButton link={primary} className="w-full min-[720px]:w-auto" />
-          {secondary ? <LinkButton link={secondary} variant="secondary" className="w-full min-[720px]:w-auto" /> : null}
+        {/* As wide as its buttons from 720px: side by side from 1200px; from 720 to 1199px one above the other, one
+            width, so the panel stays under half the container (side by side, the buttons and the panel's padding come
+            to just over half at 768 and 1024, a box the gate's container-edges asks to run line to line, SR-6). Below
+            720px full width, the buttons stacked full width. */}
+        <div
+          className={cn(
+            formPanelClasses('band'),
+            'mt-space-8 flex flex-wrap items-center gap-space-3 min-[720px]:w-fit',
+            'max-[1199px]:flex-col max-[1199px]:items-stretch',
+          )}
+        >
+          <LinkButton link={primary} className="w-full min-[1200px]:w-auto" />
+          {secondary ? <LinkButton link={secondary} variant="secondary" className="w-full min-[1200px]:w-auto" /> : null}
         </div>
       </div>
     </section>

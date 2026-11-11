@@ -1,11 +1,12 @@
 import * as React from 'react';
 
-import { LinkButton, TextLink } from '@/components/brand/Button';
+import { LinkButton } from '@/components/brand/Button';
 import { SectionHeading } from '@/components/brand/SectionHeading';
 import { ContactForm } from '@/components/site/ContactForm';
+import { DirectLines } from '@/components/site/DirectLines';
 import { Screen } from '@/components/site/Screen';
 import { contactPage as page } from '@/lib/content/pages/contact';
-import { contact, contactSection } from '@/lib/content/site';
+import { contactSection } from '@/lib/content/site';
 import type { Link as SiteLink } from '@/lib/content/types';
 import { buildMetadata } from '@/lib/seo';
 
@@ -35,18 +36,12 @@ import { buildMetadata } from '@/lib/seo';
 export const metadata = buildMetadata('/contact');
 
 /**
- * Phase 3 drafts, pending Dan's approval: the call button's label (the section heading above it already says "Book a
- * 30-minute call", so the button says what happens next) and the label for the phone number. "Email" is the brief
- * form's own field label.
+ * Phase 3 draft, pending Dan's approval: the call button's label (the section heading above it already says "Book a
+ * 30-minute call", so the button says what happens next). The direct lines' labels are DirectLines' drafts.
  */
-const callDraft = { button: 'Choose a time', email: 'Email', phone: 'Phone' } as const;
+const callDraft = { button: 'Choose a time' } as const;
 
 const booking: SiteLink = { label: callDraft.button, href: page.calendly.url, external: true };
-
-const directLines: { label: string; link: SiteLink }[] = [
-  { label: callDraft.email, link: { label: contact.email, href: contact.emailHref } },
-  { label: callDraft.phone, link: { label: contact.phoneDisplay, href: contact.phoneHref } },
-];
 
 export default function ContactPage() {
   return (
@@ -64,22 +59,8 @@ export default function ContactPage() {
           <section aria-labelledby="call-heading" className="min-w-0">
             <SectionHeading heading={page.calendly.heading} headingId="call-heading" />
             <LinkButton link={booking} className="w-full min-[720px]:w-auto" />
-            {/* Direct lines as ledger rows: the label in the eyebrow style, the address beside it, a rule beneath. On a
-                320px screen the address is wider than the space beside the label, so the row wraps it beneath. Each row
-                is at least a touch target plus space-2 tall, so the links' 44px hit areas sit 8px apart (Phase 3
-                review: at 41px they overlapped and the lower link took the overlap). */}
-            <dl className="mt-space-8 grid grid-cols-1">
-              {directLines.map(({ label, link }) => (
-                <div key={label} className="flex flex-wrap items-baseline gap-x-space-6 border-b border-rule py-space-3 min-h-[calc(var(--touch-target)_+_var(--space-2))]">
-                  <dt className="eyebrow w-space-16 shrink-0 text-ink-muted">{label}</dt>
-                  <dd className="body min-w-0">
-                    <TextLink href={link.href} hitArea>
-                      {link.label}
-                    </TextLink>
-                  </dd>
-                </div>
-              ))}
-            </dl>
+            {/* Direct lines as ledger rows (components/site/DirectLines.tsx), as the homepage contact band sets them. */}
+            <DirectLines className="mt-space-8" />
           </section>
         </div>
 

@@ -55,7 +55,8 @@ export default function ShopifyBuildsAndMigrationsPage() {
         <CaseStudyLinks slugs={page.links.caseStudies} headingId="case-studies-heading" />
       </Screen>
 
-      <Screen as="div">
+      {/* The sector row centred in the frame's 60dvh floor, as on the homepage, so the slack never sits under it. */}
+      <Screen as="div" className="flex flex-col justify-center">
         <SectorLinks slugs={page.links.sectors} headingId="sectors-heading" />
       </Screen>
 

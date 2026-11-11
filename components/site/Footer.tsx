@@ -20,7 +20,7 @@ import { cn } from '@/lib/utils';
 //
 // Below 1200px the wordmark, the three link columns, then the descriptor and the contact links, which sit on the link
 // columns' grid from 900px (each starts on a column's line and the row runs line to line: the gate's row-lines, SR-7).
-// From 1200px the taste kit's footer row: the wordmark across the top, then four columns 24px apart, the descriptor and
+// From 1200px the taste kit's footer row: the wordmark across the top, then four columns a gutter apart, the descriptor and
 // contact links in the first and the three link columns in the other three, one row running line to line, so the
 // footer is one row deep.
 
@@ -126,8 +126,11 @@ export function Footer({
           <nav
             aria-label={navLabel}
             className={cn(
+              // The columns stand a gutter apart at every width (the 12-column grid's gap, tokens.css), so from 1200px
+              // the four start on the grid's columns 1, 4, 7 and 10 and end on its column lines (the gate's
+              // edge-left and edge-right read the grid from --gutter).
               'grid grid-cols-2 gap-x-gutter gap-y-space-8 min-[720px]:grid-cols-3',
-              'min-[1200px]:grid-cols-4 min-[1200px]:gap-x-space-6',
+              'min-[1200px]:grid-cols-4',
             )}
           >
             {content.columns.map((column, index) => (

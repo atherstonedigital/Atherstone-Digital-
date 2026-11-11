@@ -9,6 +9,7 @@ import { AboutStrip } from '@/components/site/AboutStrip';
 import { Chart } from '@/components/site/Chart';
 import { ComparisonTable } from '@/components/site/ComparisonTable';
 import { ContactForm } from '@/components/site/ContactForm';
+import { DirectLines } from '@/components/site/DirectLines';
 import { Hero } from '@/components/site/Hero';
 import { InsightCards } from '@/components/site/InsightCards';
 import { LeadMagnet } from '@/components/site/LeadMagnet';
@@ -205,7 +206,9 @@ export default function HomePage() {
           heading={offers.heading}
           headingId="services-heading"
         />
-        <ul className="grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-3">
+        {/* Three across from 900px, one column below (Polish review: at 768 three cards about 190px wide broke their
+            titles over three lines), as the StatRow stacks. */}
+        <ul className="grid grid-cols-1 gap-space-6 min-[900px]:grid-cols-3">
           {offers.offers.map((offer) => (
             <OfferCard key={offer.id} as="li" offer={offer} />
           ))}
@@ -225,8 +228,9 @@ export default function HomePage() {
       </Screen>
 
       {/* 7 Sectors: all five, as the plan's nav lists them (decision 3), in one row of five from 1200px, each with its
-          one line. */}
-      <Screen id="sectors" labelledBy="sectors-heading" innerClassName={flow}>
+          one line. Each tile is as tall as its words; the frame centres its content in the 60dvh floor, so the slack
+          splits above and below the row instead of sitting inside the cards (Polish review). */}
+      <Screen id="sectors" labelledBy="sectors-heading" className="flex flex-col justify-center" innerClassName={flow}>
         <SectorTiles
           as="div"
           layout="row"
@@ -258,10 +262,12 @@ export default function HomePage() {
 
       {/* 11 Contact: the green band, the brief form on its raised panel on the right half from 900px, on the page's one
           split line as every split is. In a half below 1200px the form sets its fields one under another (its own
-          container queries), so no select is squeezed. */}
+          container queries), so no select is squeezed. The left half holds the heading, the intro and the direct lines
+          (email and phone, as /contact sets them), and from 900px it stays in view beside the form as the form scrolls
+          past (Polish review: the heading and one line alone left about 500px of empty green beside the form). */}
       <Screen id="contact" labelledBy="contact-heading" ground="band" innerClassName={flow}>
         <div className={split}>
-          <div>
+          <div className="min-[900px]:sticky min-[900px]:top-[calc(var(--nav-height)_+_var(--space-8))] min-[900px]:self-start">
             <SectionHeading
               ground="band"
               eyebrow={contactSection.eyebrow}
@@ -269,6 +275,7 @@ export default function HomePage() {
               headingId="contact-heading"
             />
             <p className="body-lg max-w-measure-lg">{contactSection.intro}</p>
+            <DirectLines ground="band" className="mt-space-8" />
           </div>
           <ContactForm ground="band" labelledBy="contact-heading" />
         </div>

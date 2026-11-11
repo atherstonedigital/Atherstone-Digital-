@@ -31,8 +31,8 @@ interface BlockProps {
 /**
  * The three offers as OfferCards, the Health Check highlighted (plan, Internal linking rules: every sector page links
  * to all three offers). The heading is the homepage's "Three ways to work with me"; its "What I do" eyebrow is left
- * off, because the section above is headed "What I do differently for [sector]". Three across from 720px, one column
- * on portrait tablets and below, as on the homepage.
+ * off, because the section above is headed "What I do differently for [sector]". Three across from 900px, one column
+ * below, as on the homepage (Polish review: at 768 three cards about 190px wide broke titles over three lines).
  */
 export function OffersBlock({ headingId, id }: BlockProps) {
   return (
@@ -40,8 +40,7 @@ export function OffersBlock({ headingId, id }: BlockProps) {
       <SectionHeading heading={offers.heading} headingId={headingId} />
       <ul
         className={cn(
-          'grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-3',
-          '[@media(min-width:720px)_and_(max-width:899px)_and_(min-height:1100px)]:grid-cols-1',
+          'grid grid-cols-1 gap-space-6 min-[900px]:grid-cols-3',
         )}
       >
         {offers.offers.map((offer) => (
@@ -65,13 +64,14 @@ function proofCard(card: SectorProof) {
  * Proof (sector template, part 5): the matching case study as a card with the headline number and a quote. A card is
  * bordered on paper (brand book, Layout: case-study cards), and holds the StatBlock where the case study has a number
  * (its brass marker the screen's one brass use), or its one-line summary in heading-2 where it has none; then the
- * Testimonial, without the one-line result (decision 7); then a forward link to the case study, named as the homepage
- * names its case-study links. Two across from 900px, 24px apart, so the second starts on the page's split line (x 732 at
- * 1440).
+ * Testimonial, without the one-line result (decision 7), its business name linking the case study as the homepage's
+ * testimonials do, named as the homepage names its case-study links (Polish review: a separate forward link under the
+ * attribution named the client a second time). A card with no quote keeps a forward link to the case study. Two across
+ * from 900px, 24px apart, so the second starts on the page's split line (x 732 at 1440).
  *
  * Phase 2.4 (design-taste-frontend and apple-design, the hover layer): each card is a case-study card, so it answers the
  * pointer as every linked card does, a 2px lift and its border to ink over 150ms. The quote cannot sit inside an <a>, so
- * the forward link is stretched over the card by ::after, as the OfferCard's is: the whole card is one target, the link
+ * the card's one link is stretched over it by ::after, as the OfferCard's is: the whole card is one target, the link
  * keeps its own name, and its underline thickens while the card is hovered.
  *
  * Phase 2.6: with a photograph (the sector's, lib/content/pages/sectors.ts) and one card, the client's photograph sits
@@ -113,21 +113,26 @@ export function ProofBlock({
             ) : !isStub(summary) ? (
               <p className="heading-2 max-w-measure">{summary}</p>
             ) : null}
+            {/* Phase 3 draft, pending Dan's approval: the accessible name, as the homepage's case-study links. */}
             {testimonial ? (
               <Testimonial
                 quote={testimonial.quote}
                 name={testimonial.name}
                 business={testimonial.business}
-                // Stacked from 720 to 899px, the quote runs to the card's right edge, as on the homepage.
-                className="min-[720px]:max-[899px]:max-w-none"
+                businessHref={caseStudy.href}
+                businessLinkLabel={`${testimonial.business} case study`}
+                stretchLink
+                // On the card's foot when the card is stretched to a photograph's height. Stacked from 720 to 899px,
+                // the quote runs to the card's right edge, as on the homepage.
+                className="mt-auto min-[720px]:max-[899px]:max-w-none"
               />
-            ) : null}
-            {/* Phase 3 draft, pending Dan's approval: the accessible name, as the homepage's case-study links. */}
-            <ForwardLink
-              link={{ label: caseStudy.title, href: caseStudy.href }}
-              aria-label={`${caseStudy.title} case study`}
-              className="mt-auto self-start after:absolute after:inset-0 group-hover:decoration-2"
-            />
+            ) : (
+              <ForwardLink
+                link={{ label: caseStudy.title, href: caseStudy.href }}
+                aria-label={`${caseStudy.title} case study`}
+                className="mt-auto self-start after:absolute after:inset-0 group-hover:decoration-2"
+              />
+            )}
           </li>
         );
       })}

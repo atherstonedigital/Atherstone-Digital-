@@ -114,11 +114,15 @@ export function PageHeader({ h1, headingId, eyebrow, above, intro, actions }: Pa
 
 // ------------------------------------------------------------------ text and lists
 
-/** Running copy, one paragraph per string, in body at measure; the stub where the plan has not written it yet. */
+/**
+ * Running copy, one paragraph per string, in body at measure; the stub where the plan has not written it yet. A plain
+ * column of text (stacked, not a grid), so in a split it reads as words to the gate's edge checks, which hold a grid to a
+ * box's column lines.
+ */
 export function Paragraphs({ paragraphs }: { paragraphs: TextSection['paragraphs'] }) {
   if (isStub(paragraphs)) return <Stub />;
   return (
-    <div className="grid grid-cols-1 gap-space-4">
+    <div className="space-y-space-4">
       {paragraphs.map((paragraph) => (
         <p key={paragraph} className="body max-w-measure">
           {paragraph}
@@ -202,14 +206,14 @@ export function LedgerTable({ table, className }: { table: TableSection; classNa
           <th
             scope="col"
             role="columnheader"
-            className="eyebrow border-b border-rule-strong pb-space-3 pr-space-3 text-left align-bottom text-ink-muted max-[719px]:sr-only"
+            className="eyebrow border-b border-rule-strong pb-space-3 pl-0 pr-space-3 text-left align-bottom text-ink-muted max-[719px]:sr-only"
           >
             {areaHead}
           </th>
           <th
             scope="col"
             role="columnheader"
-            className="eyebrow border-b border-rule-strong pb-space-3 pl-space-3 text-left align-bottom text-ink-muted max-[719px]:sr-only"
+            className="eyebrow border-b border-rule-strong pb-space-3 pl-space-3 pr-0 text-left align-bottom text-ink-muted max-[719px]:sr-only"
           >
             {detailHead}
           </th>
@@ -225,11 +229,11 @@ export function LedgerTable({ table, className }: { table: TableSection; classNa
             <th
               scope="row"
               role="rowheader"
-              className="heading-2 block pb-space-2 text-left align-top min-[720px]:table-cell min-[720px]:py-space-4 min-[720px]:pr-space-3"
+              className="heading-2 block pb-space-2 pl-0 text-left align-top min-[720px]:table-cell min-[720px]:py-space-4 min-[720px]:pr-space-3"
             >
               {area}
             </th>
-            <td role="cell" className="body block max-w-measure align-top min-[720px]:table-cell min-[720px]:py-space-4 min-[720px]:pl-space-3">
+            <td role="cell" className="body block max-w-measure pr-0 align-top min-[720px]:table-cell min-[720px]:py-space-4 min-[720px]:pl-space-3">
               {detail}
             </td>
           </tr>

@@ -434,11 +434,14 @@ export function FieldControl({
   handle,
   className,
   controlClassName,
+  labelClassName,
 }: {
   field: FieldDef;
   handle: NetlifyFormHandle;
   className?: string;
   controlClassName?: string;
+  /** Classes for the label: a fieldset's parts take a quieter label under the group's legend. */
+  labelClassName?: string;
 }) {
   return (
     <FormField
@@ -446,7 +449,9 @@ export function FieldControl({
       name={def.name}
       render={({ field }) => (
         <FormItem className={className}>
-          <FormLabel required={def.required}>{def.label}</FormLabel>
+          <FormLabel required={def.required} className={labelClassName}>
+            {def.label}
+          </FormLabel>
           {def.type === 'select' ? (
             <Select
               name={field.name}
@@ -650,12 +655,20 @@ export function ContactForm({
                 case 'group':
                   return (
                     // The plan's one field "Business name and website" is a fieldset: its name is the legend, and
-                    // each input keeps its own label and autocomplete (Phase 1).
+                    // each input keeps its own label and autocomplete (Phase 1). The legend keeps the label style; the
+                    // two parts' labels are quieter, small in ink-muted, so the eye reads the group, then its parts
+                    // (Polish review: three labels in one style read as a stray label with no field).
                     <fieldset key={row.group.legend} className="m-0 min-w-0 border-0 p-0">
-                      <legend className="small mb-space-2 p-0 font-medium text-ink">{row.group.legend}</legend>
+                      <legend className="small mb-space-1 p-0 font-medium text-ink">{row.group.legend}</legend>
                       <div className={pairRow}>
                         {row.group.fields.map((field) => (
-                          <FieldControl key={field.name} field={field} handle={handle} className={pairItem} />
+                          <FieldControl
+                            key={field.name}
+                            field={field}
+                            handle={handle}
+                            className={pairItem}
+                            labelClassName="font-normal text-ink-muted"
+                          />
                         ))}
                       </div>
                     </fieldset>

@@ -5,7 +5,7 @@ import { CTABand } from '@/components/site/CTABand';
 import { FAQ } from '@/components/site/FAQ';
 import { JsonLd } from '@/components/site/JsonLd';
 import { CaseStudyLinks, OtherOffers, SectorLinks, secondaryAction } from '@/components/site/OfferLinks';
-import { DashList, LedgerTable, OfferHeader, TextBlock } from '@/components/site/PageBlocks';
+import { DashList, LedgerTable, OfferHeader, Paragraphs, TextBlock } from '@/components/site/PageBlocks';
 import { Screen } from '@/components/site/Screen';
 import { ecommerceDirectorPage as page } from '@/lib/content/pages/offers';
 import { offers } from '@/lib/content/site';
@@ -24,8 +24,6 @@ export const metadata = buildMetadata('/ecommerce-director');
 
 const offerName = offers.offers.find((offer) => offer.id === page.id)?.name ?? page.h1;
 
-/** From 1200px, the raised pricing panel's padding and 1px border above a block beside it, so the row's headings level. */
-const rowOfThreeLevel = 'min-[1200px]:pt-[calc(var(--space-4)_+_1px)]';
 
 export default function EcommerceDirectorPage() {
   const actions = { primary: page.closing.primary, secondary: secondaryAction(page.closing, page.path) };
@@ -44,38 +42,31 @@ export default function EcommerceDirectorPage() {
         </div>
       </Screen>
 
-      {/* From 1200px the month, what you don't get and pricing stand as one ruled row of three, in the plan's order, each
-          keeping its SectionHeading (Polish review: stacked at half width they left the right half empty all the way
-          down). Pricing is raised to paper-raised with a rule border, no shadow (brand book, Colour: raise the pricing
-          to paper-raised); the other two take the panel's padding and border above, so the three headings and
-          hairlines stay level. Below 1200px they stack as before, pricing on paper: a full-width raised box would set
-          its words inside the container's line. */}
-      <Screen as="div" innerClassName="min-[1200px]:grid-cols-3 min-[1200px]:items-start min-[1200px]:gap-x-space-6">
-        <TextBlock
-          section={page.month}
-          headingId="month-heading"
-          id="a-month"
-          className={rowOfThreeLevel}
-        />
-        <TextBlock
-          section={page.notIncluded}
-          headingId="not-included-heading"
-          id="what-you-dont-get"
-          className={rowOfThreeLevel}
-        />
-        <TextBlock
-          section={page.pricing}
-          headingId="pricing-heading"
-          id="pricing"
-          className="min-[1200px]:rounded-radius-0 min-[1200px]:border min-[1200px]:border-rule min-[1200px]:bg-paper-raised min-[1200px]:p-space-4"
-        />
+      {/* The month, what you don't get and pricing, one under another in the plan's order, every h2 on the container's
+          left line. Pricing's words sit on paper-raised with a rule border and no shadow (brand book, Colour: raise the
+          pricing to paper-raised), the panel held to the left half from 900px.
+          Polish review, rejected in part: it proposed a row of three from 1200px to fill the right half. A row of three
+          breaks the brand book's "at most two columns above 900px" (Layout), and any layout that sets one of these h2
+          sections in the right half fails the gate's container-edges (SR-6: every h1 and h2 starts on the container's
+          left, or on the split line of a text-and-picture split, which a row of text is not); both were checked. */}
+      <Screen as="div">
+        <TextBlock section={page.month} headingId="month-heading" id="a-month" />
+        <TextBlock section={page.notIncluded} headingId="not-included-heading" id="what-you-dont-get" />
+        <section aria-labelledby="pricing-heading" id="pricing" className="min-w-0">
+          <SectionHeading heading={page.pricing.heading} headingId="pricing-heading" />
+          <div className="rounded-radius-0 border border-rule bg-paper-raised p-space-4 min-[900px]:max-w-[calc(50%_-_var(--space-6)/2)]">
+            <Paragraphs paragraphs={page.pricing.paragraphs} />
+          </div>
+        </section>
       </Screen>
 
       <Screen as="div" phoneScreens={2}>
         <section aria-labelledby="fit-heading" id="fit" className="min-w-0">
           <SectionHeading heading={page.fit.heading} headingId="fit-heading" />
-          {/* The plan's two lists side by side, from 720px; stacked in the same order below. */}
-          <div className="grid grid-cols-1 gap-x-space-6 gap-y-space-8 min-[720px]:grid-cols-2">
+          {/* The plan's two lists side by side, from 720px; stacked in the same order below. Two columns of text, not a
+              split, so they stand a gutter apart, the 12-column grid's gap (tokens.css), and "Not a fit" starts on
+              the grid's column 7 (x 736 at 1440), where the gate's edge checks read the grid from --gutter. */}
+          <div className="grid grid-cols-1 gap-x-gutter gap-y-space-8 min-[720px]:grid-cols-2">
             {[page.fit.good, page.fit.notFit].map((list) => (
               <div key={list.label} className="min-w-0">
                 <h3 className="heading-2 mb-space-3">{list.label}</h3>
@@ -92,7 +83,8 @@ export default function EcommerceDirectorPage() {
         <CaseStudyLinks slugs={page.links.caseStudies} headingId="case-studies-heading" />
       </Screen>
 
-      <Screen as="div">
+      {/* The sector row centred in the frame's 60dvh floor, as on the homepage, so the slack never sits under it. */}
+      <Screen as="div" className="flex flex-col justify-center">
         <SectorLinks slugs={page.links.sectors} headingId="sectors-heading" />
       </Screen>
 

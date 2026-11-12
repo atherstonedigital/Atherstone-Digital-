@@ -8,7 +8,6 @@ import { Menu } from 'lucide-react';
 import { LinkButton } from '@/components/brand/Button';
 import { Wordmark } from '@/components/brand/Wordmark';
 import { DrawerGesture } from '@/components/site/DrawerGesture';
-import { ThemeToggle } from '@/components/site/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import {
   NavigationMenu,
@@ -30,14 +29,18 @@ import { cn } from '@/lib/utils';
 //
 //   below 900    monogram and compact wordmark, menu toggle; nothing else
 //   900 to 1199  full wordmark, Book a 30-minute call, menu toggle
-//   from 1200    full wordmark, Services and Sectors dropdowns, Results, Insights, About, theme toggle, the button
+//   from 1200    full wordmark, Services and Sectors dropdowns, Results, Insights, About, the button
 //
 // 900 to 1199 is the decision the brief left open: the full wordmark (327px), the primary button (207px) and the 44px
 // toggle need about 610px with their gaps, so the bar holds them with 240px to spare in the 852px container at 900px
-// and the links never crowd it. The theme toggle waits for 1200px with the links, since the drawer carries it below.
+// and the links never crowd it.
+//
+// Phase 2.7, step 9 (the owner's brief): the header is the wordmark, five links and one button. The theme toggle has
+// moved to the footer's legal row (components/site/Footer.tsx), at every width, so neither the bar nor the drawer
+// carries it.
 //
 // Below 1200 the links live in the drawer (a Sheet from the right on paper-raised with a rule edge): Services (three),
-// Sectors (five), Results, Insights, About, the primary button and the theme toggle. The current page is marked with
+// Sectors (five), Results, Insights, About and the primary button. The current page is marked with
 // aria-current and a 2px brass-600 underline. The page pads its body by --nav-height (the bar is fixed) and gives its
 // <main> id="main" and tabindex="-1" for the skip link. The header is the taste kit's header.nav.
 
@@ -228,8 +231,8 @@ export interface NavDrawerBodyProps {
   content?: SiteNav;
   currentPath: string;
   /**
-   * responsive: the button and the theme toggle show below 1200px, wherever the drawer is offered (the site); from
-   * 1200px the bar has them. always: both show at every width (a static render).
+   * responsive: the button shows below 1200px, wherever the drawer is offered (the site); from 1200px the bar has it.
+   * always: it shows at every width (a static render).
    */
   extras?: 'responsive' | 'always';
   /** The nav landmark's name. */
@@ -240,8 +243,8 @@ export interface NavDrawerBodyProps {
 }
 
 /**
- * The drawer's contents, in the brief's order: the Services and Sectors groups, Results, Insights and About, the
- * primary button, then the theme toggle at the foot.
+ * The drawer's contents, in the brief's order: the Services and Sectors groups, Results, Insights and About, then the
+ * primary button. The theme toggle is in the footer (Phase 2.7, step 9).
  */
 export function NavDrawerBody({
   content = siteNav,
@@ -281,7 +284,6 @@ export function NavDrawerBody({
         onClick={onNavigate}
         className={cn(extras === 'responsive' && 'min-[1200px]:hidden')}
       />
-      <ThemeToggle className={cn('justify-self-start', extras === 'responsive' && 'min-[1200px]:hidden')} />
     </nav>
   );
 }
@@ -428,7 +430,6 @@ export function Nav({
         <NavMenu content={content} currentPath={path} label={label} className="hidden min-[1200px]:flex" />
 
         <div className="flex items-center gap-space-4">
-          <ThemeToggle className="hidden min-[1200px]:inline-flex" />
           <LinkButton link={content.cta} className="hidden min-[900px]:inline-flex" />
           <NavDrawer
             content={content}

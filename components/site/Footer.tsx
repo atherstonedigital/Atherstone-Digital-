@@ -3,6 +3,7 @@ import NextLink from 'next/link';
 import { ExternalLink } from 'lucide-react';
 
 import { Wordmark } from '@/components/brand/Wordmark';
+import { ThemeToggle } from '@/components/site/ThemeToggle';
 import { contact as siteContact, footer as siteFooter } from '@/lib/content/site';
 import type { ContactDetails, FooterColumn, Link as SiteLink, SiteFooter } from '@/lib/content/types';
 import { cn } from '@/lib/utils';
@@ -23,6 +24,9 @@ import { cn } from '@/lib/utils';
 // From 1200px the taste kit's footer row: the wordmark across the top, then four columns a gutter apart, the descriptor and
 // contact links in the first and the three link columns in the other three, one row running line to line, so the
 // footer is one row deep.
+//
+// Phase 2.7, step 9 (the owner's brief: the header is wordmark, five links, one button): the theme toggle lives here,
+// at the end of the legal row, on its rule, at every width. Below 360px it wraps under the company line.
 
 /** Screen-reader text after a link that leaves the site (the same words as the brand group's LinkButton). */
 const LEAVES_SITE = '(leaves this site)';
@@ -157,8 +161,11 @@ export function Footer({
           </nav>
         </div>
 
-        {/* 2: the legal row, on its own rule. */}
-        <p className="small border-t border-rule pt-space-4 text-ink-muted">{content.legal}</p>
+        {/* 2: the legal row, on its own rule: the company line, and the theme toggle at its end (Phase 2.7, step 9). */}
+        <div className="flex flex-wrap items-center justify-between gap-x-space-6 gap-y-space-2 border-t border-rule pt-space-4">
+          <p className="small text-ink-muted">{content.legal}</p>
+          <ThemeToggle />
+        </div>
       </div>
     </footer>
   );

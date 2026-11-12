@@ -4,7 +4,6 @@ import type { Metadata } from 'next';
 import { TextLink } from '@/components/brand/Button';
 import { SectionHeading } from '@/components/brand/SectionHeading';
 import { SiteShell } from '@/components/site/SiteShell';
-import { ThemeToggle } from '@/components/site/ThemeToggle';
 import { brandBasis } from '@/lib/design/tokens.docs';
 
 import { ColourTokens } from './_foundations/colour';
@@ -19,7 +18,8 @@ import SectionsSection from './_sections/sections';
 
 // The design-system page: every token in both themes, the approved additions, then each component group in
 // app/design-system/_sections. A working page for review, kept out of search: it carries demo forms, a sample FAQPage
-// schema and drafts pending approval. It is built on the new system's shell (Nav with the theme toggle, Footer).
+// schema and drafts pending approval. It is built on the new system's shell (Nav, and the Footer with the theme toggle
+// at the end of its legal row since Phase 2.7 step 9).
 
 export const metadata: Metadata = {
   title: 'Design system',
@@ -120,8 +120,6 @@ export default function DesignSystemPage() {
             approved addition comes from design/tokens.additions.json.
           </p>
         </div>
-        {/* From 1024px the theme toggle is in the bar; below it, it is in the drawer, so it is also offered here. */}
-        <ThemeToggle className="justify-self-start min-[1024px]:hidden" />
         <nav aria-label="On this page">
           <p id="design-system-contents" className="eyebrow mb-space-2 text-ink-muted">
             On this page

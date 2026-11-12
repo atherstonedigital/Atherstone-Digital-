@@ -68,15 +68,23 @@ export const danPortraitGreenDark: Portrait = portraits.danPortraitGreenDark;
 
 /**
  * The credentials as a ledger (Phase 2.7, step 5): what each is on the left, what it says on the right, a rule hairline
- * above, between and below the rows. Meet Dan and the About page set them alike.
+ * above, between and below the rows. Meet Dan and the About page set them alike. From 900px each row is six columns 24px
+ * apart, the label on two and the value on four, so the values start on a column of the page's grid (x 324 on the
+ * homepage, x 936 on /about at 1440, the offer cards' third column; Phase 2.7 review). Below 900px a flex row, the
+ * label on 38%: two of six columns there are too narrow for "n8n automation".
  */
 export function CredentialLedger({ credentials, className }: { credentials: Credential[]; className?: string }) {
   return (
     <dl className={cn('divide-y divide-rule border-y border-rule', className)}>
       {credentials.map((credential) => (
-        <div key={credential.label} className="flex items-baseline gap-x-space-6 py-space-3">
-          <dt className="body w-[38%] shrink-0 font-medium">{credential.label}</dt>
-          <dd className="body min-w-0">{credential.value}</dd>
+        <div
+          key={credential.label}
+          className="flex items-baseline gap-x-space-6 py-space-3 min-[900px]:grid min-[900px]:grid-cols-6"
+        >
+          <dt className="body w-[38%] shrink-0 font-medium min-[900px]:col-span-2 min-[900px]:w-auto">
+            {credential.label}
+          </dt>
+          <dd className="body min-w-0 min-[900px]:col-span-4">{credential.value}</dd>
         </div>
       ))}
     </dl>

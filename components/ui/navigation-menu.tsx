@@ -53,15 +53,16 @@ NavigationMenuItem.displayName = NavigationMenuPrimitive.Item.displayName;
 
 /**
  * A top-level nav control: a dropdown trigger, or a link styled to match one (shadcn's navigationMenuTriggerStyle). Ink
- * in the button style at weight 500, a 44px target, an underline that draws on hover. The current page, or the section
+ * in the button style at weight 500, a 44px target, a 1px underline 3px below that draws in brass-600 on hover and on
+ * press, as every link's does (Phase 2.7, step 8, and its review: hover is one thing). The current page, or the section
  * a dropdown leads to, is marked by aria-current with a 2px brass-600 underline instead of a colour change (brand book,
  * States). The brass rule comes after hover in the stylesheet, so it holds on hover.
  */
 const navigationMenuTriggerStyle = cva([
   'button inline-flex min-h-touch-target cursor-pointer items-center gap-space-1 whitespace-nowrap bg-transparent p-0 font-medium text-ink',
-  'underline decoration-transparent decoration-1 underline-offset-[6px]',
+  'underline decoration-transparent decoration-1 underline-offset-[3px]',
   // The underline draws on hover and on press, so a tap answers on touch (Phase 3 review).
-  'transition-[text-decoration-color] duration-colour ease-out hover:decoration-current active:decoration-current motion-reduce:transition-none',
+  'transition-[text-decoration-color] duration-colour ease-out hover:decoration-brass-600 active:decoration-brass-600 motion-reduce:transition-none',
   'aria-[current=page]:decoration-brass-600 aria-[current=page]:decoration-2',
   'aria-[current=true]:decoration-brass-600 aria-[current=true]:decoration-2',
 ]);
@@ -104,8 +105,8 @@ const NavigationMenuLink = NavigationMenuPrimitive.Link;
  */
 const navigationMenuPanelLinkStyle = cva([
   'body flex min-h-touch-target items-center whitespace-nowrap px-space-4 font-medium text-ink',
-  'underline decoration-transparent decoration-1 underline-offset-4',
-  'transition-[text-decoration-color] duration-colour ease-out hover:decoration-current active:decoration-current motion-reduce:transition-none',
+  'underline decoration-transparent decoration-1 underline-offset-[3px]',
+  'transition-[text-decoration-color] duration-colour ease-out hover:decoration-brass-600 active:decoration-brass-600 motion-reduce:transition-none',
   'aria-[current=page]:decoration-brass-600 aria-[current=page]:decoration-2',
 ]);
 

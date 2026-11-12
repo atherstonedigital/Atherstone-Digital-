@@ -34,7 +34,9 @@ import { cn } from '@/lib/utils';
 // a page's object rather than under a heading. titleHidden keeps the title as the figure's accessible name but takes it
 // off the screen, since the hero drops it and keeps the source line. barsInsetClassName pads the box the bars are drawn
 // in (vertical bars only) while the gridlines run on to its edge, so a chart that bleeds to the viewport's edge carries
-// its hairlines off the page and keeps its last bar and value label clear of the screen's edge.
+// its hairlines off the page and keeps its last bar and value label clear of the screen's edge. plotHeightLg (Phase 2.7
+// review) gives the plot a second height from 1024px, so the hero's chart stands as tall as the copy beside it: its
+// zero line level with the foot of the buttons and its source line on the fact line.
 
 export interface ChartPoint {
   /** The category: a month, a store, an option. */
@@ -112,6 +114,12 @@ export interface BarChartProps extends ChartBaseProps {
   barsInsetClassName?: string;
   /** The widths the plot takes at each viewport band, for thinning the category labels: container (the default) or hero. */
   plotBands?: ChartPlotBands;
+  /**
+   * Vertical bars only: the plot's height in pixels from 1024px, where plotHeight then holds below 1024px only. The
+   * homepage hero sets it so the chart is as tall as the copy beside it. The bars are drawn twice, once at each height,
+   * and CSS shows one: their heights are computed in pixels, so a stretched svg could not do it.
+   */
+  plotHeightLg?: number;
 }
 
 export interface LineChartProps extends ChartBaseProps {
@@ -636,8 +644,26 @@ export function Chart(props: ChartProps) {
   let plot: React.ReactNode;
   let table: React.ReactNode;
   if (props.type === 'bar') {
-    plot =
-      props.orientation === 'horizontal' ? <HorizontalBars props={props} ids={ids} /> : <VerticalBars props={props} ids={ids} />;
+    if (props.orientation === 'horizontal') {
+      plot = <HorizontalBars props={props} ids={ids} />;
+    } else if (props.plotHeightLg) {
+      // Two drawings, one per height; the hidden one is display: none, so only one is ever read or laid out.
+      plot = (
+        <>
+          <div className="min-w-0 min-[1024px]:hidden">
+            <VerticalBars props={props} ids={ids} />
+          </div>
+          <div className="hidden min-w-0 min-[1024px]:block">
+            <VerticalBars
+              props={{ ...props, plotHeight: props.plotHeightLg }}
+              ids={{ title: `${ids.title}-lg`, desc: `${ids.desc}-lg` }}
+            />
+          </div>
+        </>
+      );
+    } else {
+      plot = <VerticalBars props={props} ids={ids} />;
+    }
     table = (
       <DataTable
         caption={props.title}

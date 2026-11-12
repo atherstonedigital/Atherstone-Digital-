@@ -21,8 +21,9 @@ import { cn } from '@/lib/utils';
 //
 // Below 1200px the wordmark, the three link columns, then the descriptor and the contact links, which sit on the link
 // columns' grid from 900px (each starts on a column's line and the row runs line to line: the gate's row-lines, SR-7).
-// From 1200px the taste kit's footer row: the wordmark across the top, then four columns a gutter apart, the descriptor and
-// contact links in the first and the three link columns in the other three, one row running line to line, so the
+// From 1200px the taste kit's footer row: the wordmark across the top, then four columns a gutter apart, the three link
+// columns in the first three and the descriptor and contact links in the last (Phase 2.7 review: so the visual order
+// is the DOM's and the focus order follows it), one row running line to line, so the
 // footer is one row deep.
 //
 // Phase 2.7, step 9 (the owner's brief: the header is wordmark, five links, one button): the theme toggle lives here,
@@ -32,15 +33,17 @@ import { cn } from '@/lib/utils';
 const LEAVES_SITE = '(leaves this site)';
 
 /**
- * Ink, underline drawn on hover, a 44px target: the footer's links read as a list, not as running copy. From 1200px with
+ * Ink, a 44px target, and the step 8 underline: 1px, 3px below, drawn in brass-600 on hover and on press, as every
+ * link's (Phase 2.7 review: hover is one thing). Ink, not green-700: the footer's links read as a list, not as running
+ * copy. From 1200px with
  * a mouse (a fine pointer that hovers) the rows close up to 32px, 8px apart (brand book: 44px targets are for touch);
  * a touch screen keeps 44px at every width.
  */
 const footerLinkStyle = cn(
   'inline-flex min-h-touch-target items-center gap-space-2 text-ink',
   '[@media(min-width:1200px)_and_(hover:hover)_and_(pointer:fine)]:min-h-space-8',
-  'underline decoration-transparent decoration-1 underline-offset-4',
-  'transition-[text-decoration-color] duration-colour ease-out hover:decoration-current motion-reduce:transition-none',
+  'underline decoration-transparent decoration-1 underline-offset-[3px]',
+  'transition-[text-decoration-color] duration-colour ease-out hover:decoration-brass-600 active:decoration-brass-600 motion-reduce:transition-none',
 );
 
 function FooterLink({ link }: { link: SiteLink }) {
@@ -120,8 +123,10 @@ export function Footer({
     >
       <div className="wrap mx-auto grid w-[min(100%_-_2_*_var(--gutter),var(--container))] gap-space-12">
         {/* 1: the footer proper: the wordmark, then the link columns and the descriptor with the contact links, all in
-            the one Footer navigation. DOM order is the plan's (columns, then descriptor and contact); from 1200px the
-            grid places the descriptor and contact in the first of four columns. */}
+            the one Footer navigation. DOM order is the plan's (columns, then descriptor and contact), and the visual
+            order follows it at every width: from 1200px the descriptor and contact take the last of four columns, so
+            Tab runs left to right, then on to the theme toggle (Phase 2.7 review, WCAG 2.4.3; it used to sit in the
+            first column, last in the DOM, so focus jumped back left). */}
         <div className="grid gap-y-space-8">
           <p>
             {/* The full wordmark at 40px, narrowed only where a 320px screen cannot hold it (Phase 1). */}
@@ -143,13 +148,13 @@ export function Footer({
             <div
               className={cn(
                 'col-span-full mt-space-4 grid content-start gap-space-2',
-                'min-[1200px]:col-span-1 min-[1200px]:col-start-1 min-[1200px]:row-start-1 min-[1200px]:mt-0',
+                'min-[1200px]:col-span-1 min-[1200px]:col-start-4 min-[1200px]:row-start-1 min-[1200px]:mt-0',
               )}
             >
               <p className="small max-w-measure-lg text-ink">{content.descriptor}</p>
               {/* From 900 to 1199px on the link columns' grid, the row running line to line; one column otherwise:
                   below 900px a third of the container is narrower than the email address, and from 1200px the links
-                  stack in the first column. */}
+                  stack in the last column. */}
               <ul className="grid grid-cols-1 gap-y-space-2 min-[900px]:max-[1199px]:grid-cols-3 min-[900px]:max-[1199px]:gap-x-gutter">
                 {contactLinks.map((link) => (
                   <li key={link.href} className="min-w-0">

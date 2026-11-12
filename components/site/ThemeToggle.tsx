@@ -31,8 +31,11 @@ export function ThemeToggle({ className }: { className?: string }) {
       type="button"
       onClick={toggle}
       className={cn(
-        'button inline-flex min-h-touch-target cursor-pointer items-center whitespace-nowrap bg-transparent p-0 font-medium text-ink',
-        'underline decoration-transparent decoration-1 underline-offset-[6px] hover:decoration-current',
+        // Set as the brand's text link at rest (Phase 2.7 review: in the footer's legal row, plain ink in the button
+        // style read as a stray label): small, so it is one size with the company line, green-700 with its 1px
+        // underline 3px below, which turns brass-600 on hover and on press, as every link's does.
+        'small inline-flex min-h-touch-target cursor-pointer items-center whitespace-nowrap bg-transparent p-0 font-medium text-green-700',
+        'underline decoration-current decoration-1 underline-offset-[3px] hover:decoration-brass-600 active:decoration-brass-600',
         // The press, as the Button's link form (Phase 3 review): 0.98 over 80ms on pointer-down, at once under reduced
         // motion, so a tap answers on touch, where there is no hover.
         '[transition:text-decoration-color_var(--duration-colour)_ease-out,transform_var(--duration-press)_ease-out]',

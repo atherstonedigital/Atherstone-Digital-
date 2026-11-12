@@ -17,7 +17,11 @@ import { cn } from '@/lib/utils';
 //     its problem in heading-2, its line of copy beneath in body, on-band at 80% opacity. All three start on the
 //     container's left line. Paper hairlines part the rows, as the
 //     Cover cuts its paper rules across the green slab: space-8 either side of each, so the rows' words sit space-16
-//     apart. The frame (components/site/Screen.tsx, ground band) lays the ground.
+//     apart. The frame (components/site/Screen.tsx, ground band) lays the ground. From 1024px the band is a split on
+//     the page's split line (Phase 2.7 review: the ledger alone left half the band empty): the eyebrow and heading on
+//     the left half, top-aligned, the ledger on the right half from x 732 at 1440, its paper hairlines running to the
+//     container's right line. Below 1024px they stack. From 720px each sentence of the heading is a block of its own,
+//     balanced, as the hero's H1 breaks by sentence, so no line ends on a stray word (no copy change).
 //   - paper (the default: the sector pages and the Health Check): the two-column ruled list on paper, the bold line in
 //     heading-2 on the left, its explanation in body on the split line (x 732 at 1440) from 900px, the rules in rule.
 //
@@ -55,6 +59,21 @@ const paperRules = 'divide-y divide-rule';
 /** The ledger's numbers: 01 to 05. */
 const ledgerNumber = (index: number) => String(index + 1).padStart(2, '0');
 
+/**
+ * The heading's sentences, each a balanced block from 720px; inline below, with the space between them kept, so the
+ * words and the accessible name are the plan's, unchanged.
+ */
+function sentenceBlocks(heading: string): React.ReactNode {
+  const sentences = heading.split(/(?<=[.?!])\s+/);
+  if (sentences.length < 2) return heading;
+  return sentences.map((sentence, index) => (
+    <React.Fragment key={sentence}>
+      {index > 0 ? ' ' : null}
+      <span className="min-[720px]:block min-[720px]:[text-wrap:balance]">{sentence}</span>
+    </React.Fragment>
+  ));
+}
+
 export function ProblemCards({
   content,
   withHeading = true,
@@ -77,8 +96,12 @@ export function ProblemCards({
   return (
     <Root
       aria-labelledby={Root === 'section' && showHeading ? titleId : undefined}
-      // The frame sets the text colour (ink on paper, on-band on the band); the root adds none of its own.
-      className={className}
+      // The frame sets the text colour (ink on paper, on-band on the band); the root adds none of its own. The band is
+      // a split from 1024px: two halves 24px apart, the ledger's on the page's split line.
+      className={cn(
+        band && 'min-[1024px]:grid min-[1024px]:grid-cols-2 min-[1024px]:items-start min-[1024px]:gap-x-space-6',
+        className,
+      )}
       {...props}
     >
       {showHeading && content.heading ? (
@@ -86,9 +109,12 @@ export function ProblemCards({
           as={headingLevel}
           size={headingSize}
           eyebrow={content.eyebrow}
-          heading={content.heading}
+          heading={band ? sentenceBlocks(content.heading) : content.heading}
           headingId={titleId}
           ground={band ? 'band' : 'paper'}
+          // In the band's split the heading block ends with the heading itself; its space-8 below only parts it from
+          // the ledger when they stack.
+          className={band ? 'min-[1024px]:[&>:last-child]:mb-0' : undefined}
           // The band changes grammar (Phase 2.7, step 5): no hairline; the ledger's rows carry the rules.
           hairline={!band}
         />

@@ -16,7 +16,9 @@ import { cn } from '@/lib/utils';
 //
 // Phase 2.7, step 5 (the owner's brief, homepage testimonials: no heading, no eyebrow): mark opens the quote with a
 // 44px brass-600 opening quotation mark set as a hanging character in the left margin, so the quote's words keep their
-// left line. It hangs from 720px, where the gutter is at least 24px; below that it sits above the first line. It is
+// left line. It hangs from 1200px, where the page's outer margin is at least 32px, so the mark never sits against the
+// viewport's edge (Phase 2.7 review: from 720 to 1199px the margin is the 24px gutter and the mark hung 2px from the
+// edge); below 1200px it sits above the first line. It is
 // decorative (aria-hidden): the blockquote already says it is a quotation. Extended minimally: one prop, off by default,
 // so the README's "no decorative quote glyph" still holds everywhere else.
 
@@ -65,12 +67,12 @@ export function Testimonial({
       <blockquote className={cn('quote mb-space-4 text-ink', mark && 'relative')}>
         {mark ? (
           // The hanging mark: Newsreader at 44px (display-2's size) in brass-600, its right edge space-1 left of the
-          // quote's first letter from 720px; above the first line below 720px.
+          // quote's first letter from 1200px; above the first line below 1200px.
           <span
             aria-hidden="true"
             className={cn(
               'block h-space-6 font-display text-[length:var(--display-2-font-size)] not-italic leading-none text-brass-600',
-              'min-[720px]:absolute min-[720px]:right-[calc(100%_+_var(--space-1))] min-[720px]:top-0 min-[720px]:h-auto',
+              'min-[1200px]:absolute min-[1200px]:right-[calc(100%_+_var(--space-1))] min-[1200px]:top-0 min-[1200px]:h-auto',
             )}
           >
             {'\u201C'}

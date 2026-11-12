@@ -4,8 +4,9 @@ import { SectionHeading } from '@/components/brand/SectionHeading';
 import type { Step, StepsSection } from '@/lib/content/types';
 import { cn } from '@/lib/utils';
 
-// "How it works" (plan, Homepage 6): numbered rows parted by rule hairlines. The number is part of the step heading's
-// text, in small, ink-muted, tabular, so the list keeps its order where list styling is stripped. Rows are space-4 apart
+// "How it works" (plan, Homepage 6): numbered rows parted by rule hairlines. The number is set in small, ink-muted,
+// tabular, and hidden from screen readers (Phase 2.7 review): the ordered list already gives each step its position, and
+// inside the heading it ran into the title ("1Week one"), as the band ledger's 01 to 05 would. Rows are space-4 apart
 // on each side of their rule (Phase 2.4, step 15).
 //
 // Two layouts:
@@ -14,12 +15,15 @@ import { cn } from '@/lib/utils';
 //     on a shared baseline.
 //   - with an aside (the homepage, Phase 2.4 step 9 and Phase 2.6): from 900px the steps take the left half and the
 //     aside the right, two columns 24px apart, so the aside starts on the page's one split line (x 732 at 1440) and is
-//     top-aligned with the first step. Each step is its number and title on one line, the copy beneath; a rule parts each row from the next.
+//     top-aligned with the first step. Each step is its number on a line of its own, the title under it and the copy
+//     beneath, all three on the container's left line, as the band ledger sets its rows (Phase 2.7 review: inline, the
+//     number pushed the title off the copy's line); a rule parts each row from the next.
 //     Below 900px the aside follows the steps, text first.
 //   - with asideBleed too (the homepage, Phase 2.7 step 3a, the owner's brief): from 900px the aside leaves the
 //     container. It fills the right half of the viewport, from the container's midline (half the split gap left of the
 //     split line) to the viewport's right edge, and is exactly as tall as the four steps (the row stretches it; the
-//     photograph inside covers it). The section round it clips anything past the viewport.
+//     photograph inside covers it). The section round it clips anything past the viewport. The steps then stop space-3
+//     short of their half, so their rules and copy end space-6 clear of the photograph (Phase 2.7 review).
 // The numbers are ink-muted; the homepage sets them in brass-600 (numberTone brass, Phase 2.7 step 6: one of the two
 // added uses of the accent).
 
@@ -71,13 +75,14 @@ export function Steps({
   const numberColour = numberTone === 'brass' ? 'text-brass-600' : 'text-ink-muted';
 
   const list = split ? (
-    <ol className="grid grid-cols-1 divide-y divide-rule">
+    <ol className={cn('grid grid-cols-1 divide-y divide-rule', asideBleed && 'min-[900px]:pr-space-3')}>
       {content.steps.map((item) => (
         // A rule parts each row from the next (the list draws it, so every row is set alike), space-4 each side.
         <li key={item.number} className="grid grid-cols-1 gap-y-space-2 py-space-4 first:pt-0 last:pb-0">
-          <ItemHeading className="heading-2">
-            <span className={cn('small mr-space-3 tabular-nums', numberColour)}>{item.number}</span> {item.title}
-          </ItemHeading>
+          <span aria-hidden="true" className={cn('small block tabular-nums', numberColour)}>
+            {item.number}
+          </span>
+          <ItemHeading className="heading-2">{item.title}</ItemHeading>
           <p className="body max-w-measure">{item.body}</p>
         </li>
       ))}
@@ -99,7 +104,10 @@ export function Steps({
               'min-[900px]:col-span-5 min-[900px]:grid min-[900px]:grid-cols-5 min-[900px]:items-baseline min-[900px]:gap-x-gutter',
             )}
           >
-            <span className={cn('small mr-space-2 tabular-nums min-[900px]:col-span-1 min-[900px]:mr-0', numberColour)}>
+            <span
+              aria-hidden="true"
+              className={cn('small mr-space-2 tabular-nums min-[900px]:col-span-1 min-[900px]:mr-0', numberColour)}
+            >
               {item.number}
             </span>{' '}
             <span className="min-[900px]:col-span-4">{item.title}</span>

@@ -30,8 +30,10 @@ export function StatBlock({ figure, line, rule = true, className, ...props }: St
       {/* The brass marker: a 24px by 1px bar, space-3 above the figure. */}
       <span aria-hidden="true" className="mb-space-3 block h-px w-space-6 bg-brass-600" />
       <p className="figure mb-space-2 text-ink">{figure}</p>
-      {/* small, ink-muted, at most 28ch: the component's own measure for the line. */}
-      <figcaption className="small max-w-[28ch] text-ink-muted">{line}</figcaption>
+      {/* small, ink-muted, at most 28ch: the component's own measure for the line. From 1024px, where the figure steps
+          up to 96px (Phase 2.7, step 2), the line widens to 36ch with it, so it stays quieter than the figure and
+          never runs taller than it (Phase 2.7 review). */}
+      <figcaption className="small max-w-[28ch] text-ink-muted min-[1024px]:max-w-[36ch]">{line}</figcaption>
     </figure>
   );
 }

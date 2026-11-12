@@ -171,6 +171,9 @@ export default function HomePage() {
               format={{ prefix: '£', notation: 'short' }}
               values="emphasis"
               plotHeight={240}
+              // From 1024px the plot is as tall as the copy beside it: the zero line level with the foot of the
+              // buttons, the source line on the fact line (Phase 2.7 review).
+              plotHeightLg={420}
               barsInsetClassName="min-[1024px]:pr-gutter"
               plotBands="hero"
             />
@@ -207,12 +210,14 @@ export default function HomePage() {
           <CatalogueScreenshot className="min-[900px]:col-span-6 min-[900px]:col-start-7" />
         </div>
         <div className="mt-space-8 grid grid-cols-1 gap-space-8 min-[900px]:grid-cols-2 min-[900px]:gap-x-space-6">
-          {otherTestimonials.map((testimonial) => (
+          {otherTestimonials.map((testimonial, index) => (
             <Testimonial
               key={testimonial.name}
               {...testimonialProps(testimonial)}
-              // Stacked below 900px, each quote runs to the container's right line, as in Phase 1.
-              className="max-[899px]:max-w-none"
+              // Stacked below 900px, each quote runs to the container's right line, as in Phase 1. From 900px the left
+              // quote stops space-6 short of the split, so its lines end clear of the right quote's hanging mark
+              // (Phase 2.7 review).
+              className={cn('max-[899px]:max-w-none', index === 0 && 'min-[900px]:pr-space-6')}
             />
           ))}
         </div>

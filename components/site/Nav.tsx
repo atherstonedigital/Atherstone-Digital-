@@ -207,10 +207,11 @@ export function NavMenu({ content = siteNav, currentPath, label = 'Main', value,
 /** A drawer row: a 44px link in body at weight 500, with the same underline and current-page marking as the bar. */
 const drawerLinkStyle = cn(
   'body flex min-h-touch-target cursor-pointer items-center font-medium text-ink',
-  // The underline draws on press too, so a tap answers on touch before the page changes.
-  'active:decoration-current',
-  'underline decoration-transparent decoration-1 underline-offset-4',
-  'transition-[text-decoration-color] duration-colour ease-out hover:decoration-current motion-reduce:transition-none',
+  // The underline draws on press too, so a tap answers on touch before the page changes. brass-600, 1px, 3px below, as
+  // every link's (Phase 2.7, step 8, and its review).
+  'active:decoration-brass-600',
+  'underline decoration-transparent decoration-1 underline-offset-[3px]',
+  'transition-[text-decoration-color] duration-colour ease-out hover:decoration-brass-600 motion-reduce:transition-none',
   'aria-[current=page]:decoration-brass-600 aria-[current=page]:decoration-2',
 );
 

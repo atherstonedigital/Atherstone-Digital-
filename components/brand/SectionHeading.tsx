@@ -12,7 +12,9 @@ import { cn } from '@/lib/utils';
 //
 // Phase 2.7, step 2 (the owner's brief: a type scale with a step in it): size display-2 sets the heading at 44px for
 // the three homepage sections that make the argument (Sound familiar, Three ways to work with me and the comparison).
-// Every other H2 stays heading-1 (32px). Extended minimally: one prop, heading-1 by default.
+// Every other H2 stays heading-1 (32px). Extended minimally: one prop, heading-1 by default. display-2 has no phone
+// step in the tokens, so below 720px a display-2 heading takes heading-1's size, leading and tracking: 32px under the
+// hero's 40px H1, so the hierarchy never inverts on a phone (Phase 2.7 review). No token changes.
 //
 // Phase 2.7, step 5 (vary the section grammar): the eyebrow, heading and hairline stay on exactly five homepage
 // sections (The numbers, What I do, the comparison, How it works, Insights). The others keep their words and drop the
@@ -78,6 +80,8 @@ export function SectionHeading({
         id={headingId}
         className={cn(
           size,
+          size === 'display-2' &&
+            'max-[719px]:text-[length:var(--heading-1-font-size)] max-[719px]:leading-[var(--heading-1-line-height)] max-[719px]:tracking-normal',
           hairline ? 'mb-space-4' : 'mb-space-8',
           !eyebrow && alignWithEyebrow && 'mt-[calc(var(--eyebrow-font-size)*var(--eyebrow-line-height)_+_var(--space-2))]',
         )}

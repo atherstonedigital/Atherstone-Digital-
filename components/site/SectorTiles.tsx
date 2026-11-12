@@ -110,8 +110,14 @@ export function SectorTiles({
           'grid grid-cols-1 divide-y divide-rule',
           // The list layout closes with a rule above and below, so a lone sector still reads as a ruled row.
           !row && 'border-y border-rule',
-          // From 1024px the row: one column per sector, a vertical rule between columns and none across.
-          row && cn(rowColumns[count] ?? rowColumns[5], 'min-[1024px]:divide-x min-[1024px]:divide-y-0'),
+          // From 1024px the row: one column per sector, a vertical rule between columns and none across. The names and
+          // their lines share two grid rows (each column a subgrid over them), so every line starts on one baseline
+          // under the tallest name (Phase 2.7 review: a two-line name pushed its line 29px lower).
+          row &&
+            cn(
+              rowColumns[count] ?? rowColumns[5],
+              'min-[1024px]:grid-rows-[auto_auto] min-[1024px]:gap-y-space-2 min-[1024px]:divide-x min-[1024px]:divide-y-0',
+            ),
         )}
       >
         {content.sectors.map((sector) => (
@@ -125,6 +131,7 @@ export function SectorTiles({
                     // last. A column from 1024px: space-6 either side of its rule, none outside the first and last.
                     'py-space-4 first:pt-0 last:pb-0',
                     'min-[1024px]:px-space-6 min-[1024px]:py-0 min-[1024px]:first:pl-0 min-[1024px]:last:pr-0',
+                    'min-[1024px]:row-span-2 min-[1024px]:grid min-[1024px]:grid-rows-subgrid',
                   )
                 : 'py-space-4',
             )}
@@ -137,6 +144,8 @@ export function SectorTiles({
                 'min-h-touch-target',
                 // From 720px to 1023px the name and its line side by side, the line on the split line.
                 row && 'min-[720px]:max-[1023px]:grid-cols-2 min-[720px]:max-[1023px]:items-baseline min-[720px]:max-[1023px]:gap-x-space-6',
+                // From 1024px the name and its line sit on the row's two shared grid rows.
+                row && 'min-[1024px]:row-span-2 min-[1024px]:grid-rows-subgrid',
               )}
             >
               <span

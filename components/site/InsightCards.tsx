@@ -14,7 +14,8 @@ import { cn } from '@/lib/utils';
 //     date on the left in small with tabular figures (ink-muted), the tag and the title on the right. The first row sits
 //     on the heading's hairline, which serves as its top rule. Below 480px the date sits above the title.
 //   - row (/insights, an article's related posts, a sector page's three): columns parted by vertical 1px rule lines
-//     from 720px, the date above the tag and the title; a ruled list below 720px.
+//     from 720px, the date above the tag and the title; a ruled list below 720px. The columns are the offer cards'
+//     thirds, 24px apart with no padding, the rule in the middle of the gutter (Phase 2.7 review).
 // The whole row or column is the link. On hover the title turns from ink to green-700 over 150ms (Phase 2.7, step 8);
 // nothing moves. The dates are the posts' own publication dates (the only new words the brief allows besides 01 to
 // 05), written as "20 Nov 2025"; a planned article with no date yet shows none.
@@ -36,18 +37,24 @@ export function formatInsightDate(iso: string) {
 const listLayout: Record<InsightCardsLayout, string> = {
   // A ruled list: a rule between rows.
   stack: 'grid-cols-1 divide-y divide-rule',
-  // Three across from 720px, rows of three space-8 apart; a ruled list below.
-  row: 'grid-cols-1 divide-y divide-rule min-[720px]:grid-cols-3 min-[720px]:gap-y-space-8 min-[720px]:divide-y-0',
+  // Three across from 720px on the offer cards' grid (thirds 24px apart, text at x 120, 528 and 936 at 1440), rows of
+  // three space-8 apart; a ruled list below.
+  row: cn(
+    'grid-cols-1 divide-y divide-rule',
+    'min-[720px]:grid-cols-3 min-[720px]:gap-x-space-6 min-[720px]:gap-y-space-8 min-[720px]:divide-y-0',
+  ),
 };
 
 const itemLayout: Record<InsightCardsLayout, string> = {
   stack: 'py-space-4 first:pt-0 last:pb-0',
   row: cn(
     'py-space-4 first:pt-0 last:pb-0',
-    // From 720px each column takes a vertical rule on its left and space-6 either side of it, except the first column
-    // of each row of three, which starts on the container's left line, and the third, which ends on its right line.
-    'min-[720px]:border-l min-[720px]:border-rule min-[720px]:px-space-6 min-[720px]:py-0',
-    'min-[720px]:[&:nth-child(3n+1)]:border-l-0 min-[720px]:[&:nth-child(3n+1)]:pl-0 min-[720px]:[&:nth-child(3n)]:pr-0',
+    // From 720px the columns carry no padding, so their text starts on the grid's thirds, as the offer cards do (Phase
+    // 2.7 review: padded thirds set the text 17px and 9px off the cards above). The vertical rule stands in the middle
+    // of the gutter before the second and third column of each row of three, drawn by ::before.
+    'relative min-[720px]:py-0',
+    'min-[720px]:before:absolute min-[720px]:before:inset-y-0 min-[720px]:before:-left-space-3 min-[720px]:before:w-px min-[720px]:before:bg-rule',
+    'min-[720px]:[&:nth-child(3n+1)]:before:hidden',
   ),
 };
 

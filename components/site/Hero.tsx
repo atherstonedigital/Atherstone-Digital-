@@ -19,39 +19,44 @@ import { cn } from '@/lib/utils';
 // hairline above it. The hero is its content plus space-16 above and below (space-12 below 720px, as every section):
 // no minimum height, so it never pads itself out to a screen.
 //
-// The entrance (Phase 2.4 step 11, gsap-react and gsap-core) is the one thing on the page that moves on load: eyebrow,
-// H1, sub-copy, then the buttons with the fact line, 60ms apart, each from 1% opacity and 8px down to rest over 400ms
-// on power2.out, once. useGSAP runs it with the hero as its scope, so it is reverted on unmount; gsap.matchMedia sets
-// its durations to 0 under prefers-reduced-motion, so the copy is at rest from the first paint there.
+// The entrance (Phase 2.7, step 7, the owner's brief, per gsap-react and gsap-core): the one thing on the page that
+// moves on load. One gsap.from over the eyebrow, each headline line (a block of its own, no SplitText), the standfirst,
+// the buttons, the fact line under them and the chart, in that order: from y 12 and opacity 0.01 to rest, 0.6s each on
+// power2.out, 0.06s apart, once. useGSAP runs it with the hero as its scope, so it is reverted on unmount. It sits in a
+// gsap.matchMedia: under prefers-reduced-motion: reduce the branch sets the final state with gsap.set and no tween.
+// No ScrollTrigger, here or anywhere.
+//
+// Why 0.01 and not 0 (the orchestrator's ruling on the brief's opacity 0): Chrome does not count invisible or fully
+// transparent text as the largest contentful paint, so an entrance from 0 puts the homepage's LCP (the standfirst)
+// after all the JavaScript has run (Phase 3 review: Lighthouse mobile 74 to 82 that way, 97 to 99 at 1%). 0.01 looks
+// the same as 0.
 //
 // Static export paints the HTML before React hydrates, so an entrance that only held the copy back on hydration would
 // flash it, drop it, then fade it in. The root layout's head line (the taste kit's) puts m-enter on <html> before the
-// body parses, and its timer adds m-enter-done after 1000ms. Between the two, unless reduced motion is on,
-// the steps are held at 1% opacity by CSS. Hydration then hands them to GSAP, whose inline values take over, and the
-// timeline ends the hold itself when it finishes. If the page's JavaScript is slow or fails, the timer lets the copy
-// go and the entrance is skipped. Without JavaScript nothing is held back at all. The section carries the kit's
-// data-enter and its hero class, so the taste gate's hero-enter check reads the entrance it has.
-//
-// Why 1% and not hidden (Phase 3 review): Chrome does not count invisible or fully transparent text as the largest
-// contentful paint, so hiding the steps put the homepage's LCP (the sub-copy) after all the JavaScript had run, and
-// Lighthouse mobile scored it 74 to 82. At 1% the first paint counts; it scored 97 to 99, with the same motion. GSAP's
-// autoAlpha above 0 keeps the steps visible for the same reason.
+// body parses, and its timer adds m-enter-done after 1000ms. Between the two, unless reduced motion is on, every step
+// (the chart included) is held at 0.01 by CSS. On hydration, in the same layout effect and so before the next paint,
+// the entrance ends the hold (it adds m-enter-done itself) and gsap.from renders each step's starting state inline:
+// from() reads the resting values the hold was hiding, so it must come after the release, never before. If the page's
+// JavaScript is slow or fails, the timer lets the copy go and the entrance is skipped. Without JavaScript nothing is
+// held back at all. The section carries the kit's data-enter and its hero class, so the taste gate's hero-enter check
+// reads the entrance it has; data-hero-enter reads running, then done.
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(useGSAP);
 }
 
-/** The brand book's entrance as the owner's brief (Phase 2.4 step 11) times it: 400ms, 60ms apart, 8px of y. */
-const ENTRANCE_SECONDS = 0.4;
+/** The entrance as the owner's brief (Phase 2.7, step 7) times it: 0.6s each, 0.06s apart, 12px of y, power2.out. */
+const ENTRANCE_SECONDS = 0.6;
 const STAGGER_SECONDS = 0.06;
-const ENTRANCE_Y = 8;
+const ENTRANCE_Y = 12;
 const ENTRANCE_EASE = 'power2.out';
-/** The step's starting opacity: the hold's, so the hand-over to GSAP never flashes. Never 0 (see the note above). */
+/** The starting opacity: the hold's, so the hand-over to GSAP never flashes. Never 0 (see the note above). */
 const ENTRANCE_FROM_OPACITY = 0.01;
 
 /**
  * The class the root layout's head line adds to <html> once the hold is over: after its 1000ms fallback timer, or
- * when the entrance ends, whichever comes first. The hold itself is m-enter without this class (the step class below).
+ * when the entrance takes over on hydration, whichever comes first. The hold itself is m-enter without this class (the
+ * step class below).
  */
 const RELEASED = 'm-enter-done';
 
@@ -59,7 +64,7 @@ const RELEASED = 'm-enter-done';
 const ATTR = 'data-hero-enter';
 
 /**
- * A step of the entrance: held at 1% opacity while <html> is holding (m-enter without m-enter-done) and motion is not
+ * A step of the entrance: held at 0.01 opacity while <html> is holding (m-enter without m-enter-done) and motion is not
  * reduced, then GSAP's until it comes to rest. Not hidden and not 0: the first paint must count as the page's largest
  * contentful paint (see the note at the top).
  */
@@ -81,8 +86,7 @@ export interface HeroProps extends Omit<React.HTMLAttributes<HTMLElement>, 'cont
   wrapClassName?: string;
   /**
    * The hero's object beside the copy from 1024px, under it below: the homepage's revenue chart (a code-drawn chart with
-   * its source line). Not part of the entrance: the kit's rule is that the hero's picture is never hidden and never
-   * fades.
+   * its source line). The last step of the entrance (Phase 2.7, step 7, the owner's brief).
    */
   aside?: React.ReactNode;
   /**
@@ -110,18 +114,24 @@ export function Hero({
   // One line per sentence from 720px; the whole heading when the lines are not given.
   const lines = headingLines.length > 0 ? headingLines : [heading];
   const held = animate ? step : undefined;
+  /** The entrance's order: eyebrow 0, the headline lines 1 to n, then the standfirst, buttons, fact line and chart. */
+  const afterLines = 1 + lines.length;
 
   useGSAP(
     () => {
       const root = rootRef.current;
       if (!root || !animate) return;
       const html = document.documentElement;
-      // At rest already: the entrance ran (StrictMode's second mount, a reduced-motion change), or the head line's
-      // timer let the copy go before hydration, or this hero mounted after a client-side navigation.
+      // At rest already: the entrance ran (StrictMode's second mount), or the head line's timer let the copy go before
+      // hydration, or this hero mounted after a client-side navigation.
       if (root.getAttribute(ATTR) === 'done' || html.classList.contains(RELEASED)) {
         root.setAttribute(ATTR, 'done');
         return;
       }
+      // The steps in their order: eyebrow, each headline line, standfirst, buttons, fact line, chart.
+      const targets = Array.from(root.querySelectorAll<HTMLElement>('[data-hero-step]')).sort(
+        (a, b) => Number(a.dataset.heroStep) - Number(b.dataset.heroStep),
+      );
 
       const mm = gsap.matchMedia();
       mm.add(
@@ -129,40 +139,33 @@ export function Hero({
         (context) => {
           if (root.getAttribute(ATTR) === 'done') return;
           const { reduce = false } = (context.conditions ?? {}) as { reduce?: boolean };
-          // gsap.matchMedia's reduced-motion branch (brand book, GSAP rules): durations to 0. The copy was never
-          // held there, so nothing renders the starting state either.
-          const duration = reduce ? 0 : ENTRANCE_SECONDS;
-          const stagger = reduce ? 0 : STAGGER_SECONDS;
+          // End the hold first: from() takes the values it ends on from the page as it stands, and the hold's 0.01
+          // would be read as the end. This runs before the next paint, so nothing flashes between the two.
+          html.classList.add(RELEASED);
 
-          const steps = [0, 1, 2, 3].map((index) =>
-            Array.from(root.querySelectorAll<HTMLElement>(`[data-hero-step="${index}"]`)),
-          );
-          const targets = steps.flat();
-          // will-change on the hero elements only while they move (brand book, GSAP rules).
-          if (!reduce) gsap.set(targets, { willChange: 'transform' });
+          if (reduce) {
+            // The reduced-motion branch: the final state, set, with no tween.
+            gsap.set(targets, { opacity: 1, y: 0 });
+            root.setAttribute(ATTR, 'done');
+            return;
+          }
 
-          const timeline = gsap.timeline({
-            defaults: { duration, ease: ENTRANCE_EASE, immediateRender: !reduce },
+          gsap.from(targets, {
+            opacity: ENTRANCE_FROM_OPACITY,
+            y: ENTRANCE_Y,
+            duration: ENTRANCE_SECONDS,
+            ease: ENTRANCE_EASE,
+            stagger: STAGGER_SECONDS,
+            // will-change on the hero elements only while they move (brand book, GSAP rules).
+            willChange: 'transform',
             onComplete: () => {
-              // End the hold before the inline values go, or the hold's 1% would take the copy back.
-              html.classList.add(RELEASED);
-              gsap.set(targets, { clearProps: 'opacity,visibility,transform,willChange' });
+              gsap.set(targets, { clearProps: 'opacity,transform,willChange' });
               root.setAttribute(ATTR, 'done');
             },
           });
-          // fromTo, not from: from() would read the hold's 1% as the end value and stop there.
-          steps.forEach((group, index) => {
-            if (group.length === 0) return;
-            timeline.fromTo(
-              group,
-              { autoAlpha: ENTRANCE_FROM_OPACITY, y: ENTRANCE_Y },
-              { autoAlpha: 1, y: 0 },
-              index * stagger,
-            );
-          });
           root.setAttribute(ATTR, 'running');
-          // A revert part-way (StrictMode's second mount, a reduced-motion change) puts the copy back as it was and
-          // the next run animates it again, unless it finished.
+          // A revert part-way (StrictMode's second mount, a reduced-motion change) puts the steps back at rest; the
+          // next run animates them again, unless the entrance finished.
           return () => {
             if (root.getAttribute(ATTR) === 'running') root.removeAttribute(ATTR);
           };
@@ -206,24 +209,27 @@ export function Hero({
               {eyebrow}
             </p>
 
-            {/* display-1 steps from 34px to 64px with the viewport (tokens). Below 720px the H1 holds an 18ch measure
-                so it breaks between phrases; from 720px each sentence starts its own line. */}
+            {/* display-1 steps from 34px to 64px with the viewport (tokens). Each sentence is a block of its own, one
+                step of the entrance each (Phase 2.7, step 7: each headline line its own element, without SplitText),
+                so a transform moves it at every width. Below 720px the H1 holds an 18ch measure so a sentence breaks
+                between phrases. */}
             <Heading
               id={titleId}
-              data-hero-step="1"
-              className={cn(held, 'display-1 mb-space-6 max-w-[18ch] max-[359px]:mb-space-4 min-[720px]:max-w-none')}
+              className="display-1 mb-space-6 max-w-[18ch] max-[359px]:mb-space-4 min-[720px]:max-w-none"
             >
               {lines.map((line, index) => (
                 <React.Fragment key={line}>
                   {index > 0 ? ' ' : null}
-                  <span className="min-[720px]:block">{line}</span>
+                  <span data-hero-step={1 + index} className={cn(held, 'block')}>
+                    {line}
+                  </span>
                 </React.Fragment>
               ))}
             </Heading>
 
             {/* body-lg at measure-lg; body below 360px so the 320 screen keeps the buttons above the fold. */}
             <p
-              data-hero-step="2"
+              data-hero-step={afterLines}
               className={cn(
                 held,
                 'body-lg mb-space-8 max-w-measure-lg',
@@ -234,21 +240,24 @@ export function Hero({
             </p>
 
             {/* One primary and its one secondary (Button README), full width and stacked below 720px. */}
-            <div data-hero-step="3" className={cn(held, 'flex w-full flex-wrap items-center gap-space-3')}>
+            <div data-hero-step={afterLines + 1} className={cn(held, 'flex w-full flex-wrap items-center gap-space-3')}>
               <LinkButton link={primary} className="w-full min-[720px]:w-auto" />
               <LinkButton link={secondary} variant="secondary" className="w-full min-[720px]:w-auto" />
             </div>
 
             {/* The fact line: directly under the buttons in small, ink, no hairline (Phase 2.7, step 1). It enters
-                with the buttons. */}
-            <p data-hero-step="3" className={cn(held, 'small mt-space-4 text-ink')}>
+                after them. */}
+            <p data-hero-step={afterLines + 2} className={cn(held, 'small mt-space-4 text-ink')}>
               {fact}
             </p>
           </div>
 
           {aside ? (
             <div
+              // The entrance's last step (Phase 2.7, step 7).
+              data-hero-step={afterLines + 3}
               className={cn(
+                held,
                 'mt-space-12 min-w-0 min-[1024px]:col-span-5 min-[1024px]:col-start-8 min-[1024px]:mt-0',
                 // The bleed: a negative right margin as wide as the space between the container's right line and the
                 // viewport's right edge, half of what the container leaves of the viewport.

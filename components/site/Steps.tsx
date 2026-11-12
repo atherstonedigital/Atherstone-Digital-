@@ -16,6 +16,10 @@ import { cn } from '@/lib/utils';
 //     aside the right, two columns 24px apart, so the aside starts on the page's one split line (x 732 at 1440) and is
 //     top-aligned with the first step. Each step is its number and title on one line, the copy beneath; a rule parts each row from the next.
 //     Below 900px the aside follows the steps, text first.
+//   - with asideBleed too (the homepage, Phase 2.7 step 3a, the owner's brief): from 900px the aside leaves the
+//     container. It fills the right half of the viewport, from the container's midline (half the split gap left of the
+//     split line) to the viewport's right edge, and is exactly as tall as the four steps (the row stretches it; the
+//     photograph inside covers it). The section round it clips anything past the viewport.
 
 export interface StepsProps extends Omit<React.HTMLAttributes<HTMLElement>, 'content' | 'children'> {
   /** howItWorks from lib/content/site.ts on the homepage. With no eyebrow, the heading lines up with eyebrowed ones. */
@@ -29,6 +33,12 @@ export interface StepsProps extends Omit<React.HTMLAttributes<HTMLElement>, 'con
   /** The second column: a photograph of the work (the homepage takes the Canwell showroom). */
   aside?: React.ReactNode;
   /**
+   * From 900px, run the aside from the container's midline to the viewport's right edge, as tall as the steps (the
+   * homepage, Phase 2.7 step 3a). The aside must fill its box (ShowroomPhoto's fill). Only inside a section that spans
+   * the viewport and clips its overflow.
+   */
+  asideBleed?: boolean;
+  /**
    * The root element. Default: a section when the heading shows, else a div. div where the frame around it is the
    * section and is labelled by the heading (the homepage).
    */
@@ -41,6 +51,7 @@ export function Steps({
   headingLevel = 'h2',
   headingId,
   aside,
+  asideBleed = false,
   as,
   className,
   ...props
@@ -112,9 +123,27 @@ export function Steps({
         />
       ) : null}
       {split ? (
-        <div className="grid grid-cols-1 gap-y-space-8 min-[900px]:grid-cols-2 min-[900px]:items-start min-[900px]:gap-x-space-6">
+        <div
+          className={cn(
+            'grid grid-cols-1 gap-y-space-8 min-[900px]:grid-cols-2 min-[900px]:gap-x-space-6',
+            asideBleed ? 'min-[900px]:items-stretch' : 'min-[900px]:items-start',
+          )}
+        >
           {list}
-          <div className="min-w-0">{aside}</div>
+          <div
+            className={cn(
+              'min-w-0',
+              asideBleed &&
+                cn(
+                  // Half the split gap left of the split line is the container's midline; the negative right margin
+                  // is half of what the container leaves of the viewport.
+                  'relative min-[900px]:-ml-space-3',
+                  'min-[900px]:mr-[calc((min(100vw_-_2_*_var(--gutter),var(--container))_-_100vw)_/_2)]',
+                ),
+            )}
+          >
+            {aside}
+          </div>
         </div>
       ) : (
         list

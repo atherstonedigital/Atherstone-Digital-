@@ -25,6 +25,22 @@
 //     rendition up to 1600 wide that cannot fit stops the run; a wider one that cannot fit is left out and reported, so
 //     the 1600 rendition is then the largest served.
 //
+// Dan's portrait (Phase 2.7, step 3b): the homepage's Meet Dan sets the portrait on a green-900 slab, so its black
+// background is tinted toward green-900 and photo and slab read as one object. The source is Dan's own photograph,
+// public/dan-le-gresley-shopify-ecommerce-consultant.png, which is in git, so this part always runs. It is cropped
+// square as before (670px at x 354, y 28), then only the background's shadows move: each pixel is blended toward
+// green-900 by a luminance mask, fully at luminance 5 of 255 and below, easing to nothing at 14, so the black T-shirt
+// (about 23) stays black. The mask only reaches near-black pixels (10 or less) joined to the frame's edge by others (a
+// flood fill from the border), so a shadow inside the face or the shirt, the open mouth, a nostril, the inside of the
+// collar, is never tinted; it is feathered by a
+// 1.5px blur so the edge of the head stays soft. sharp's tint() keeps each pixel's luminance, so it cannot lift a black
+// background, and a multiply layer leaves black black; the mask can. The face is untouched: the run measures a box
+// over the forehead, eyes, nose and cheeks, and one over the mouth, before and after the grade, and stops if either
+// box's mean channel difference passes 0.5 of 255. The colour is read from lib/design/tokens.ts (colorValues), never
+// written here. Output: public/images/dan-le-gresley-portrait-green-670.webp, its placeholder, and lib/portraits.json,
+// which components/site/AboutStrip.tsx reads. The ungraded portrait (public/dan-le-gresley-portrait.webp) stays for the
+// About page.
+//
 // The originals stay untouched; the renditions are rebuilt from them on every run, so a change of grade or crop is a
 // change here and a rerun, never an edit to an output. Output is deterministic for a given sharp version.
 
@@ -40,6 +56,8 @@ const screenshotDir = path.join(root, 'assets', 'screenshots');
 const outDir = path.join(root, 'public', 'images');
 const manifestFile = path.join(root, 'lib', 'images.ts');
 const screenshotManifestFile = path.join(root, 'lib', 'screenshots.json');
+const portraitManifestFile = path.join(root, 'lib', 'portraits.json');
+const tokensFile = path.join(root, 'lib', 'design', 'tokens.ts');
 const publicBase = '/images';
 
 const WIDTHS = [800, 1200, 1600, 2400];
@@ -100,6 +118,29 @@ const SCREENSHOTS = {
     alt: 'The furniture collection on xshowhome.com, with the product type filter open and each category listed with its product count',
   },
 };
+
+/**
+ * Dan's portrait for the homepage slab: the square crop of his own photograph, its shadows tinted toward green-900. face
+ * is the box (in the crop's pixels) that must come through the grade unchanged.
+ */
+const PORTRAITS = {
+  'dan-le-gresley-shopify-ecommerce-consultant.png': {
+    key: 'danPortraitGreen',
+    name: 'dan-le-gresley-portrait-green',
+    crop: { left: 354, top: 28, width: 670, height: 670 },
+    face: { left: 110, top: 180, width: 220, height: 180 },
+    mouth: { left: 150, top: 410, width: 80, height: 30 },
+    // The approved alt text of the ungraded portrait (components/site/AboutStrip.tsx), unchanged.
+    alt: 'Dan Le Gresley, head and shoulders, in a black T-shirt against a black background, looking to one side',
+  },
+};
+/**
+ * The shadow mask: full at or below `full`, easing (smoothstep) to nothing at `none`, luminance out of 255, at most
+ * `strength`, on the dark pixels joined to the border (luminance `reach` or less), feathered by `feather` px.
+ */
+const SHADOWS = { full: 5, none: 14, strength: 0.9, reach: 10, feather: 1.5 };
+/** The face box's largest allowed mean channel difference, out of 255. */
+const FACE_LIMIT = 0.5;
 
 // ------------------------------------------------------------------ geometry
 
@@ -373,9 +414,119 @@ async function screenshots() {
   }
 }
 
+/** green-900's light value from the generated tokens, as [r, g, b]. */
+function green900() {
+  const match = /'green-900': \{ light: '(#[0-9a-f]{6})'/i.exec(fs.readFileSync(tokensFile, 'utf8'));
+  if (!match) throw new Error('green-900 not found in lib/design/tokens.ts (colorValues).');
+  return [1, 3, 5].map((i) => parseInt(match[1].slice(i, i + 2), 16));
+}
+
+/** The mean absolute channel difference of two raw images inside a box. */
+function meanDifference(a, b, raw, box) {
+  let sum = 0;
+  let count = 0;
+  for (let y = box.top; y < box.top + box.height; y += 1) {
+    for (let x = box.left; x < box.left + box.width; x += 1) {
+      const i = (y * raw.width + x) * raw.channels;
+      for (let c = 0; c < 3; c += 1) sum += Math.abs(a[i + c] - b[i + c]);
+      count += 3;
+    }
+  }
+  return sum / count;
+}
+
+/** Dan's portrait: the square crop, its shadows blended toward green-900, one rendition, and lib/portraits.json. */
+async function portraits() {
+  const [gr, gg, gb] = green900();
+  const entries = {};
+  for (const [file, spec] of Object.entries(PORTRAITS)) {
+    const input = path.join(root, 'public', file);
+    const { data, info } = await sharp(input)
+      .extract(spec.crop)
+      .removeAlpha()
+      .toColourspace('srgb')
+      .raw()
+      .toBuffer({ resolveWithObject: true });
+    const raw = { width: info.width, height: info.height, channels: info.channels };
+    const { width: W, height: H, channels: C } = raw;
+    const lum = new Float32Array(W * H);
+    for (let p = 0; p < W * H; p += 1) lum[p] = 0.2126 * data[p * C] + 0.7152 * data[p * C + 1] + 0.0722 * data[p * C + 2];
+
+    // The background: dark pixels joined to the frame's edge, found by a flood fill from the border.
+    const reached = new Uint8Array(W * H);
+    const stack = [];
+    const reach = (p) => {
+      if (!reached[p] && lum[p] <= SHADOWS.reach) {
+        reached[p] = 1;
+        stack.push(p);
+      }
+    };
+    for (let x = 0; x < W; x += 1) [x, (H - 1) * W + x].forEach(reach);
+    for (let y = 0; y < H; y += 1) [y * W, y * W + W - 1].forEach(reach);
+    while (stack.length) {
+      const p = stack.pop();
+      const x = p % W;
+      if (x > 0) reach(p - 1);
+      if (x < W - 1) reach(p + 1);
+      if (p >= W) reach(p - W);
+      if (p < (H - 1) * W) reach(p + W);
+    }
+
+    // The weight per pixel, 0 to 255, then feathered.
+    const weight = Buffer.alloc(W * H);
+    for (let p = 0; p < W * H; p += 1) {
+      if (!reached[p]) continue;
+      const t = Math.min(Math.max((SHADOWS.none - lum[p]) / (SHADOWS.none - SHADOWS.full), 0), 1);
+      weight[p] = Math.round(t * t * (3 - 2 * t) * SHADOWS.strength * 255);
+    }
+    // One channel in, one channel out: sharp would otherwise hand back sRGB, three bytes a pixel.
+    const feathered = await sharp(weight, { raw: { width: W, height: H, channels: 1 } })
+      .blur(SHADOWS.feather)
+      .toColourspace('b-w')
+      .extractChannel(0)
+      .raw()
+      .toBuffer();
+    if (feathered.length !== W * H) throw new Error('The feathered mask is not one byte a pixel.');
+
+    const graded = Buffer.from(data);
+    for (let p = 0; p < W * H; p += 1) {
+      const w = feathered[p] / 255;
+      if (w === 0) continue;
+      const i = p * C;
+      graded[i] = Math.round(data[i] + (gr - data[i]) * w);
+      graded[i + 1] = Math.round(data[i + 1] + (gg - data[i + 1]) * w);
+      graded[i + 2] = Math.round(data[i + 2] + (gb - data[i + 2]) * w);
+    }
+    const face = meanDifference(data, graded, raw, spec.face);
+    const mouth = meanDifference(data, graded, raw, spec.mouth);
+    const corner = meanDifference(data, graded, raw, { left: 0, top: 0, width: 80, height: 80 });
+    console.log(
+      `${file} -> ${spec.name} (crop ${spec.crop.width}x${spec.crop.height} at ${spec.crop.left},${spec.crop.top}, shadows toward rgb ${gr},${gg},${gb})`,
+    );
+    console.log(
+      `  mean channel difference: face box ${face.toFixed(3)}, mouth box ${mouth.toFixed(3)}, background corner ${corner.toFixed(1)} (of 255)`,
+    );
+    if (face > FACE_LIMIT || mouth > FACE_LIMIT) {
+      throw new Error(`The grade moved the face (${face.toFixed(3)}) or the mouth (${mouth.toFixed(3)}), over ${FACE_LIMIT}.`);
+    }
+    const out = await writeRenditions(spec, { data: graded, raw }, raw.width, WIDTHS, REQUIRED_UP_TO);
+    const largest = out.renditions[out.renditions.length - 1];
+    entries[spec.key] = {
+      src: largest.src,
+      width: largest.width,
+      height: largest.height,
+      blurDataURL: out.placeholder.dataUrl,
+      alt: spec.alt,
+    };
+  }
+  fs.writeFileSync(portraitManifestFile, `${JSON.stringify(entries, null, 2)}\n`);
+  console.log(`wrote ${path.relative(root, portraitManifestFile)}`);
+}
+
 async function main() {
   await photographs();
   await screenshots();
+  await portraits();
 }
 
 main().catch((error) => {

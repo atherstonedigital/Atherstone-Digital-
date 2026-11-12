@@ -238,10 +238,16 @@ export default function HomePage() {
         <ComparisonTable content={comparison} headingId="comparison-heading" headingSize="display-2" />
       </Screen>
 
-      {/* 6 How it works: the four steps on the left half, the Canwell showroom on the right (the second change of
-          ground: a real photograph). */}
-      <Screen id="how-it-works" labelledBy="how-it-works-heading" innerClassName={flow}>
-        <Steps as="div" content={howItWorks} headingId="how-it-works-heading" aside={<ShowroomPhoto />} />
+      {/* 6 How it works: the four steps on the left half; the Canwell showroom fills the right half of the viewport
+          from the container's midline to its edge, as tall as the steps (Phase 2.7, step 3a: the second bleed). */}
+      <Screen id="how-it-works" labelledBy="how-it-works-heading" className="overflow-x-clip" innerClassName={flow}>
+        <Steps
+          as="div"
+          content={howItWorks}
+          headingId="how-it-works-heading"
+          aside={<ShowroomPhoto fill />}
+          asideBleed
+        />
       </Screen>
 
       {/* 7 Sectors: all five, as the plan's nav lists them (decision 3), in one row of five from 1200px, each with its
@@ -256,9 +262,11 @@ export default function HomePage() {
         />
       </Screen>
 
-      {/* 8 Meet Dan: the strip is its own labelled section. Its columns meet on the page's split line (24px apart). */}
-      <Screen id="about" innerClassName={flow}>
-        <AboutStrip content={meetDan} headingId="about-heading" className="min-[720px]:gap-x-space-6" />
+      {/* 8 Meet Dan: the strip is its own labelled section. Its columns meet on the page's split line (24px apart). The
+          regraded portrait stands on the green slab, which runs to the viewport's edge (Phase 2.7, step 3b: the third
+          bleed). */}
+      <Screen id="about" className="overflow-x-clip" innerClassName={flow}>
+        <AboutStrip content={meetDan} headingId="about-heading" slab className="min-[720px]:gap-x-space-6" />
       </Screen>
 
       {/* 9 Insights and 10 the scorecard: the articles on the left half, the scorecard's raised panel on the right from

@@ -6,12 +6,12 @@ import { cn } from '@/lib/utils';
 
 // The frame every section of the site sits on, the homepage included, and the visible stub.
 //
-// Phase 2.4, step 7 (design-taste-frontend, layout rhythm; the owner's brief overrides the skill's one-screen rule): a
-// section is its content plus space-16 above and below (space-12 below 720px), at least 60dvh tall and with no maximum.
-// The fixed screen heights of Phases 1 to 3 are gone: a section never pads itself out to a whole viewport, so no section
-// is left with a blank band below its last element. The page's first section (the page head) takes space-24 above and
-// below from 1200px (brand book, Layout: the hero), the same minimum, and sits straight under the nav. The homepage hero
-// is its own component and fills 100dvh minus the nav.
+// Phase 2.7, step 4 (the owner's brief: kill the dead space): a section is its content plus space-16 above and below
+// (space-12 below 720px), with no minimum and no maximum height. The 60dvh floor of Phases 2.4 to 2.6 is gone: on a
+// section shorter than it, it left a blank slab of about 150px (above Sectors and above Meet Dan). The two green bands
+// (ground band) take space-24 above and below from 720px (space-16 below), the only sections that do. The page's first
+// section (the page head) takes space-24 above and below from 1200px (brand book, Layout: the hero) and sits straight
+// under the nav. The homepage hero is its own component.
 //
 // Every frame is a <section> with exactly one child, the container (class wrap), so <main> is made of sections only and
 // each section holds one wrap on the container's lines (the gate's one-section and container-edges). The page head's
@@ -28,6 +28,9 @@ export const container = 'wrap mx-auto w-[min(100%_-_2_*_var(--gutter),var(--con
 
 /** A section's padding: space-12 below 720px, space-16 from 720px (brand book, Layout and spacing). */
 export const sectionPadding = 'py-space-12 min-[720px]:py-space-16';
+
+/** A green band's padding: space-16 below 720px, space-24 from 720px (Phase 2.7, step 4). */
+const bandPadding = 'py-space-16 min-[720px]:py-space-24';
 
 /** The page head's padding: as a section's, then space-24 from 1200px (brand book, Layout: the hero). */
 const firstPadding = 'py-space-12 min-[720px]:py-space-16 min-[1200px]:py-space-24';
@@ -50,7 +53,10 @@ export interface ScreenProps extends Omit<React.HTMLAttributes<HTMLElement>, 'ch
    * took their content's height (Phase 2.4).
    */
   phoneScreens?: 1 | 2;
-  /** The last frame before the CTABand: as tall as its content, with no minimum, so the two read as one close. */
+  /**
+   * Kept for the pages that pass it: the last frame before the CTABand. Every frame is now as tall as its content
+   * (Phase 2.7, step 4), so it sets nothing.
+   */
   closing?: boolean;
   /**
    * paper (the default), or band: the full-bleed green-900 ground with on-green text (brand book, Colour; the band
@@ -69,7 +75,7 @@ export function Screen({
   labelledBy,
   first = false,
   phoneScreens: _phoneScreens,
-  closing = false,
+  closing: _closing,
   ground = 'paper',
   rule,
   className,
@@ -85,9 +91,7 @@ export function Screen({
       className={cn(
         band ? 'bg-band text-on-band' : 'text-ink',
         showRule && 'border-t border-rule',
-        first ? firstPadding : sectionPadding,
-        // At least 60% of the screen, never a fixed height: the frame grows with what it holds.
-        !closing && 'min-h-[60dvh]',
+        first ? firstPadding : band ? bandPadding : sectionPadding,
         className,
       )}
       {...props}

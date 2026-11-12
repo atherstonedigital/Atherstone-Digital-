@@ -45,7 +45,8 @@ import { ShowroomPhoto } from './_home/ShowroomPhoto';
 //
 // Phase 2.4 (section C) and Phase 2.5, with the skill that enforces each:
 //   - Rhythm (design-taste-frontend, as the owner's brief sets it): every section is its content plus space-16 above and
-//     below (space-12 below 720px), at least 60dvh, no maximum (components/site/Screen.tsx); the hero is its content
+//     below (space-12 below 720px), space-24 on the two green bands, no minimum and no maximum (components/site/Screen.tsx,
+//     Phase 2.7 step 4); the hero is its content
 //     plus space-16 above and below, its revenue chart beside the copy (Phase 2.7, step 1). Every section is a <section> in <main> holding one .wrap on the container's lines. Every two-column
 //     split starts its right column on one line, column 7 of twelve with a 24px gap (x 732 at 1440), the left column
 //     ending 24px before it, both columns top-aligned and text on the left.
@@ -251,9 +252,8 @@ export default function HomePage() {
       </Screen>
 
       {/* 7 Sectors: all five, as the plan's nav lists them (decision 3), in one row of five from 1200px, each with its
-          one line. Each tile is as tall as its words; the frame centres its content in the 60dvh floor, so the slack
-          splits above and below the row instead of sitting inside the cards (Polish review). */}
-      <Screen id="sectors" labelledBy="sectors-heading" className="flex flex-col justify-center" innerClassName={flow}>
+          one line. The section is as tall as its content (Phase 2.7, step 4). */}
+      <Screen id="sectors" labelledBy="sectors-heading" innerClassName={flow}>
         <SectorTiles
           as="div"
           layout="row"

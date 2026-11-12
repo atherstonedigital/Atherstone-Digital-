@@ -54,7 +54,13 @@ export function DirectLines({ ground = 'paper', className }: DirectLinesProps) {
             <TextLink
               href={link.href}
               hitArea
-              className={band ? 'text-on-band focus-visible:outline-on-band' : undefined}
+              className={
+                band
+                  ? // The hover underline turns brass, as everywhere, in the brass that reads on the band: brass-300
+                    // in the light theme (8.95:1; brass-600 is 2.36:1 there), brass-600 in the dark (6.32:1).
+                    'text-on-band focus-visible:outline-on-band hover:decoration-brass-300 active:decoration-brass-300 dark:hover:decoration-brass-600 dark:active:decoration-brass-600'
+                  : undefined
+              }
             >
               {link.label}
             </TextLink>

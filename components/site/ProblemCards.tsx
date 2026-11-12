@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 //
 // Two grounds:
 //   - band (the homepage; Phase 2.7 step 5, the owner's brief): on the full-bleed green band, the eyebrow and the
-//     heading with no hairline, then the five problems as a numbered ledger: 01 to 05 in brass-600, small, tabular
+//     heading with no hairline, then the five problems as a numbered ledger: 01 to 05 in brass, small, tabular
 //     (the only new words: the numbers; hidden from screen readers, since the ordered list says the order), each above
 //     its problem in heading-2, its line of copy beneath in body, on-band at 80% opacity. All three start on the
 //     container's left line. Paper hairlines part the rows, as the
@@ -141,7 +141,12 @@ export function ProblemCards({
             >
               {/* The number sits above its problem, as the brass marker sits above a figure, so the number, the
                   problem and its line all start on the container's left line (the gate's container-edges, SR-6). */}
-              <span aria-hidden="true" className="small mb-space-2 block tabular-nums text-brass-600">
+              {/* Brass on the band (decided 12 Nov 2026 under the brief's WCAG AA rule): brass-600 is 2.36:1 on the light theme's band, so the
+                  light theme takes brass-300 (8.95:1) and the dark theme keeps brass-600 (6.32:1 on its band). */}
+              <span
+                aria-hidden="true"
+                className="small mb-space-2 block tabular-nums text-brass-300 dark:text-brass-600"
+              >
                 {ledgerNumber(index)}
               </span>
               <ItemHeading className="heading-2">{item.title}</ItemHeading>

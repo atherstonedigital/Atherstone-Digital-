@@ -212,9 +212,17 @@ export default function HomePage() {
         <ForwardLink link={proof.link} className="mt-space-6 justify-self-start" />
       </Screen>
 
-      {/* 3 Sound familiar? The first change of ground: the full-bleed green band, the five problems as a two-column
-          list parted by on-green rules. */}
-      <Screen id="problems" labelledBy="problems-heading" ground="band" innerClassName={flow}>
+      {/* 3 Sound familiar? The first change of ground: the full-bleed green band under a 2px brass-600 rule, the
+          eyebrow and the display-2 heading, then the five problems as a numbered ledger parted by paper hairlines
+          (Phase 2.7, steps 5 and 6). */}
+      <Screen
+        id="problems"
+        labelledBy="problems-heading"
+        ground="band"
+        // A 2px brass-600 rule across the top of the band, full bleed (Phase 2.7, step 6).
+        className="border-t-2 border-brass-600"
+        innerClassName={flow}
+      >
         <ProblemCards
           as="div"
           variant="band"
@@ -257,6 +265,7 @@ export default function HomePage() {
           headingId="how-it-works-heading"
           aside={<ShowroomPhoto fill />}
           asideBleed
+          numberTone="brass"
         />
       </Screen>
 

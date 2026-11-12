@@ -20,6 +20,8 @@ import { cn } from '@/lib/utils';
 //     container. It fills the right half of the viewport, from the container's midline (half the split gap left of the
 //     split line) to the viewport's right edge, and is exactly as tall as the four steps (the row stretches it; the
 //     photograph inside covers it). The section round it clips anything past the viewport.
+// The numbers are ink-muted; the homepage sets them in brass-600 (numberTone brass, Phase 2.7 step 6: one of the two
+// added uses of the accent).
 
 export interface StepsProps extends Omit<React.HTMLAttributes<HTMLElement>, 'content' | 'children'> {
   /** howItWorks from lib/content/site.ts on the homepage. With no eyebrow, the heading lines up with eyebrowed ones. */
@@ -38,6 +40,8 @@ export interface StepsProps extends Omit<React.HTMLAttributes<HTMLElement>, 'con
    * the viewport and clips its overflow.
    */
   asideBleed?: boolean;
+  /** The step numbers' colour: ink-muted (the default) or brass-600 (the homepage, Phase 2.7 step 6). */
+  numberTone?: 'muted' | 'brass';
   /**
    * The root element. Default: a section when the heading shows, else a div. div where the frame around it is the
    * section and is labelled by the heading (the homepage).
@@ -52,6 +56,7 @@ export function Steps({
   headingId,
   aside,
   asideBleed = false,
+  numberTone = 'muted',
   as,
   className,
   ...props
@@ -63,6 +68,7 @@ export function Steps({
   const Root = as ?? (showHeading ? 'section' : 'div');
   const ItemHeading = headingLevel === 'h2' ? 'h3' : 'h4';
   const split = Boolean(aside);
+  const numberColour = numberTone === 'brass' ? 'text-brass-600' : 'text-ink-muted';
 
   const list = split ? (
     <ol className="grid grid-cols-1 divide-y divide-rule">
@@ -70,7 +76,7 @@ export function Steps({
         // A rule parts each row from the next (the list draws it, so every row is set alike), space-4 each side.
         <li key={item.number} className="grid grid-cols-1 gap-y-space-2 py-space-4 first:pt-0 last:pb-0">
           <ItemHeading className="heading-2">
-            <span className="small mr-space-3 tabular-nums text-ink-muted">{item.number}</span> {item.title}
+            <span className={cn('small mr-space-3 tabular-nums', numberColour)}>{item.number}</span> {item.title}
           </ItemHeading>
           <p className="body max-w-measure">{item.body}</p>
         </li>
@@ -93,7 +99,7 @@ export function Steps({
               'min-[900px]:col-span-5 min-[900px]:grid min-[900px]:grid-cols-5 min-[900px]:items-baseline min-[900px]:gap-x-gutter',
             )}
           >
-            <span className="small mr-space-2 tabular-nums text-ink-muted min-[900px]:col-span-1 min-[900px]:mr-0">
+            <span className={cn('small mr-space-2 tabular-nums min-[900px]:col-span-1 min-[900px]:mr-0', numberColour)}>
               {item.number}
             </span>{' '}
             <span className="min-[900px]:col-span-4">{item.title}</span>

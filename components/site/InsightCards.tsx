@@ -36,15 +36,18 @@ export function formatInsightDate(iso: string) {
 const listLayout: Record<InsightCardsLayout, string> = {
   // A ruled list: a rule between rows.
   stack: 'grid-cols-1 divide-y divide-rule',
-  // Three across from 720px with a vertical rule between columns; a ruled list below.
-  row: 'grid-cols-1 divide-y divide-rule min-[720px]:grid-cols-3 min-[720px]:divide-x min-[720px]:divide-y-0',
+  // Three across from 720px, rows of three space-8 apart; a ruled list below.
+  row: 'grid-cols-1 divide-y divide-rule min-[720px]:grid-cols-3 min-[720px]:gap-y-space-8 min-[720px]:divide-y-0',
 };
 
 const itemLayout: Record<InsightCardsLayout, string> = {
   stack: 'py-space-4 first:pt-0 last:pb-0',
   row: cn(
     'py-space-4 first:pt-0 last:pb-0',
-    'min-[720px]:px-space-6 min-[720px]:py-0 min-[720px]:first:pl-0 min-[720px]:last:pr-0',
+    // From 720px each column takes a vertical rule on its left and space-6 either side of it, except the first column
+    // of each row of three, which starts on the container's left line, and the third, which ends on its right line.
+    'min-[720px]:border-l min-[720px]:border-rule min-[720px]:px-space-6 min-[720px]:py-0',
+    'min-[720px]:[&:nth-child(3n+1)]:border-l-0 min-[720px]:[&:nth-child(3n+1)]:pl-0 min-[720px]:[&:nth-child(3n)]:pr-0',
   ),
 };
 
@@ -83,7 +86,8 @@ export function InsightCards({
   const showHeading = withHeading && Boolean(content.heading);
   const Root = showHeading ? 'section' : 'div';
   const ItemHeading = headingLevel === 'h2' ? 'h3' : 'h4';
-  const stack = layout === 'stack';
+  // The stack's date column, only where a date is there to show: a list of planned articles keeps one column.
+  const stack = layout === 'stack' && content.articles.some((article) => article.published);
 
   return (
     <Root aria-labelledby={showHeading ? titleId : undefined} className={className} {...props}>
@@ -110,7 +114,7 @@ export function InsightCards({
                   {formatInsightDate(article.published)}
                 </time>
               ) : null}
-              <span className={cn('eyebrow text-ink-muted', stack && !article.published && 'min-[480px]:col-start-2')}>
+              <span className={cn('eyebrow text-ink-muted', stack && 'min-[480px]:col-start-2')}>
                 {article.sectorTag}
               </span>
               <ItemHeading

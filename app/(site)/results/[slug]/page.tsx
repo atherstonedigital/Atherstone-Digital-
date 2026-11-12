@@ -123,7 +123,7 @@ function partEight(page: CaseStudyPage) {
     : links.articles.map((slug) => {
         const post = getInsightPost(slug);
         if (!post) throw new Error(`${caseStudy.slug} links /insights/${slug}, which is not a written post.`);
-        return { slug: post.slug, href: post.href, title: post.title, sectorTag: post.sectorTag };
+        return { slug: post.slug, href: post.href, title: post.title, sectorTag: post.sectorTag, published: post.published };
       });
   return { offer, sector, articles };
 }

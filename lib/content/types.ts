@@ -314,7 +314,7 @@ export interface CaseStudy {
 }
 
 /** What an article card needs: the planned articles and the archive posts both carry it. */
-export type ArticleCard = Pick<Article, 'slug' | 'href' | 'title' | 'sectorTag'>;
+export type ArticleCard = Pick<Article, 'slug' | 'href' | 'title' | 'sectorTag'> & { published?: string };
 
 export interface InsightsSection extends SectionIntro {
   articles: ArticleCard[];

@@ -1,6 +1,6 @@
 // Content shared by the nav, footer, homepage and design-system route, taken verbatim from docs/site-plan.md where the
 // plan has copy. Apostrophes are set typographically. Anything the plan does not supply is marked as a Phase 1, 2 or 3
-// draft and is pending Dan's approval before launch. Page-level copy is in lib/content/pages; this file stays free of
+// copy approved by Dan on 12 Nov 2026. Page-level copy is in lib/content/pages; this file stays free of
 // heavy imports because the nav and footer bundles import it.
 //
 // Public repo rule: only figures already public on the live site appear here (16,193 product records, 120+ hours a
@@ -64,7 +64,7 @@ export const closingActions = {
   secondary: { label: 'Start with a Health Check', href: '/store-health-check' } as Link,
 };
 
-/** Phase 2 draft, pending Dan's approval: the plan gives the FAQ blocks no heading. */
+/** Phase 2 copy, approved by Dan on 12 Nov 2026: the plan gives the FAQ blocks no heading. */
 export const faqHeading = { eyebrow: 'FAQ', heading: 'Questions owners ask first' };
 
 // ------------------------------------------------------------------ offers and sectors (shared by nav, footer, homepage)
@@ -77,7 +77,7 @@ export const offers: OffersSection = {
       id: 'ecommerce-director',
       href: '/ecommerce-director',
       name: 'Ecommerce Director',
-      // Eyebrows: Phase 1 draft, from the OfferCard preview; the plan has none.
+      // Eyebrows: Phase 1 copy (approved by Dan on 12 Nov 2026), from the OfferCard preview; the plan has none.
       eyebrow: 'The retainer',
       summary: 'I run your online operation month to month: site, catalogue, feeds, ads, email, reporting, and any developers or agencies you already have.',
       price: { pre: 'From', amount: '£3,000', post: 'a month' },
@@ -124,7 +124,7 @@ export const offers: OffersSection = {
       },
     },
   ],
-  // Phase 1 draft: the OfferCard README puts one primary button under the row.
+  // Phase 1 copy (approved by Dan on 12 Nov 2026): the OfferCard README puts one primary button under the row.
   cta: bookACall,
 };
 
@@ -328,7 +328,7 @@ export const problems: ProblemsSection = {
 export const comparison: ComparisonSection = {
   eyebrow: 'Agency, in-house, or a director',
   heading: 'You have three options. Only one of them owns the number.',
-  // Phase 1 draft: screen-reader caption, not in the plan.
+  // Phase 1 copy (approved by Dan on 12 Nov 2026): screen-reader caption, not in the plan.
   caption: 'Agency, full-time head of ecommerce and ecommerce director compared',
   columns: ['Agency', 'Full-time head of ecommerce', 'Ecommerce director (me)'],
   rows: [
@@ -451,14 +451,14 @@ export const leadMagnet: LeadMagnet = {
     required: true,
     autoComplete: 'email',
     inputMode: 'email',
-    // Phase 1 drafts.
+    // Phase 1 copy, approved by Dan on 12 Nov 2026.
     messages: {
       required: 'Enter your email address, so I can send you the scorecard.',
       invalid: 'Enter an email address with an @ and a domain, like name@yourshop.co.uk.',
     },
   },
   submit: 'Send me the scorecard',
-  // Phase 1 draft. "Within one working day" is open against the plan's decision on scorecard delivery.
+  // Phase 1 copy, approved by Dan on 12 Nov 2026, "within one working day" included.
   confirmation: {
     heading: 'Thank you.',
     body: 'I’ll email the scorecard to {email} within one working day.',
@@ -474,7 +474,7 @@ export const contactSection: ContactSection = {
   netlifyFormName: 'brief',
   // The plan's fields in its order. "Business name and website" is a fieldset with two inputs, because one field
   // cannot carry both autocomplete="organization" and type="url" (Phase 1). Select options keep the plan's values,
-  // capitalised as option labels. Placeholders and messages are Phase 1 drafts.
+  // capitalised as option labels. Placeholders and messages are Phase 1 copy, approved by Dan on 12 Nov 2026.
   fields: [
     {
       name: 'name',
@@ -543,7 +543,7 @@ export const contactSection: ContactSection = {
   ],
   submit: 'Send brief',
   alternative: { lead: 'or', link: { label: 'book a 30-minute call', href: contact.calendlyUrl, external: true } },
-  // Phase 1 drafts, except failed, which is new in Phase 2 (the brand book asks for a plain message on failure).
+  // Phase 1 copy (approved by Dan on 12 Nov 2026), except failed, which is new in Phase 2 (the brand book asks for a plain message on failure).
   status: {
     sending: 'Sending',
     oneInvalid: 'One field needs an answer before this can send.',

@@ -62,8 +62,8 @@ export function generateMetadata({ params }: Params) {
   return buildMetadata(caseStudyRoute(params.slug));
 }
 
-/** Phase 3 draft, pending Dan's approval: the heading over part 8's offer and sector. The eyebrow is the homepage's. */
-const fitsDraft = { eyebrow: offers.eyebrow, heading: 'Where this work fits' } as const;
+/** Phase 3 copy, approved by Dan on 12 Nov 2026: the heading over part 8's offer and sector. The eyebrow is the homepage's. */
+const fitsCopy = { eyebrow: offers.eyebrow, heading: 'Where this work fits' } as const;
 
 /** The plan's label for part 2 of the template ("The business"), as a heading. */
 const BUSINESS_HEADING = 'The business';
@@ -190,7 +190,7 @@ export default function CaseStudyPage({ params }: Params) {
   const links = (
     <div className="grid grid-cols-1 gap-y-space-12 min-[900px]:grid-cols-12 min-[900px]:gap-x-space-6">
       <section aria-labelledby="fits-heading" className="min-w-0 min-[900px]:col-span-6">
-        <SectionHeading eyebrow={fitsDraft.eyebrow} heading={fitsDraft.heading} headingId="fits-heading" />
+        <SectionHeading eyebrow={fitsCopy.eyebrow} heading={fitsCopy.heading} headingId="fits-heading" />
         <div className="grid grid-cols-1 gap-space-6">
           {offer ? <OfferCard offer={offer} headingLevel="h3" /> : <p className="body max-w-measure">{STUB_LABEL}</p>}
           {sector ? (

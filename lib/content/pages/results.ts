@@ -9,7 +9,7 @@
 // Search Console figures, and every Saverys and Canwell figure wait for the client's written permission and never
 // enter this repository.
 //
-// Drafts, pending Dan's approval: every case study title tag and meta description, the index's title tag, meta
+// Approved by Dan on 12 Nov 2026: every case study title tag and meta description, the index's title tag, meta
 // description and H1, the filter's "All" label, Xshowhome's business line, and the slugs (the plan defines none).
 
 import type { PhotoName } from '../../images';
@@ -43,7 +43,7 @@ const xshowhome: CaseStudyPage = {
     slug: 'xshowhome',
     href: '/results/xshowhome',
     title: 'Xshowhome',
-    // Draft from the plan's facts: a furniture retailer (homepage proof block), selling on Shopify (Results evidence).
+    // Written from the plan's facts (approved by Dan on 12 Nov 2026): a furniture retailer (homepage proof block), selling on Shopify (Results evidence).
     business: 'A furniture retailer selling online on Shopify.',
     stat: { figure: '16,193', line: 'Product records remediated in one furniture catalogue' },
     sector: { label: 'Furniture', slug: 'furniture-retailers' },
@@ -212,7 +212,7 @@ export const resultsIndexPage: ResultsIndexPage = {
     description:
       'Case studies from furniture and interiors retailers: what was wrong, what I did and what changed, with figures where the client has cleared them.',
   },
-  // Phase 3 draft, pending Dan's approval: the plan writes no H1 for the index, and its title rule wants the H1 to
+  // Phase 3 copy, approved by Dan on 12 Nov 2026: the plan writes no H1 for the index, and its title rule wants the H1 to
   // match the title tag's intent ("Furniture & Interiors Ecommerce Case Studies", primary term "ecommerce case studies
   // furniture"). "Results" stays the page's label in the nav, the breadcrumbs and the offer pages' case-study block.
   h1: 'Case studies from furniture and interiors retailers',

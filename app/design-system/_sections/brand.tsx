@@ -77,9 +77,9 @@ function Band({ className, children }: { className?: string; children: React.Rea
 }
 
 // Result lines are not approved yet, so lib/content/site.ts leaves them empty. The demo shows the variant with Gary's
-// Phase 1 draft, taken from the case-study link label in the same file (pending Dan's and the client's sign-off).
+// Phase 1 copy, taken from the case-study link label in the same file (approved by Dan on 12 Nov 2026, with the client's sign-off).
 const saverysLink = contactSection.confirmation.links[1].label;
-const garyResultDraft = (() => {
+const garyResult = (() => {
   const words = saverysLink.slice(saverysLink.indexOf(':') + 2);
   return words.charAt(0).toUpperCase() + words.slice(1);
 })();
@@ -279,8 +279,8 @@ export default function BrandSection() {
           <Sample label="Testimonial, plain">
             <Testimonial quote={gary.quote} name={gary.name} business={gary.business} />
           </Sample>
-          <Sample label="Testimonial, result line (Phase 1 draft)">
-            <Testimonial quote={gary.quote} name={gary.name} business={gary.business} result={garyResultDraft} />
+          <Sample label="Testimonial, result line">
+            <Testimonial quote={gary.quote} name={gary.name} business={gary.business} result={garyResult} />
           </Sample>
           <Sample label={`Testimonial, ${gemma.business}`}>
             <Testimonial quote={gemma.quote} name={gemma.name} business={gemma.business} />

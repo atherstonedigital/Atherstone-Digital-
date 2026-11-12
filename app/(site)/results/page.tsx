@@ -21,7 +21,7 @@ import { ResultsFilter, type ResultsFilterLabels } from './_filter';
 export const metadata = buildMetadata('/results');
 
 /**
- * Phase 3 drafts, pending Dan's approval: the filter group's screen-reader name, the status line, and the empty state.
+ * Phase 3 copy, approved by Dan on 12 Nov 2026: the filter group's screen-reader name, the status line, and the empty state.
  * The two labels and "All" are the content module's.
  */
 const filterLabels: ResultsFilterLabels = {

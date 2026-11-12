@@ -1,7 +1,7 @@
 // /agency-or-in-house (plan, Results, About, Insights, Contact > /agency-or-in-house). The plan gives the title tag,
 // the H1 and the structure; the body is not written beyond the homepage's comparison (comparison in lib/content/site.ts),
 // which the page carries. The rest is stubbed with the plan's headings, so the page is noindex until written (Phase 3
-// decision 4). Drafts, pending Dan's approval: the meta description and the section headings, each the plan's own
+// decision 4). Approved by Dan on 12 Nov 2026: the meta description and the section headings, each the plan's own
 // phrase for the part with a capital first letter.
 
 import { closingActions, comparison, faqHeading } from '../site';
@@ -12,7 +12,7 @@ export const agencyOrInHousePage: AgencyOrInHousePage = {
   meta: {
     // Plan, verbatim. It breaks the "| Atherstone Digital" pattern, as the plan wrote it.
     title: 'Agency, In-House Head of Ecommerce, or a Director? A Guide for Interiors Retailers',
-    // Draft.
+    // Approved by Dan on 12 Nov 2026.
     description:
       'Agency, full-time head of ecommerce, or a part-time ecommerce director: what each costs a showroom retailer, when each is right, what to ask first.',
   },

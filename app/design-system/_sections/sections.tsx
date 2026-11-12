@@ -74,11 +74,11 @@ const furniture = sectors.sectors.find((sector) => sector.slug === 'furniture-re
 const firstArticle = insights.articles[0];
 
 /**
- * Demo drafts, not approved copy. The business line is drawn from the live site's /results page (already public);
+ * Demo copy for this sample only; the case study page holds its own. The business line is drawn from the live site's /results page (already public);
  * the problem tags are two of the Results filters (plan, /results), matching the plan's Xshowhome headline ("catalogue,
  * feeds, Meta and Google").
  */
-const caseStudyDraft = {
+const caseStudyDemo = {
   business: 'A multi-showroom ex-showhome furniture retailer across Warwickshire and the Midlands, selling on Shopify.',
   problems: (['catalogue', 'feeds'] as const).map((tag) => ({ label: problemTags[tag] })),
 };
@@ -224,14 +224,14 @@ export default function SectionsSection() {
 
       {/* ------------------------------------------------------------------ CaseStudyHeader */}
       <Group title="CaseStudyHeader">
-        <Sample label="CaseStudyHeader, Xshowhome (business line and tags are demo drafts)">
+        <Sample label="CaseStudyHeader, Xshowhome (business line and tags are demo copy)">
           <CaseStudyHeader
             headingLevel="h2"
             title={xshowhome.business}
-            business={caseStudyDraft.business}
+            business={caseStudyDemo.business}
             stat={catalogueFigure}
             sector={{ label: furniture.tag, href: furniture.href }}
-            problems={caseStudyDraft.problems}
+            problems={caseStudyDemo.problems}
           />
         </Sample>
       </Group>

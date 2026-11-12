@@ -16,7 +16,7 @@ import { cn } from '@/lib/utils';
 // /about (plan, Results, About, Insights, Contact > /about): the plan's structure in its order. The photo, then the
 // interiors work first, the career in one paragraph, how I work, the band, and the credentials row, with Person JSON-LD
 // (sameAs LinkedIn) from lib/seo.ts. The title tag and H1 are the plan's; the body is lib/content/pages/about.ts, written
-// from the plan's facts in the voice rules (Phase 3 decision 5), with drafts marked there. The credentials are the
+// from the plan's facts in the voice rules (Phase 3 decision 5), its drafts approved by Dan on 12 Nov 2026. The credentials are the
 // plan's four, worded as on the homepage (decision 6).
 //
 // The portrait is the brand book's second and last appearance of Dan's face (Imagery: once on the homepage, once on

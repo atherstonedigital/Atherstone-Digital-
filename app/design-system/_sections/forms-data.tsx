@@ -79,8 +79,8 @@ const firstField = byName('first');
 const heldHover = 'border-ink';
 const heldFocus = 'outline outline-2 outline-offset-2 outline-focus';
 
-// Phase 2 draft, pending Dan's approval: the plan gives the FAQ blocks no heading.
-const faqHeadingDraft = { eyebrow: 'FAQ', heading: 'Questions owners ask first' };
+// Phase 2 copy, approved by Dan on 12 Nov 2026: the plan gives the FAQ blocks no heading.
+const faqHeadingCopy = { eyebrow: 'FAQ', heading: 'Questions owners ask first' };
 
 // Example data only. Round, invented numbers, so nothing here can be read as a client's figure.
 const EXAMPLE_SOURCE = 'Example data for the component demo, not a client figure';
@@ -372,7 +372,7 @@ export default function FormsDataSection() {
       >
         <Sample label="FAQ, with its section heading and the first answer open (writes FAQPage schema)">
           <FAQ
-            content={{ ...faqHeadingDraft, items: ecommerceDirectorFaq.items }}
+            content={{ ...faqHeadingCopy, items: ecommerceDirectorFaq.items }}
             headingLevel="h3"
             defaultOpen={[0]}
           />

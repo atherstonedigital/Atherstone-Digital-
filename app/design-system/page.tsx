@@ -18,7 +18,7 @@ import SectionsSection from './_sections/sections';
 
 // The design-system page: every token in both themes, the approved additions, then each component group in
 // app/design-system/_sections. A working page for review, kept out of search: it carries demo forms, a sample FAQPage
-// schema and drafts pending approval. It is built on the new system's shell (Nav, and the Footer with the theme toggle
+// schema and the copy Dan approved on 12 Nov 2026. It is built on the new system's shell (Nav, and the Footer with the theme toggle
 // at the end of its legal row since Phase 2.7 step 9).
 
 export const metadata: Metadata = {

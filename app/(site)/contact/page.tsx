@@ -36,12 +36,12 @@ import { buildMetadata } from '@/lib/seo';
 export const metadata = buildMetadata('/contact');
 
 /**
- * Phase 3 draft, pending Dan's approval: the call button's label (the section heading above it already says "Book a
- * 30-minute call", so the button says what happens next). The direct lines' labels are DirectLines' drafts.
+ * Phase 3 copy, approved by Dan on 12 Nov 2026: the call button's label (the section heading above it already says "Book a
+ * 30-minute call", so the button says what happens next). The direct lines' labels are DirectLines'.
  */
-const callDraft = { button: 'Choose a time' } as const;
+const callCopy = { button: 'Choose a time' } as const;
 
-const booking: SiteLink = { label: callDraft.button, href: page.calendly.url, external: true };
+const booking: SiteLink = { label: callCopy.button, href: page.calendly.url, external: true };
 
 export default function ContactPage() {
   return (

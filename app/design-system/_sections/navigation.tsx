@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Menu, X } from 'lucide-react';
 
 import { Breadcrumbs, breadcrumbListJsonLd, type Crumb } from '@/components/site/Breadcrumbs';
-import { CTABand, ctaBandDraft } from '@/components/site/CTABand';
+import { CTABand, ctaBandCopy } from '@/components/site/CTABand';
 import { Footer } from '@/components/site/Footer';
 import { Nav, NavDrawer, NavDrawerBody, NavLockup, NavMenu } from '@/components/site/Nav';
 import { Button } from '@/components/ui/button';
@@ -261,12 +261,12 @@ export default function NavigationSection() {
       {/* ------------------------------------------------------------ CTA band */}
       <Group title="CTABand">
         <p className="body max-w-measure text-ink">
-          The green band that closes an offer or sector page. Its copy is a Phase 2 draft pending Dan&rsquo;s
-          approval: &ldquo;{ctaBandDraft.heading}&rdquo;, from the plan&rsquo;s wording. The actions sit on a
+          The green band that closes an offer or sector page. Its copy, approved by Dan on 12 Nov 2026, is
+          &ldquo;{ctaBandCopy.heading}&rdquo;, from the plan&rsquo;s wording. The actions sit on a
           paper-raised panel, as the contact band&rsquo;s form does: the primary&rsquo;s fill is the band&rsquo;s own
           green, and the Button README rules out a white one.
         </p>
-        <Sample label="CTABand, default: primary and secondary (draft copy)">
+        <Sample label="CTABand, default: primary and secondary">
           <CTABand headingId="sample-cta-band-1" />
         </Sample>
         <Sample label="CTABand, with an eyebrow and the primary only">

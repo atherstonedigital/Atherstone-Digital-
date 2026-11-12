@@ -13,7 +13,7 @@ import { JsonLd } from '@/components/site/JsonLd';
 import { Screen } from '@/components/site/Screen';
 import { Button } from '@/components/ui/button';
 import {
-  articleFootDraft,
+  articleFoot,
   getArticle,
   insightSlugs,
   wordCount,
@@ -142,9 +142,9 @@ export default async function InsightRoute({ params }: InsightPageProps) {
             <InsightCards
               layout="row"
               headingId="related-heading"
-              content={{ eyebrow: insights.eyebrow, heading: articleFootDraft.relatedHeading, articles: related }}
+              content={{ eyebrow: insights.eyebrow, heading: articleFoot.relatedHeading, articles: related }}
             />
-            <ForwardLink link={articleFootDraft.allInsights} className="mt-space-4" />
+            <ForwardLink link={articleFoot.allInsights} className="mt-space-4" />
           </div>
         </Screen>
       ) : null}

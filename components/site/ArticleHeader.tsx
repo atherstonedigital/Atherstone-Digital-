@@ -11,7 +11,7 @@ import { TextLink } from '@/components/brand/Button';
 /** "10 November 2026": British order, the month in words, read in UTC so the date never shifts with the reader. */
 const dateFormat = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 
-/** Phase 2 draft, pending Dan's approval: the reading time as the byline sets it. */
+/** Phase 2 copy, approved by Dan on 12 Nov 2026: the reading time as the byline sets it. */
 export function formatReadingTime(minutes: number) {
   return `${minutes} min read`;
 }

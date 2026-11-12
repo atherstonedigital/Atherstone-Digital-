@@ -113,7 +113,7 @@ export function ProofBlock({
             ) : !isStub(summary) ? (
               <p className="heading-2 max-w-measure">{summary}</p>
             ) : null}
-            {/* Phase 3 draft, pending Dan's approval: the accessible name, as the homepage's case-study links. */}
+            {/* Phase 3 copy, approved by Dan on 12 Nov 2026: the accessible name, as the homepage's case-study links. */}
             {testimonial ? (
               <Testimonial
                 quote={testimonial.quote}

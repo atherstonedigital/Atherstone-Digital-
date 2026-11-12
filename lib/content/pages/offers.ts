@@ -177,7 +177,7 @@ export const storeHealthCheckPage: StoreHealthCheckPage = {
       { label: '1,000 to 5,000 products', price: '£3,000' },
       { label: 'Over 5,000 products', price: '£5,000' },
     ],
-    // Phase 3 drafts, pending Dan's approval: the tier table's caption (screen readers only) and its column heads.
+    // Phase 3 copy, approved by Dan on 12 Nov 2026: the tier table's caption (screen readers only) and its column heads.
     table: {
       caption: 'Store and Catalogue Health Check prices by catalogue size',
       columns: ['Catalogue size', 'Price'],

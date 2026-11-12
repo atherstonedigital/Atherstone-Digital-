@@ -5,7 +5,7 @@
 // page that links to two case studies") reuses the Phase 1 confirmation copy. /scorecard carries the homepage lead
 // magnet's copy; the scorecard document is not written (plan, open decisions), so the page is noindex until it is.
 //
-// Drafts, pending Dan's approval: every meta description here, the title tags of /contact/thank-you, /scorecard,
+// Approved by Dan on 12 Nov 2026: every meta description here, the title tags of /contact/thank-you, /scorecard,
 // /privacy and /terms, the Calendly block's title, and the H1s of /contact/thank-you, /privacy and /terms.
 
 import { contact, contactSection, leadMagnet } from '../site';
@@ -35,7 +35,7 @@ export const thankYouPage: ThankYouPage = {
     title: 'Thank You | Atherstone Digital',
     description: 'Your brief is with me. I read every brief myself and will reply with a few questions or a time to talk.',
   },
-  // Phase 1 drafts, from the brief form's confirmation (contactSection.confirmation), without the visitor's address.
+  // Phase 1 copy (approved by Dan on 12 Nov 2026), from the brief form's confirmation (contactSection.confirmation), without the visitor's address.
   h1: 'Thank you. Your brief is with me.',
   body: 'I read every brief myself and will reply with a few questions or a time to talk.',
   followUpLead: contactSection.confirmation.followUpLead,

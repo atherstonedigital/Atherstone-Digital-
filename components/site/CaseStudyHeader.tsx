@@ -28,7 +28,7 @@ export interface CaseStudyTag {
 }
 
 /**
- * Phase 2 drafts, pending Dan's approval: the ledger labels for the two tag rows, named after the Results index's two
+ * Phase 2 copy, approved by Dan on 12 Nov 2026: the ledger labels for the two tag rows, named after the Results index's two
  * filters (plan, /results: "filterable by sector and by problem").
  */
 export const caseStudyTagLabels = { sector: 'Sector', problem: 'Problem' } as const;

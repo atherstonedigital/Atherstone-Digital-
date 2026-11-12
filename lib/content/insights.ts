@@ -210,10 +210,10 @@ export function indexGroups(): IndexGroup[] {
 }
 
 /**
- * Phase 3 drafts, pending Dan's approval: the heading over an article's related articles (the plan's own words,
+ * Phase 3 copy, approved by Dan on 12 Nov 2026: the heading over an article's related articles (the plan's own words,
  * "related articles at the foot") and the forward link back to the index under them.
  */
-export const articleFootDraft = {
+export const articleFoot = {
   relatedHeading: 'Related articles',
   allInsights: { label: 'All insights', href: '/insights' } as Link,
 } as const;

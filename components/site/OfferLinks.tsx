@@ -17,10 +17,10 @@ import { cn } from '@/lib/utils';
 // at the Phase 3 integrate step; server-side only (it reads the case study pages).
 
 /**
- * Phase 3 draft, pending Dan's approval: the heading over the two other offers. The plan names the links (Internal
+ * Phase 3 copy, approved by Dan on 12 Nov 2026: the heading over the two other offers. The plan names the links (Internal
  * linking rules) but gives the block no heading; the eyebrow is the homepage offers section's.
  */
-export const otherOffersDraft = { eyebrow: offers.eyebrow, heading: 'Other ways to work with me' } as const;
+export const otherOffersCopy = { eyebrow: offers.eyebrow, heading: 'Other ways to work with me' } as const;
 
 /** The two other offers as OfferCards, side by side from 720px. The Health Check card keeps its brass-300 highlight. */
 export function OtherOffers({ ids, headingId }: { ids: OfferId[]; headingId: string }) {
@@ -31,7 +31,7 @@ export function OtherOffers({ ids, headingId }: { ids: OfferId[]; headingId: str
   });
   return (
     <section aria-labelledby={headingId} className="min-w-0">
-      <SectionHeading eyebrow={otherOffersDraft.eyebrow} heading={otherOffersDraft.heading} headingId={headingId} />
+      <SectionHeading eyebrow={otherOffersCopy.eyebrow} heading={otherOffersCopy.heading} headingId={headingId} />
       <ul className="grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-2 min-[720px]:gap-x-space-6">
         {items.map((offer) => (
           <OfferCard key={offer.id} as="li" offer={offer} headingLevel="h3" />
@@ -88,7 +88,7 @@ export function SectorLinks({ slugs, headingId }: { slugs: readonly SectorSlug[]
 /**
  * The closing band's secondary action on a page. Everywhere but the Health Check page it is the plan's "Start with a
  * Health Check". On the Health Check page that link would point at the page itself, so there it keeps its label and
- * goes to the brief form on /contact, where a Health Check starts (Phase 3 choice, pending Dan's approval).
+ * goes to the brief form on /contact, where a Health Check starts (Phase 3 choice, approved by Dan on 12 Nov 2026).
  */
 export function secondaryAction(actions: ClosingActions, currentPath: string): SiteLink {
   return actions.secondary.href === currentPath ? { ...actions.secondary, href: '/contact' } : actions.secondary;

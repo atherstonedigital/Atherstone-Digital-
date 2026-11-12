@@ -3,7 +3,7 @@
 // The posts are lib/content/insights-archive.ts until the plan's twelve articles are written; each moved post keeps
 // its slug, and /blog/:slug redirects to /insights/:slug (lib/content/redirects.ts).
 //
-// Drafts, pending Dan's approval: the index's title tag and meta description. Its H1 is the homepage Insights
+// Approved by Dan on 12 Nov 2026: the index's title tag and meta description. Its H1 is the homepage Insights
 // heading, verbatim. Article title tags are the post titles with the brand suffix, as /blog set them.
 
 import { archivePosts } from '../insights-archive';

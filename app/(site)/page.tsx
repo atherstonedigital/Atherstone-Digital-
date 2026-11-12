@@ -96,7 +96,7 @@ const testimonials = proof.testimonials.map((testimonial) => {
   if (!testimonial.href || !slug || !caseStudyPages[slug]) {
     throw new Error(`No case study page for ${testimonial.business} (${testimonial.href ?? 'no href'}).`);
   }
-  // Phase 3 draft, pending Dan's approval: the accessible name.
+  // Phase 3 copy, approved by Dan on 12 Nov 2026: the accessible name.
   return { ...testimonial, href: testimonial.href, linkLabel: `${testimonial.business} case study` };
 });
 

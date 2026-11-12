@@ -3,7 +3,7 @@
 // table names) and stubs for the rest, and stay noindex until they are written (Phase 3 decision 3). Nav, footer and
 // homepage tiles list all five, as the plan's nav does.
 //
-// Drafts, pending Dan's approval: every meta description; the section headings the plan names only as template parts
+// Approved by Dan on 12 Nov 2026: every meta description; the section headings the plan names only as template parts
 // ("Five problems specific to [sector]", "Proof", "Thinking for [sector] retailers", the shared FAQ heading); and list
 // items set with a capital first letter, because each now stands as its own bullet.
 

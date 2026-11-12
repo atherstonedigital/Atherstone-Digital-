@@ -28,11 +28,11 @@ import { cn } from '@/lib/utils';
 const healthCheck = offers.offers.find((offer) => offer.id === 'store-health-check');
 
 /**
- * Phase 2 draft, pending Dan's approval: the plan names the band's two actions but gives it no copy. The heading is the
+ * Phase 2 copy, approved by Dan on 12 Nov 2026: the plan names the band's two actions but gives it no copy. The heading is the
  * plan's own phrase for them, in sentence case; the body is the Health Check's homepage summary, verbatim; the
  * secondary label is the sector template's "Start with a Health Check". Move it to lib/content/site.ts once approved.
  */
-export const ctaBandDraft = {
+export const ctaBandCopy = {
   heading: 'Book a call, or start with the Health Check',
   body: healthCheck?.summary,
   primary: nav.cta,
@@ -55,10 +55,10 @@ export interface CTABandProps extends Omit<React.HTMLAttributes<HTMLElement>, 'c
 
 export function CTABand({
   eyebrow,
-  heading = ctaBandDraft.heading,
-  body = ctaBandDraft.body,
-  primary = ctaBandDraft.primary,
-  secondary = ctaBandDraft.secondary,
+  heading = ctaBandCopy.heading,
+  body = ctaBandCopy.body,
+  primary = ctaBandCopy.primary,
+  secondary = ctaBandCopy.secondary,
   headingId = 'cta-band-heading',
   className,
   ...props

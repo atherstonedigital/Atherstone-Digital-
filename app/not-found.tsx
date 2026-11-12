@@ -15,10 +15,10 @@ import type { Link as SiteLink } from '@/lib/content/types';
 // primary and its one secondary (Button README). The footer beneath carries every other page.
 
 /**
- * Phase 3 drafts, pending Dan's approval: the title tag, meta description, eyebrow, H1, line and the primary button.
+ * Phase 3 copy, approved by Dan on 12 Nov 2026: the title tag, meta description, eyebrow, H1, line and the primary button.
  * The secondary is the hero's "See the results", verbatim.
  */
-const notFoundDraft = {
+const notFoundCopy = {
   title: 'Page not found | Atherstone Digital',
   description: 'There is no page at this address. Start from the homepage or the case studies.',
   eyebrow: '404',
@@ -28,8 +28,8 @@ const notFoundDraft = {
 } as const;
 
 export const metadata: Metadata = {
-  title: { absolute: notFoundDraft.title },
-  description: notFoundDraft.description,
+  title: { absolute: notFoundCopy.title },
+  description: notFoundCopy.description,
 };
 
 export default function NotFound() {
@@ -37,14 +37,14 @@ export default function NotFound() {
     <SiteShell>
       <Screen first labelledBy="page-heading">
         <header>
-          <p className="eyebrow mb-space-2 text-ink-muted">{notFoundDraft.eyebrow}</p>
+          <p className="eyebrow mb-space-2 text-ink-muted">{notFoundCopy.eyebrow}</p>
           <h1 id="page-heading" className="display-2 mb-space-6 max-w-[24em] text-balance">
-            {notFoundDraft.h1}
+            {notFoundCopy.h1}
           </h1>
-          <p className="body-lg mb-space-8 max-w-measure-lg">{notFoundDraft.body}</p>
+          <p className="body-lg mb-space-8 max-w-measure-lg">{notFoundCopy.body}</p>
           {/* Full width and stacked below 720px, as the hero's buttons. */}
           <div className="flex flex-wrap items-center gap-space-3">
-            <LinkButton link={notFoundDraft.home} className="w-full min-[720px]:w-auto" />
+            <LinkButton link={notFoundCopy.home} className="w-full min-[720px]:w-auto" />
             <LinkButton link={hero.secondary} variant="secondary" className="w-full min-[720px]:w-auto" />
           </div>
         </header>

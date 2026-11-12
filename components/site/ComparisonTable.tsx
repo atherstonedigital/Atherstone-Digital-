@@ -24,6 +24,8 @@ export interface ComparisonTableProps extends Omit<React.HTMLAttributes<HTMLElem
   headingLevel?: 'h2' | 'h3';
   /** The heading's id, for aria-labelledby. Generated when left out. */
   headingId?: string;
+  /** The SectionHeading's size: heading-1 (the default) or display-2 (the homepage, Phase 2.7 step 2). */
+  headingSize?: 'heading-1' | 'display-2';
 }
 
 export function ComparisonTable({
@@ -31,6 +33,7 @@ export function ComparisonTable({
   withHeading = true,
   headingLevel = 'h2',
   headingId,
+  headingSize,
   className,
   ...props
 }: ComparisonTableProps) {
@@ -50,7 +53,13 @@ export function ComparisonTable({
       {...props}
     >
       {showHeading && content.heading ? (
-        <SectionHeading as={headingLevel} eyebrow={content.eyebrow} heading={content.heading} headingId={titleId} />
+        <SectionHeading
+          as={headingLevel}
+          size={headingSize}
+          eyebrow={content.eyebrow}
+          heading={content.heading}
+          headingId={titleId}
+        />
       ) : null}
 
       {/* The wrapper is the stacking context below 720px: a flex column the cells are ordered in. */}

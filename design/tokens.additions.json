@@ -94,6 +94,17 @@
         "reason": "The figure usage note says tabular numerals on. Structured here so the generated .figure class sets them."
       },
       {
+        "name": "figure",
+        "status": "approved",
+        "change": "a larger responsive step from 1024px",
+        "steps": [
+          { "fontSize": "72px" },
+          { "minWidth": "1024px", "fontSize": "96px" }
+        ],
+        "note": "Phase 2.7 step 2, owner's brief, 12 Nov 2026",
+        "reason": "Phase 2.7 step 2, owner's brief, 12 Nov 2026: the three figures in The numbers go to 96px at lg (1024px) and stay 72px below, so the page's type has a step between the 32px section headings and the 64px H1. tokens.json's 72px stays the base; tabular numerals and Newsreader 500 are unchanged."
+      },
+      {
         "name": "eyebrow",
         "status": "approved",
         "change": "structured from the usage note",

@@ -104,7 +104,7 @@ export type TypeStyle = (typeof typeStyleNames)[number];
 export const typeStyles = {
   'display-1': { family: 'display', fontSize: '64px', lineHeight: '1.0', fontWeight: 500, letterSpacing: '-0.015em', steps: [{ minWidth: 0, fontSize: '34px' }, { minWidth: 360, fontSize: '40px' }, { minWidth: 720, fontSize: '52px' }, { minWidth: 1024, fontSize: '64px' }] },
   'display-2': { family: 'display', fontSize: '44px', lineHeight: '1.05', fontWeight: 500, letterSpacing: '-0.01em' },
-  figure: { family: 'display', fontSize: '72px', lineHeight: '1.0', fontWeight: 500, letterSpacing: '-0.02em' },
+  figure: { family: 'display', fontSize: '72px', lineHeight: '1.0', fontWeight: 500, letterSpacing: '-0.02em', steps: [{ minWidth: 0, fontSize: '72px' }, { minWidth: 1024, fontSize: '96px' }] },
   'heading-1': { family: 'display', fontSize: '32px', lineHeight: '1.15', fontWeight: 500 },
   quote: { family: 'display', fontSize: '24px', lineHeight: '1.35', fontWeight: 400, fontStyle: 'italic' },
   'heading-2': { family: 'sans', fontSize: '22px', lineHeight: '1.3', fontWeight: 600 },

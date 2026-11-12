@@ -385,8 +385,18 @@ export const typeDocs: readonly TypeDoc[] = [
     "sample": "16,193",
     "usage": "Proof figures and chart callouts. Tabular numerals on. Always followed by its quieter line in small.",
     "addition": {
-      "change": "structured from the usage note",
-      "reason": "The figure usage note says tabular numerals on. Structured here so the generated .figure class sets them.",
+      "change": "structured from the usage note; a larger responsive step from 1024px",
+      "reason": "The figure usage note says tabular numerals on. Structured here so the generated .figure class sets them. Phase 2.7 step 2, owner's brief, 12 Nov 2026: the three figures in The numbers go to 96px at lg (1024px) and stay 72px below, so the page's type has a step between the 32px section headings and the 64px H1. tokens.json's 72px stays the base; tabular numerals and Newsreader 500 are unchanged.",
+      "steps": [
+        {
+          "minWidth": 0,
+          "fontSize": "72px"
+        },
+        {
+          "minWidth": 1024,
+          "fontSize": "96px"
+        }
+      ],
       "fontVariantNumeric": "tabular-nums"
     }
   },

@@ -143,7 +143,7 @@
   --display-2-line-height: 1.05;
   --display-2-font-weight: 500;
   --display-2-letter-spacing: -0.01em;
-  --figure-font-size: 72px;
+  --figure-font-size: 72px; /* APPROVED: responsive steps, tokens.json size is the base, a larger step applies above it */
   --figure-line-height: 1.0;
   --figure-font-weight: 500;
   --figure-letter-spacing: -0.02em;
@@ -228,6 +228,7 @@
 @media (min-width: 1024px) {
   :root {
     --display-1-font-size: 64px; /* APPROVED */
+    --figure-font-size: 96px; /* APPROVED */
   }
 }
 @media (min-width: 1200px) {

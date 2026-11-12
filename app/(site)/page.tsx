@@ -205,13 +205,20 @@ export default function HomePage() {
       {/* 3 Sound familiar? The first change of ground: the full-bleed green band, the five problems as a two-column
           list parted by on-green rules. */}
       <Screen id="problems" labelledBy="problems-heading" ground="band" innerClassName={flow}>
-        <ProblemCards as="div" variant="band" content={problems} headingId="problems-heading" />
+        <ProblemCards
+          as="div"
+          variant="band"
+          content={problems}
+          headingId="problems-heading"
+          headingSize="display-2"
+        />
       </Screen>
 
       {/* 4 What I do: the three offers, the Health Check highlighted, one primary button under the row. No rule above:
           the band's edge parts it from the problems. */}
       <Screen id="services" labelledBy="services-heading" rule={false} innerClassName={flow}>
         <SectionHeading
+          size="display-2"
           eyebrow={offers.eyebrow}
           heading={offers.heading}
           headingId="services-heading"
@@ -228,7 +235,7 @@ export default function HomePage() {
 
       {/* 5 Agency, in-house, or a director. The table is its own labelled section, so the frame takes no label. */}
       <Screen id="comparison" innerClassName={flow}>
-        <ComparisonTable content={comparison} headingId="comparison-heading" />
+        <ComparisonTable content={comparison} headingId="comparison-heading" headingSize="display-2" />
       </Screen>
 
       {/* 6 How it works: the four steps on the left half, the Canwell showroom on the right (the second change of

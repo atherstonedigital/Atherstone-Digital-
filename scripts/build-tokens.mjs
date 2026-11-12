@@ -183,10 +183,17 @@ function fontStack(stack) {
   return [...head, ...parts.slice(1)].join(', ');
 }
 
-const typeAdditions = new Map((additions.type?.styles ?? []).map((style) => {
+// A style may have more than one approved entry (a later pass adding to an earlier one, as Phase 2.7 gave figure its
+// 96px step): the entries merge in file order, a later field winning, and every change and reason is kept.
+const typeAdditions = new Map();
+for (const style of additions.type?.styles ?? []) {
   requireApproval(style, 'Type style');
-  return [style.name, style];
-}));
+  const earlier = typeAdditions.get(style.name);
+  typeAdditions.set(
+    style.name,
+    earlier ? { ...earlier, ...style, change: `${earlier.change}; ${style.change}`, reason: `${earlier.reason} ${style.reason}` } : style,
+  );
+}
 
 const typeStyles = brand.type.groups.flatMap((group) =>
   group.styles.map((style) => ({ ...style, family: group.family, addition: typeAdditions.get(style.name) })),
@@ -307,9 +314,17 @@ for (const style of typeStyles) {
     size = baseOfSteps(add.steps, 'fontSize', style.name);
     for (const step of add.steps.slice(1)) addStep(step.minWidth, `--${style.name}-font-size: ${step.fontSize}; /* APPROVED */`);
     const widest = add.steps.at(-1).fontSize;
-    if (widest !== style.fontSize) console.warn(`build-tokens: ${style.name} widest step ${widest} differs from tokens.json ${style.fontSize}.`);
+    // Either the tokens.json size is the widest step (display-1: smaller steps below it) or the base (figure: a larger
+    // step above it). Anything else is a mistake worth seeing.
+    if (widest !== style.fontSize && size !== style.fontSize) {
+      console.warn(`build-tokens: ${style.name} steps neither start nor end at tokens.json's ${style.fontSize}.`);
+    }
   }
-  const additionNote = add?.steps ? ' /* APPROVED: responsive steps, tokens.json size applies from the widest step */' : '';
+  const additionNote = !add?.steps
+    ? ''
+    : add.steps.at(-1).fontSize === style.fontSize
+      ? ' /* APPROVED: responsive steps, tokens.json size applies from the widest step */'
+      : ' /* APPROVED: responsive steps, tokens.json size is the base, a larger step applies above it */';
   line(`  --${style.name}-font-size: ${size};${additionNote}`);
   line(`  --${style.name}-line-height: ${style.lineHeight};`);
   line(`  --${style.name}-font-weight: ${style.fontWeight};`);

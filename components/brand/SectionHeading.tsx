@@ -9,6 +9,10 @@ import { cn } from '@/lib/utils';
 // set here once, as the hairline's own bottom margin, so every section that opens with one gets the same gap. On paper
 // the block takes its colour from the section round it and carries no colour class of its own, so it never shares a
 // class with the cards below it (the gate's card-family reads a shared class as one card part).
+//
+// Phase 2.7, step 2 (the owner's brief: a type scale with a step in it): size display-2 sets the heading at 44px for
+// the three homepage sections that make the argument (Sound familiar, Three ways to work with me and the comparison).
+// Every other H2 stays heading-1 (32px). Extended minimally: one prop, heading-1 by default.
 
 export interface SectionHeadingProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /** A few words, sentence case; the eyebrow style sets it uppercase. */
@@ -19,6 +23,8 @@ export interface SectionHeadingProps extends Omit<React.HTMLAttributes<HTMLDivEl
   headingId?: string;
   /** h2 by default: heading-1 is every H2 on the site. */
   as?: 'h2' | 'h3';
+  /** heading-1 (the default), or display-2 for the homepage's three argument sections (Phase 2.7, step 2). */
+  size?: 'heading-1' | 'display-2';
   /** brass: the homepage hero only. Everywhere else the eyebrow is ink-muted. */
   eyebrowTone?: 'muted' | 'brass';
   /**
@@ -40,6 +46,7 @@ export function SectionHeading({
   heading,
   headingId,
   as: Heading = 'h2',
+  size = 'heading-1',
   eyebrowTone = 'muted',
   ground = 'paper',
   alignWithEyebrow = false,
@@ -63,7 +70,8 @@ export function SectionHeading({
       <Heading
         id={headingId}
         className={cn(
-          'heading-1 mb-space-4',
+          size,
+          'mb-space-4',
           !eyebrow && alignWithEyebrow && 'mt-[calc(var(--eyebrow-font-size)*var(--eyebrow-line-height)_+_var(--space-2))]',
         )}
       >

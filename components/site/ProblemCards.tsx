@@ -34,6 +34,8 @@ export interface ProblemCardsProps extends Omit<React.HTMLAttributes<HTMLElement
   headingLevel?: 'h2' | 'h3';
   /** The heading's id, for aria-labelledby. Generated when left out. */
   headingId?: string;
+  /** The SectionHeading's size: heading-1 (the default) or display-2 (the homepage, Phase 2.7 step 2). */
+  headingSize?: 'heading-1' | 'display-2';
   /** paper (the default): the list on paper. band: the list on the green band (the homepage). */
   variant?: 'paper' | 'band';
   /**
@@ -57,6 +59,7 @@ export function ProblemCards({
   withHeading = true,
   headingLevel = 'h2',
   headingId,
+  headingSize,
   variant = 'paper',
   as,
   className,
@@ -80,6 +83,7 @@ export function ProblemCards({
       {showHeading && content.heading ? (
         <SectionHeading
           as={headingLevel}
+          size={headingSize}
           eyebrow={content.eyebrow}
           heading={content.heading}
           headingId={titleId}

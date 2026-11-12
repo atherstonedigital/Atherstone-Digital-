@@ -60,6 +60,13 @@ import { ShowroomPhoto } from './_home/ShowroomPhoto';
 //   - Spacing (ui-ux-pro-max): heading block to content space-8, list rows space-4 apart, card padding space-4, body
 //     copy at measure, heights in dvh.
 //
+// Phase 2.7 (the owner's composition pass, 12 Nov 2026), one gesture per screen: the revenue chart is the hero's
+// object; three bleeds to the right edge (the hero chart, the How it works photograph, the green slab behind Dan's
+// portrait); display-2 on the three argument sections and 96px figures; eyebrow, heading and hairline on five sections
+// only, the rest changing grammar (hanging brass marks on the testimonials, a numbered ledger on the band, a ruled row
+// of sectors, a credentials ledger, ruled insight rows with dates); brass on the band's top rule and the two sets of
+// numbers; hover as colour only; the theme toggle in the footer.
+//
 // The root layout writes the Organization JSON-LD; the homepage needs no other schema (plan, Structured data).
 
 export const metadata = buildMetadata('/');

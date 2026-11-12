@@ -105,17 +105,16 @@ export default function SectionsSection() {
     <div className="grid grid-cols-1 gap-space-16 text-ink">
       {/* ------------------------------------------------------------------ Hero */}
       <Group title="Hero">
-        <Sample label="Hero, first screen, with the entrance (reload to replay; none under reduced motion)">
+        <Sample label="Hero, with the entrance (reload to replay; none under reduced motion)">
           <Hero content={hero} headingLevel="h2" />
         </Sample>
-        <Sample label="Hero, as tall as its copy, at rest (fill and animate off)">
-          <Hero content={hero} headingLevel="h2" fill={false} animate={false} />
+        <Sample label="Hero, at rest (animate off)">
+          <Hero content={hero} headingLevel="h2" animate={false} />
         </Sample>
-        <Sample label="Hero, aside slot from 720px (filled with a public StatBlock; Phase 1's chart waits for permission)">
+        <Sample label="Hero, aside slot from 1024px, under the copy below (the homepage puts its revenue chart here)">
           <Hero
             content={hero}
             headingLevel="h2"
-            fill={false}
             animate={false}
             aside={<StatBlock figure={catalogueFigure.figure} line={catalogueFigure.line} />}
           />

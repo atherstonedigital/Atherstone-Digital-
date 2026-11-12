@@ -29,6 +29,12 @@ import { cn } from '@/lib/utils';
 // and the taste gate's visual-caption waiver names; a negative value is written with its sign before the prefix
 // (minus £143, not £-143) and its bar rests on the zero line, since bars start at zero; and category labels thin out at
 // every width, not only on a phone, so 24 months never collide.
+//
+// Phase 2.7, step 1 (the owner's brief: the revenue chart moves into the homepage hero): two options for a chart set as
+// a page's object rather than under a heading. titleHidden keeps the title as the figure's accessible name but takes it
+// off the screen, since the hero drops it and keeps the source line. barsInsetClassName pads the box the bars are drawn
+// in (vertical bars only) while the gridlines run on to its edge, so a chart that bleeds to the viewport's edge carries
+// its hairlines off the page and keeps its last bar and value label clear of the screen's edge.
 
 export interface ChartPoint {
   /** The category: a month, a store, an option. */
@@ -79,6 +85,8 @@ interface ChartBaseProps {
   titleAs?: 'p' | 'h3' | 'h4';
   /** The title's type: body in weight 500 (the default), or heading-2 where the chart heads its own part of a page. */
   titleStyle?: 'body' | 'heading-2';
+  /** Keep the title for screen readers only (the homepage hero). The source line stays visible. */
+  titleHidden?: boolean;
   className?: string;
 }
 
@@ -97,6 +105,13 @@ export interface BarChartProps extends ChartBaseProps {
    * line; a label an early bar would cover is left out (the zero line, ink-muted, needs none).
    */
   axis?: 'outside' | 'inline';
+  /**
+   * Vertical bars only: classes for the box the bars are drawn in (a right padding, as 'min-[1024px]:pr-gutter'). The
+   * gridlines run on through the padding to the chart's edge; the bars, values and labels stop at the padding.
+   */
+  barsInsetClassName?: string;
+  /** The widths the plot takes at each viewport band, for thinning the category labels: container (the default) or hero. */
+  plotBands?: ChartPlotBands;
 }
 
 export interface LineChartProps extends ChartBaseProps {
@@ -167,6 +182,7 @@ function Frame({
   title,
   titleAs: TitleTag = 'p',
   titleStyle = 'body',
+  titleHidden = false,
   titleId,
   source,
   className,
@@ -175,6 +191,7 @@ function Frame({
   title: string;
   titleAs?: 'p' | 'h3' | 'h4';
   titleStyle?: 'body' | 'heading-2';
+  titleHidden?: boolean;
   titleId: string;
   source: string;
   className?: string;
@@ -184,7 +201,11 @@ function Frame({
     <figure aria-labelledby={titleId} className={cn('m-0 grid min-w-0 gap-space-3', className)}>
       <TitleTag
         id={titleId}
-        className={cn('max-w-measure text-ink', titleStyle === 'heading-2' ? 'heading-2' : 'body font-medium')}
+        className={cn(
+          'max-w-measure text-ink',
+          titleStyle === 'heading-2' ? 'heading-2' : 'body font-medium',
+          titleHidden && 'sr-only',
+        )}
       >
         {title}
       </TitleTag>
@@ -307,15 +328,25 @@ function Gridlines({ ticks, y, floor }: { ticks: number[]; y: (v: number) => num
 }
 
 /**
- * The plot each width band can count on (the container less the y-axis), in pixels: 320 to 719, 720 to 1199, and
- * 1200 up. A band's labels must fit side by side in it at labelWidth's generous estimate; the phone's 264 is 244px at
- * 320 wide, where four month labels of about 44px still stand 17px apart.
+ * The plot each width band can count on, in pixels. container (the default), a chart across the container less the
+ * y-axis: 320 to 719, 720 to 1199, and 1200 up. hero, the homepage hero's chart (Phase 2.7, step 1): across the
+ * container to 1023, then on five of twelve columns, which is 393px at 1024 once the bleed and the bars' inset cancel
+ * out. A band's labels must fit side by side in it at labelWidth's generous estimate; the phone's 264 is 244px at 320
+ * wide, where four month labels of about 44px still stand 17px apart.
  */
-const PLOT_WIDTHS = [
-  { width: 264, hide: 'max-[719px]:hidden' },
-  { width: 620, hide: 'min-[720px]:max-[1199px]:hidden' },
-  { width: 1080, hide: 'min-[1200px]:hidden' },
-] as const;
+const PLOT_WIDTHS = {
+  container: [
+    { width: 264, hide: 'max-[719px]:hidden' },
+    { width: 620, hide: 'min-[720px]:max-[1199px]:hidden' },
+    { width: 1080, hide: 'min-[1200px]:hidden' },
+  ],
+  hero: [
+    { width: 264, hide: 'max-[719px]:hidden' },
+    { width: 620, hide: 'min-[720px]:max-[1023px]:hidden' },
+    { width: 393, hide: 'min-[1024px]:hidden' },
+  ],
+} as const;
+export type ChartPlotBands = keyof typeof PLOT_WIDTHS;
 const LABEL_STEPS = [1, 2, 3, 4, 6, 12, 24] as const;
 
 /**
@@ -324,10 +355,10 @@ const LABEL_STEPS = [1, 2, 3, 4, 6, 12, 24] as const;
  * about (an emphasised point) always shows. 24 months print every second label from 1200px, every third from 720px
  * and every sixth on a phone; each step divides 12, so the same month a year apart always shows.
  */
-function labelClass(index: number, labels: string[], emphasis = false) {
+function labelClass(index: number, labels: string[], emphasis = false, bands: ChartPlotBands = 'container') {
   if (emphasis) return undefined;
   const pitch = Math.max(...labels.map(labelWidth)) + 12;
-  const hidden = PLOT_WIDTHS.filter(({ width }) => {
+  const hidden = PLOT_WIDTHS[bands].filter(({ width }) => {
     const step = LABEL_STEPS.find((s) => Math.ceil(labels.length / s) * pitch <= width) ?? labels.length;
     return (labels.length - 1 - index) % step !== 0;
   });
@@ -352,61 +383,82 @@ function VerticalBars({ props, ids }: { props: BarChartProps; ids: { title: stri
     edgeHeld && index === 0 ? 'start' : edgeHeld && index === data.length - 1 ? 'end' : 'middle';
 
   const inline = props.axis === 'inline';
+  const inset = props.barsInsetClassName;
+
+  const bars = (
+    <svg
+      role="img"
+      aria-labelledby={`${ids.title} ${ids.desc}`}
+      width="100%"
+      height={height}
+      className="block min-w-0 flex-1 overflow-visible"
+    >
+      <title id={ids.title}>{props.title}</title>
+      <desc id={ids.desc}>{props.description ?? describe('Bar chart', data.map((d) => d.label))}</desc>
+      {inset ? null : <Gridlines ticks={scale.ticks} y={y} floor={scale.min} />}
+      {inline ? <InlineTicks ticks={scale.ticks} y={y} data={data} format={format} /> : null}
+      {data.map((point, index) => {
+        const top = y(point.value);
+        const x = index * slot + (slot - barWidth) / 2;
+        const printed = valuesMode === 'all' || point.emphasis;
+        return (
+          <g key={point.label}>
+            <rect
+              x={pct(x)}
+              y={top}
+              width={pct(barWidth)}
+              height={Math.max(y(0) - top, 0)}
+              className={point.emphasis ? toneFill[tone] : 'fill-ink-muted opacity-70'}
+            />
+            {printed ? (
+              <text
+                x={pct(labelX(index, x))}
+                y={top - 8}
+                textAnchor={labelAnchor(index)}
+                className={cn(
+                  'small fill-ink',
+                  point.emphasis && 'font-semibold',
+                  // On a phone, more than four printed values collide: only the emphasised ones stay.
+                  !point.emphasis && data.length > 4 && 'max-[719px]:hidden',
+                )}
+              >
+                {shown(point, format)}
+              </text>
+            ) : null}
+            <text
+              x={pct(labelX(index, x))}
+              y={height - 8}
+              textAnchor={labelAnchor(index)}
+              className={cn('small fill-ink-muted', labelClass(index, data.map((d) => d.label), point.emphasis, props.plotBands))}
+            >
+              {point.label}
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  );
 
   return (
     <div className="flex min-w-0">
       {inline ? null : <YAxis ticks={scale.ticks} y={y} height={height} format={format} />}
-      <svg
-        role="img"
-        aria-labelledby={`${ids.title} ${ids.desc}`}
-        width="100%"
-        height={height}
-        className="block min-w-0 flex-1 overflow-visible"
-      >
-        <title id={ids.title}>{props.title}</title>
-        <desc id={ids.desc}>{props.description ?? describe('Bar chart', data.map((d) => d.label))}</desc>
-        <Gridlines ticks={scale.ticks} y={y} floor={scale.min} />
-        {inline ? <InlineTicks ticks={scale.ticks} y={y} data={data} format={format} /> : null}
-        {data.map((point, index) => {
-          const top = y(point.value);
-          const x = index * slot + (slot - barWidth) / 2;
-          const printed = valuesMode === 'all' || point.emphasis;
-          return (
-            <g key={point.label}>
-              <rect
-                x={pct(x)}
-                y={top}
-                width={pct(barWidth)}
-                height={Math.max(y(0) - top, 0)}
-                className={point.emphasis ? toneFill[tone] : 'fill-ink-muted opacity-70'}
-              />
-              {printed ? (
-                <text
-                  x={pct(labelX(index, x))}
-                  y={top - 8}
-                  textAnchor={labelAnchor(index)}
-                  className={cn(
-                    'small fill-ink',
-                    point.emphasis && 'font-semibold',
-                    // On a phone, more than four printed values collide: only the emphasised ones stay.
-                    !point.emphasis && data.length > 4 && 'max-[719px]:hidden',
-                  )}
-                >
-                  {shown(point, format)}
-                </text>
-              ) : null}
-              <text
-                x={pct(labelX(index, x))}
-                y={height - 8}
-                textAnchor={labelAnchor(index)}
-                className={cn('small fill-ink-muted', labelClass(index, data.map((d) => d.label), point.emphasis))}
-              >
-                {point.label}
-              </text>
-            </g>
-          );
-        })}
-      </svg>
+      {inset ? (
+        // The gridlines in their own layer under the bars, across the whole box, padding included.
+        <div className={cn('relative flex min-w-0 flex-1', inset)}>
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            width="100%"
+            height={height}
+            className="pointer-events-none absolute inset-0 block overflow-visible"
+          >
+            <Gridlines ticks={scale.ticks} y={y} floor={scale.min} />
+          </svg>
+          {bars}
+        </div>
+      ) : (
+        bars
+      )}
     </div>
   );
 }
@@ -615,6 +667,7 @@ export function Chart(props: ChartProps) {
       title={props.title}
       titleAs={props.titleAs}
       titleStyle={props.titleStyle}
+      titleHidden={props.titleHidden}
       titleId={titleId}
       source={props.source}
       className={props.className}

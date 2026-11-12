@@ -45,12 +45,12 @@ import { ShowroomPhoto } from './_home/ShowroomPhoto';
 //
 // Phase 2.4 (section C) and Phase 2.5, with the skill that enforces each:
 //   - Rhythm (design-taste-frontend, as the owner's brief sets it): every section is its content plus space-16 above and
-//     below (space-12 below 720px), at least 60dvh, no maximum (components/site/Screen.tsx); the hero fills 100dvh less
-//     the nav. Every section is a <section> in <main> holding one .wrap on the container's lines. Every two-column
+//     below (space-12 below 720px), at least 60dvh, no maximum (components/site/Screen.tsx); the hero is its content
+//     plus space-16 above and below, its revenue chart beside the copy (Phase 2.7, step 1). Every section is a <section> in <main> holding one .wrap on the container's lines. Every two-column
 //     split starts its right column on one line, column 7 of twelve with a 24px gap (x 732 at 1440), the left column
 //     ending 24px before it, both columns top-aligned and text on the left.
-//   - Proof (brand book): the three StatBlocks in the order lib/content/proof-data.ts gives them, its quieter line
-//     beneath, then the revenue chart across the container, each rendered only when the data has it. Xshowhome
+//   - Proof (brand book): the three StatBlocks in the order lib/content/proof-data.ts gives them and its quieter line
+//     beneath; the revenue chart is the hero's object (Phase 2.7, step 1). Each renders only when the data has it. Xshowhome
 //     cleared the figures, the quieter line and the chart in writing (12 Nov 2026), so every build ships them.
 //   - Texture (brand book, with the owner's brief): exactly three changes of ground. The problems are a full-bleed
 //     green band (the one exception to "nothing else is filled green", approved in the brief); How it works gains the
@@ -128,12 +128,41 @@ export default function HomePage() {
   const { figures, quieterLine, chart } = proofData;
   return (
     <>
-      {/* 1 Hero: fills the first screen below the nav, its primary button and the fact line inside it. The section
-          runs full width and holds the one .wrap. */}
-      <Hero id="hero" content={hero} headingId="hero-heading" wrapClassName={container} />
+      {/* 1 Hero (Phase 2.7, step 1): the copy on columns 1 to 7, the revenue chart on 8 to 12 from 1024px, its right
+          edge bleeding to the viewport's edge, its gridlines running off the page and its bars stopping a gutter short;
+          under the copy below 1024px. The chart drops its title (kept for screen readers) and keeps its source line.
+          The section runs full width and holds the one .wrap. */}
+      <Hero
+        id="hero"
+        content={hero}
+        headingId="hero-heading"
+        wrapClassName={container}
+        asideBleed
+        aside={
+          chart ? (
+            <Chart
+              type="bar"
+              orientation="vertical"
+              // The value labels sit on the plot above their gridlines, so the plot runs line to line.
+              axis="inline"
+              data={chart.data}
+              title={chart.title}
+              titleHidden
+              source={chart.source}
+              categoryLabel="Month"
+              valueLabel="Online store revenue"
+              format={{ prefix: '£', notation: 'short' }}
+              values="emphasis"
+              plotHeight={240}
+              barsInsetClassName="min-[1024px]:pr-gutter"
+              plotBands="hero"
+            />
+          ) : undefined
+        }
+      />
 
-      {/* 2 Proof, directly under the hero: the heading, the three figures, the quieter line and the revenue chart (the
-          last two only where the data has them), then Gary beside the catalogue screenshot, Gemma and Luke in two
+      {/* 2 Proof, directly under the hero: the heading, the three figures and the quieter line (where the data has
+          it; the revenue chart moved into the hero in Phase 2.7), then Gary beside the catalogue screenshot, Gemma and Luke in two
           columns, and All results. Each business name links its case study. */}
       <Screen id="numbers" labelledBy="numbers-heading" innerClassName={flow}>
         <SectionHeading heading={proof.heading} headingId="numbers-heading" />
@@ -142,24 +171,6 @@ export default function HomePage() {
         {/* The quieter line (brand book, Colour: ink-muted, in small): the small print under the figures. */}
         {quieterLine ? (
           <small className="small mt-space-6 block max-w-measure text-ink-muted">{quieterLine}</small>
-        ) : null}
-        {chart ? (
-          <Chart
-            type="bar"
-            orientation="vertical"
-            // The value labels sit on the plot above their gridlines, so the plot runs line to line.
-            axis="inline"
-            data={chart.data}
-            title={chart.title}
-            titleAs="h3"
-            titleStyle="heading-2"
-            source={chart.source}
-            categoryLabel="Month"
-            valueLabel="Online store revenue"
-            format={{ prefix: '£', notation: 'short' }}
-            values="emphasis"
-            className="mt-space-12"
-          />
         ) : null}
         {/* Gary's quote on the left half, the screenshot on the right half, on the page's one split line (x 732 at 1440),
             as Luke's quote below it and every split on the page (Polish review: on seven and five columns the

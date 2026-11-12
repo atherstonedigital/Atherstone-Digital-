@@ -9,16 +9,15 @@ import type { Hero as HeroContent } from '@/lib/content/types';
 import { cn } from '@/lib/utils';
 
 // The homepage hero (plan, Homepage 1): the brass eyebrow, the H1 in display-1, the sub-copy in body-lg, the primary and
-// secondary buttons, and the one fact line on its own hairline. Phase 1's layout, without its chart: the chart drew
-// client figures that may not appear in this public repository.
+// secondary buttons, the one fact line, and the hero's object beside them.
 //
-// Phase 2.4 (design-taste-frontend's hole and section-gaps checks, within the brief's hero: 100dvh less the nav, its
-// own copy and buttons, no decoration): Phase 1 set the copy at the top of the first screen and docked the fact line at
-// its foot, which left an empty band of about 340px between the buttons and the line at 1440 by 900 (38% of the
-// screen): the hero read as two pieces with a hole between them. The copy and buttons are now centred in the space
-// above the fact line, which stays on its hairline at the foot of the screen, space-12 under the buttons at least: the
-// free space falls evenly above and below the copy (about 100px each at 1440 by 900), so the first screen reads as one
-// composed group, and the gap from the fact line to the next section stays the page's one section gap.
+// Phase 2.7, step 1 (the owner's brief, 12 Nov 2026): the hero gets its object. From 1024px (lg) it is a 12-column grid:
+// the copy on columns 1 to 7, the aside (the homepage's revenue chart) on 8 to 12. With asideBleed on, the aside's
+// right edge leaves the container and runs to the viewport's right edge, the first of the page's three bleeds; the
+// section clips anything past the viewport, so a classic scrollbar never adds a sideways scroll. Below 1024px the aside
+// stacks under the copy at the container's full width. The fact line sits directly under the buttons in small, with no
+// hairline above it. The hero is its content plus space-16 above and below (space-12 below 720px, as every section):
+// no minimum height, so it never pads itself out to a screen.
 //
 // The entrance (Phase 2.4 step 11, gsap-react and gsap-core) is the one thing on the page that moves on load: eyebrow,
 // H1, sub-copy, then the buttons with the fact line, 60ms apart, each from 1% opacity and 8px down to rest over 400ms
@@ -71,11 +70,6 @@ export interface HeroProps extends Omit<React.HTMLAttributes<HTMLElement>, 'cont
   content: HeroContent;
   /** h1 on the homepage. h2 only where the hero is shown inside another page, as on the design-system page. */
   headingLevel?: 'h1' | 'h2';
-  /**
-   * Fill the first screen below the fixed nav, the copy centred above the fact line at its foot (brand book, Layout:
-   * the hero fills the first screen alone with its primary button inside it). Off, the hero is as tall as its copy.
-   */
-  fill?: boolean;
   /** Run the entrance. Off, the copy is at rest from the first paint. */
   animate?: boolean;
   /** The H1's id, for the section's aria-labelledby. Generated when left out. */
@@ -86,21 +80,26 @@ export interface HeroProps extends Omit<React.HTMLAttributes<HTMLElement>, 'cont
    */
   wrapClassName?: string;
   /**
-   * One piece of the work beside the sub-copy from 900px, as Phase 1 set its chart: a code-drawn chart with its title
-   * and source line, or a real photograph. Not part of the entrance: the kit's rule is that the hero's picture is never
-   * hidden and never fades.
+   * The hero's object beside the copy from 1024px, under it below: the homepage's revenue chart (a code-drawn chart with
+   * its source line). Not part of the entrance: the kit's rule is that the hero's picture is never hidden and never
+   * fades.
    */
   aside?: React.ReactNode;
+  /**
+   * From 1024px, run the aside past the container's right line to the viewport's right edge (Phase 2.7, step 1). Only
+   * for a hero that spans the viewport, as the homepage's does; off by default.
+   */
+  asideBleed?: boolean;
 }
 
 export function Hero({
   content,
   headingLevel: Heading = 'h1',
-  fill = true,
   animate = true,
   headingId,
   wrapClassName,
   aside,
+  asideBleed = false,
   className,
   ...props
 }: HeroProps) {
@@ -182,106 +181,85 @@ export function Hero({
       // enters. A hero shown at rest (animate off) carries neither data-enter nor the hold.
       data-enter={animate ? '' : undefined}
       className={cn(
-        'hero flex flex-col text-ink',
-        // space-12 above and below on a phone, space-24 from 1200px; space-6 below 360px so a 320 by 640 screen holds
-        // the primary button and an uncut sub-copy (Phase 1).
-        'py-space-12 max-[359px]:py-space-6 min-[1200px]:py-space-24',
-        // The first screen below the fixed nav, in dvh where the browser has it (brand book, Layout).
-        fill &&
-          'min-h-[calc(100vh-var(--nav-height))] supports-[height:100dvh]:min-h-[calc(100dvh-var(--nav-height))]',
+        'hero text-ink',
+        // Content plus space-16 above and below, space-12 below 720px (Phase 2.7, step 1). No minimum height.
+        'py-space-12 min-[720px]:py-space-16',
+        // The bleeding aside runs to the viewport's edge; nothing past it may scroll sideways.
+        asideBleed && 'overflow-x-clip',
         className,
       )}
       {...props}
     >
-      {/* The taste kit's hero shape (system.css: section.hero > .wrap > .hero-text plus one strip): the box the page
-          gives its container classes (wrapClassName), holding the composition and, at its foot, the fact line as the
-          one docked strip. A column at every width; the composition's auto margins centre it in the space above the
-          strip. */}
-      <div className={cn('flex flex-1 flex-col', wrapClassName)}>
-        {/* The composition. A column below 900px; from 900px Phase 1's grid: eyebrow and H1 across all 12 columns,
-            sub-copy and buttons on 1 to 7, the aside on 8 to 12 beside them. */}
+      {/* The taste kit's hero shape (system.css: section.hero > .wrap > .hero-text): the box the page gives its
+          container classes (wrapClassName), holding the composition. */}
+      <div className={wrapClassName}>
         <div
           className={cn(
-            'hero-text my-auto flex flex-col',
-            // 24px between columns, so the aside starts on a line of the page's 24px grid (x 834 at 1440).
-            'min-[900px]:grid min-[900px]:grid-cols-12 min-[900px]:items-start min-[900px]:gap-x-space-6',
+            'hero-text grid grid-cols-1',
+            // From 1024px the copy on columns 1 to 7 and the aside on 8 to 12, 24px apart, their feet on one line.
+            'min-[1024px]:grid-cols-12 min-[1024px]:items-end min-[1024px]:gap-x-space-6',
           )}
         >
-          {/* The one brass eyebrow on the site (brand book, Type). */}
-          <p
-            data-hero-step="0"
-            className={cn(held, 'eyebrow mb-space-4 text-brass-600 max-[359px]:mb-space-2 min-[900px]:col-span-12')}
-          >
-            {eyebrow}
-          </p>
+          <div className="flex flex-col min-[1024px]:col-span-7">
+            {/* The one brass eyebrow on the site (brand book, Type). */}
+            <p data-hero-step="0" className={cn(held, 'eyebrow mb-space-4 text-brass-600 max-[359px]:mb-space-2')}>
+              {eyebrow}
+            </p>
 
-          {/* display-1 steps from 34px to 64px with the viewport (tokens). Below 720px the H1 holds an 18ch measure so
-              it breaks between phrases; from 720px each sentence takes its own line. */}
-          <Heading
-            id={titleId}
-            data-hero-step="1"
-            className={cn(
-              held,
-              'display-1 mb-space-6 max-w-[18ch] max-[359px]:mb-space-4 min-[720px]:max-w-none min-[900px]:col-span-12',
-            )}
-          >
-            {lines.map((line, index) => (
-              <React.Fragment key={line}>
-                {index > 0 ? ' ' : null}
-                <span className="min-[720px]:block">{line}</span>
-              </React.Fragment>
-            ))}
-          </Heading>
+            {/* display-1 steps from 34px to 64px with the viewport (tokens). Below 720px the H1 holds an 18ch measure
+                so it breaks between phrases; from 720px each sentence starts its own line. */}
+            <Heading
+              id={titleId}
+              data-hero-step="1"
+              className={cn(held, 'display-1 mb-space-6 max-w-[18ch] max-[359px]:mb-space-4 min-[720px]:max-w-none')}
+            >
+              {lines.map((line, index) => (
+                <React.Fragment key={line}>
+                  {index > 0 ? ' ' : null}
+                  <span className="min-[720px]:block">{line}</span>
+                </React.Fragment>
+              ))}
+            </Heading>
 
-          {/* body-lg at measure-lg; body below 360px so the 320 screen keeps the buttons above the fold. */}
-          <p
-            data-hero-step="2"
-            className={cn(
-              held,
-              'body-lg mb-space-8 max-w-measure-lg min-[900px]:col-span-7',
-              'max-[359px]:mb-space-6 max-[359px]:text-[length:var(--body-font-size)] max-[359px]:leading-[var(--body-line-height)]',
-            )}
-          >
-            {lead}
-          </p>
+            {/* body-lg at measure-lg; body below 360px so the 320 screen keeps the buttons above the fold. */}
+            <p
+              data-hero-step="2"
+              className={cn(
+                held,
+                'body-lg mb-space-8 max-w-measure-lg',
+                'max-[359px]:mb-space-6 max-[359px]:text-[length:var(--body-font-size)] max-[359px]:leading-[var(--body-line-height)]',
+              )}
+            >
+              {lead}
+            </p>
 
-          {/* One primary and its one secondary (Button README), full width and stacked below 720px. */}
-          <div
-            data-hero-step="3"
-            className={cn(
-              held,
-              'flex w-full flex-wrap items-center gap-space-3 min-[900px]:col-span-7',
-            )}
-          >
-            <LinkButton link={primary} className="w-full min-[720px]:w-auto" />
-            <LinkButton link={secondary} variant="secondary" className="w-full min-[720px]:w-auto" />
+            {/* One primary and its one secondary (Button README), full width and stacked below 720px. */}
+            <div data-hero-step="3" className={cn(held, 'flex w-full flex-wrap items-center gap-space-3')}>
+              <LinkButton link={primary} className="w-full min-[720px]:w-auto" />
+              <LinkButton link={secondary} variant="secondary" className="w-full min-[720px]:w-auto" />
+            </div>
+
+            {/* The fact line: directly under the buttons in small, ink, no hairline (Phase 2.7, step 1). It enters
+                with the buttons. */}
+            <p data-hero-step="3" className={cn(held, 'small mt-space-4 text-ink')}>
+              {fact}
+            </p>
           </div>
 
-          {/* Not part of the entrance (four steps, brand book). Hidden below 720px, where the phone's first screen is
-              full without it; full width under the buttons from 720 to 899px; beside them from 900px (Phase 1). */}
           {aside ? (
             <div
               className={cn(
-                'hidden min-[720px]:my-space-8 min-[720px]:block',
-                'min-[900px]:col-span-5 min-[900px]:col-start-8 min-[900px]:row-span-2 min-[900px]:row-start-3 min-[900px]:my-0',
+                'mt-space-12 min-w-0 min-[1024px]:col-span-5 min-[1024px]:col-start-8 min-[1024px]:mt-0',
+                // The bleed: a negative right margin as wide as the space between the container's right line and the
+                // viewport's right edge, half of what the container leaves of the viewport.
+                asideBleed &&
+                  'min-[1024px]:mr-[calc((min(100vw_-_2_*_var(--gutter),var(--container))_-_100vw)_/_2)]',
               )}
             >
               {aside}
             </div>
           ) : null}
         </div>
-
-        {/* The fact line, the hero's one strip: copy, so it is ink, in small, on its own hairline at the foot of the
-            first screen, at least space-12 under the buttons (space-6 below 360px). It enters with the buttons. */}
-        <p
-          data-hero-step="3"
-          className={cn(
-            held,
-            'hero-strip small mt-space-12 border-t border-rule pt-space-4 text-ink max-[359px]:mt-space-6 max-[359px]:pt-space-3',
-          )}
-        >
-          {fact}
-        </p>
       </div>
     </section>
   );

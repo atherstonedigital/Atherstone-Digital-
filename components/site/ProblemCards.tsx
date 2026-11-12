@@ -19,8 +19,9 @@ import { cn } from '@/lib/utils';
 //     Cover cuts its paper rules across the green slab: space-8 either side of each, so the rows' words sit space-16
 //     apart. The frame (components/site/Screen.tsx, ground band) lays the ground. From 1024px the band is a split on
 //     the page's split line (Phase 2.7 review: the ledger alone left half the band empty): the eyebrow and heading on
-//     the left half, top-aligned, the ledger on the right half from x 732 at 1440, its paper hairlines running to the
-//     container's right line. Below 1024px they stack. From 720px each sentence of the heading is a block of its own,
+//     the left half, top-aligned and held in view as the ledger scrolls past (sticky, as the contact band's left
+//     column), the ledger on the right half from x 732 at 1440, its paper hairlines running to the container's right
+//     line. Below 1024px they stack. From 720px each sentence of the heading is a block of its own,
 //     balanced, as the hero's H1 breaks by sentence, so no line ends on a stray word (no copy change).
 //   - paper (the default: the sector pages and the Health Check): the two-column ruled list on paper, the bold line in
 //     heading-2 on the left, its explanation in body on the split line (x 732 at 1440) from 900px, the rules in rule.
@@ -113,8 +114,16 @@ export function ProblemCards({
           headingId={titleId}
           ground={band ? 'band' : 'paper'}
           // In the band's split the heading block ends with the heading itself; its space-8 below only parts it from
-          // the ledger when they stack.
-          className={band ? 'min-[1024px]:[&>:last-child]:mb-0' : undefined}
+          // the ledger when they stack. It stays in view beside the ledger as the ledger scrolls past, as the contact
+          // band's left column does, so the left half is never a long empty stretch of green.
+          className={
+            band
+              ? cn(
+                  'min-[1024px]:[&>:last-child]:mb-0',
+                  'min-[1024px]:sticky min-[1024px]:top-[calc(var(--nav-height)_+_var(--space-8))] min-[1024px]:self-start',
+                )
+              : undefined
+          }
           // The band changes grammar (Phase 2.7, step 5): no hairline; the ledger's rows carry the rules.
           hairline={!band}
         />

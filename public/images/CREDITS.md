@@ -15,3 +15,12 @@ committed WebP renditions in `public/images/` and the manifest `lib/images.ts`, 
 
 The two client photographs were downloaded at the largest width each CDN serves: the Canwell original is 2400 by 1350, the Saverys original
 1920 by 1080 (the CDN serves nothing larger).
+
+## Screenshots
+
+| Original | Client | Source URL | Captured |
+| --- | --- | --- | --- |
+| `assets/screenshots/xshowhome-catalogue.png` | Xshowhome | https://xshowhome.com/collections/furniture, product type filter open, 1440 by 1080 at 2x (the floating chat button hidden) | 2026-11-12 |
+
+The original is kept locally in `assets/screenshots/`, like the photographs; its WebP renditions (800, 1200 and 1600 wide,
+no grade, no crop) and `lib/screenshots.json` are committed.

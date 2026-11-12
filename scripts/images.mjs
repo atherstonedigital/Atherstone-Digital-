@@ -4,13 +4,13 @@
 // are kept locally and are not in git (.gitignore, assets/photos/): this script needs them to regenerate the committed
 // renditions, and without them it leaves the photographs and lib/images.ts as they are.
 //
-// Screenshots (the Xshowhome catalogue screenshot beside Gary's testimonial): Dan saves the PNG as
+// Screenshots (the Xshowhome catalogue screenshot beside Gary's testimonial): save the PNG as
 // public/images/xshowhome-catalogue.png, as the brief asks, or straight into assets/screenshots/. The script moves a PNG
 // it finds in public/images/ into assets/screenshots/, so the raw file never ships, then writes WebP renditions at 800,
-// 1200 and 1600 wide (no grade, no crop, the same 150kb budget) and the manifest lib/screenshots.private.json, which
-// app/(site)/_home/CatalogueScreenshot.tsx reads at build. The screenshot waits on the client's written permission, so
-// the original, its renditions and that manifest are all gitignored: a build from git (Netlify) shows the stand-in, a
-// local build shows the screenshot.
+// 1200 and 1600 wide (no grade, no crop, the same 150kb budget) and the manifest lib/screenshots.json, which
+// app/(site)/_home/CatalogueScreenshot.tsx reads at build. Xshowhome cleared the screenshot in writing (Dan, 12 Nov
+// 2026), so the renditions and the manifest are committed; the original stays local in assets/screenshots/, like the
+// photographs.
 //
 //   node scripts/images.mjs   (npm run images)
 //
@@ -39,7 +39,7 @@ const sourceDir = path.join(root, 'assets', 'photos');
 const screenshotDir = path.join(root, 'assets', 'screenshots');
 const outDir = path.join(root, 'public', 'images');
 const manifestFile = path.join(root, 'lib', 'images.ts');
-const screenshotManifestFile = path.join(root, 'lib', 'screenshots.private.json');
+const screenshotManifestFile = path.join(root, 'lib', 'screenshots.json');
 const publicBase = '/images';
 
 const WIDTHS = [800, 1200, 1600, 2400];
@@ -89,15 +89,15 @@ const SOURCES = {
 };
 
 /**
- * The screenshots, each rendered at its own ratio. The key names it in lib/screenshots.private.json. The alt text is a
- * draft for Dan to approve against the screenshot when it lands (the brief asks for the products list filtered to a
- * corrected Xshowhome range, or one product record before and after): it must say what the screenshot shows.
+ * The screenshots, each rendered at its own ratio. The key names it in lib/screenshots.json. The alt text says what the
+ * screenshot shows. The Shopify admin is not reachable from the build machine, so the screenshot is the live storefront:
+ * the xshowhome.com furniture collection, captured 12 Nov 2026 at 1440 by 1080 (2x), with the product type filter open.
  */
 const SCREENSHOTS = {
   'xshowhome-catalogue.png': {
     key: 'xshowhomeCatalogue',
     name: 'xshowhome-catalogue',
-    alt: 'The Shopify admin for xshowhome.com, showing furniture product records after the data remediation',
+    alt: 'The furniture collection on xshowhome.com, with the product type filter open and each category listed with its product count',
   },
 };
 
@@ -331,7 +331,7 @@ async function flatScreenshot(file) {
 
 /**
  * The screenshots: a PNG dropped in public/images/ moves to assets/screenshots/ (so it never ships raw), then each
- * listed screenshot becomes WebP renditions and an entry in lib/screenshots.private.json. A screenshot that is not
+ * listed screenshot becomes WebP renditions and an entry in lib/screenshots.json. A screenshot that is not
  * there loses its renditions and its entry, so the page falls back to the stand-in.
  */
 async function screenshots() {
@@ -366,7 +366,7 @@ async function screenshots() {
   }
   if (Object.keys(entries).length) {
     fs.writeFileSync(screenshotManifestFile, `${JSON.stringify(entries, null, 2)}\n`);
-    console.log(`wrote ${path.relative(root, screenshotManifestFile)} (gitignored: the screenshot waits on permission)`);
+    console.log(`wrote ${path.relative(root, screenshotManifestFile)}`);
   } else if (fs.existsSync(screenshotManifestFile)) {
     fs.rmSync(screenshotManifestFile);
     console.log(`removed ${path.relative(root, screenshotManifestFile)}`);

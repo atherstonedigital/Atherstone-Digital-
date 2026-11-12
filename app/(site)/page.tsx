@@ -50,9 +50,8 @@ import { ShowroomPhoto } from './_home/ShowroomPhoto';
 //     split starts its right column on one line, column 7 of twelve with a 24px gap (x 732 at 1440), the left column
 //     ending 24px before it, both columns top-aligned and text on the left.
 //   - Proof (brand book): the three StatBlocks in the order lib/content/proof-data.ts gives them, its quieter line
-//     beneath, then the revenue chart across the container, each rendered only when the data has it. next.config.mjs
-//     swaps in the gitignored proof-data.private.ts when it exists, so a local build shows the full proof and a build
-//     from git shows the three public figures with no quieter line and no chart, which reads complete on its own.
+//     beneath, then the revenue chart across the container, each rendered only when the data has it. Xshowhome
+//     cleared the figures, the quieter line and the chart in writing (12 Nov 2026), so every build ships them.
 //   - Texture (brand book, with the owner's brief): exactly three changes of ground. The problems are a full-bleed
 //     green band (the one exception to "nothing else is filled green", approved in the brief); How it works gains the
 //     Canwell showroom photograph; Gary's testimonial gains the Xshowhome catalogue screenshot, or its stand-in. The

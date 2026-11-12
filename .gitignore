@@ -31,7 +31,5 @@ lib/content/*.private.ts
 # Original photographs: kept locally like docs/brand; node scripts/images.mjs needs them to regenerate the committed renditions
 assets/photos/
 
-# The Xshowhome catalogue screenshot waits on the client's written permission: its original, renditions and manifest stay local
+# Screenshot originals: kept locally like the photographs; their WebP renditions and lib/screenshots.json are committed
 assets/screenshots/
-public/images/xshowhome-catalogue*
-lib/screenshots.private.json

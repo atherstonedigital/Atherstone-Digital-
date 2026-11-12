@@ -4,11 +4,11 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 
-// The homepage proof block (lib/content/proof-data.ts). The committed module holds the public figures only. Its
-// gitignored twin, lib/content/proof-data.private.ts, holds the full proof that waits for the client's written
-// permission. When the private file exists (a local checkout that has it), every import that resolves to the public
-// module is swapped for it, so local builds and screenshots show the full proof. A build from git (Netlify) has no
-// private file and ships the public version. Both export the same ProofData, so both builds type-check.
+// The homepage proof block (lib/content/proof-data.ts). The committed module holds every figure cleared for
+// publication (Xshowhome's, 12 Nov 2026). An optional gitignored twin, lib/content/proof-data.private.ts, can hold
+// figures that still wait on a client's written permission: when it exists, every import that resolves to the public
+// module is swapped for it, so local builds show it and a build from git (Netlify) never does. Both export the same
+// ProofData, so both builds type-check. There is no private file at present.
 // The dev server reads this once at start: restart it after adding or removing the private file.
 const proofPrivate = path.join(root, 'lib', 'content', 'proof-data.private.ts');
 const usePrivateProof = existsSync(proofPrivate);

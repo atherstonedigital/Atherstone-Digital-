@@ -18,14 +18,12 @@ import { cn } from '@/lib/utils';
 // On the band the words and the underline are on-band, the hairlines rule-on-band and the focus ring on-band (11.6:1 on
 // the band light, 10.7:1 dark), where the brass focus token only just clears 3:1 in the light theme (3.17:1).
 
-/**
- * Phase 3 drafts, pending Dan's approval: the labels for the two lines. "Email" is the brief form's own field label.
- */
-export const directLinesDraft = { email: 'Email', phone: 'Phone' } as const;
+/** The labels for the two lines, approved by Dan on 12 Nov 2026. "Email" is the brief form's own field label. */
+export const directLinesLabels = { email: 'Email', phone: 'Phone' } as const;
 
 const lines: { label: string; link: SiteLink }[] = [
-  { label: directLinesDraft.email, link: { label: contact.email, href: contact.emailHref } },
-  { label: directLinesDraft.phone, link: { label: contact.phoneDisplay, href: contact.phoneHref } },
+  { label: directLinesLabels.email, link: { label: contact.email, href: contact.emailHref } },
+  { label: directLinesLabels.phone, link: { label: contact.phoneDisplay, href: contact.phoneHref } },
 ];
 
 export interface DirectLinesProps {

@@ -49,8 +49,8 @@ export const danPortrait: Portrait = {
   src: '/dan-le-gresley-portrait.webp',
   width: 670,
   height: 670,
-  // Draft for Dan to approve: one plain sentence saying what is in the picture (Phase 2.6, step 4). The About page reads
-  // this same string, so the two never drift apart.
+  // One plain sentence saying what is in the picture (Phase 2.6, step 4), approved by Dan on 12 Nov 2026. The About
+  // page reads this same string, so the two never drift apart.
   alt: 'Dan Le Gresley, head and shoulders, in a black T-shirt against a black background, looking to one side',
   blurDataURL:
     'data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAAAQBQCdASoYABgAPtFco0yoJaMiMBgIAQAaCWUAs4APY/qjKgshBedP/KWRKn5r3FaoAP73glq1SAHtaLh+s4mwFX/E3s9+nhocdrSvSQhSlG/kl9arQARN7Fj6Lk3vTu5t+Zl881isQgN/h5ULBLXdUwpddh0B/7kUyXJoAAA=',

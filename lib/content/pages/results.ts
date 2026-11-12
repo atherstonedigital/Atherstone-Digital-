@@ -4,9 +4,10 @@
 // written; the index lists them.
 //
 // Public repo rule (decision 1): the only figures here are the ones already public on the live site (16,193 records,
-// 120+ hours a month, £250k monthly revenue within six months via Ranch Creative). Turnover bands, Xshowhome's revenue,
-// orders, sessions, ROAS and Search Console figures, and every Saverys and Canwell figure wait for the client's written
-// permission and never enter this repository.
+// 120+ hours a month, £250k monthly revenue within six months via Ranch Creative) and the Xshowhome proof block that
+// Xshowhome cleared in writing on 12 Nov 2026 (lib/content/proof-data.ts). Turnover bands, Xshowhome's sessions and
+// Search Console figures, and every Saverys and Canwell figure wait for the client's written permission and never
+// enter this repository.
 //
 // Drafts, pending Dan's approval: every case study title tag and meta description, the index's title tag, meta
 // description and H1, the filter's "All" label, Xshowhome's business line, and the slugs (the plan defines none).
@@ -63,8 +64,8 @@ const xshowhome: CaseStudyPage = {
     articles: ['shopify-product-data-audit-guide', 'shopify-taxonomy-guide-2025'],
   },
   planNotes: [
-    'Needs written permission from Gary to name the business and use the turnover band. The name and the quote are already public on the live site.',
-    'Its other proof (revenue, orders, sessions, Google Ads and Meta ROAS, Search Console) is permission-gated and stays out of this repository.',
+    'Gary cleared the homepage proof block in writing on 12 Nov 2026 (online revenue, orders, Google Ads ROAS, conversion rate and the revenue chart, in lib/content/proof-data.ts). The turnover band still needs his written permission. The name and the quote are already public on the live site.',
+    'Its other proof (sessions, Meta ROAS, Search Console) is permission-gated and stays out of this repository.',
     'The plan pairs it with the week 5 article, "16,193 wrong product records", as its companion.',
   ],
 };

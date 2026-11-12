@@ -58,15 +58,16 @@ export const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
 LinkButton.displayName = 'LinkButton';
 
 /**
- * The text link in running copy: green-700, weight 500, underlined at 1px with a 3px offset, thickening to 2px on
- * hover over 150ms, and on press so a tap answers on touch (the hover layer, Phase 2.4 step 10). The colour never
- * changes, visited included. Under reduced motion the underline still thickens, at once. It stays inline so it wraps
- * with the sentence around it.
+ * The text link in running copy: green-700, weight 500, underlined at 1px with a 3px offset. On hover, and on press so
+ * a tap answers on touch, the underline turns brass-600 over 150ms (Phase 2.7, step 8, the owner's brief: hover is one
+ * thing; brass is the hover state only, the resting link stays green-700). The text colour never changes, visited
+ * included, and nothing moves. Under reduced motion the underline still changes colour, at once. It stays inline so it
+ * wraps with the sentence around it.
  */
 export const textLinkVariants = cva(
   [
-    'cursor-pointer font-medium underline decoration-1 underline-offset-[3px] hover:decoration-2 active:decoration-2',
-    '[transition:text-decoration-thickness_var(--duration-colour)_ease-out] motion-reduce:transition-none',
+    'cursor-pointer font-medium underline decoration-1 underline-offset-[3px] hover:decoration-brass-600 active:decoration-brass-600',
+    '[transition:text-decoration-color_var(--duration-colour)_ease-out] motion-reduce:transition-none',
   ],
   {
     variants: {
@@ -127,8 +128,8 @@ export interface ForwardLinkProps extends Omit<TextLinkProps, 'href' | 'external
 
 /**
  * A forward link: a TextLink ending in the lucide ArrowRight at 20px and stroke 1.5, which "ends a forward link" (Icons
- * README: 'Read more', 'All results', 'The full comparison'). The arrow stays still: the underline thickening is the
- * hover answer, because the brand book animates colour, underline thickness and press, and nothing else.
+ * README: 'Read more', 'All results', 'The full comparison'). The arrow stays still: the underline turning brass-600 is the
+ * hover answer (Phase 2.7, step 8), because the brand animates colour and press, and nothing else.
  */
 export const ForwardLink = React.forwardRef<HTMLAnchorElement, ForwardLinkProps>(
   ({ link, layout = 'block', className, ...props }, ref) => {

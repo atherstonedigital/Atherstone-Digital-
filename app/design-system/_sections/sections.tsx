@@ -176,8 +176,8 @@ export default function SectionsSection() {
           />
         </Sample>
         <div className="grid grid-cols-1 gap-space-6 min-[720px]:grid-cols-2">
-          <Sample label="Linked card, hover (2px lift, border ink, no shadow)">
-            <HeldCard className="flex min-h-[calc(var(--space-16)+var(--space-2))] -translate-y-[2px] items-center border-ink">
+          <Sample label="Linked card, hover (border rule-strong, no lift, no shadow)">
+            <HeldCard className="flex min-h-[calc(var(--space-16)+var(--space-2))] items-center border-rule-strong">
               <span className="heading-2">{furniture.tileLabel}</span>
             </HeldCard>
           </Sample>
@@ -203,21 +203,21 @@ export default function SectionsSection() {
             <InsightCards content={insights} headingLevel="h3" />
           </Sample>
           <div className="grid grid-cols-1 content-start gap-space-6">
-            <Sample label="Article card, hover">
-              <HeldCard className="grid -translate-y-[2px] gap-y-space-2 border-ink">
+            <Sample label="Insight row, hover (the title turns green-700; nothing moves)">
+              <div aria-hidden="true" className="grid gap-y-space-2">
                 <span className="eyebrow text-ink-muted">{firstArticle.sectorTag}</span>
-                <span className="heading-2">{firstArticle.title}</span>
-              </HeldCard>
+                <span className="heading-2 text-green-700">{firstArticle.title}</span>
+              </div>
             </Sample>
-            <Sample label="Article card, focus">
-              <HeldCard className={cn('grid gap-y-space-2', focusRing)}>
+            <Sample label="Insight row, focus">
+              <div aria-hidden="true" className={cn('grid gap-y-space-2', focusRing)}>
                 <span className="eyebrow text-ink-muted">{firstArticle.sectorTag}</span>
                 <span className="heading-2">{firstArticle.title}</span>
-              </HeldCard>
+              </div>
             </Sample>
           </div>
         </div>
-        <Sample label="InsightCards, row of three, cards only (a sector page's articles)">
+        <Sample label="InsightCards, row of three, ruled columns only (a sector page's articles)">
           <InsightCards content={insights} layout="row" withHeading={false} headingLevel="h3" />
         </Sample>
       </Group>

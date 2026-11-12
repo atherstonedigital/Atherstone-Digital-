@@ -15,7 +15,11 @@ import { cn } from '@/lib/utils';
 //
 // Reduced motion (Phase 2.5 step 5: "removing the lift and the scale, keeping the border and underline changes"):
 // no transitions and no scale. The press then shows as the deeper tone each form already takes on press: green-700
-// on the primary, the ink border on the secondary, the 2px underline on the text link.
+// on the primary, the ink border on the secondary, the brass-600 underline on the text link.
+//
+// Phase 2.7, step 8 (the owner's brief: hover is one thing, not three): the text link stays green-700 with its 1px
+// underline 3px below; on hover (and on press) the underline turns brass-600 over 150ms. Nothing moves on hover; the
+// 0.98 press is not hover and stays.
 const buttonVariants = cva(
   [
     'button inline-flex cursor-pointer items-center justify-center gap-space-2 whitespace-nowrap border border-transparent no-underline',
@@ -44,11 +48,12 @@ const buttonVariants = cva(
           'rounded-radius-sm border-rule-strong bg-transparent text-ink hover:border-ink active:border-ink',
           'disabled:border-rule-strong aria-disabled:border-rule-strong',
         ],
-        // green-700, weight 500, underlined at 1px with a 3px offset; hover thickens to 2px. The colour never changes.
+        // green-700, weight 500, underlined at 1px with a 3px offset; on hover the underline turns brass-600 (Phase 2.7,
+        // step 8). The text colour never changes.
         link: [
-          'border-0 bg-transparent font-medium text-green-700 underline decoration-1 underline-offset-[3px] hover:decoration-2 active:decoration-2',
-          '[transition:text-decoration-thickness_var(--duration-colour)_ease-out,transform_var(--duration-press)_ease-out]',
-          'disabled:decoration-1 aria-disabled:decoration-1',
+          'border-0 bg-transparent font-medium text-green-700 underline decoration-1 underline-offset-[3px] hover:decoration-brass-600 active:decoration-brass-600',
+          '[transition:text-decoration-color_var(--duration-colour)_ease-out,transform_var(--duration-press)_ease-out]',
+          'disabled:decoration-current aria-disabled:decoration-current',
         ],
       },
       size: {

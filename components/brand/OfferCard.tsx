@@ -10,10 +10,9 @@ import { cn } from '@/lib/utils';
 // name, the copy, the price and a text link. No icon, no shadow, no tick list and no button inside (the row has one
 // primary button beneath it). At most one card in a row is highlighted, never the most expensive.
 //
-// The whole card is the link (its text link is stretched over it), so it answers the pointer as every linked card
-// does (Phase 2.4 step 10, which the owner's brief applies to the OfferCard where its README had no lift): it rises 2px
-// on transform, its border goes to ink over 150ms and the link's underline thickens to 2px. Reduced motion keeps the
-// border and the underline and drops the lift.
+// The whole card is the link (its text link is stretched over it). Phase 2.7, step 8 (the owner's brief: hover is one
+// thing): on hover the card's border goes from rule (brass-300 on the highlighted card) to rule-strong over 150ms and
+// the link's underline turns brass-600, as every text link's does. No lift, no shadow: nothing moves.
 
 export type OfferCardContent = Pick<
   Offer,
@@ -50,9 +49,9 @@ export function OfferCard({ offer, headingLevel: Heading = 'h3', as: Tag = 'div'
       className={cn(
         // 1px rule border, radius-0, space-4 padding, space-3 between elements, paper fill.
         'group relative flex flex-col gap-space-3 rounded-radius-0 border border-rule bg-paper p-space-4 text-ink',
-        // The linked card's hover layer: the 2px lift and the ink border, over 150ms.
+        // The hover answer: the border to rule-strong over 150ms (components/brand/LinkedCard.tsx).
         linkedCardHover,
-        // The highlight: brass-300 fill and border; the text stays ink. Hover still takes the border to ink.
+        // The highlight: brass-300 fill and border; the text stays ink. Hover still takes the border to rule-strong.
         highlight && 'border-brass-300 bg-brass-300',
         className,
       )}
@@ -67,8 +66,8 @@ export function OfferCard({ offer, headingLevel: Heading = 'h3', as: Tag = 'div'
         className={cn(
           textLinkVariants({ tone: highlight ? 'highlight' : 'default' }),
           // A 44px row of its own (WCAG 2.5.8, brand book: touch targets), and stretched over the card by ::after, so
-          // the card is one target; the underline thickens on card hover.
-          'inline-flex min-h-touch-target items-center self-start after:absolute after:inset-0 group-hover:decoration-2',
+          // the card is one target; the underline turns brass-600 on card hover.
+          'inline-flex min-h-touch-target items-center self-start after:absolute after:inset-0 group-hover:decoration-brass-600',
         )}
       >
         {readMore}

@@ -70,7 +70,7 @@ function proofCard(card: SectorProof) {
  * from 900px, 24px apart, so the second starts on the page's split line (x 732 at 1440).
  *
  * Phase 2.4 (design-taste-frontend and apple-design, the hover layer): each card is a case-study card, so it answers the
- * pointer as every linked card does, a 2px lift and its border to ink over 150ms. The quote cannot sit inside an <a>, so
+ * pointer as every linked card does, its border to rule-strong over 150ms (Phase 2.7, step 8: nothing moves). The quote cannot sit inside an <a>, so
  * the card's one link is stretched over it by ::after, as the OfferCard's is: the whole card is one target, the link
  * keeps its own name, and its underline thickens while the card is hovered.
  *
@@ -130,7 +130,7 @@ export function ProofBlock({
               <ForwardLink
                 link={{ label: caseStudy.title, href: caseStudy.href }}
                 aria-label={`${caseStudy.title} case study`}
-                className="mt-auto self-start after:absolute after:inset-0 group-hover:decoration-2"
+                className="mt-auto self-start after:absolute after:inset-0 group-hover:decoration-brass-600"
               />
             )}
           </li>

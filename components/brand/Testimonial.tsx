@@ -31,7 +31,7 @@ export interface TestimonialProps
   businessLinkLabel?: string;
   /**
    * Stretch the business link over the nearest positioned ancestor (a linked card with `group relative`) by ::after,
-   * so the whole card is the link's target and its underline thickens while the card is hovered.
+   * so the whole card is the link's target and its underline turns brass-600 while the card is hovered.
    */
   stretchLink?: boolean;
   /** The hanging 44px brass opening quotation mark (the homepage, Phase 2.7 step 5). Off by default. */
@@ -87,7 +87,7 @@ export function Testimonial({
               href={businessHref}
               hitArea={!stretchLink}
               aria-label={businessLinkLabel}
-              className={stretchLink ? 'after:absolute after:inset-0 group-hover:decoration-2' : undefined}
+              className={stretchLink ? 'after:absolute after:inset-0 group-hover:decoration-brass-600' : undefined}
             >
               {business}
             </TextLink>

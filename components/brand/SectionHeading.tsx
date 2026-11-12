@@ -13,6 +13,10 @@ import { cn } from '@/lib/utils';
 // Phase 2.7, step 2 (the owner's brief: a type scale with a step in it): size display-2 sets the heading at 44px for
 // the three homepage sections that make the argument (Sound familiar, Three ways to work with me and the comparison).
 // Every other H2 stays heading-1 (32px). Extended minimally: one prop, heading-1 by default.
+//
+// Phase 2.7, step 5 (vary the section grammar): the eyebrow, heading and hairline stay on exactly five homepage
+// sections (The numbers, What I do, the comparison, How it works, Insights). The others keep their words and drop the
+// hairline (hairline off): the heading then sits space-8 above the content, without the rule. On by default.
 
 export interface SectionHeadingProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /** A few words, sentence case; the eyebrow style sets it uppercase. */
@@ -32,6 +36,8 @@ export interface SectionHeadingProps extends Omit<React.HTMLAttributes<HTMLDivEl
    * The eyebrow is never brass there.
    */
   ground?: 'paper' | 'band';
+  /** The hairline under the heading. On by default; off for the homepage sections that change grammar (Phase 2.7). */
+  hairline?: boolean;
   /**
    * With no eyebrow, start the heading where an eyebrowed one starts, so headings line up from section to section
    * (Phase 1, "The numbers" and "How it works").
@@ -50,6 +56,7 @@ export function SectionHeading({
   eyebrowTone = 'muted',
   ground = 'paper',
   alignWithEyebrow = false,
+  hairline = true,
   className,
   children,
   ...props
@@ -71,7 +78,7 @@ export function SectionHeading({
         id={headingId}
         className={cn(
           size,
-          'mb-space-4',
+          hairline ? 'mb-space-4' : 'mb-space-8',
           !eyebrow && alignWithEyebrow && 'mt-[calc(var(--eyebrow-font-size)*var(--eyebrow-line-height)_+_var(--space-2))]',
         )}
       >
@@ -79,7 +86,9 @@ export function SectionHeading({
       </Heading>
       {/* The hairline: a full-width rule with space-4 above it and space-8 below, the gap to the content. Decorative, so
           it is hidden from screen readers. */}
-      <hr aria-hidden="true" className={cn('mb-space-8 border-0 border-t', onBand ? 'border-rule-on-band' : 'border-rule')} />
+      {hairline ? (
+        <hr aria-hidden="true" className={cn('mb-space-8 border-0 border-t', onBand ? 'border-rule-on-band' : 'border-rule')} />
+      ) : null}
       {children ? <p className="body max-w-measure">{children}</p> : null}
     </div>
   );

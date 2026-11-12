@@ -1,45 +1,42 @@
 import * as React from 'react';
 import NextLink from 'next/link';
 
-import { linkedCardClasses } from '@/components/brand/LinkedCard';
 import { SectionHeading } from '@/components/brand/SectionHeading';
 import type { Sector, SectorsSection } from '@/lib/content/types';
 import { cn } from '@/lib/utils';
 
-// Sectors (plan, Homepage 7): one linked tile per sector page. A tile is a card (bordered on paper, radius-0, rule
-// border, space-4 padding, no shadow, no icon) whose whole box is the link. On hover it rises 2px on transform and its
-// border darkens to ink (brand book, Motion: the hover layer); the lift waits for a fine pointer that can hover and is
-// dropped under reduced motion, where the border change stays (components/brand/LinkedCard.tsx). Tiles take the
-// sector's tile label, sentence case.
+// Sectors (plan, Homepage 7): one link per sector page, each the sector's tile label (sentence case) in heading-2 and,
+// where given, its one line in small beneath: the first clause of the plan's "Sector-specific problems to name".
 //
-// Two layouts:
-//   - list (the default; a case study's one sector tile): one column, space-4 apart, each tile a full-width row.
-//   - row (the homepage, Phase 2.4 step 7 and Phase 2.5 step 3, and the offer pages' sector links, so the same
-//     eyebrow, heading and tiles look the same wherever they appear): one row of five from 1200px, two rows from 720px
-//     (three tiles, then two, each row running line to line on a six-column grid), one column below 720px. Each tile is
-//     the sector name in heading-2 and, where given, its one line in small beneath: the first clause of the plan's
-//     "Sector-specific problems to name". Each tile is as tall as its words: the line sits space-2 under the name, and
-//     the grid's stretch keeps a row one height. No min-height fills the section's 60dvh floor (Polish review, ruling A:
-//     five tall boxes with 150px of nothing inside read as a template); the homepage frame centres the row instead, so
-//     the slack falls above and below it, never inside the cards.
+// Phase 2.7, step 5 (the owner's brief: sectors without cards): no border box and no padding box. The links are set as
+// rules, the way the rest of the page sets its lists.
+//   - row (the homepage and the offer pages' sector links, so the sectors look the same wherever they appear): one ruled
+//     row from 1024px (lg), a column per sector parted by vertical 1px rule lines, the first on the container's left
+//     line and the last ending on its right; below 1024px a ruled list, a rule between rows, the name and its line side
+//     by side on the split line from 720px and stacked below.
+//   - list (the default; a case study's one sector): the same ruled list, a rule above and below.
+// The whole column or row is the link. On hover the name turns from ink to green-700 over 150ms (Phase 2.7, step 8);
+// nothing moves. The section heading above the row has no hairline on the homepage (the frame passes hairline off).
 //
-// A hyphenated compound in a tile line ("400-option") is kept on one line, so the line never breaks at its hyphen.
+// A hyphenated compound in a line ("400-option") is kept on one line, so the line never breaks at its hyphen.
 
-/** A tile: the sector, and optionally its one line (lib/content/site.ts, sectorTileLines). */
+/** A sector: its page, its label, and optionally its one line (lib/content/site.ts, sectorTileLines). */
 export type SectorTile = Pick<Sector, 'slug' | 'href' | 'tileLabel'> & { tileLine?: string };
 
 export interface SectorTilesProps extends Omit<React.HTMLAttributes<HTMLElement>, 'content' | 'children'> {
   /**
-   * sectors from lib/content/site.ts. Every sector passed is tiled, held ones included: filter on status ('launch' or
+   * sectors from lib/content/site.ts. Every sector passed is shown, held ones included: filter on status ('launch' or
    * 'hold') before passing, once the plan owner rules on launching lighting and kitchens and bathrooms.
    */
   content: Partial<Pick<SectorsSection, 'eyebrow' | 'heading'>> & { sectors: SectorTile[] };
-  /** Open with the SectionHeading and render as a section labelled by it (the default); off, the tiles alone. */
+  /** Open with the SectionHeading and render as a section labelled by it (the default); off, the links alone. */
   withHeading?: boolean;
   headingLevel?: 'h2' | 'h3';
   /** The heading's id, for aria-labelledby. Generated when left out. */
   headingId?: string;
-  /** list: one full-width row per sector (the default). row: the homepage's row of five. */
+  /** The hairline under the heading. On by default; the homepage turns it off (Phase 2.7, step 5). */
+  hairline?: boolean;
+  /** list: the ruled list (the default). row: the ruled row of columns from 1024px. */
   layout?: 'list' | 'row';
   /**
    * The root element. Default: a section when the heading shows, else a div. div where the frame around it is the
@@ -48,7 +45,7 @@ export interface SectorTilesProps extends Omit<React.HTMLAttributes<HTMLElement>
   as?: 'section' | 'div';
 }
 
-/** The tile line with each hyphenated compound in a no-wrap span, so "400-option" never splits across two lines. */
+/** The line with each hyphenated compound in a no-wrap span, so "400-option" never splits across two lines. */
 function keepCompounds(line: string): React.ReactNode {
   const parts = line.split(/(\S+-\S+)/);
   if (parts.length === 1) return line;
@@ -63,15 +60,21 @@ function keepCompounds(line: string): React.ReactNode {
   );
 }
 
-/** In the row layout from 720 to 1199px: the first three tiles take two of six columns, the last two take three. */
-const rowSpan = (index: number, count: number) =>
-  count === 5 ? (index < 3 ? 'min-[720px]:max-[1199px]:col-span-2' : 'min-[720px]:max-[1199px]:col-span-3') : undefined;
+/** The ruled row's columns from 1024px, one per sector (written out so Tailwind finds them). */
+const rowColumns: Record<number, string> = {
+  1: 'min-[1024px]:grid-cols-1',
+  2: 'min-[1024px]:grid-cols-2',
+  3: 'min-[1024px]:grid-cols-3',
+  4: 'min-[1024px]:grid-cols-4',
+  5: 'min-[1024px]:grid-cols-5',
+};
 
 export function SectorTiles({
   content,
   withHeading = true,
   headingLevel = 'h2',
   headingId,
+  hairline = true,
   layout = 'list',
   as,
   className,
@@ -98,35 +101,53 @@ export function SectorTiles({
           eyebrow={content.eyebrow}
           heading={content.heading}
           headingId={titleId}
+          hairline={hairline}
         />
       ) : null}
       <ul
         className={cn(
-          'grid grid-cols-1 gap-space-4',
-          // Five across from 1200px; a six-column grid from 720px, so three and then two tiles each fill their row.
-          row && count === 5 && 'min-[720px]:grid-cols-6 min-[1200px]:grid-cols-5 min-[720px]:gap-space-6',
-          row && count !== 5 && 'min-[720px]:grid-cols-2 min-[720px]:gap-space-6',
+          // A ruled list: a rule between rows.
+          'grid grid-cols-1 divide-y divide-rule',
+          // The list layout closes with a rule above and below, so a lone sector still reads as a ruled row.
+          !row && 'border-y border-rule',
+          // From 1024px the row: one column per sector, a vertical rule between columns and none across.
+          row && cn(rowColumns[count] ?? rowColumns[5], 'min-[1024px]:divide-x min-[1024px]:divide-y-0'),
         )}
       >
-        {content.sectors.map((sector, index) => (
-          <li key={sector.slug} className={cn('flex', row && rowSpan(index, count))}>
+        {content.sectors.map((sector) => (
+          <li
+            key={sector.slug}
+            className={cn(
+              'flex',
+              row
+                ? cn(
+                    // A row of the list below 1024px: space-4 above and below its rule, none outside the first and
+                    // last. A column from 1024px: space-6 either side of its rule, none outside the first and last.
+                    'py-space-4 first:pt-0 last:pb-0',
+                    'min-[1024px]:px-space-6 min-[1024px]:py-0 min-[1024px]:first:pl-0 min-[1024px]:last:pr-0',
+                  )
+                : 'py-space-4',
+            )}
+          >
             <NextLink
               href={sector.href}
               className={cn(
-                linkedCardClasses,
-                'flex w-full flex-col gap-space-2',
-                row
-                  ? // As tall as its words; the row's grid stretch keeps the five one height.
-                    undefined
-                  : // 72px tall (space-16 plus space-2), the label centred on the row's height; 128px (two space-16)
-                    // on portrait tablets, so the five fill the screen (Phase 1).
-                    cn(
-                      'min-h-[calc(var(--space-16)+var(--space-2))] justify-center',
-                      '[@media(min-width:720px)_and_(max-width:1199px)_and_(orientation:portrait)]:min-h-[calc(var(--space-16)*2)]',
-                    ),
+                'group/sector grid w-full content-start gap-y-space-2 text-ink no-underline',
+                // At least a touch target tall, for the rows of the list.
+                'min-h-touch-target',
+                // From 720px to 1023px the name and its line side by side, the line on the split line.
+                row && 'min-[720px]:max-[1023px]:grid-cols-2 min-[720px]:max-[1023px]:items-baseline min-[720px]:max-[1023px]:gap-x-space-6',
               )}
             >
-              <span className="heading-2">{sector.tileLabel}</span>
+              <span
+                className={cn(
+                  'heading-2 text-ink',
+                  // The hover answer (Phase 2.7, step 8): the name from ink to green-700, 150ms, nothing moves.
+                  'transition-colors duration-colour ease-out group-hover/sector:text-green-700',
+                )}
+              >
+                {sector.tileLabel}
+              </span>
               {sector.tileLine ? <span className="small text-ink">{keepCompounds(sector.tileLine)}</span> : null}
             </NextLink>
           </li>

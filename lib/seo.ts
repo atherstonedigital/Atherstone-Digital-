@@ -16,7 +16,7 @@ import { clusterLabel, getInsightPost, insightPosts, insightsIndexPage } from '@
 import { buildsPage, ecommerceDirectorPage, offerPages, storeHealthCheckPage } from '@/lib/content/pages/offers';
 import { caseStudyPages, resultsIndexPage } from '@/lib/content/pages/results';
 import { sectorPages } from '@/lib/content/pages/sectors';
-import { contact, hero, homeMeta, meetDan, sectors, siteUrl, wordmarkDescriptor } from '@/lib/content/site';
+import { contact, credentialText, hero, homeMeta, meetDan, sectors, siteUrl, wordmarkDescriptor } from '@/lib/content/site';
 import type { ArchivePost, OfferId, PageMeta, SectorSlug, ServiceSchema } from '@/lib/content/types';
 import type { ShareCard } from '@/lib/og/share-card';
 import { absoluteUrl, type Crumb } from '@/lib/structured-data';
@@ -298,7 +298,7 @@ export function personJsonLd(options: { withContext?: boolean } = {}): JsonLdObj
     url: absoluteUrl('/about'),
     worksFor: { '@type': 'Organization', '@id': ORGANIZATION_ID, name: SITE_NAME },
     sameAs: [contact.linkedIn.href],
-    knowsAbout: meetDan.credentials,
+    knowsAbout: meetDan.credentials.map(credentialText),
   };
 }
 

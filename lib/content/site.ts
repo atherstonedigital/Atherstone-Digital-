@@ -11,6 +11,7 @@ import type {
   AboutSection,
   ComparisonSection,
   ContactDetails,
+  Credential,
   ContactSection,
   Faq,
   Hero,
@@ -380,14 +381,22 @@ export const meetDan: AboutSection = {
   // the public repo until Dan clears it; the sentence stops after the role. Licklibrary is one of the plan's case studies,
   // so the figure is treated as a client figure; it is on the Phase 3 substitution list for Dan to rule on.
   bio: 'Twenty years in ecommerce and digital. Blue chip work for GSK, Amazon, Ecolab, Eli Lilly and The Economist. Seven years as Digital Director at Licklibrary. Now I run online for premium interiors retailers, from a 16,000-product furniture catalogue to a three-showroom group’s weekly trading report. I own the strategy, write the code, run the ads and ship the automations. One person, one invoice, everything connected.',
+  // The plan's four credentials, verbatim, each split into a ledger row (Phase 2.7, step 5): what it is on the left,
+  // what it says on the right. The split falls at the plan's comma, or before the qualifier where there is none
+  // ("Shopify Partner" / "since 2014"); no word is added or dropped.
   credentials: [
-    'Shopify Partner since 2014',
-    'Google Ads certified',
-    'Klaviyo, £115k+ incremental email revenue across partner accounts',
-    'n8n automation, 120+ hours a month saved',
+    { label: 'Shopify Partner', separator: ' ', value: 'since 2014' },
+    { label: 'Google Ads', separator: ' ', value: 'certified' },
+    { label: 'Klaviyo', separator: ', ', value: '£115k+ incremental email revenue across partner accounts' },
+    { label: 'n8n automation', separator: ', ', value: '120+ hours a month saved' },
   ],
   link: { label: 'Full background', href: '/about' },
 };
+
+/** A credential as the plan writes it, one sentence: "Klaviyo, £115k+ incremental email revenue across partner accounts". */
+export function credentialText(credential: Credential): string {
+  return `${credential.label}${credential.separator}${credential.value}`;
+}
 
 export const insights: InsightsSection = {
   eyebrow: 'Insights',

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 
-import { danPortrait } from '@/components/site/AboutStrip';
+import { CredentialLedger, danPortrait } from '@/components/site/AboutStrip';
 import { Photograph, splitSizes } from '@/components/site/Photograph';
 import { CTABand } from '@/components/site/CTABand';
 import { JsonLd } from '@/components/site/JsonLd';
@@ -94,20 +94,14 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-1 gap-y-space-8">
             <Photograph photo={photos[aboutPhoto]} sizes={splitSizes} />
-            {/* The credentials as the homepage's Meet Dan sets them: ledger rows, each closed by a rule hairline, with no
-                bullet, under a label in the eyebrow style rather than a heading, so they sit with the photograph as a
+            {/* The credentials as the homepage's Meet Dan sets them: a ledger, what each is on the left and what it says
+                on the right, a rule hairline between rows (Phase 2.7, step 5), with no bullet, under a label in the eyebrow style rather than a heading, so they sit with the photograph as a
                 caption-free column and every heading on the page keeps the left line. */}
             <section aria-labelledby="credentials-heading" className="min-w-0">
               <p id="credentials-heading" className="eyebrow mb-space-2 text-ink-muted">
                 {page.credentials.heading}
               </p>
-              <ul className="grid grid-cols-1 border-t border-rule">
-                {page.credentials.items.map((credential) => (
-                  <li key={credential} className="body max-w-measure border-b border-rule py-space-2">
-                    {credential}
-                  </li>
-                ))}
-              </ul>
+              <CredentialLedger credentials={page.credentials.items} />
             </section>
           </div>
         </div>

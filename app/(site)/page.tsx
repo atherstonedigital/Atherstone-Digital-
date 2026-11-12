@@ -97,7 +97,10 @@ const testimonials = proof.testimonials.map((testimonial) => {
 const [leadTestimonial, ...otherTestimonials] = testimonials;
 if (!leadTestimonial) throw new Error('The proof block needs at least one testimonial in lib/content/site.ts.');
 
-/** A testimonial's props as the proof block sets them: the quote, the name, and the business linking its case study. */
+/**
+ * A testimonial's props as the proof block sets them: the quote, the name, and the business linking its case study.
+ * Phase 2.7, step 5: no rule above, the 44px brass opening mark hanging in the left margin.
+ */
 function testimonialProps(testimonial: (typeof testimonials)[number]) {
   return {
     quote: testimonial.quote,
@@ -105,6 +108,8 @@ function testimonialProps(testimonial: (typeof testimonials)[number]) {
     business: testimonial.business,
     businessHref: testimonial.href,
     businessLinkLabel: testimonial.linkLabel,
+    rule: false,
+    mark: true,
   };
 }
 
@@ -115,12 +120,16 @@ const sectorTiles = sectors.sectors.map((sector) => {
   return { slug: sector.slug, href: sector.href, tileLabel: sector.tileLabel, tileLine };
 });
 
-/** The three articles (plan, Homepage 9), each checked against the written posts, so no card links to a 404. */
+/**
+ * The three articles (plan, Homepage 9), each checked against the written posts, so no row links to a 404, and each
+ * with its post's publication date for the date column (Phase 2.7, step 5).
+ */
 const articles = insights.articles.map((article) => {
-  if (!getInsightPost(article.slug)) {
+  const post = getInsightPost(article.slug);
+  if (!post) {
     throw new Error(`The homepage links /insights/${article.slug}, which is not a written post.`);
   }
-  return article;
+  return { ...article, published: post.published };
 });
 
 // ------------------------------------------------------------------ the page
@@ -257,6 +266,7 @@ export default function HomePage() {
         <SectorTiles
           as="div"
           layout="row"
+          hairline={false}
           content={{ eyebrow: sectors.eyebrow, heading: sectors.heading, sectors: sectorTiles }}
           headingId="sectors-heading"
         />
@@ -266,7 +276,13 @@ export default function HomePage() {
           regraded portrait stands on the green slab, which runs to the viewport's edge (Phase 2.7, step 3b: the third
           bleed). */}
       <Screen id="about" className="overflow-x-clip" innerClassName={flow}>
-        <AboutStrip content={meetDan} headingId="about-heading" slab className="min-[720px]:gap-x-space-6" />
+        <AboutStrip
+          content={meetDan}
+          headingId="about-heading"
+          slab
+          hairline={false}
+          className="min-[720px]:gap-x-space-6"
+        />
       </Screen>
 
       {/* 9 Insights and 10 the scorecard: the articles on the left half, the scorecard's raised panel on the right from
@@ -295,6 +311,7 @@ export default function HomePage() {
           <div className="min-[900px]:sticky min-[900px]:top-[calc(var(--nav-height)_+_var(--space-8))] min-[900px]:self-start">
             <SectionHeading
               ground="band"
+              hairline={false}
               eyebrow={contactSection.eyebrow}
               heading={contactSection.heading}
               headingId="contact-heading"

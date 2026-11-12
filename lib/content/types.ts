@@ -247,9 +247,20 @@ export interface SectorsSection extends SectionIntro {
   sectors: Sector[];
 }
 
+/**
+ * A credential as a ledger row (Phase 2.7, step 5): the plan's words, split into what it is and what it says. label,
+ * then the separator, then value, give back the plan's sentence verbatim (credentialText in lib/content/site.ts).
+ */
+export interface Credential {
+  label: string;
+  /** What stood between the two in the plan: its comma and space, or a space. */
+  separator: ', ' | ' ';
+  value: string;
+}
+
 export interface AboutSection extends SectionIntro {
   bio: string;
-  credentials: string[];
+  credentials: Credential[];
   link: Link;
 }
 
@@ -597,7 +608,7 @@ export interface AboutPage extends PageHead {
   career: TextSection;
   howIWork: TextSection;
   band: TextSection;
-  credentials: { heading: string; items: string[] };
+  credentials: { heading: string; items: Credential[] };
   closing: ClosingActions;
 }
 

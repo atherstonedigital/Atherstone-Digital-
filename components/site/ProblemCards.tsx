@@ -13,8 +13,9 @@ import { cn } from '@/lib/utils';
 // Two grounds:
 //   - band (the homepage; Phase 2.7 step 5, the owner's brief): on the full-bleed green band, the eyebrow and the
 //     heading with no hairline, then the five problems as a numbered ledger: 01 to 05 in brass-600, small, tabular
-//     (the only new words: the numbers; hidden from screen readers, since the ordered list says the order), the problem
-//     in heading-2, its line of copy beneath in body, on-band at 80% opacity. Paper hairlines part the rows, as the
+//     (the only new words: the numbers; hidden from screen readers, since the ordered list says the order), each above
+//     its problem in heading-2, its line of copy beneath in body, on-band at 80% opacity. All three start on the
+//     container's left line. Paper hairlines part the rows, as the
 //     Cover cuts its paper rules across the green slab: space-8 either side of each, so the rows' words sit space-16
 //     apart. The frame (components/site/Screen.tsx, ground band) lays the ground.
 //   - paper (the default: the sector pages and the Health Check): the two-column ruled list on paper, the bold line in
@@ -100,16 +101,16 @@ export function ProblemCards({
               className={cn(
                 // space-8 either side of each paper hairline; the first row opens on the heading's gap, the last on
                 // the band's padding.
-                'grid grid-cols-[var(--space-8)_minmax(0,1fr)] items-baseline gap-x-space-4 py-space-8 first:pt-0 last:pb-0',
+                'py-space-8 first:pt-0 last:pb-0',
               )}
             >
-              <span aria-hidden="true" className="small tabular-nums text-brass-600">
+              {/* The number sits above its problem, as the brass marker sits above a figure, so the number, the
+                  problem and its line all start on the container's left line (the gate's container-edges, SR-6). */}
+              <span aria-hidden="true" className="small mb-space-2 block tabular-nums text-brass-600">
                 {ledgerNumber(index)}
               </span>
-              <div className="min-w-0">
-                <ItemHeading className="heading-2">{item.title}</ItemHeading>
-                <p className="body mt-space-2 max-w-measure text-on-band opacity-80">{item.body}</p>
-              </div>
+              <ItemHeading className="heading-2">{item.title}</ItemHeading>
+              <p className="body mt-space-2 max-w-measure text-on-band opacity-80">{item.body}</p>
             </li>
           ))}
         </ol>

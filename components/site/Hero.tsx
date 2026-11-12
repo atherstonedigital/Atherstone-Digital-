@@ -199,8 +199,9 @@ export function Hero({
         <div
           className={cn(
             'hero-text grid grid-cols-1',
-            // From 1024px the copy on columns 1 to 7 and the aside on 8 to 12, 24px apart, their feet on one line.
-            'min-[1024px]:grid-cols-12 min-[1024px]:items-end min-[1024px]:gap-x-space-6',
+            // From 1024px the copy on columns 1 to 7 and the aside on 8 to 12, 24px apart, top-aligned: a split's
+            // columns start together (the gate's split-pair, SR-8; brand book, Layout: headings first and top-aligned).
+            'min-[1024px]:grid-cols-12 min-[1024px]:items-start min-[1024px]:gap-x-space-6',
           )}
         >
           <div className="flex flex-col min-[1024px]:col-span-7">
